@@ -1,5 +1,8 @@
+using car_traders.Dta;
+using car_traders.Model;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using System.Xml.Linq;
 
 namespace car_traders
 {
@@ -22,6 +25,23 @@ namespace car_traders
         private void tabPage4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            using (var context = new ApplicationDBContext())
+            {
+                var car = new Car
+                {
+                    Id = 3,
+                    Name = texCarBrand.Text,
+                    Description = texCarColor.Text
+                };
+
+                context.car.Add(car);
+                context.SaveChanges();
+                MessageBox.Show("Employee added successfully");
+            }
         }
     }
 }

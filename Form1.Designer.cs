@@ -33,6 +33,7 @@
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            imgBox = new PictureBox();
             btnClear = new MaterialSkin.Controls.MaterialButton();
             btnSave = new MaterialSkin.Controls.MaterialButton();
             texCarModelName = new MaterialSkin.Controls.MaterialMaskedTextBox();
@@ -47,6 +48,7 @@
             imageList1 = new ImageList(components);
             materialTabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgBox).BeginInit();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -79,6 +81,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(imgBox);
             tabPage2.Controls.Add(btnClear);
             tabPage2.Controls.Add(btnSave);
             tabPage2.Controls.Add(texCarModelName);
@@ -96,6 +99,14 @@
             tabPage2.Size = new Size(939, 490);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Car";
+            // 
+            // imgBox
+            // 
+            imgBox.Location = new Point(27, 239);
+            imgBox.Name = "imgBox";
+            imgBox.Size = new Size(253, 207);
+            imgBox.TabIndex = 10;
+            imgBox.TabStop = false;
             // 
             // btnClear
             // 
@@ -135,6 +146,7 @@
             btnSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnSave.UseAccentColor = false;
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // texCarModelName
             // 
@@ -506,6 +518,7 @@
             materialTabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -526,5 +539,6 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarModelName;
         private MaterialSkin.Controls.MaterialMaskedTextBox texDescription;
         private MaterialSkin.Controls.MaterialButton btnClear;
+        private PictureBox imgBox;
     }
 }

@@ -1,0 +1,12 @@
+﻿ALTER TABLE `car_traders`.`car` 
+ADD COLUMN `Manufacturing_year` VARCHAR(45) NULL AFTER `Color`,
+ADD COLUMN `Model_name` VARCHAR(45) NULL AFTER `Manufacturing_year`,
+ADD COLUMN `Seller_name` VARCHAR(45) NULL AFTER `Model_name`,
+ADD COLUMN `Seller_address` VARCHAR(45) NULL AFTER `Seller_name`,
+ADD COLUMN `Mobile_number` VARCHAR(45) NULL AFTER `Seller_address`,
+ADD COLUMN `Image_url` VARCHAR(45) NULL AFTER `Mobile_number`,
+ADD COLUMN `Is_active` TINYINT NULL AFTER `Image_url`,
+CHANGE COLUMN `Id` `Id` INT NOT NULL AUTO_INCREMENT ,
+CHANGE COLUMN `Name` `Car_brand` VARCHAR(45) NULL DEFAULT NULL ,
+CHANGE COLUMN `Description` `Color` VARCHAR(45) NULL DEFAULT NULL ;
+
