@@ -11,6 +11,7 @@ namespace car_traders
         public Form1()
         {
             InitializeComponent();
+            /*MaterialButton desing add*/
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -29,37 +30,61 @@ namespace car_traders
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            using (var context = new ApplicationDBContext())
+            try
             {
-                var car = new Car
+                using (var context = new ApplicationDBContext())
                 {
+                    var car = new Car
+                    {
+                        Car_brand = texCarBrand.Text,
+                        Color = texCarColor.Text,
+                        Manufacturing_year = texManufacturingYear.Text,
+                        Model_name = texCarModelName.Text,
+                        Mileage = int.Parse(texMileage.Text),
+                        Fuel_type = comboFueltype.Text,
+                        Transmission = comboTransmission.Text,
+                        Body_type = texBodyType.Text,
+                        Image_url = texUrl.Text,
+                        Seller_name = texSellerName.Text,
+                        Seller_address = texSellerAddress.Text,
+                        Mobile_number = texsellerMobileNum.Text,
+                        Price = double.Parse(texPrice.Text),
+                        Description = texDescription.Text,
+                        Is_active = true
+                    };
 
-                    Car_brand = texCarBrand.Text,
-                    Color = texCarColor.Text,
-                    Manufacturing_year = texManufacturingYear.Text,
-                    Model_name = texCarModelName.Text,
-                    Mileage = int.Parse(texMileage.Text),
-                    Fuel_type = comboFueltype.Text,
-                    Transmission = comboTransmission.Text,
-                    Body_type = texBodyType.Text,
-                    Image_url = texUrl.Text,
-                    Seller_name = texSellerName.Text,
-                    Seller_address = texSellerAddress.Text,
-                    Mobile_number = texsellerMobileNum.Text,
-                    Price = double.Parse(texPrice.Text),
-                    Description = texDescription.Text,
-                    Is_active = true
-
-                };
-
-                context.car.Add(car);
-                context.SaveChanges();
-                MessageBox.Show("Employee added successfully");
+                    context.car.Add(car);
+                    context.SaveChanges();
+                    MessageBox.Show("Car added successfully");
+                }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Input format is incorrect: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            texCarBrand.Clear();
+            texCarColor.Clear();
+            texManufacturingYear.Clear();
+            texCarModelName.Clear();
+            texMileage.Clear();
+            comboFueltype.SelectedIndex = -1;
+            comboTransmission.SelectedIndex = -1;
+            texBodyType.Clear();
+            texUrl.Clear();
+            texSellerName.Clear();
+            texSellerAddress.Clear();
+            texsellerMobileNum.Clear();
+            texPrice.Clear();
+            texDescription.Clear();
+            imgBox.Image = null;
 
         }
 
@@ -76,17 +101,23 @@ namespace car_traders
                     // Get the path of specified file
                     string filePath = openFileDialog.FileName;
 
-                    imgBox.Image = new Bitmap(filePath);    
+                    // Resize the image to match the imgBox size
+                    Bitmap originalImage = new Bitmap(filePath);
+                    Bitmap resizedImage = new Bitmap(originalImage, new Size(263, 232));
+                    imgBox.Image = resizedImage;
 
                     // Save the image file to the specific directory
-                    string imagesDirectory = @"D:\ESOFT\AD FINAL PROJECT 01\car_traders\Image\";
+                    string imagesDirectory = @"D:\ESOFT\AD FINAL PROJECT 01\car_traders\Image\cars\";
                     if (!Directory.Exists(imagesDirectory))
                     {
                         Directory.CreateDirectory(imagesDirectory);
                     }
 
-                    string fileName = Path.GetFileName(filePath);
-                    string savePath = Path.Combine(imagesDirectory, fileName);
+
+                    // Generate a unique name for the image file
+                    string fileExtension = Path.GetExtension(filePath);
+                    string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
+                    string savePath = Path.Combine(imagesDirectory, uniqueFileName);
                     File.Copy(filePath, savePath, true);
 
                     // Set the image URL

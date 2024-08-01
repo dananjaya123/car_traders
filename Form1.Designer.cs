@@ -33,6 +33,7 @@
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            btnUploadImage = new MaterialSkin.Controls.MaterialButton();
             texBodyType = new MaterialSkin.Controls.MaterialMaskedTextBox();
             comboTransmission = new MaterialSkin.Controls.MaterialComboBox();
             comboFueltype = new MaterialSkin.Controls.MaterialComboBox();
@@ -52,7 +53,7 @@
             texCarBrand = new MaterialSkin.Controls.MaterialMaskedTextBox();
             tabPage3 = new TabPage();
             imageList1 = new ImageList(components);
-            btnUploadImage = new MaterialSkin.Controls.MaterialButton();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             materialTabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgBox).BeginInit();
@@ -88,6 +89,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(materialLabel1);
             tabPage2.Controls.Add(btnUploadImage);
             tabPage2.Controls.Add(texBodyType);
             tabPage2.Controls.Add(comboTransmission);
@@ -113,6 +115,26 @@
             tabPage2.Size = new Size(939, 676);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Car";
+            // 
+            // btnUploadImage
+            // 
+            btnUploadImage.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUploadImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnUploadImage.Depth = 0;
+            btnUploadImage.HighEmphasis = true;
+            btnUploadImage.Icon = null;
+            btnUploadImage.Location = new Point(668, 579);
+            btnUploadImage.Margin = new Padding(4, 6, 4, 6);
+            btnUploadImage.MouseState = MaterialSkin.MouseState.HOVER;
+            btnUploadImage.Name = "btnUploadImage";
+            btnUploadImage.NoAccentTextColor = Color.Empty;
+            btnUploadImage.Size = new Size(127, 36);
+            btnUploadImage.TabIndex = 17;
+            btnUploadImage.Text = "Upload Image";
+            btnUploadImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnUploadImage.UseAccentColor = false;
+            btnUploadImage.UseVisualStyleBackColor = true;
+            btnUploadImage.Click += btnUploadImage_Click;
             // 
             // texBodyType
             // 
@@ -732,25 +754,17 @@
             imageList1.Images.SetKeyName(1, "home.png");
             imageList1.Images.SetKeyName(2, "racing.png");
             // 
-            // btnUploadImage
+            // materialLabel1
             // 
-            btnUploadImage.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnUploadImage.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnUploadImage.Depth = 0;
-            btnUploadImage.HighEmphasis = true;
-            btnUploadImage.Icon = null;
-            btnUploadImage.Location = new Point(680, 560);
-            btnUploadImage.Margin = new Padding(4, 6, 4, 6);
-            btnUploadImage.MouseState = MaterialSkin.MouseState.HOVER;
-            btnUploadImage.Name = "btnUploadImage";
-            btnUploadImage.NoAccentTextColor = Color.Empty;
-            btnUploadImage.Size = new Size(127, 36);
-            btnUploadImage.TabIndex = 17;
-            btnUploadImage.Text = "Upload Image";
-            btnUploadImage.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnUploadImage.UseAccentColor = false;
-            btnUploadImage.UseVisualStyleBackColor = true;
-            btnUploadImage.Click += btnUploadImage_Click;
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(668, 554);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(127, 19);
+            materialLabel1.TabIndex = 18;
+            materialLabel1.Text = "*.jpg, *.jpeg, *.png";
             // 
             // Form1
             // 
@@ -796,5 +810,6 @@
         private MaterialSkin.Controls.MaterialComboBox comboTransmission;
         private MaterialSkin.Controls.MaterialMaskedTextBox texBodyType;
         private MaterialSkin.Controls.MaterialButton btnUploadImage;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
     }
 }

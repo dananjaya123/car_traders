@@ -26,5 +26,6 @@ namespace car_traders.Dta
 
 
         public DbSet<Car> car { get; set; }
+        public DbSet<CarPart> car_pats { get; set; }
     }
 }
