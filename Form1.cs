@@ -20,11 +20,43 @@ namespace car_traders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void tabPage4_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void click_view_cars(object sender, MouseEventArgs e)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var cars = dbContext.car.ToList();
+                loadCarListTable(cars);
+
+            }
+
+        }
+
+        private void loadCarListTable(List<Car> cars)
+        {
+            tblCarList.Items.Clear();
+
+            foreach (var car in cars)
+            {
+                var listViewItem = new ListViewItem(new[]
+                {
+                 car.Car_brand,
+                 car.Color,
+                 car.Manufacturing_year,
+                 car.Model_name,
+                 car.Fuel_type,
+                 car.Transmission
+             });
+
+                tblCarList.Items.Add(listViewItem);
+            }
 
         }
 
@@ -56,6 +88,7 @@ namespace car_traders
                     context.car.Add(car);
                     context.SaveChanges();
                     MessageBox.Show("Car added successfully");
+                    clearCarForm();
                 }
             }
             catch (FormatException ex)
@@ -64,28 +97,13 @@ namespace car_traders
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            texCarBrand.Clear();
-            texCarColor.Clear();
-            texManufacturingYear.Clear();
-            texCarModelName.Clear();
-            texMileage.Clear();
-            comboFueltype.SelectedIndex = -1;
-            comboTransmission.SelectedIndex = -1;
-            texBodyType.Clear();
-            texUrl.Clear();
-            texSellerName.Clear();
-            texSellerAddress.Clear();
-            texsellerMobileNum.Clear();
-            texPrice.Clear();
-            texDescription.Clear();
-            imgBox.Image = null;
-
+            clearCarForm();
         }
 
         private void btnUploadImage_Click(object sender, EventArgs e)
@@ -107,11 +125,45 @@ namespace car_traders
 
         private void btnPartsSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+                using (var context = new ApplicationDBContext())
+                {
+                    var carPart = new CarPart
+                    {
+                        Pats_name = texPartsNaame.Text,
+                        Description = texPartsDescriptions.Text,
+                        Price = double.Parse(texPartsPrice.Text),
+                        Qty = int.Parse(texPartsQty.Text),
+                        Category = texPartsCategory.Text,
+                        Car_model = texPartsCarModel.Text,
+                        Brand_name = texPartBrandName.Text,
+                        Image_url = texPartsImageUrl.Text,
+                        Is_active = true
+
+                    };
+                    context.car_parts.Add(carPart);
+                    context.SaveChanges();
+                    MessageBox.Show("Car Part added successfully");
+                    cleanCarParts();
+
+                }
+
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Input format is incorrect: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
 
-       
+
 
         private void btnPartImageUpload_Click(object sender, EventArgs e)
         {
@@ -127,6 +179,10 @@ namespace car_traders
             }
         }
 
+        private void btnPartsClear_Click(object sender, EventArgs e)
+        {
+            cleanCarParts();
+        }
 
         // ********** commen methods ********
         private string CommenUploadAndResizeImage(string saveDirectory, PictureBox pictureBox)
@@ -164,5 +220,38 @@ namespace car_traders
             }
             return null;
         }
+
+        private void clearCarForm()
+        {
+            texCarBrand.Clear();
+            texCarColor.Clear();
+            texManufacturingYear.Clear();
+            texCarModelName.Clear();
+            texMileage.Clear();
+            comboFueltype.SelectedIndex = -1;
+            comboTransmission.SelectedIndex = -1;
+            texBodyType.Clear();
+            texUrl.Clear();
+            texSellerName.Clear();
+            texSellerAddress.Clear();
+            texsellerMobileNum.Clear();
+            texPrice.Clear();
+            texDescription.Clear();
+            imgBox.Image = null;
+        }
+
+        private void cleanCarParts()
+        {
+            texPartsNaame.Clear();
+            texPartsDescriptions.Clear();
+            texPartsPrice.Clear();
+            texPartsQty.Clear();
+            texPartsCategory.Clear();
+            texPartsCarModel.Clear();
+            texPartBrandName.Clear();
+            texPartsImageUrl.Clear();
+        }
+
+       
     }
 }
