@@ -9,7 +9,7 @@ namespace car_traders.Model
     internal class CarPart
     {
         public int Id { get; set; }
-        public string Pats_naame { get; set; }
+        public string Pats_name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Qty { get; set; }

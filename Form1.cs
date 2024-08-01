@@ -90,9 +90,49 @@ namespace car_traders
 
         private void btnUploadImage_Click(object sender, EventArgs e)
         {
+            string imagesDirectory = @"D:\ESOFT\AD FINAL PROJECT 01\car_traders\Image\cars\";
+            string saveFilePath = CommenUploadAndResizeImage(imagesDirectory, imgBox);
+            if (saveFilePath != null)
+            {
+                texUrl.Text = saveFilePath;
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong !.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+
+
+        private void btnPartsSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+       
+
+        private void btnPartImageUpload_Click(object sender, EventArgs e)
+        {
+            string imagesDirectory = @"D:\ESOFT\AD FINAL PROJECT 01\car_traders\Image\parts\";
+            string saveFilePath = CommenUploadAndResizeImage(imagesDirectory, imgBoxCarPats);
+            if (saveFilePath != null)
+            {
+                texPartsImageUrl.Text = saveFilePath;
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong !.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+        // ********** commen methods ********
+        private string CommenUploadAndResizeImage(string saveDirectory, PictureBox pictureBox)
+        {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                
                 openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
@@ -101,30 +141,28 @@ namespace car_traders
                     // Get the path of specified file
                     string filePath = openFileDialog.FileName;
 
-                    // Resize the image to match the imgBox size
+                    // Resize the image to match the PictureBox size
                     Bitmap originalImage = new Bitmap(filePath);
-                    Bitmap resizedImage = new Bitmap(originalImage, new Size(263, 232));
-                    imgBox.Image = resizedImage;
+                    Bitmap resizedImage = new Bitmap(originalImage, new Size(pictureBox.Width, pictureBox.Height));
+                    pictureBox.Image = resizedImage;
 
                     // Save the image file to the specific directory
-                    string imagesDirectory = @"D:\ESOFT\AD FINAL PROJECT 01\car_traders\Image\cars\";
-                    if (!Directory.Exists(imagesDirectory))
+                    if (!Directory.Exists(saveDirectory))
                     {
-                        Directory.CreateDirectory(imagesDirectory);
+                        Directory.CreateDirectory(saveDirectory);
                     }
-
 
                     // Generate a unique name for the image file
                     string fileExtension = Path.GetExtension(filePath);
                     string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
-                    string savePath = Path.Combine(imagesDirectory, uniqueFileName);
+                    string savePath = Path.Combine(saveDirectory, uniqueFileName);
                     File.Copy(filePath, savePath, true);
 
                     // Set the image URL
-                    texUrl.Text = savePath;
+                    return savePath;
                 }
             }
-
+            return null;
         }
     }
 }

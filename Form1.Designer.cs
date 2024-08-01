@@ -33,6 +33,7 @@
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             btnUploadImage = new MaterialSkin.Controls.MaterialButton();
             texBodyType = new MaterialSkin.Controls.MaterialMaskedTextBox();
             comboTransmission = new MaterialSkin.Controls.MaterialComboBox();
@@ -52,11 +53,26 @@
             texCarColor = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarBrand = new MaterialSkin.Controls.MaterialMaskedTextBox();
             tabPage3 = new TabPage();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            btnPartImageUpload = new MaterialSkin.Controls.MaterialButton();
+            btnPartsClear = new MaterialSkin.Controls.MaterialButton();
+            btnPartsSave = new MaterialSkin.Controls.MaterialButton();
+            imgBoxCarPats = new PictureBox();
+            texPartsImageUrl = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            materialMaskedTextBox6 = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texPartBrandName = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texPartsCarModel = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texPartsCategory = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texPartsQty = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texPartsPrice = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texPartsDescriptions = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texPartsNaame = new MaterialSkin.Controls.MaterialMaskedTextBox();
             imageList1 = new ImageList(components);
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             materialTabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgBox).BeginInit();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgBoxCarPats).BeginInit();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -115,6 +131,18 @@
             tabPage2.Size = new Size(939, 676);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Car";
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(668, 554);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(127, 19);
+            materialLabel1.TabIndex = 18;
+            materialLabel1.Text = "*.jpg, *.jpeg, *.png";
             // 
             // btnUploadImage
             // 
@@ -365,7 +393,7 @@
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
-            btnClear.Location = new Point(116, 515);
+            btnClear.Location = new Point(503, 481);
             btnClear.Margin = new Padding(4, 6, 4, 6);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
@@ -386,7 +414,7 @@
             btnSave.Depth = 0;
             btnSave.HighEmphasis = true;
             btnSave.Icon = null;
-            btnSave.Location = new Point(29, 515);
+            btnSave.Location = new Point(416, 481);
             btnSave.Margin = new Padding(4, 6, 4, 6);
             btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
@@ -737,13 +765,484 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(materialLabel2);
+            tabPage3.Controls.Add(btnPartImageUpload);
+            tabPage3.Controls.Add(btnPartsClear);
+            tabPage3.Controls.Add(btnPartsSave);
+            tabPage3.Controls.Add(imgBoxCarPats);
+            tabPage3.Controls.Add(texPartsImageUrl);
+            tabPage3.Controls.Add(materialMaskedTextBox6);
+            tabPage3.Controls.Add(texPartBrandName);
+            tabPage3.Controls.Add(texPartsCarModel);
+            tabPage3.Controls.Add(texPartsCategory);
+            tabPage3.Controls.Add(texPartsQty);
+            tabPage3.Controls.Add(texPartsPrice);
+            tabPage3.Controls.Add(texPartsDescriptions);
+            tabPage3.Controls.Add(texPartsNaame);
             tabPage3.ImageKey = "racing.png";
             tabPage3.Location = new Point(4, 39);
             tabPage3.Name = "tabPage3";
             tabPage3.Size = new Size(939, 676);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "Car Pats";
-            tabPage3.UseVisualStyleBackColor = true;
+            tabPage3.Text = "Car Parts";
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(703, 490);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(127, 19);
+            materialLabel2.TabIndex = 22;
+            materialLabel2.Text = "*.jpg, *.jpeg, *.png";
+            // 
+            // btnPartImageUpload
+            // 
+            btnPartImageUpload.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPartImageUpload.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnPartImageUpload.Depth = 0;
+            btnPartImageUpload.HighEmphasis = true;
+            btnPartImageUpload.Icon = null;
+            btnPartImageUpload.Location = new Point(703, 515);
+            btnPartImageUpload.Margin = new Padding(4, 6, 4, 6);
+            btnPartImageUpload.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPartImageUpload.Name = "btnPartImageUpload";
+            btnPartImageUpload.NoAccentTextColor = Color.Empty;
+            btnPartImageUpload.Size = new Size(127, 36);
+            btnPartImageUpload.TabIndex = 21;
+            btnPartImageUpload.Text = "Upload Image";
+            btnPartImageUpload.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnPartImageUpload.UseAccentColor = false;
+            btnPartImageUpload.UseVisualStyleBackColor = true;
+            btnPartImageUpload.Click += btnPartImageUpload_Click;
+            // 
+            // btnPartsClear
+            // 
+            btnPartsClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPartsClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnPartsClear.Depth = 0;
+            btnPartsClear.HighEmphasis = true;
+            btnPartsClear.Icon = null;
+            btnPartsClear.Location = new Point(499, 334);
+            btnPartsClear.Margin = new Padding(4, 6, 4, 6);
+            btnPartsClear.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPartsClear.Name = "btnPartsClear";
+            btnPartsClear.NoAccentTextColor = Color.Empty;
+            btnPartsClear.Size = new Size(66, 36);
+            btnPartsClear.TabIndex = 20;
+            btnPartsClear.Text = "Clear";
+            btnPartsClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnPartsClear.UseAccentColor = false;
+            btnPartsClear.UseVisualStyleBackColor = true;
+            // 
+            // btnPartsSave
+            // 
+            btnPartsSave.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPartsSave.BackColor = Color.Transparent;
+            btnPartsSave.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnPartsSave.Depth = 0;
+            btnPartsSave.HighEmphasis = true;
+            btnPartsSave.Icon = null;
+            btnPartsSave.Location = new Point(412, 334);
+            btnPartsSave.Margin = new Padding(4, 6, 4, 6);
+            btnPartsSave.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPartsSave.Name = "btnPartsSave";
+            btnPartsSave.NoAccentTextColor = Color.Empty;
+            btnPartsSave.Size = new Size(64, 36);
+            btnPartsSave.TabIndex = 19;
+            btnPartsSave.Text = "Save";
+            btnPartsSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnPartsSave.UseAccentColor = false;
+            btnPartsSave.UseVisualStyleBackColor = false;
+            btnPartsSave.Click += btnPartsSave_Click;
+            // 
+            // imgBoxCarPats
+            // 
+            imgBoxCarPats.Location = new Point(627, 249);
+            imgBoxCarPats.Name = "imgBoxCarPats";
+            imgBoxCarPats.Size = new Size(263, 232);
+            imgBoxCarPats.TabIndex = 11;
+            imgBoxCarPats.TabStop = false;
+            // 
+            // texPartsImageUrl
+            // 
+            texPartsImageUrl.AllowPromptAsInput = true;
+            texPartsImageUrl.AnimateReadOnly = false;
+            texPartsImageUrl.AsciiOnly = false;
+            texPartsImageUrl.BackgroundImageLayout = ImageLayout.None;
+            texPartsImageUrl.BeepOnError = false;
+            texPartsImageUrl.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsImageUrl.Depth = 0;
+            texPartsImageUrl.Enabled = false;
+            texPartsImageUrl.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartsImageUrl.HidePromptOnLeave = false;
+            texPartsImageUrl.HideSelection = true;
+            texPartsImageUrl.InsertKeyMode = InsertKeyMode.Default;
+            texPartsImageUrl.LeadingIcon = null;
+            texPartsImageUrl.Location = new Point(20, 261);
+            texPartsImageUrl.Mask = "";
+            texPartsImageUrl.MaxLength = 32767;
+            texPartsImageUrl.MouseState = MaterialSkin.MouseState.OUT;
+            texPartsImageUrl.Name = "texPartsImageUrl";
+            texPartsImageUrl.PasswordChar = '\0';
+            texPartsImageUrl.PrefixSuffixText = null;
+            texPartsImageUrl.PromptChar = '_';
+            texPartsImageUrl.ReadOnly = false;
+            texPartsImageUrl.RejectInputOnFirstFailure = false;
+            texPartsImageUrl.ResetOnPrompt = true;
+            texPartsImageUrl.ResetOnSpace = true;
+            texPartsImageUrl.RightToLeft = RightToLeft.No;
+            texPartsImageUrl.SelectedText = "";
+            texPartsImageUrl.SelectionLength = 0;
+            texPartsImageUrl.SelectionStart = 0;
+            texPartsImageUrl.ShortcutsEnabled = true;
+            texPartsImageUrl.Size = new Size(556, 48);
+            texPartsImageUrl.SkipLiterals = true;
+            texPartsImageUrl.TabIndex = 8;
+            texPartsImageUrl.TabStop = false;
+            texPartsImageUrl.TextAlign = HorizontalAlignment.Left;
+            texPartsImageUrl.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsImageUrl.TrailingIcon = null;
+            texPartsImageUrl.UseSystemPasswordChar = false;
+            texPartsImageUrl.ValidatingType = null;
+            // 
+            // materialMaskedTextBox6
+            // 
+            materialMaskedTextBox6.AllowPromptAsInput = true;
+            materialMaskedTextBox6.AnimateReadOnly = false;
+            materialMaskedTextBox6.AsciiOnly = false;
+            materialMaskedTextBox6.BackgroundImageLayout = ImageLayout.None;
+            materialMaskedTextBox6.BeepOnError = false;
+            materialMaskedTextBox6.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            materialMaskedTextBox6.Depth = 0;
+            materialMaskedTextBox6.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialMaskedTextBox6.HidePromptOnLeave = false;
+            materialMaskedTextBox6.HideSelection = true;
+            materialMaskedTextBox6.Hint = "Name";
+            materialMaskedTextBox6.InsertKeyMode = InsertKeyMode.Default;
+            materialMaskedTextBox6.LeadingIcon = null;
+            materialMaskedTextBox6.Location = new Point(629, 177);
+            materialMaskedTextBox6.Mask = "";
+            materialMaskedTextBox6.MaxLength = 32767;
+            materialMaskedTextBox6.MouseState = MaterialSkin.MouseState.OUT;
+            materialMaskedTextBox6.Name = "materialMaskedTextBox6";
+            materialMaskedTextBox6.PasswordChar = '\0';
+            materialMaskedTextBox6.PrefixSuffixText = null;
+            materialMaskedTextBox6.PromptChar = '_';
+            materialMaskedTextBox6.ReadOnly = false;
+            materialMaskedTextBox6.RejectInputOnFirstFailure = false;
+            materialMaskedTextBox6.ResetOnPrompt = true;
+            materialMaskedTextBox6.ResetOnSpace = true;
+            materialMaskedTextBox6.RightToLeft = RightToLeft.No;
+            materialMaskedTextBox6.SelectedText = "";
+            materialMaskedTextBox6.SelectionLength = 0;
+            materialMaskedTextBox6.SelectionStart = 0;
+            materialMaskedTextBox6.ShortcutsEnabled = true;
+            materialMaskedTextBox6.Size = new Size(261, 48);
+            materialMaskedTextBox6.SkipLiterals = true;
+            materialMaskedTextBox6.TabIndex = 7;
+            materialMaskedTextBox6.TabStop = false;
+            materialMaskedTextBox6.TextAlign = HorizontalAlignment.Left;
+            materialMaskedTextBox6.TextMaskFormat = MaskFormat.IncludeLiterals;
+            materialMaskedTextBox6.TrailingIcon = null;
+            materialMaskedTextBox6.UseSystemPasswordChar = false;
+            materialMaskedTextBox6.ValidatingType = null;
+            // 
+            // texPartBrandName
+            // 
+            texPartBrandName.AllowPromptAsInput = true;
+            texPartBrandName.AnimateReadOnly = false;
+            texPartBrandName.AsciiOnly = false;
+            texPartBrandName.BackgroundImageLayout = ImageLayout.None;
+            texPartBrandName.BeepOnError = false;
+            texPartBrandName.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartBrandName.Depth = 0;
+            texPartBrandName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartBrandName.HidePromptOnLeave = false;
+            texPartBrandName.HideSelection = true;
+            texPartBrandName.Hint = "Brand Name";
+            texPartBrandName.InsertKeyMode = InsertKeyMode.Default;
+            texPartBrandName.LeadingIcon = null;
+            texPartBrandName.Location = new Point(315, 177);
+            texPartBrandName.Mask = "";
+            texPartBrandName.MaxLength = 32767;
+            texPartBrandName.MouseState = MaterialSkin.MouseState.OUT;
+            texPartBrandName.Name = "texPartBrandName";
+            texPartBrandName.PasswordChar = '\0';
+            texPartBrandName.PrefixSuffixText = null;
+            texPartBrandName.PromptChar = '_';
+            texPartBrandName.ReadOnly = false;
+            texPartBrandName.RejectInputOnFirstFailure = false;
+            texPartBrandName.ResetOnPrompt = true;
+            texPartBrandName.ResetOnSpace = true;
+            texPartBrandName.RightToLeft = RightToLeft.No;
+            texPartBrandName.SelectedText = "";
+            texPartBrandName.SelectionLength = 0;
+            texPartBrandName.SelectionStart = 0;
+            texPartBrandName.ShortcutsEnabled = true;
+            texPartBrandName.Size = new Size(261, 48);
+            texPartBrandName.SkipLiterals = true;
+            texPartBrandName.TabIndex = 6;
+            texPartBrandName.TabStop = false;
+            texPartBrandName.TextAlign = HorizontalAlignment.Left;
+            texPartBrandName.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartBrandName.TrailingIcon = null;
+            texPartBrandName.UseSystemPasswordChar = false;
+            texPartBrandName.ValidatingType = null;
+            // 
+            // texPartsCarModel
+            // 
+            texPartsCarModel.AllowPromptAsInput = true;
+            texPartsCarModel.AnimateReadOnly = false;
+            texPartsCarModel.AsciiOnly = false;
+            texPartsCarModel.BackgroundImageLayout = ImageLayout.None;
+            texPartsCarModel.BeepOnError = false;
+            texPartsCarModel.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsCarModel.Depth = 0;
+            texPartsCarModel.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartsCarModel.HidePromptOnLeave = false;
+            texPartsCarModel.HideSelection = true;
+            texPartsCarModel.Hint = "Car Model";
+            texPartsCarModel.InsertKeyMode = InsertKeyMode.Default;
+            texPartsCarModel.LeadingIcon = null;
+            texPartsCarModel.Location = new Point(20, 177);
+            texPartsCarModel.Mask = "";
+            texPartsCarModel.MaxLength = 32767;
+            texPartsCarModel.MouseState = MaterialSkin.MouseState.OUT;
+            texPartsCarModel.Name = "texPartsCarModel";
+            texPartsCarModel.PasswordChar = '\0';
+            texPartsCarModel.PrefixSuffixText = null;
+            texPartsCarModel.PromptChar = '_';
+            texPartsCarModel.ReadOnly = false;
+            texPartsCarModel.RejectInputOnFirstFailure = false;
+            texPartsCarModel.ResetOnPrompt = true;
+            texPartsCarModel.ResetOnSpace = true;
+            texPartsCarModel.RightToLeft = RightToLeft.No;
+            texPartsCarModel.SelectedText = "";
+            texPartsCarModel.SelectionLength = 0;
+            texPartsCarModel.SelectionStart = 0;
+            texPartsCarModel.ShortcutsEnabled = true;
+            texPartsCarModel.Size = new Size(261, 48);
+            texPartsCarModel.SkipLiterals = true;
+            texPartsCarModel.TabIndex = 5;
+            texPartsCarModel.TabStop = false;
+            texPartsCarModel.TextAlign = HorizontalAlignment.Left;
+            texPartsCarModel.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsCarModel.TrailingIcon = null;
+            texPartsCarModel.UseSystemPasswordChar = false;
+            texPartsCarModel.ValidatingType = null;
+            // 
+            // texPartsCategory
+            // 
+            texPartsCategory.AllowPromptAsInput = true;
+            texPartsCategory.AnimateReadOnly = false;
+            texPartsCategory.AsciiOnly = false;
+            texPartsCategory.BackgroundImageLayout = ImageLayout.None;
+            texPartsCategory.BeepOnError = false;
+            texPartsCategory.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsCategory.Depth = 0;
+            texPartsCategory.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartsCategory.HidePromptOnLeave = false;
+            texPartsCategory.HideSelection = true;
+            texPartsCategory.Hint = "Category";
+            texPartsCategory.InsertKeyMode = InsertKeyMode.Default;
+            texPartsCategory.LeadingIcon = null;
+            texPartsCategory.Location = new Point(629, 97);
+            texPartsCategory.Mask = "";
+            texPartsCategory.MaxLength = 32767;
+            texPartsCategory.MouseState = MaterialSkin.MouseState.OUT;
+            texPartsCategory.Name = "texPartsCategory";
+            texPartsCategory.PasswordChar = '\0';
+            texPartsCategory.PrefixSuffixText = null;
+            texPartsCategory.PromptChar = '_';
+            texPartsCategory.ReadOnly = false;
+            texPartsCategory.RejectInputOnFirstFailure = false;
+            texPartsCategory.ResetOnPrompt = true;
+            texPartsCategory.ResetOnSpace = true;
+            texPartsCategory.RightToLeft = RightToLeft.No;
+            texPartsCategory.SelectedText = "";
+            texPartsCategory.SelectionLength = 0;
+            texPartsCategory.SelectionStart = 0;
+            texPartsCategory.ShortcutsEnabled = true;
+            texPartsCategory.Size = new Size(261, 48);
+            texPartsCategory.SkipLiterals = true;
+            texPartsCategory.TabIndex = 4;
+            texPartsCategory.TabStop = false;
+            texPartsCategory.TextAlign = HorizontalAlignment.Left;
+            texPartsCategory.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsCategory.TrailingIcon = null;
+            texPartsCategory.UseSystemPasswordChar = false;
+            texPartsCategory.ValidatingType = null;
+            // 
+            // texPartsQty
+            // 
+            texPartsQty.AllowPromptAsInput = true;
+            texPartsQty.AnimateReadOnly = false;
+            texPartsQty.AsciiOnly = false;
+            texPartsQty.BackgroundImageLayout = ImageLayout.None;
+            texPartsQty.BeepOnError = false;
+            texPartsQty.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsQty.Depth = 0;
+            texPartsQty.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartsQty.HidePromptOnLeave = false;
+            texPartsQty.HideSelection = true;
+            texPartsQty.Hint = "QTY";
+            texPartsQty.InsertKeyMode = InsertKeyMode.Default;
+            texPartsQty.LeadingIcon = null;
+            texPartsQty.Location = new Point(315, 97);
+            texPartsQty.Mask = "";
+            texPartsQty.MaxLength = 32767;
+            texPartsQty.MouseState = MaterialSkin.MouseState.OUT;
+            texPartsQty.Name = "texPartsQty";
+            texPartsQty.PasswordChar = '\0';
+            texPartsQty.PrefixSuffixText = null;
+            texPartsQty.PromptChar = '_';
+            texPartsQty.ReadOnly = false;
+            texPartsQty.RejectInputOnFirstFailure = false;
+            texPartsQty.ResetOnPrompt = true;
+            texPartsQty.ResetOnSpace = true;
+            texPartsQty.RightToLeft = RightToLeft.No;
+            texPartsQty.SelectedText = "";
+            texPartsQty.SelectionLength = 0;
+            texPartsQty.SelectionStart = 0;
+            texPartsQty.ShortcutsEnabled = true;
+            texPartsQty.Size = new Size(261, 48);
+            texPartsQty.SkipLiterals = true;
+            texPartsQty.TabIndex = 3;
+            texPartsQty.TabStop = false;
+            texPartsQty.TextAlign = HorizontalAlignment.Left;
+            texPartsQty.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsQty.TrailingIcon = null;
+            texPartsQty.UseSystemPasswordChar = false;
+            texPartsQty.ValidatingType = null;
+            // 
+            // texPartsPrice
+            // 
+            texPartsPrice.AllowPromptAsInput = true;
+            texPartsPrice.AnimateReadOnly = false;
+            texPartsPrice.AsciiOnly = false;
+            texPartsPrice.BackgroundImageLayout = ImageLayout.None;
+            texPartsPrice.BeepOnError = false;
+            texPartsPrice.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsPrice.Depth = 0;
+            texPartsPrice.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartsPrice.HidePromptOnLeave = false;
+            texPartsPrice.HideSelection = true;
+            texPartsPrice.Hint = "Price";
+            texPartsPrice.InsertKeyMode = InsertKeyMode.Default;
+            texPartsPrice.LeadingIcon = null;
+            texPartsPrice.Location = new Point(20, 97);
+            texPartsPrice.Mask = "";
+            texPartsPrice.MaxLength = 32767;
+            texPartsPrice.MouseState = MaterialSkin.MouseState.OUT;
+            texPartsPrice.Name = "texPartsPrice";
+            texPartsPrice.PasswordChar = '\0';
+            texPartsPrice.PrefixSuffixText = null;
+            texPartsPrice.PromptChar = '_';
+            texPartsPrice.ReadOnly = false;
+            texPartsPrice.RejectInputOnFirstFailure = false;
+            texPartsPrice.ResetOnPrompt = true;
+            texPartsPrice.ResetOnSpace = true;
+            texPartsPrice.RightToLeft = RightToLeft.No;
+            texPartsPrice.SelectedText = "";
+            texPartsPrice.SelectionLength = 0;
+            texPartsPrice.SelectionStart = 0;
+            texPartsPrice.ShortcutsEnabled = true;
+            texPartsPrice.Size = new Size(261, 48);
+            texPartsPrice.SkipLiterals = true;
+            texPartsPrice.TabIndex = 2;
+            texPartsPrice.TabStop = false;
+            texPartsPrice.TextAlign = HorizontalAlignment.Left;
+            texPartsPrice.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsPrice.TrailingIcon = null;
+            texPartsPrice.UseSystemPasswordChar = false;
+            texPartsPrice.ValidatingType = null;
+            // 
+            // texPartsDescriptions
+            // 
+            texPartsDescriptions.AllowPromptAsInput = true;
+            texPartsDescriptions.AnimateReadOnly = false;
+            texPartsDescriptions.AsciiOnly = false;
+            texPartsDescriptions.BackgroundImageLayout = ImageLayout.None;
+            texPartsDescriptions.BeepOnError = false;
+            texPartsDescriptions.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsDescriptions.Depth = 0;
+            texPartsDescriptions.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartsDescriptions.HidePromptOnLeave = false;
+            texPartsDescriptions.HideSelection = true;
+            texPartsDescriptions.Hint = "Description";
+            texPartsDescriptions.InsertKeyMode = InsertKeyMode.Default;
+            texPartsDescriptions.LeadingIcon = null;
+            texPartsDescriptions.Location = new Point(315, 25);
+            texPartsDescriptions.Mask = "";
+            texPartsDescriptions.MaxLength = 32767;
+            texPartsDescriptions.MouseState = MaterialSkin.MouseState.OUT;
+            texPartsDescriptions.Name = "texPartsDescriptions";
+            texPartsDescriptions.PasswordChar = '\0';
+            texPartsDescriptions.PrefixSuffixText = null;
+            texPartsDescriptions.PromptChar = '_';
+            texPartsDescriptions.ReadOnly = false;
+            texPartsDescriptions.RejectInputOnFirstFailure = false;
+            texPartsDescriptions.ResetOnPrompt = true;
+            texPartsDescriptions.ResetOnSpace = true;
+            texPartsDescriptions.RightToLeft = RightToLeft.No;
+            texPartsDescriptions.SelectedText = "";
+            texPartsDescriptions.SelectionLength = 0;
+            texPartsDescriptions.SelectionStart = 0;
+            texPartsDescriptions.ShortcutsEnabled = true;
+            texPartsDescriptions.Size = new Size(575, 48);
+            texPartsDescriptions.SkipLiterals = true;
+            texPartsDescriptions.TabIndex = 1;
+            texPartsDescriptions.TabStop = false;
+            texPartsDescriptions.TextAlign = HorizontalAlignment.Left;
+            texPartsDescriptions.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsDescriptions.TrailingIcon = null;
+            texPartsDescriptions.UseSystemPasswordChar = false;
+            texPartsDescriptions.ValidatingType = null;
+            // 
+            // texPartsNaame
+            // 
+            texPartsNaame.AllowPromptAsInput = true;
+            texPartsNaame.AnimateReadOnly = false;
+            texPartsNaame.AsciiOnly = false;
+            texPartsNaame.BackgroundImageLayout = ImageLayout.None;
+            texPartsNaame.BeepOnError = false;
+            texPartsNaame.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsNaame.Depth = 0;
+            texPartsNaame.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texPartsNaame.HidePromptOnLeave = false;
+            texPartsNaame.HideSelection = true;
+            texPartsNaame.Hint = "Name";
+            texPartsNaame.InsertKeyMode = InsertKeyMode.Default;
+            texPartsNaame.LeadingIcon = null;
+            texPartsNaame.Location = new Point(20, 25);
+            texPartsNaame.Mask = "";
+            texPartsNaame.MaxLength = 32767;
+            texPartsNaame.MouseState = MaterialSkin.MouseState.OUT;
+            texPartsNaame.Name = "texPartsNaame";
+            texPartsNaame.PasswordChar = '\0';
+            texPartsNaame.PrefixSuffixText = null;
+            texPartsNaame.PromptChar = '_';
+            texPartsNaame.ReadOnly = false;
+            texPartsNaame.RejectInputOnFirstFailure = false;
+            texPartsNaame.ResetOnPrompt = true;
+            texPartsNaame.ResetOnSpace = true;
+            texPartsNaame.RightToLeft = RightToLeft.No;
+            texPartsNaame.SelectedText = "";
+            texPartsNaame.SelectionLength = 0;
+            texPartsNaame.SelectionStart = 0;
+            texPartsNaame.ShortcutsEnabled = true;
+            texPartsNaame.Size = new Size(261, 48);
+            texPartsNaame.SkipLiterals = true;
+            texPartsNaame.TabIndex = 0;
+            texPartsNaame.TabStop = false;
+            texPartsNaame.TextAlign = HorizontalAlignment.Left;
+            texPartsNaame.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texPartsNaame.TrailingIcon = null;
+            texPartsNaame.UseSystemPasswordChar = false;
+            texPartsNaame.ValidatingType = null;
             // 
             // imageList1
             // 
@@ -753,18 +1252,6 @@
             imageList1.Images.SetKeyName(0, "sports-car.png");
             imageList1.Images.SetKeyName(1, "home.png");
             imageList1.Images.SetKeyName(2, "racing.png");
-            // 
-            // materialLabel1
-            // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(668, 554);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(127, 19);
-            materialLabel1.TabIndex = 18;
-            materialLabel1.Text = "*.jpg, *.jpeg, *.png";
             // 
             // Form1
             // 
@@ -782,6 +1269,9 @@
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)imgBox).EndInit();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgBoxCarPats).EndInit();
             ResumeLayout(false);
         }
 
@@ -811,5 +1301,19 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox texBodyType;
         private MaterialSkin.Controls.MaterialButton btnUploadImage;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartsNaame;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartsDescriptions;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartsPrice;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartsCategory;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartsQty;
+        private MaterialSkin.Controls.MaterialMaskedTextBox materialMaskedTextBox6;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartBrandName;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartsCarModel;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPartsImageUrl;
+        private PictureBox imgBoxCarPats;
+        private MaterialSkin.Controls.MaterialButton btnPartImageUpload;
+        private MaterialSkin.Controls.MaterialButton btnPartsClear;
+        private MaterialSkin.Controls.MaterialButton btnPartsSave;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }
