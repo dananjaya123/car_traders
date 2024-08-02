@@ -1,5 +1,6 @@
 using car_traders.Dta;
 using car_traders.Model;
+using car_traders.Repository;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Xml.Linq;
@@ -8,6 +9,8 @@ namespace car_traders
 {
     public partial class Form1 : MaterialForm
     {
+        private readonly CarRepository _carRepository;
+
         public Form1()
         {
             InitializeComponent();
@@ -16,10 +19,18 @@ namespace car_traders
             /*materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; */
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
+
+            // Initialize CarRepository
+            _carRepository = new CarRepository();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //load dashboard data
+            LoadActiveCount();
+
+            // load table data
             using (var dbContext = new ApplicationDBContext())
             {
                 var cars = dbContext.car.ToList();
@@ -29,6 +40,8 @@ namespace car_traders
                 loadCarPartsListTable(carPartList);
 
             }
+
+
         }
 
         private void tabPage4_Click(object sender, EventArgs e)
@@ -283,6 +296,13 @@ namespace car_traders
             imgBoxCarPats.Image = null;
         }
 
+        private void LoadActiveCount()
+        {
+            // Example usage
+            int carCount = _carRepository.GetCarCount();
+            lblCarCount.Text = carCount.ToString();
+        }
+
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
         {
 
@@ -294,6 +314,11 @@ namespace car_traders
         }
 
         private void lblCustomerCount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabDashboard_Click(object sender, EventArgs e)
         {
 
         }

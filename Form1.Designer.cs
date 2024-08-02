@@ -154,6 +154,7 @@
             tabDashboard.Size = new Size(961, 676);
             tabDashboard.TabIndex = 0;
             tabDashboard.Text = "Dashboard";
+            tabDashboard.Click += tabDashboard_Click;
             // 
             // materialFloatingActionButton3
             // 
@@ -214,9 +215,8 @@
             lblCarCount.ForeColor = Color.Gainsboro;
             lblCarCount.Location = new Point(3, 44);
             lblCarCount.Name = "lblCarCount";
-            lblCarCount.Size = new Size(92, 38);
+            lblCarCount.Size = new Size(0, 38);
             lblCarCount.TabIndex = 16;
-            lblCarCount.Text = "12345";
             // 
             // label6
             // 
@@ -275,9 +275,8 @@
             lblPartsCoun.ForeColor = Color.Gainsboro;
             lblPartsCoun.Location = new Point(10, 48);
             lblPartsCoun.Name = "lblPartsCoun";
-            lblPartsCoun.Size = new Size(92, 38);
+            lblPartsCoun.Size = new Size(0, 38);
             lblPartsCoun.TabIndex = 15;
-            lblPartsCoun.Text = "12345";
             // 
             // label5
             // 
@@ -336,9 +335,8 @@
             lblCustomerCount.ForeColor = Color.Gainsboro;
             lblCustomerCount.Location = new Point(5, 42);
             lblCustomerCount.Name = "lblCustomerCount";
-            lblCustomerCount.Size = new Size(92, 38);
+            lblCustomerCount.Size = new Size(0, 38);
             lblCustomerCount.TabIndex = 14;
-            lblCustomerCount.Text = "12345";
             // 
             // label4
             // 
