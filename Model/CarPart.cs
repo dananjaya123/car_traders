@@ -22,6 +22,7 @@ namespace car_traders.Model
         public string Brand_name { get; set; }
         public string Image_url {  get; set; }
 
+       // public string Status { get; set; } //available,soldout
         public bool Is_active { get; set; } = true;
     }
 }

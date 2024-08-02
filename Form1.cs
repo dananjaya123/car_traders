@@ -11,10 +11,10 @@ namespace car_traders
         public Form1()
         {
             InitializeComponent();
-            /*MaterialButton desing add*/
+            /*MaterialButton desing add   */
             var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            /*materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; */
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
         }
 
@@ -38,7 +38,7 @@ namespace car_traders
 
         private void click_view_cars(object sender, MouseEventArgs e)
         {
-            
+
 
         }
 
@@ -52,7 +52,7 @@ namespace car_traders
             {
                 var listViewItem = new ListViewItem(new[]
                 {
-                
+
                  car.Car_brand,
                  car.Color,
                  car.Manufacturing_year,
@@ -152,7 +152,7 @@ namespace car_traders
 
 
         }
-      
+
         private void btnPartsSave_Click(object sender, EventArgs e)
         {
             try
@@ -280,9 +280,22 @@ namespace car_traders
             texPartsCarModel.Clear();
             texPartBrandName.Clear();
             texPartsImageUrl.Clear();
-            imgBoxCarPats.Image= null;
+            imgBoxCarPats.Image = null;
         }
 
-       
+        private void materialFloatingActionButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblActiveCustomer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCustomerCount_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
