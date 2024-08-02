@@ -8,18 +8,15 @@ using System.Threading.Tasks;
 
 namespace car_traders.Repository
 {
-    public class CarRepository
+    public class CarPartsRepository
     {
-        
-        public int GetCarCount()
-        {
+        public int getActiveCarPartsCaount() {
             using (var dbContext = new ApplicationDBContext())
             {
                 // Using a native SQL query to get the count of cars
-                var count = dbContext.Database.ExecuteSqlRaw("SELECT COUNT(*) FROM car_traders.car  where Is_active =1 and Status=\"available\" ");
+                var count = dbContext.Database.ExecuteSqlRaw("SELECT COUNT(*) FROM car_traders.car_parts  where Is_active =1 ");
                 return count;
             }
-           
         }
     }
 }

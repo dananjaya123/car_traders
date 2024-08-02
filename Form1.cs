@@ -10,6 +10,7 @@ namespace car_traders
     public partial class Form1 : MaterialForm
     {
         private readonly CarRepository _carRepository;
+        private readonly CarPartsRepository _carPartsRepository;
 
         public Form1()
         {
@@ -22,13 +23,14 @@ namespace car_traders
 
             // Initialize CarRepository
             _carRepository = new CarRepository();
+            _carPartsRepository = new CarPartsRepository();
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //load dashboard data
-            LoadActiveCount();
+            LoadDashboardCount();
 
             // load table data
             using (var dbContext = new ApplicationDBContext())
@@ -296,11 +298,14 @@ namespace car_traders
             imgBoxCarPats.Image = null;
         }
 
-        private void LoadActiveCount()
+        private void LoadDashboardCount()
         {
-            // Example usage
+            //car count
             int carCount = _carRepository.GetCarCount();
             lblCarCount.Text = carCount.ToString();
+            //car parts count
+            int partCount = _carPartsRepository.getActiveCarPartsCaount();
+            lblPartsCoun.Text = partCount.ToString();
         }
 
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)

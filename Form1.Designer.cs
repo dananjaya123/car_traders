@@ -320,7 +320,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.MenuHighlight;
+            panel1.BackColor = Color.MediumSlateBlue;
             panel1.Controls.Add(lblCustomerCount);
             panel1.Controls.Add(label4);
             panel1.Location = new Point(0, 0);
