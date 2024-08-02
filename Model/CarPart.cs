@@ -13,15 +13,15 @@ namespace car_traders.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public string Pats_name { get; set; }
+        public string Parts_name { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
-        public int Qty { get; set; }
+        public double Price { get; set; } = 0.0;
+        public int Qty { get; set; } = 0;
         public string Category { get; set; }
-        public string Car_model { get; set; }
+        public string Car_model{ get; set; }
         public string Brand_name { get; set; }
         public string Image_url {  get; set; }
 
-        public bool Is_active { get; set; } 
+        public bool Is_active { get; set; } = true;
     }
 }

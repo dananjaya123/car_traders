@@ -33,6 +33,7 @@
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabDashboard = new TabPage();
             tabAddCar = new TabPage();
+            label3 = new Label();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             btnUploadImage = new MaterialSkin.Controls.MaterialButton();
             texBodyType = new MaterialSkin.Controls.MaterialMaskedTextBox();
@@ -53,6 +54,7 @@
             texCarColor = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarBrand = new MaterialSkin.Controls.MaterialMaskedTextBox();
             tabAddCarPats = new TabPage();
+            label2 = new Label();
             materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             btnPartImageUpload = new MaterialSkin.Controls.MaterialButton();
             btnPartsClear = new MaterialSkin.Controls.MaterialButton();
@@ -74,8 +76,18 @@
             colModel = new ColumnHeader();
             colFuelType = new ColumnHeader();
             colTransmission = new ColumnHeader();
+            colMilege = new ColumnHeader();
+            colCarPrice = new ColumnHeader();
             lblCar = new Label();
             tabViewPats = new TabPage();
+            tblCarParts = new MaterialSkin.Controls.MaterialListView();
+            colPart = new ColumnHeader();
+            colPrice = new ColumnHeader();
+            colQty = new ColumnHeader();
+            colCategory = new ColumnHeader();
+            colCarModel = new ColumnHeader();
+            colBrandName = new ColumnHeader();
+            label1 = new Label();
             imageList1 = new ImageList(components);
             materialTabControl1.SuspendLayout();
             tabAddCar.SuspendLayout();
@@ -83,6 +95,7 @@
             tabAddCarPats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgBoxCarPats).BeginInit();
             tabViewCars.SuspendLayout();
+            tabViewPats.SuspendLayout();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -101,7 +114,7 @@
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(947, 719);
+            materialTabControl1.Size = new Size(969, 719);
             materialTabControl1.TabIndex = 0;
             // 
             // tabDashboard
@@ -110,13 +123,14 @@
             tabDashboard.Location = new Point(4, 39);
             tabDashboard.Name = "tabDashboard";
             tabDashboard.Padding = new Padding(3);
-            tabDashboard.Size = new Size(939, 676);
+            tabDashboard.Size = new Size(961, 676);
             tabDashboard.TabIndex = 0;
             tabDashboard.Text = "Dashboard";
             tabDashboard.UseVisualStyleBackColor = true;
             // 
             // tabAddCar
             // 
+            tabAddCar.Controls.Add(label3);
             tabAddCar.Controls.Add(materialLabel1);
             tabAddCar.Controls.Add(btnUploadImage);
             tabAddCar.Controls.Add(texBodyType);
@@ -140,16 +154,28 @@
             tabAddCar.Location = new Point(4, 39);
             tabAddCar.Name = "tabAddCar";
             tabAddCar.Padding = new Padding(3);
-            tabAddCar.Size = new Size(939, 676);
+            tabAddCar.Size = new Size(961, 676);
             tabAddCar.TabIndex = 1;
             tabAddCar.Text = "Add Car";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = SystemColors.Control;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.SlateGray;
+            label3.Location = new Point(17, 17);
+            label3.Name = "label3";
+            label3.Size = new Size(179, 25);
+            label3.TabIndex = 24;
+            label3.Text = "ADD CAR DETAILS |";
             // 
             // materialLabel1
             // 
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(668, 554);
+            materialLabel1.Location = new Point(668, 598);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(127, 19);
@@ -163,7 +189,7 @@
             btnUploadImage.Depth = 0;
             btnUploadImage.HighEmphasis = true;
             btnUploadImage.Icon = null;
-            btnUploadImage.Location = new Point(668, 579);
+            btnUploadImage.Location = new Point(668, 623);
             btnUploadImage.Margin = new Padding(4, 6, 4, 6);
             btnUploadImage.MouseState = MaterialSkin.MouseState.HOVER;
             btnUploadImage.Name = "btnUploadImage";
@@ -191,7 +217,7 @@
             texBodyType.Hint = "Body Type";
             texBodyType.InsertKeyMode = InsertKeyMode.Default;
             texBodyType.LeadingIcon = null;
-            texBodyType.Location = new Point(17, 319);
+            texBodyType.Location = new Point(17, 363);
             texBodyType.Mask = "";
             texBodyType.MaxLength = 32767;
             texBodyType.MouseState = MaterialSkin.MouseState.OUT;
@@ -233,7 +259,7 @@
             comboTransmission.IntegralHeight = false;
             comboTransmission.ItemHeight = 43;
             comboTransmission.Items.AddRange(new object[] { "automatic", "manual" });
-            comboTransmission.Location = new Point(601, 239);
+            comboTransmission.Location = new Point(601, 283);
             comboTransmission.MaxDropDownItems = 4;
             comboTransmission.MouseState = MaterialSkin.MouseState.OUT;
             comboTransmission.Name = "comboTransmission";
@@ -256,7 +282,7 @@
             comboFueltype.IntegralHeight = false;
             comboFueltype.ItemHeight = 43;
             comboFueltype.Items.AddRange(new object[] { "petrol", "diesel", "electric" });
-            comboFueltype.Location = new Point(311, 238);
+            comboFueltype.Location = new Point(311, 282);
             comboFueltype.MaxDropDownItems = 4;
             comboFueltype.MouseState = MaterialSkin.MouseState.OUT;
             comboFueltype.Name = "comboFueltype";
@@ -279,7 +305,7 @@
             texPrice.Hint = "Price";
             texPrice.InsertKeyMode = InsertKeyMode.Default;
             texPrice.LeadingIcon = null;
-            texPrice.Location = new Point(311, 319);
+            texPrice.Location = new Point(311, 363);
             texPrice.Mask = "";
             texPrice.MaxLength = 32767;
             texPrice.MouseState = MaterialSkin.MouseState.OUT;
@@ -321,7 +347,7 @@
             texUrl.Hint = "selectImage";
             texUrl.InsertKeyMode = InsertKeyMode.Default;
             texUrl.LeadingIcon = null;
-            texUrl.Location = new Point(17, 409);
+            texUrl.Location = new Point(17, 453);
             texUrl.Mask = "";
             texUrl.MaxLength = 32767;
             texUrl.MouseState = MaterialSkin.MouseState.OUT;
@@ -363,7 +389,7 @@
             texMileage.Hint = "Mileage";
             texMileage.InsertKeyMode = InsertKeyMode.Default;
             texMileage.LeadingIcon = null;
-            texMileage.Location = new Point(17, 239);
+            texMileage.Location = new Point(17, 283);
             texMileage.Mask = "";
             texMileage.MaxLength = 32767;
             texMileage.MouseState = MaterialSkin.MouseState.OUT;
@@ -392,7 +418,7 @@
             // 
             // imgBox
             // 
-            imgBox.Location = new Point(601, 319);
+            imgBox.Location = new Point(601, 363);
             imgBox.Name = "imgBox";
             imgBox.Size = new Size(263, 232);
             imgBox.TabIndex = 10;
@@ -405,7 +431,7 @@
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
-            btnClear.Location = new Point(503, 481);
+            btnClear.Location = new Point(503, 525);
             btnClear.Margin = new Padding(4, 6, 4, 6);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
@@ -426,7 +452,7 @@
             btnSave.Depth = 0;
             btnSave.HighEmphasis = true;
             btnSave.Icon = null;
-            btnSave.Location = new Point(416, 481);
+            btnSave.Location = new Point(416, 525);
             btnSave.Margin = new Padding(4, 6, 4, 6);
             btnSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnSave.Name = "btnSave";
@@ -454,7 +480,7 @@
             texCarModelName.Hint = "Car Model Name";
             texCarModelName.InsertKeyMode = InsertKeyMode.Default;
             texCarModelName.LeadingIcon = null;
-            texCarModelName.Location = new Point(17, 92);
+            texCarModelName.Location = new Point(17, 136);
             texCarModelName.Mask = "";
             texCarModelName.MaxLength = 32767;
             texCarModelName.MouseState = MaterialSkin.MouseState.OUT;
@@ -496,7 +522,7 @@
             texDescription.Hint = "Description";
             texDescription.InsertKeyMode = InsertKeyMode.Default;
             texDescription.LeadingIcon = null;
-            texDescription.Location = new Point(311, 92);
+            texDescription.Location = new Point(311, 136);
             texDescription.Mask = "";
             texDescription.MaxLength = 32767;
             texDescription.MouseState = MaterialSkin.MouseState.OUT;
@@ -538,7 +564,7 @@
             texsellerMobileNum.Hint = "Seller Mobile Number";
             texsellerMobileNum.InsertKeyMode = InsertKeyMode.Default;
             texsellerMobileNum.LeadingIcon = null;
-            texsellerMobileNum.Location = new Point(601, 163);
+            texsellerMobileNum.Location = new Point(601, 207);
             texsellerMobileNum.Mask = "";
             texsellerMobileNum.MaxLength = 32767;
             texsellerMobileNum.MouseState = MaterialSkin.MouseState.OUT;
@@ -580,7 +606,7 @@
             texSellerAddress.Hint = "Seller Address";
             texSellerAddress.InsertKeyMode = InsertKeyMode.Default;
             texSellerAddress.LeadingIcon = null;
-            texSellerAddress.Location = new Point(311, 163);
+            texSellerAddress.Location = new Point(311, 207);
             texSellerAddress.Mask = "";
             texSellerAddress.MaxLength = 32767;
             texSellerAddress.MouseState = MaterialSkin.MouseState.OUT;
@@ -622,7 +648,7 @@
             texSellerName.Hint = "Seller Name";
             texSellerName.InsertKeyMode = InsertKeyMode.Default;
             texSellerName.LeadingIcon = null;
-            texSellerName.Location = new Point(17, 163);
+            texSellerName.Location = new Point(17, 207);
             texSellerName.Mask = "";
             texSellerName.MaxLength = 32767;
             texSellerName.MouseState = MaterialSkin.MouseState.OUT;
@@ -664,7 +690,7 @@
             texManufacturingYear.Hint = "Manufacturing Year";
             texManufacturingYear.InsertKeyMode = InsertKeyMode.Default;
             texManufacturingYear.LeadingIcon = null;
-            texManufacturingYear.Location = new Point(601, 22);
+            texManufacturingYear.Location = new Point(601, 66);
             texManufacturingYear.Mask = "";
             texManufacturingYear.MaxLength = 32767;
             texManufacturingYear.MouseState = MaterialSkin.MouseState.OUT;
@@ -706,7 +732,7 @@
             texCarColor.Hint = "Color";
             texCarColor.InsertKeyMode = InsertKeyMode.Default;
             texCarColor.LeadingIcon = null;
-            texCarColor.Location = new Point(311, 22);
+            texCarColor.Location = new Point(311, 66);
             texCarColor.Mask = "";
             texCarColor.MaxLength = 32767;
             texCarColor.MouseState = MaterialSkin.MouseState.OUT;
@@ -748,7 +774,7 @@
             texCarBrand.Hint = "Car Brand";
             texCarBrand.InsertKeyMode = InsertKeyMode.Default;
             texCarBrand.LeadingIcon = null;
-            texCarBrand.Location = new Point(17, 22);
+            texCarBrand.Location = new Point(17, 66);
             texCarBrand.Mask = "";
             texCarBrand.MaxLength = 32767;
             texCarBrand.MouseState = MaterialSkin.MouseState.OUT;
@@ -777,6 +803,7 @@
             // 
             // tabAddCarPats
             // 
+            tabAddCarPats.Controls.Add(label2);
             tabAddCarPats.Controls.Add(materialLabel2);
             tabAddCarPats.Controls.Add(btnPartImageUpload);
             tabAddCarPats.Controls.Add(btnPartsClear);
@@ -793,16 +820,28 @@
             tabAddCarPats.ImageKey = "racing.png";
             tabAddCarPats.Location = new Point(4, 39);
             tabAddCarPats.Name = "tabAddCarPats";
-            tabAddCarPats.Size = new Size(939, 676);
+            tabAddCarPats.Size = new Size(961, 676);
             tabAddCarPats.TabIndex = 2;
             tabAddCarPats.Text = "Add Car Parts";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.Control;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.SlateGray;
+            label2.Location = new Point(23, 23);
+            label2.Name = "label2";
+            label2.Size = new Size(240, 25);
+            label2.TabIndex = 23;
+            label2.Text = "ADD CAR PARTS DETAILS |";
             // 
             // materialLabel2
             // 
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(710, 419);
+            materialLabel2.Location = new Point(713, 479);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(127, 19);
@@ -816,7 +855,7 @@
             btnPartImageUpload.Depth = 0;
             btnPartImageUpload.HighEmphasis = true;
             btnPartImageUpload.Icon = null;
-            btnPartImageUpload.Location = new Point(710, 444);
+            btnPartImageUpload.Location = new Point(713, 504);
             btnPartImageUpload.Margin = new Padding(4, 6, 4, 6);
             btnPartImageUpload.MouseState = MaterialSkin.MouseState.HOVER;
             btnPartImageUpload.Name = "btnPartImageUpload";
@@ -836,7 +875,7 @@
             btnPartsClear.Depth = 0;
             btnPartsClear.HighEmphasis = true;
             btnPartsClear.Icon = null;
-            btnPartsClear.Location = new Point(499, 334);
+            btnPartsClear.Location = new Point(502, 394);
             btnPartsClear.Margin = new Padding(4, 6, 4, 6);
             btnPartsClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnPartsClear.Name = "btnPartsClear";
@@ -857,7 +896,7 @@
             btnPartsSave.Depth = 0;
             btnPartsSave.HighEmphasis = true;
             btnPartsSave.Icon = null;
-            btnPartsSave.Location = new Point(412, 334);
+            btnPartsSave.Location = new Point(415, 394);
             btnPartsSave.Margin = new Padding(4, 6, 4, 6);
             btnPartsSave.MouseState = MaterialSkin.MouseState.HOVER;
             btnPartsSave.Name = "btnPartsSave";
@@ -872,7 +911,7 @@
             // 
             // imgBoxCarPats
             // 
-            imgBoxCarPats.Location = new Point(629, 177);
+            imgBoxCarPats.Location = new Point(632, 237);
             imgBoxCarPats.Name = "imgBoxCarPats";
             imgBoxCarPats.Size = new Size(263, 232);
             imgBoxCarPats.TabIndex = 11;
@@ -893,7 +932,7 @@
             texPartsImageUrl.HideSelection = true;
             texPartsImageUrl.InsertKeyMode = InsertKeyMode.Default;
             texPartsImageUrl.LeadingIcon = null;
-            texPartsImageUrl.Location = new Point(20, 261);
+            texPartsImageUrl.Location = new Point(23, 321);
             texPartsImageUrl.Mask = "";
             texPartsImageUrl.MaxLength = 32767;
             texPartsImageUrl.MouseState = MaterialSkin.MouseState.OUT;
@@ -935,7 +974,7 @@
             texPartBrandName.Hint = "Brand Name";
             texPartBrandName.InsertKeyMode = InsertKeyMode.Default;
             texPartBrandName.LeadingIcon = null;
-            texPartBrandName.Location = new Point(315, 177);
+            texPartBrandName.Location = new Point(318, 237);
             texPartBrandName.Mask = "";
             texPartBrandName.MaxLength = 32767;
             texPartBrandName.MouseState = MaterialSkin.MouseState.OUT;
@@ -977,7 +1016,7 @@
             texPartsCarModel.Hint = "Car Model";
             texPartsCarModel.InsertKeyMode = InsertKeyMode.Default;
             texPartsCarModel.LeadingIcon = null;
-            texPartsCarModel.Location = new Point(20, 177);
+            texPartsCarModel.Location = new Point(23, 237);
             texPartsCarModel.Mask = "";
             texPartsCarModel.MaxLength = 32767;
             texPartsCarModel.MouseState = MaterialSkin.MouseState.OUT;
@@ -1019,7 +1058,7 @@
             texPartsCategory.Hint = "Category";
             texPartsCategory.InsertKeyMode = InsertKeyMode.Default;
             texPartsCategory.LeadingIcon = null;
-            texPartsCategory.Location = new Point(629, 97);
+            texPartsCategory.Location = new Point(632, 157);
             texPartsCategory.Mask = "";
             texPartsCategory.MaxLength = 32767;
             texPartsCategory.MouseState = MaterialSkin.MouseState.OUT;
@@ -1061,7 +1100,7 @@
             texPartsQty.Hint = "QTY";
             texPartsQty.InsertKeyMode = InsertKeyMode.Default;
             texPartsQty.LeadingIcon = null;
-            texPartsQty.Location = new Point(315, 97);
+            texPartsQty.Location = new Point(318, 157);
             texPartsQty.Mask = "";
             texPartsQty.MaxLength = 32767;
             texPartsQty.MouseState = MaterialSkin.MouseState.OUT;
@@ -1103,7 +1142,7 @@
             texPartsPrice.Hint = "Price";
             texPartsPrice.InsertKeyMode = InsertKeyMode.Default;
             texPartsPrice.LeadingIcon = null;
-            texPartsPrice.Location = new Point(20, 97);
+            texPartsPrice.Location = new Point(23, 157);
             texPartsPrice.Mask = "";
             texPartsPrice.MaxLength = 32767;
             texPartsPrice.MouseState = MaterialSkin.MouseState.OUT;
@@ -1145,7 +1184,7 @@
             texPartsDescriptions.Hint = "Description";
             texPartsDescriptions.InsertKeyMode = InsertKeyMode.Default;
             texPartsDescriptions.LeadingIcon = null;
-            texPartsDescriptions.Location = new Point(315, 25);
+            texPartsDescriptions.Location = new Point(318, 85);
             texPartsDescriptions.Mask = "";
             texPartsDescriptions.MaxLength = 32767;
             texPartsDescriptions.MouseState = MaterialSkin.MouseState.OUT;
@@ -1187,7 +1226,7 @@
             texPartsNaame.Hint = "Name";
             texPartsNaame.InsertKeyMode = InsertKeyMode.Default;
             texPartsNaame.LeadingIcon = null;
-            texPartsNaame.Location = new Point(20, 25);
+            texPartsNaame.Location = new Point(23, 85);
             texPartsNaame.Mask = "";
             texPartsNaame.MaxLength = 32767;
             texPartsNaame.MouseState = MaterialSkin.MouseState.OUT;
@@ -1221,7 +1260,7 @@
             tabViewCars.ImageKey = "carList.png";
             tabViewCars.Location = new Point(4, 39);
             tabViewCars.Name = "tabViewCars";
-            tabViewCars.Size = new Size(939, 676);
+            tabViewCars.Size = new Size(961, 676);
             tabViewCars.TabIndex = 3;
             tabViewCars.Text = "View Cars";
             // 
@@ -1230,16 +1269,16 @@
             tblCarList.AutoSizeTable = false;
             tblCarList.BackColor = Color.FromArgb(255, 255, 255);
             tblCarList.BorderStyle = BorderStyle.None;
-            tblCarList.Columns.AddRange(new ColumnHeader[] { colCarBrand, colColor, colMFYear, colModel, colFuelType, colTransmission });
+            tblCarList.Columns.AddRange(new ColumnHeader[] { colCarBrand, colColor, colMFYear, colModel, colFuelType, colTransmission, colMilege, colCarPrice });
             tblCarList.Depth = 0;
             tblCarList.FullRowSelect = true;
-            tblCarList.Location = new Point(22, 55);
+            tblCarList.Location = new Point(12, 57);
             tblCarList.MinimumSize = new Size(200, 100);
             tblCarList.MouseLocation = new Point(-1, -1);
             tblCarList.MouseState = MaterialSkin.MouseState.OUT;
             tblCarList.Name = "tblCarList";
             tblCarList.OwnerDraw = true;
-            tblCarList.Size = new Size(754, 305);
+            tblCarList.Size = new Size(929, 305);
             tblCarList.TabIndex = 1;
             tblCarList.UseCompatibleStateImageBehavior = false;
             tblCarList.View = View.Details;
@@ -1274,6 +1313,16 @@
             colTransmission.Text = "Transmission";
             colTransmission.Width = 150;
             // 
+            // colMilege
+            // 
+            colMilege.Text = "Mileage";
+            colMilege.Width = 100;
+            // 
+            // colCarPrice
+            // 
+            colCarPrice.Text = "Car Price";
+            colCarPrice.Width = 150;
+            // 
             // lblCar
             // 
             lblCar.AutoSize = true;
@@ -1288,12 +1337,75 @@
             // 
             // tabViewPats
             // 
+            tabViewPats.Controls.Add(tblCarParts);
+            tabViewPats.Controls.Add(label1);
             tabViewPats.ImageKey = "parts.png";
             tabViewPats.Location = new Point(4, 39);
             tabViewPats.Name = "tabViewPats";
-            tabViewPats.Size = new Size(939, 676);
+            tabViewPats.Size = new Size(961, 676);
             tabViewPats.TabIndex = 4;
             tabViewPats.Text = "View Parts";
+            // 
+            // tblCarParts
+            // 
+            tblCarParts.AutoSizeTable = false;
+            tblCarParts.BackColor = Color.FromArgb(255, 255, 255);
+            tblCarParts.BorderStyle = BorderStyle.None;
+            tblCarParts.Columns.AddRange(new ColumnHeader[] { colPart, colPrice, colQty, colCategory, colCarModel, colBrandName });
+            tblCarParts.Depth = 0;
+            tblCarParts.FullRowSelect = true;
+            tblCarParts.Location = new Point(47, 59);
+            tblCarParts.MinimumSize = new Size(200, 100);
+            tblCarParts.MouseLocation = new Point(-1, -1);
+            tblCarParts.MouseState = MaterialSkin.MouseState.OUT;
+            tblCarParts.Name = "tblCarParts";
+            tblCarParts.OwnerDraw = true;
+            tblCarParts.Size = new Size(831, 254);
+            tblCarParts.TabIndex = 2;
+            tblCarParts.UseCompatibleStateImageBehavior = false;
+            tblCarParts.View = View.Details;
+            // 
+            // colPart
+            // 
+            colPart.Text = "Part name";
+            colPart.Width = 150;
+            // 
+            // colPrice
+            // 
+            colPrice.Text = "Price";
+            colPrice.Width = 100;
+            // 
+            // colQty
+            // 
+            colQty.Text = "QTY";
+            colQty.Width = 80;
+            // 
+            // colCategory
+            // 
+            colCategory.Text = "Category";
+            colCategory.Width = 150;
+            // 
+            // colCarModel
+            // 
+            colCarModel.Text = "Model";
+            colCarModel.Width = 150;
+            // 
+            // colBrandName
+            // 
+            colBrandName.Text = "Brand";
+            colBrandName.Width = 150;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.Control;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.SlateGray;
+            label1.Location = new Point(14, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(161, 25);
+            label1.TabIndex = 1;
+            label1.Text = "CAR PARTS LIST |";
             // 
             // imageList1
             // 
@@ -1310,7 +1422,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(953, 786);
+            ClientSize = new Size(975, 786);
             Controls.Add(materialTabControl1);
             DrawerAutoHide = false;
             DrawerShowIconsWhenHidden = true;
@@ -1327,6 +1439,8 @@
             ((System.ComponentModel.ISupportInitialize)imgBoxCarPats).EndInit();
             tabViewCars.ResumeLayout(false);
             tabViewCars.PerformLayout();
+            tabViewPats.ResumeLayout(false);
+            tabViewPats.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1379,5 +1493,17 @@
         private ColumnHeader colModel;
         private ColumnHeader colFuelType;
         private ColumnHeader colTransmission;
+        private Label label2;
+        private Label label1;
+        private Label label3;
+        private MaterialSkin.Controls.MaterialListView tblCarParts;
+        private ColumnHeader colPart;
+        private ColumnHeader colPrice;
+        private ColumnHeader colQty;
+        private ColumnHeader colCategory;
+        private ColumnHeader colCarModel;
+        private ColumnHeader colBrandName;
+        private ColumnHeader colMilege;
+        private ColumnHeader colCarPrice;
     }
 }

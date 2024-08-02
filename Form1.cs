@@ -20,7 +20,15 @@ namespace car_traders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var cars = dbContext.car.ToList();
+                loadCarListTable(cars);
+
+                var carPartList = dbContext.car_parts.ToList();
+                loadCarPartsListTable(carPartList);
+
+            }
         }
 
         private void tabPage4_Click(object sender, EventArgs e)
@@ -30,14 +38,11 @@ namespace car_traders
 
         private void click_view_cars(object sender, MouseEventArgs e)
         {
-            using (var dbContext = new ApplicationDBContext())
-            {
-                var cars = dbContext.car.ToList();
-                loadCarListTable(cars);
-
-            }
+            
 
         }
+
+        // ********** Car Functions ********
 
         private void loadCarListTable(List<Car> cars)
         {
@@ -47,12 +52,16 @@ namespace car_traders
             {
                 var listViewItem = new ListViewItem(new[]
                 {
+                
                  car.Car_brand,
                  car.Color,
                  car.Manufacturing_year,
                  car.Model_name,
                  car.Fuel_type,
-                 car.Transmission
+                 car.Transmission,
+                 car.Mileage.ToString(),
+                 car.Price.ToString("N2"), // Format the price as a number with two decimal places
+
              });
 
                 tblCarList.Items.Add(listViewItem);
@@ -121,8 +130,29 @@ namespace car_traders
 
         }
 
+        // ********** Car parts functions ********
+
+        private void loadCarPartsListTable(List<CarPart> car_parts)
+        {
+            tblCarParts.Items.Clear();
+            foreach (var part in car_parts)
+            {
+                var listViewItem = new ListViewItem(new[]
+                {
+                 part.Parts_name,
+                 part.Price.ToString("N2"), // Format the price as a number with two decimal places
+                 part.Qty.ToString(),
+                 part.Category,
+                 part.Car_model,
+                 part.Brand_name
+             });
+
+                tblCarParts.Items.Add(listViewItem);
+            }
 
 
+        }
+      
         private void btnPartsSave_Click(object sender, EventArgs e)
         {
             try
@@ -132,7 +162,7 @@ namespace car_traders
                 {
                     var carPart = new CarPart
                     {
-                        Pats_name = texPartsNaame.Text,
+                        Parts_name = texPartsNaame.Text,
                         Description = texPartsDescriptions.Text,
                         Price = double.Parse(texPartsPrice.Text),
                         Qty = int.Parse(texPartsQty.Text),
@@ -184,7 +214,7 @@ namespace car_traders
             cleanCarParts();
         }
 
-        // ********** commen methods ********
+        // ********** commen Functions ********
         private string CommenUploadAndResizeImage(string saveDirectory, PictureBox pictureBox)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -250,6 +280,7 @@ namespace car_traders
             texPartsCarModel.Clear();
             texPartBrandName.Clear();
             texPartsImageUrl.Clear();
+            imgBoxCarPats.Image= null;
         }
 
        
