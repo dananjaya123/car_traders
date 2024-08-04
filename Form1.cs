@@ -1,8 +1,17 @@
 using car_traders.Dta;
 using car_traders.Model;
 using car_traders.Repository;
+using iText.IO.Image;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Reflection.Metadata;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace car_traders
@@ -11,6 +20,7 @@ namespace car_traders
     {
         private readonly CarRepository _carRepository;
         private readonly CarPartsRepository _carPartsRepository;
+        private readonly UserRepository _userRepository;
 
         public Form1()
         {
@@ -24,6 +34,7 @@ namespace car_traders
             // Initialize CarRepository
             _carRepository = new CarRepository();
             _carPartsRepository = new CarPartsRepository();
+            _userRepository = new UserRepository();
 
         }
 
@@ -33,15 +44,11 @@ namespace car_traders
             LoadDashboardCount();
 
             // load table data
-            using (var dbContext = new ApplicationDBContext())
-            {
-                var cars = dbContext.car.ToList();
-                loadCarListTable(cars);
+            LoadCarTable();
 
-                var carPartList = dbContext.car_parts.ToList();
-                loadCarPartsListTable(carPartList);
+            var carParts = _carPartsRepository.getAllCarPartList();
+            loadCarPartsListTable(carParts);
 
-            }
 
 
         }
@@ -57,30 +64,18 @@ namespace car_traders
 
         }
 
-        // ********** Car Functions ********
+        // ************************************* Car Functions ************************************
 
         private void loadCarListTable(List<Car> cars)
         {
-            tblCarList.Items.Clear();
-
-            foreach (var car in cars)
+            dataGridViewCars.DataSource = cars;
+            // Hide  column
+            if (dataGridViewCars.Columns["Id"] != null)
             {
-                var listViewItem = new ListViewItem(new[]
-                {
-
-                 car.Car_brand,
-                 car.Color,
-                 car.Manufacturing_year,
-                 car.Model_name,
-                 car.Fuel_type,
-                 car.Transmission,
-                 car.Mileage.ToString(),
-                 car.Price.ToString("N2"), // Format the price as a number with two decimal places
-
-             });
-
-                tblCarList.Items.Add(listViewItem);
+                dataGridViewCars.Columns["Id"].Visible = false;
+                dataGridViewCars.Columns["Is_active"].Visible = false;
             }
+
 
         }
 
@@ -100,7 +95,6 @@ namespace car_traders
                         Fuel_type = comboFueltype.Text,
                         Transmission = comboTransmission.Text,
                         Body_type = texBodyType.Text,
-                        Image_url = texUrl.Text,
                         Seller_name = texSellerName.Text,
                         Seller_address = texSellerAddress.Text,
                         Mobile_number = texsellerMobileNum.Text,
@@ -108,11 +102,17 @@ namespace car_traders
                         Description = texDescription.Text,
                         Is_active = true
                     };
+                    // Convert image from PictureBox to byte array
+                    if (imgBoxCar.Image != null)
+                    {
+                        car.Image_data = ImageToByteArray(imgBoxCar.Image);
+                    }
 
                     context.car.Add(car);
                     context.SaveChanges();
                     MessageBox.Show("Car added successfully");
                     clearCarForm();
+                    LoadCarTable();
                 }
             }
             catch (FormatException ex)
@@ -132,37 +132,54 @@ namespace car_traders
 
         private void btnUploadImage_Click(object sender, EventArgs e)
         {
-            string imagesDirectory = @"D:\ESOFT\AD FINAL PROJECT 01\car_traders\Image\cars\";
-            string saveFilePath = CommenUploadAndResizeImage(imagesDirectory, imgBox);
-            if (saveFilePath != null)
+            CommenUploadAndResizeImage(imgBoxCar);
+
+        }
+
+        private void searchCarTableLoadData(object sender, KeyEventArgs e)
+        {
+            var searchModelName = texCarTableSearch.Text;
+            if (searchModelName == "")
             {
-                texUrl.Text = saveFilePath;
+                LoadCarTable();
+
             }
             else
             {
-                MessageBox.Show("Something went wrong !.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                List<Car> carList = _carRepository.getAllCarListByModelName(searchModelName);
+                loadCarListTable(carList);
             }
 
         }
 
-        // ********** Car parts functions ********
+        // ************************************* Car parts functions **********************************
 
         private void loadCarPartsListTable(List<CarPart> car_parts)
         {
-            tblCarParts.Items.Clear();
-            foreach (var part in car_parts)
+            try
             {
-                var listViewItem = new ListViewItem(new[]
+                dataGridViewCarPart.DataSource = car_parts;
+                // Hide  column
+                if (dataGridViewCarPart.Columns["Id"] != null)
                 {
-                 part.Parts_name,
-                 part.Price.ToString("N2"), // Format the price as a number with two decimal places
-                 part.Qty.ToString(),
-                 part.Category,
-                 part.Car_model,
-                 part.Brand_name
-             });
+                    dataGridViewCarPart.Columns["Id"].Visible = false;
+                    dataGridViewCarPart.Columns["Is_active"].Visible = false;
+                }
 
-                tblCarParts.Items.Add(listViewItem);
+                // Set the row height
+                foreach (DataGridViewRow row in dataGridViewCarPart.Rows)
+                {
+                    row.Height = 400;
+                }
+
+                if (dataGridViewCarPart.Columns["Image_data"] != null)
+                {
+                    dataGridViewCarPart.Columns["Image_data"].Width = 300; // Adjust the width of the image column if necessary
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -184,10 +201,14 @@ namespace car_traders
                         Category = texPartsCategory.Text,
                         Car_model = texPartsCarModel.Text,
                         Brand_name = texPartBrandName.Text,
-                        Image_url = texPartsImageUrl.Text,
                         Is_active = true
 
                     };
+                    // Convert image from PictureBox to byte array
+                    if (imgBoxCarPats.Image != null)
+                    {
+                        carPart.Image_data = ImageToByteArray(imgBoxCarPats.Image);
+                    }
                     context.car_parts.Add(carPart);
                     context.SaveChanges();
                     MessageBox.Show("Car Part added successfully");
@@ -212,16 +233,8 @@ namespace car_traders
 
         private void btnPartImageUpload_Click(object sender, EventArgs e)
         {
-            string imagesDirectory = @"D:\ESOFT\AD FINAL PROJECT 01\car_traders\Image\parts\";
-            string saveFilePath = CommenUploadAndResizeImage(imagesDirectory, imgBoxCarPats);
-            if (saveFilePath != null)
-            {
-                texPartsImageUrl.Text = saveFilePath;
-            }
-            else
-            {
-                MessageBox.Show("Something went wrong !.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            CommenUploadAndResizeImage(imgBoxCarPats);
+
         }
 
         private void btnPartsClear_Click(object sender, EventArgs e)
@@ -229,41 +242,36 @@ namespace car_traders
             cleanCarParts();
         }
 
-        // ********** commen Functions ********
-        private string CommenUploadAndResizeImage(string saveDirectory, PictureBox pictureBox)
+
+
+        // ************************* commen Functions *********************************************
+
+        private void LoadCarTable()
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            List<Car> carList = _carRepository.getAllCarList();
+            loadCarListTable(carList);
+        }
+
+        private byte[] ImageToByteArray(System.Drawing.Image image)
+        {
+            using (var ms = new MemoryStream())
             {
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Get the path of specified file
-                    string filePath = openFileDialog.FileName;
-
-                    // Resize the image to match the PictureBox size
-                    Bitmap originalImage = new Bitmap(filePath);
-                    Bitmap resizedImage = new Bitmap(originalImage, new Size(pictureBox.Width, pictureBox.Height));
-                    pictureBox.Image = resizedImage;
-
-                    // Save the image file to the specific directory
-                    if (!Directory.Exists(saveDirectory))
-                    {
-                        Directory.CreateDirectory(saveDirectory);
-                    }
-
-                    // Generate a unique name for the image file
-                    string fileExtension = Path.GetExtension(filePath);
-                    string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
-                    string savePath = Path.Combine(saveDirectory, uniqueFileName);
-                    File.Copy(filePath, savePath, true);
-
-                    // Set the image URL
-                    return savePath;
-                }
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // Or the appropriate format
+                return ms.ToArray();
             }
-            return null;
+        }
+
+        private void CommenUploadAndResizeImage(PictureBox pictureBox)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+                Bitmap originalImage = new Bitmap(openFileDialog.FileName);
+                Bitmap resizedImage = new Bitmap(originalImage, new Size(pictureBox.Width, pictureBox.Height));
+                pictureBox.Image = resizedImage;
+            }
         }
 
         private void clearCarForm()
@@ -276,13 +284,12 @@ namespace car_traders
             comboFueltype.SelectedIndex = -1;
             comboTransmission.SelectedIndex = -1;
             texBodyType.Clear();
-            texUrl.Clear();
             texSellerName.Clear();
             texSellerAddress.Clear();
             texsellerMobileNum.Clear();
             texPrice.Clear();
             texDescription.Clear();
-            imgBox.Image = null;
+            imgBoxCar.Image = null;
         }
 
         private void cleanCarParts()
@@ -294,7 +301,6 @@ namespace car_traders
             texPartsCategory.Clear();
             texPartsCarModel.Clear();
             texPartBrandName.Clear();
-            texPartsImageUrl.Clear();
             imgBoxCarPats.Image = null;
         }
 
@@ -303,10 +309,66 @@ namespace car_traders
             //car count
             int carCount = _carRepository.GetCarCount();
             lblCarCount.Text = carCount.ToString();
+
             //car parts count
             int partCount = _carPartsRepository.getActiveCarPartsCaount();
             lblPartsCoun.Text = partCount.ToString();
+
+            //active customer load
+            int customerCount = _userRepository.GetCusotmerCount();
+            lblCustomerCount.Text = customerCount.ToString();
+
+
         }
+
+
+
+        private void GeneratePdf(string fileName, List<string> columnNames, List<List<string>> tableValues)
+        {
+            // Define the file path where the PDF will be saved
+            string filePath = $"{fileName}.pdf";
+
+            // Create a PDF writer instance with the specified file path
+            using (PdfWriter writer = new PdfWriter(filePath))
+            {
+                // Create a PDF document instance with the writer
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    // Create a Document instance to add elements to the PDF
+                    var document = new iText.Layout.Document(pdf);
+
+
+                    // Create a table with the number of columns matching the column names
+                    Table table = new Table(columnNames.Count);
+                    table.SetWidth(UnitValue.CreatePercentValue(100));
+
+                    // Add header row to the table
+                    foreach (var columnName in columnNames)
+                    {
+                        table.AddHeaderCell(columnName);
+                    }
+
+                    // Loop through the list of table values and add each row to the table
+                    foreach (var rowValues in tableValues)
+                    {
+                        foreach (var cellValue in rowValues)
+                        {
+                            table.AddCell(new Cell().Add(new Paragraph(cellValue)));
+                        }
+                    }
+
+                    // Add the table to the document
+                    document.Add(table);
+
+                    // Close the document to finalize the PDF
+                    document.Close();
+                }
+            }
+
+            // Inform the user that the PDF was generated successfully
+            MessageBox.Show("PDF generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
 
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
         {
@@ -327,5 +389,27 @@ namespace car_traders
         {
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+      
     }
 }

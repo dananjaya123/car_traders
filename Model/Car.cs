@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace car_traders.Model
 {
-    internal class Car
+    public class Car
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,7 +21,7 @@ namespace car_traders.Model
         public string Fuel_type { get; set; }
         public string Transmission { get; set; }
         public string Body_type { get; set; }
-        public string Image_url { get; set; }
+        public byte[]? Image_data { get; set; }
         public string Seller_name { get; set; }
         public string Seller_address { get; set; }
         public string Mobile_number { get; set; }

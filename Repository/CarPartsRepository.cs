@@ -1,4 +1,5 @@
 ﻿using car_traders.Dta;
+using car_traders.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,23 @@ namespace car_traders.Repository
 {
     public class CarPartsRepository
     {
+
+        public List<CarPart> getAllCarPartList()
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var cars = dbContext.car_parts.ToList();
+                return cars;
+            }
+        }
+
         public int getActiveCarPartsCaount() {
             using (var dbContext = new ApplicationDBContext())
             {
-                // Using a native SQL query to get the count of cars
-                var count = dbContext.Database.ExecuteSqlRaw("SELECT COUNT(*) FROM car_traders.car_parts  where Is_active =1 ");
+                // Using a native SQL query to get the count of active car parts
+                var count = dbContext.car_parts
+                                     .Where(cp => cp.Is_active)
+                                     .Count();
                 return count;
             }
         }

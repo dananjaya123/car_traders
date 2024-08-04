@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using car_traders.Dta;
 
@@ -11,9 +12,11 @@ using car_traders.Dta;
 namespace car_traders.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240804084932_UpdateCarPartWithImage")]
+    partial class UpdateCarPartWithImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +51,9 @@ namespace car_traders.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<byte[]>("Image_data")
-                        .HasColumnType("longblob");
+                    b.Property<string>("Image_url")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("Is_active")
                         .HasColumnType("tinyint(1)");
@@ -116,7 +120,12 @@ namespace car_traders.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<byte[]>("Image_data")
+                        .IsRequired()
                         .HasColumnType("longblob");
+
+                    b.Property<string>("Image_url")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("Is_active")
                         .HasColumnType("tinyint(1)");
