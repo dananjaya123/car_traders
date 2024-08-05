@@ -45,13 +45,14 @@ namespace car_traders
 
             // load table data
             LoadCarTable();
+            loadCarPartsListTable();
 
-            var carParts = _carPartsRepository.getAllCarPartList();
-            loadCarPartsListTable(carParts);
+
 
 
 
         }
+
 
         private void tabPage4_Click(object sender, EventArgs e)
         {
@@ -68,12 +69,23 @@ namespace car_traders
 
         private void loadCarListTable(List<Car> cars)
         {
+            //load data 
             dataGridViewCars.DataSource = cars;
             // Hide  column
             if (dataGridViewCars.Columns["Id"] != null)
             {
                 dataGridViewCars.Columns["Id"].Visible = false;
                 dataGridViewCars.Columns["Is_active"].Visible = false;
+            }
+            // Set the row height
+            foreach (DataGridViewRow row in dataGridViewCars.Rows)
+            {
+                row.Height = 300;
+            }
+
+            if (dataGridViewCarPart.Columns["Image_data"] != null)
+            {
+                dataGridViewCarPart.Columns["Image_data"].Width = 300; // Adjust the width of the image column if necessary
             }
 
 
@@ -169,7 +181,7 @@ namespace car_traders
                 // Set the row height
                 foreach (DataGridViewRow row in dataGridViewCarPart.Rows)
                 {
-                    row.Height = 400;
+                    row.Height = 300;
                 }
 
                 if (dataGridViewCarPart.Columns["Image_data"] != null)
@@ -242,7 +254,56 @@ namespace car_traders
             cleanCarParts();
         }
 
+        private void searchTableCarParts(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                var searchVal = texSearchCarPartTabl.Text;
+                if (searchVal == "")
+                {
+                    loadCarPartsListTable();
+                }
+                else
+                {
+                    List<CarPart> parts = _carPartsRepository.getCarPartsByPartName(searchVal);
+                    loadCarPartsListTable(parts);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+
+        }
+
+        private void dataGridViewCarPart_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dataGridViewCarPart.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+                {
+                    dataGridViewCarPart.CurrentRow.Selected = true;
+                    texUpdateCarPartName.Text = dataGridViewCarPart.Rows[e.RowIndex].Cells["Parts_name"].FormattedValue.ToString();
+                    texUpdatePartQty.Text = dataGridViewCarPart.Rows[e.RowIndex].Cells["Qty"].FormattedValue.ToString();
+                    texUpdatePartPrice.Text = dataGridViewCarPart.Rows[e.RowIndex].Cells["Price"].FormattedValue.ToString();
+                    // Load image from byte array
+                    byte[] imageData = (byte[])dataGridViewCarPart.Rows[e.RowIndex].Cells["Image_data"].Value;
+                    if (imageData != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream(imageData))
+                        {
+                            imgUpdateCarPart.Image = System.Drawing.Image.FromStream(ms);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
 
         // ************************* commen Functions *********************************************
 
@@ -252,6 +313,11 @@ namespace car_traders
             loadCarListTable(carList);
         }
 
+        private void loadCarPartsListTable()
+        {
+            var carParts = _carPartsRepository.getAllCarPartList();
+            loadCarPartsListTable(carParts);
+        }
         private byte[] ImageToByteArray(System.Drawing.Image image)
         {
             using (var ms = new MemoryStream())
@@ -410,6 +476,16 @@ namespace car_traders
 
         }
 
-      
+        private void materialLabel3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialMaskedTextBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

@@ -87,6 +87,16 @@
             dataGridViewCars = new DataGridView();
             lblCar = new Label();
             tabViewPats = new TabPage();
+            btnUpdateCarParts = new MaterialSkin.Controls.MaterialButton();
+            btnDeleteCarPart = new MaterialSkin.Controls.MaterialButton();
+            btnClearCarParts = new MaterialSkin.Controls.MaterialButton();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            imgUpdateCarPart = new PictureBox();
+            texUpdatePartPrice = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texUpdatePartQty = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texUpdateCarPartName = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            texSearchCarPartTabl = new MaterialSkin.Controls.MaterialMaskedTextBox();
             dataGridViewCarPart = new DataGridView();
             label1 = new Label();
             materialTabControl1.SuspendLayout();
@@ -104,6 +114,7 @@
             tabViewCars.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCars).BeginInit();
             tabViewPats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)imgUpdateCarPart).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarPart).BeginInit();
             SuspendLayout();
             // 
@@ -586,6 +597,7 @@
             // 
             // imgBoxCar
             // 
+            imgBoxCar.BorderStyle = BorderStyle.FixedSingle;
             imgBoxCar.Location = new Point(601, 363);
             imgBoxCar.Name = "imgBoxCar";
             imgBoxCar.Size = new Size(263, 232);
@@ -1078,6 +1090,7 @@
             // 
             // imgBoxCarPats
             // 
+            imgBoxCarPats.BorderStyle = BorderStyle.FixedSingle;
             imgBoxCarPats.Location = new Point(632, 237);
             imgBoxCarPats.Name = "imgBoxCarPats";
             imgBoxCarPats.Size = new Size(263, 232);
@@ -1405,7 +1418,7 @@
             texCarTableSearch.Hint = "Search Model Name";
             texCarTableSearch.InsertKeyMode = InsertKeyMode.Default;
             texCarTableSearch.LeadingIcon = null;
-            texCarTableSearch.Location = new Point(676, 288);
+            texCarTableSearch.Location = new Point(676, 79);
             texCarTableSearch.Mask = "";
             texCarTableSearch.MaxLength = 32767;
             texCarTableSearch.MouseState = MaterialSkin.MouseState.OUT;
@@ -1436,10 +1449,10 @@
             // dataGridViewCars
             // 
             dataGridViewCars.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCars.Location = new Point(22, 342);
+            dataGridViewCars.Location = new Point(22, 144);
             dataGridViewCars.Name = "dataGridViewCars";
             dataGridViewCars.RowHeadersWidth = 62;
-            dataGridViewCars.Size = new Size(930, 293);
+            dataGridViewCars.Size = new Size(930, 375);
             dataGridViewCars.TabIndex = 1;
             // 
             // lblCar
@@ -1456,6 +1469,16 @@
             // 
             // tabViewPats
             // 
+            tabViewPats.Controls.Add(btnUpdateCarParts);
+            tabViewPats.Controls.Add(btnDeleteCarPart);
+            tabViewPats.Controls.Add(btnClearCarParts);
+            tabViewPats.Controls.Add(materialLabel3);
+            tabViewPats.Controls.Add(materialButton1);
+            tabViewPats.Controls.Add(imgUpdateCarPart);
+            tabViewPats.Controls.Add(texUpdatePartPrice);
+            tabViewPats.Controls.Add(texUpdatePartQty);
+            tabViewPats.Controls.Add(texUpdateCarPartName);
+            tabViewPats.Controls.Add(texSearchCarPartTabl);
             tabViewPats.Controls.Add(dataGridViewCarPart);
             tabViewPats.Controls.Add(label1);
             tabViewPats.ImageKey = "parts.png";
@@ -1465,15 +1488,284 @@
             tabViewPats.TabIndex = 4;
             tabViewPats.Text = "View Parts";
             // 
+            // btnUpdateCarParts
+            // 
+            btnUpdateCarParts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpdateCarParts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnUpdateCarParts.Depth = 0;
+            btnUpdateCarParts.HighEmphasis = true;
+            btnUpdateCarParts.Icon = null;
+            btnUpdateCarParts.Location = new Point(183, 302);
+            btnUpdateCarParts.Margin = new Padding(4, 6, 4, 6);
+            btnUpdateCarParts.MouseState = MaterialSkin.MouseState.HOVER;
+            btnUpdateCarParts.Name = "btnUpdateCarParts";
+            btnUpdateCarParts.NoAccentTextColor = Color.Empty;
+            btnUpdateCarParts.Size = new Size(77, 36);
+            btnUpdateCarParts.TabIndex = 28;
+            btnUpdateCarParts.Text = "Update";
+            btnUpdateCarParts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnUpdateCarParts.UseAccentColor = false;
+            btnUpdateCarParts.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteCarPart
+            // 
+            btnDeleteCarPart.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDeleteCarPart.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnDeleteCarPart.Depth = 0;
+            btnDeleteCarPart.HighEmphasis = true;
+            btnDeleteCarPart.Icon = null;
+            btnDeleteCarPart.Location = new Point(384, 302);
+            btnDeleteCarPart.Margin = new Padding(4, 6, 4, 6);
+            btnDeleteCarPart.MouseState = MaterialSkin.MouseState.HOVER;
+            btnDeleteCarPart.Name = "btnDeleteCarPart";
+            btnDeleteCarPart.NoAccentTextColor = Color.Empty;
+            btnDeleteCarPart.Size = new Size(73, 36);
+            btnDeleteCarPart.TabIndex = 27;
+            btnDeleteCarPart.Text = "Delete";
+            btnDeleteCarPart.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnDeleteCarPart.UseAccentColor = false;
+            btnDeleteCarPart.UseVisualStyleBackColor = true;
+            // 
+            // btnClearCarParts
+            // 
+            btnClearCarParts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnClearCarParts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnClearCarParts.Depth = 0;
+            btnClearCarParts.HighEmphasis = true;
+            btnClearCarParts.Icon = null;
+            btnClearCarParts.Location = new Point(291, 302);
+            btnClearCarParts.Margin = new Padding(4, 6, 4, 6);
+            btnClearCarParts.MouseState = MaterialSkin.MouseState.HOVER;
+            btnClearCarParts.Name = "btnClearCarParts";
+            btnClearCarParts.NoAccentTextColor = Color.Empty;
+            btnClearCarParts.Size = new Size(66, 36);
+            btnClearCarParts.TabIndex = 26;
+            btnClearCarParts.Text = "Clear";
+            btnClearCarParts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnClearCarParts.UseAccentColor = false;
+            btnClearCarParts.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.Location = new Point(626, 248);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(127, 19);
+            materialLabel3.TabIndex = 25;
+            materialLabel3.Text = "*.jpg, *.jpeg, *.png";
+            materialLabel3.Click += materialLabel3_Click;
+            // 
+            // materialButton1
+            // 
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(626, 273);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(128, 36);
+            materialButton1.TabIndex = 24;
+            materialButton1.Text = "Choose Image";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = true;
+            // 
+            // imgUpdateCarPart
+            // 
+            imgUpdateCarPart.BorderStyle = BorderStyle.FixedSingle;
+            imgUpdateCarPart.Location = new Point(559, 13);
+            imgUpdateCarPart.Name = "imgUpdateCarPart";
+            imgUpdateCarPart.Size = new Size(263, 232);
+            imgUpdateCarPart.TabIndex = 23;
+            imgUpdateCarPart.TabStop = false;
+            // 
+            // texUpdatePartPrice
+            // 
+            texUpdatePartPrice.AllowPromptAsInput = true;
+            texUpdatePartPrice.AnimateReadOnly = false;
+            texUpdatePartPrice.AsciiOnly = false;
+            texUpdatePartPrice.BackgroundImageLayout = ImageLayout.None;
+            texUpdatePartPrice.BeepOnError = false;
+            texUpdatePartPrice.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texUpdatePartPrice.Depth = 0;
+            texUpdatePartPrice.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texUpdatePartPrice.HidePromptOnLeave = false;
+            texUpdatePartPrice.HideSelection = true;
+            texUpdatePartPrice.Hint = "Price";
+            texUpdatePartPrice.InsertKeyMode = InsertKeyMode.Default;
+            texUpdatePartPrice.LeadingIcon = null;
+            texUpdatePartPrice.Location = new Point(30, 183);
+            texUpdatePartPrice.Mask = "";
+            texUpdatePartPrice.MaxLength = 32767;
+            texUpdatePartPrice.MouseState = MaterialSkin.MouseState.OUT;
+            texUpdatePartPrice.Name = "texUpdatePartPrice";
+            texUpdatePartPrice.PasswordChar = '\0';
+            texUpdatePartPrice.PrefixSuffixText = null;
+            texUpdatePartPrice.PromptChar = '_';
+            texUpdatePartPrice.ReadOnly = false;
+            texUpdatePartPrice.RejectInputOnFirstFailure = false;
+            texUpdatePartPrice.ResetOnPrompt = true;
+            texUpdatePartPrice.ResetOnSpace = true;
+            texUpdatePartPrice.RightToLeft = RightToLeft.No;
+            texUpdatePartPrice.SelectedText = "";
+            texUpdatePartPrice.SelectionLength = 0;
+            texUpdatePartPrice.SelectionStart = 0;
+            texUpdatePartPrice.ShortcutsEnabled = true;
+            texUpdatePartPrice.Size = new Size(429, 48);
+            texUpdatePartPrice.SkipLiterals = true;
+            texUpdatePartPrice.TabIndex = 7;
+            texUpdatePartPrice.TabStop = false;
+            texUpdatePartPrice.TextAlign = HorizontalAlignment.Left;
+            texUpdatePartPrice.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texUpdatePartPrice.TrailingIcon = null;
+            texUpdatePartPrice.UseSystemPasswordChar = false;
+            texUpdatePartPrice.ValidatingType = null;
+            texUpdatePartPrice.Click += materialMaskedTextBox3_Click;
+            // 
+            // texUpdatePartQty
+            // 
+            texUpdatePartQty.AllowPromptAsInput = true;
+            texUpdatePartQty.AnimateReadOnly = false;
+            texUpdatePartQty.AsciiOnly = false;
+            texUpdatePartQty.BackgroundImageLayout = ImageLayout.None;
+            texUpdatePartQty.BeepOnError = false;
+            texUpdatePartQty.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texUpdatePartQty.Depth = 0;
+            texUpdatePartQty.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texUpdatePartQty.HidePromptOnLeave = false;
+            texUpdatePartQty.HideSelection = true;
+            texUpdatePartQty.Hint = "Qty";
+            texUpdatePartQty.InsertKeyMode = InsertKeyMode.Default;
+            texUpdatePartQty.LeadingIcon = null;
+            texUpdatePartQty.Location = new Point(30, 116);
+            texUpdatePartQty.Mask = "";
+            texUpdatePartQty.MaxLength = 32767;
+            texUpdatePartQty.MouseState = MaterialSkin.MouseState.OUT;
+            texUpdatePartQty.Name = "texUpdatePartQty";
+            texUpdatePartQty.PasswordChar = '\0';
+            texUpdatePartQty.PrefixSuffixText = null;
+            texUpdatePartQty.PromptChar = '_';
+            texUpdatePartQty.ReadOnly = false;
+            texUpdatePartQty.RejectInputOnFirstFailure = false;
+            texUpdatePartQty.ResetOnPrompt = true;
+            texUpdatePartQty.ResetOnSpace = true;
+            texUpdatePartQty.RightToLeft = RightToLeft.No;
+            texUpdatePartQty.SelectedText = "";
+            texUpdatePartQty.SelectionLength = 0;
+            texUpdatePartQty.SelectionStart = 0;
+            texUpdatePartQty.ShortcutsEnabled = true;
+            texUpdatePartQty.Size = new Size(429, 48);
+            texUpdatePartQty.SkipLiterals = true;
+            texUpdatePartQty.TabIndex = 6;
+            texUpdatePartQty.TabStop = false;
+            texUpdatePartQty.TextAlign = HorizontalAlignment.Left;
+            texUpdatePartQty.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texUpdatePartQty.TrailingIcon = null;
+            texUpdatePartQty.UseSystemPasswordChar = false;
+            texUpdatePartQty.ValidatingType = null;
+            // 
+            // texUpdateCarPartName
+            // 
+            texUpdateCarPartName.AllowPromptAsInput = true;
+            texUpdateCarPartName.AnimateReadOnly = false;
+            texUpdateCarPartName.AsciiOnly = false;
+            texUpdateCarPartName.BackgroundImageLayout = ImageLayout.None;
+            texUpdateCarPartName.BeepOnError = false;
+            texUpdateCarPartName.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texUpdateCarPartName.Depth = 0;
+            texUpdateCarPartName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texUpdateCarPartName.HidePromptOnLeave = false;
+            texUpdateCarPartName.HideSelection = true;
+            texUpdateCarPartName.Hint = "Part Name";
+            texUpdateCarPartName.InsertKeyMode = InsertKeyMode.Default;
+            texUpdateCarPartName.LeadingIcon = null;
+            texUpdateCarPartName.Location = new Point(30, 53);
+            texUpdateCarPartName.Mask = "";
+            texUpdateCarPartName.MaxLength = 32767;
+            texUpdateCarPartName.MouseState = MaterialSkin.MouseState.OUT;
+            texUpdateCarPartName.Name = "texUpdateCarPartName";
+            texUpdateCarPartName.PasswordChar = '\0';
+            texUpdateCarPartName.PrefixSuffixText = null;
+            texUpdateCarPartName.PromptChar = '_';
+            texUpdateCarPartName.ReadOnly = false;
+            texUpdateCarPartName.RejectInputOnFirstFailure = false;
+            texUpdateCarPartName.ResetOnPrompt = true;
+            texUpdateCarPartName.ResetOnSpace = true;
+            texUpdateCarPartName.RightToLeft = RightToLeft.No;
+            texUpdateCarPartName.SelectedText = "";
+            texUpdateCarPartName.SelectionLength = 0;
+            texUpdateCarPartName.SelectionStart = 0;
+            texUpdateCarPartName.ShortcutsEnabled = true;
+            texUpdateCarPartName.Size = new Size(429, 48);
+            texUpdateCarPartName.SkipLiterals = true;
+            texUpdateCarPartName.TabIndex = 5;
+            texUpdateCarPartName.TabStop = false;
+            texUpdateCarPartName.TextAlign = HorizontalAlignment.Left;
+            texUpdateCarPartName.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texUpdateCarPartName.TrailingIcon = null;
+            texUpdateCarPartName.UseSystemPasswordChar = false;
+            texUpdateCarPartName.ValidatingType = null;
+            // 
+            // texSearchCarPartTabl
+            // 
+            texSearchCarPartTabl.AllowPromptAsInput = true;
+            texSearchCarPartTabl.AnimateReadOnly = false;
+            texSearchCarPartTabl.AsciiOnly = false;
+            texSearchCarPartTabl.BackgroundImageLayout = ImageLayout.None;
+            texSearchCarPartTabl.BeepOnError = false;
+            texSearchCarPartTabl.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
+            texSearchCarPartTabl.Depth = 0;
+            texSearchCarPartTabl.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            texSearchCarPartTabl.HidePromptOnLeave = false;
+            texSearchCarPartTabl.HideSelection = true;
+            texSearchCarPartTabl.Hint = "Parts name";
+            texSearchCarPartTabl.InsertKeyMode = InsertKeyMode.Default;
+            texSearchCarPartTabl.LeadingIcon = null;
+            texSearchCarPartTabl.Location = new Point(541, 327);
+            texSearchCarPartTabl.Mask = "";
+            texSearchCarPartTabl.MaxLength = 32767;
+            texSearchCarPartTabl.MouseState = MaterialSkin.MouseState.OUT;
+            texSearchCarPartTabl.Name = "texSearchCarPartTabl";
+            texSearchCarPartTabl.PasswordChar = '\0';
+            texSearchCarPartTabl.PrefixSuffixText = null;
+            texSearchCarPartTabl.PromptChar = '_';
+            texSearchCarPartTabl.ReadOnly = false;
+            texSearchCarPartTabl.RejectInputOnFirstFailure = false;
+            texSearchCarPartTabl.ResetOnPrompt = true;
+            texSearchCarPartTabl.ResetOnSpace = true;
+            texSearchCarPartTabl.RightToLeft = RightToLeft.No;
+            texSearchCarPartTabl.SelectedText = "";
+            texSearchCarPartTabl.SelectionLength = 0;
+            texSearchCarPartTabl.SelectionStart = 0;
+            texSearchCarPartTabl.ShortcutsEnabled = true;
+            texSearchCarPartTabl.Size = new Size(375, 48);
+            texSearchCarPartTabl.SkipLiterals = true;
+            texSearchCarPartTabl.TabIndex = 4;
+            texSearchCarPartTabl.TabStop = false;
+            texSearchCarPartTabl.TextAlign = HorizontalAlignment.Left;
+            texSearchCarPartTabl.TextMaskFormat = MaskFormat.IncludeLiterals;
+            texSearchCarPartTabl.TrailingIcon = null;
+            texSearchCarPartTabl.UseSystemPasswordChar = false;
+            texSearchCarPartTabl.ValidatingType = null;
+            texSearchCarPartTabl.KeyUp += searchTableCarParts;
+            // 
             // dataGridViewCarPart
             // 
             dataGridViewCarPart.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCarPart.GridColor = SystemColors.ButtonHighlight;
-            dataGridViewCarPart.Location = new Point(14, 61);
+            dataGridViewCarPart.Location = new Point(14, 393);
             dataGridViewCarPart.Name = "dataGridViewCarPart";
             dataGridViewCarPart.RowHeadersWidth = 62;
-            dataGridViewCarPart.Size = new Size(902, 202);
+            dataGridViewCarPart.Size = new Size(902, 265);
             dataGridViewCarPart.TabIndex = 3;
+            dataGridViewCarPart.CellClick += dataGridViewCarPart_CellClick;
             // 
             // label1
             // 
@@ -1521,6 +1813,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridViewCars).EndInit();
             tabViewPats.ResumeLayout(false);
             tabViewPats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)imgUpdateCarPart).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarPart).EndInit();
             ResumeLayout(false);
         }
@@ -1586,5 +1879,15 @@
         private DataGridView dataGridViewCarPart;
         private DataGridView dataGridViewCars;
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarTableSearch;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texSearchCarPartTabl;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private PictureBox imgUpdateCarPart;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texUpdatePartPrice;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texUpdatePartQty;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texUpdateCarPartName;
+        private MaterialSkin.Controls.MaterialButton btnUpdateCarParts;
+        private MaterialSkin.Controls.MaterialButton btnDeleteCarPart;
+        private MaterialSkin.Controls.MaterialButton btnClearCarParts;
     }
 }

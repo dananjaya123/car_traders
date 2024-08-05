@@ -20,6 +20,14 @@ namespace car_traders.Repository
                 return cars;
             }
         }
+        public List<CarPart> getCarPartsByPartName(string partName)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var carsParts = dbContext.car_parts.Where(cp => cp.Parts_name.Contains(partName)).ToList();
+                return carsParts;
+            }
+        }
 
         public int getActiveCarPartsCaount() {
             using (var dbContext = new ApplicationDBContext())
