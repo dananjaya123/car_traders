@@ -9,6 +9,7 @@ using iText.Layout.Properties;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Utilities;
 using System.Data;
 using System.Reflection.Metadata;
 using System.Windows.Forms;
@@ -48,9 +49,6 @@ namespace car_traders
             loadCarPartsListTable();
 
 
-
-
-
         }
 
 
@@ -69,63 +67,116 @@ namespace car_traders
 
         private void loadCarListTable(List<Car> cars)
         {
-            //load data 
-            dataGridViewCars.DataSource = cars;
-            // Hide  column
-            if (dataGridViewCars.Columns["Id"] != null)
+
+            try
             {
-                dataGridViewCars.Columns["Id"].Visible = false;
-                dataGridViewCars.Columns["Is_active"].Visible = false;
+                tblListViewCar.Items.Clear();
+
+                foreach (var car in cars)
+                {
+                    var listViewItem = new ListViewItem(new[]
+                    {
+                       car.Car_brand,
+                       car.Color,
+                       car.Manufacturing_year,
+                       car.Model_name,
+                       car.Mileage.ToString(),
+                       car.Transmission,
+                       car.Body_type,
+                       car.Status,
+                       car.Price.ToString("F2"), // Convert double to string with 2 decimal places
+                       car.Id.ToString(), // Convert Guid to string
+                      
+                    });
+
+                    tblListViewCar.Items.Add(listViewItem);
+                }
+
             }
-            // Set the row height
-            foreach (DataGridViewRow row in dataGridViewCars.Rows)
+            catch (Exception ex)
             {
-                row.Height = 300;
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if (dataGridViewCarPart.Columns["Image_data"] != null)
+        }
+
+        private void tblListViewCar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
             {
-                dataGridViewCarPart.Columns["Image_data"].Width = 300; // Adjust the width of the image column if necessary
+                foreach (ListViewItem item in tblListViewCar.SelectedItems)
+                {
+
+                    // Assuming the subitems are in the same order as you added them
+                    var id = Guid.Parse(item.SubItems[9].Text); // Convert from string to Guid
+
+                    var car = _carRepository.getCarById(id);
+                    
+                    Form modelBackgraund = new Form();
+                    using (CarUpdateModelForm model = new CarUpdateModelForm(car))
+                    {
+                        modelBackgraund.StartPosition = FormStartPosition.Manual;
+                        modelBackgraund.FormBorderStyle = FormBorderStyle.None;
+                        modelBackgraund.Opacity = .50;
+                        modelBackgraund.BackColor = Color.Black;
+                        modelBackgraund.Size = this.Size;
+                        modelBackgraund.Location = this.Location;
+                        modelBackgraund.ShowInTaskbar = false;
+                        modelBackgraund.Show();
+                        model.Owner = modelBackgraund;
+
+                        model.ShowDialog();
+                        modelBackgraund.Dispose();
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                using (var context = new ApplicationDBContext())
-                {
-                    var car = new Car
-                    {
-                        Car_brand = texCarBrand.Text,
-                        Color = texCarColor.Text,
-                        Manufacturing_year = texManufacturingYear.Text,
-                        Model_name = texCarModelName.Text,
-                        Mileage = int.Parse(texMileage.Text),
-                        Fuel_type = comboFueltype.Text,
-                        Transmission = comboTransmission.Text,
-                        Body_type = texBodyType.Text,
-                        Seller_name = texSellerName.Text,
-                        Seller_address = texSellerAddress.Text,
-                        Mobile_number = texsellerMobileNum.Text,
-                        Price = double.Parse(texPrice.Text),
-                        Description = texDescription.Text,
-                        Is_active = true
-                    };
-                    // Convert image from PictureBox to byte array
-                    if (imgBoxCar.Image != null)
-                    {
-                        car.Image_data = ImageToByteArray(imgBoxCar.Image);
-                    }
 
-                    context.car.Add(car);
-                    context.SaveChanges();
-                    MessageBox.Show("Car added successfully");
-                    clearCarForm();
-                    LoadCarTable();
+                var car = new Car
+                {
+                    Car_brand = texCarBrand.Text,
+                    Color = texCarColor.Text,
+                    Manufacturing_year = texManufacturingYear.Text,
+                    Model_name = texCarModelName.Text,
+                    Mileage = int.Parse(texMileage.Text),
+                    Fuel_type = comboFueltype.Text,
+                    Transmission = comboTransmission.Text,
+                    Body_type = texBodyType.Text,
+                    Seller_name = texSellerName.Text,
+                    Seller_address = texSellerAddress.Text,
+                    Mobile_number = texsellerMobileNum.Text,
+                    Price = double.Parse(texPrice.Text),
+                    Description = texDescription.Text,
+                    Is_active = true
+                };
+                // Convert image from PictureBox to byte array
+                if (imgBoxCar.Image != null)
+                {
+                    car.Image_data = ImageToByteArray(imgBoxCar.Image);
                 }
+
+                if (_carRepository.saveCar(car))
+                {
+                    MessageBox.Show("Car added successfully");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong!");
+                }
+                clearCarForm();
+                LoadCarTable();
+                LoadDashboardCount();
+
             }
             catch (FormatException ex)
             {
@@ -170,24 +221,26 @@ namespace car_traders
         {
             try
             {
-                dataGridViewCarPart.DataSource = car_parts;
-                // Hide  column
-                if (dataGridViewCarPart.Columns["Id"] != null)
+                carPartsListView.Items.Clear();
+
+                foreach (var part in car_parts)
                 {
-                    dataGridViewCarPart.Columns["Id"].Visible = false;
-                    dataGridViewCarPart.Columns["Is_active"].Visible = false;
+                    var listViewItem = new ListViewItem(new[]
+                    {
+                       part.Brand_name,
+                       part.Price.ToString("F2"), // Convert double to string with 2 decimal places
+                       part.Qty.ToString(), // Convert int to string
+                       part.Category,
+                       part.Car_model,
+                       part.Brand_name,
+                       part.Status,
+                       part.Id.ToString(), // Convert Guid to string
+                      
+                    });
+
+                    carPartsListView.Items.Add(listViewItem);
                 }
 
-                // Set the row height
-                foreach (DataGridViewRow row in dataGridViewCarPart.Rows)
-                {
-                    row.Height = 300;
-                }
-
-                if (dataGridViewCarPart.Columns["Image_data"] != null)
-                {
-                    dataGridViewCarPart.Columns["Image_data"].Width = 300; // Adjust the width of the image column if necessary
-                }
             }
             catch (Exception ex)
             {
@@ -196,37 +249,86 @@ namespace car_traders
 
 
         }
+        private void carPartListViewRowSelect(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (ListViewItem item in carPartsListView.SelectedItems)
+                {
+
+                    // Assuming the subitems are in the same order as you added them
+                    var id = Guid.Parse(item.SubItems[7].Text); // Convert from string to Guid
+                    var brandName = item.SubItems[0].Text;
+                    var price = double.Parse(item.SubItems[1].Text);
+                    var qty = int.Parse(item.SubItems[2].Text);
+                    var category = item.SubItems[3].Text;
+                    var carModel = item.SubItems[4].Text;
+                    var status = item.SubItems[6].Text;
+
+                    var carPart = _carPartsRepository.getCarPartById(id);
+                    byte[] imageData = carPart.Image_data;
+
+                    Form modelBackgraund = new Form();
+                    using (PartUpdateModel model = new PartUpdateModel(id, brandName, price, qty, category, carModel, status, imageData))
+                    {
+                        modelBackgraund.StartPosition = FormStartPosition.Manual;
+                        modelBackgraund.FormBorderStyle = FormBorderStyle.None;
+                        modelBackgraund.Opacity = .50;
+                        modelBackgraund.BackColor = Color.Black;
+                        modelBackgraund.Size = this.Size;
+                        modelBackgraund.Location = this.Location;
+                        modelBackgraund.ShowInTaskbar = false;
+                        modelBackgraund.Show();
+                        model.Owner = modelBackgraund;
+
+                        model.ShowDialog();
+                        modelBackgraund.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
 
         private void btnPartsSave_Click(object sender, EventArgs e)
         {
             try
             {
-
-                using (var context = new ApplicationDBContext())
+                var carPart = new CarPart
                 {
-                    var carPart = new CarPart
-                    {
-                        Parts_name = texPartsNaame.Text,
-                        Description = texPartsDescriptions.Text,
-                        Price = double.Parse(texPartsPrice.Text),
-                        Qty = int.Parse(texPartsQty.Text),
-                        Category = texPartsCategory.Text,
-                        Car_model = texPartsCarModel.Text,
-                        Brand_name = texPartBrandName.Text,
-                        Is_active = true
+                    Parts_name = texPartsNaame.Text,
+                    Description = texPartsDescriptions.Text,
+                    Price = double.Parse(texPartsPrice.Text),
+                    Qty = int.Parse(texPartsQty.Text),
+                    Category = texPartsCategory.Text,
+                    Car_model = texPartsCarModel.Text,
+                    Brand_name = texPartBrandName.Text,
+                    Is_active = true
 
-                    };
-                    // Convert image from PictureBox to byte array
-                    if (imgBoxCarPats.Image != null)
-                    {
-                        carPart.Image_data = ImageToByteArray(imgBoxCarPats.Image);
-                    }
-                    context.car_parts.Add(carPart);
-                    context.SaveChanges();
-                    MessageBox.Show("Car Part added successfully");
-                    cleanCarParts();
-
+                };
+                // Convert image from PictureBox to byte array
+                if (imgBoxCarPats.Image != null)
+                {
+                    carPart.Image_data = ImageToByteArray(imgBoxCarPats.Image);
                 }
+                if (_carPartsRepository.saveCarPart(carPart))
+                {
+                    MessageBox.Show("Car Part added successfully");
+                    loadCarPartsListTable();
+                    LoadDashboardCount();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong!");
+                }
+
+                cleanCarParts();
+
+
 
             }
             catch (FormatException ex)
@@ -279,32 +381,22 @@ namespace car_traders
 
         private void dataGridViewCarPart_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (dataGridViewCarPart.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
-                {
-                    dataGridViewCarPart.CurrentRow.Selected = true;
-                    texUpdateCarPartName.Text = dataGridViewCarPart.Rows[e.RowIndex].Cells["Parts_name"].FormattedValue.ToString();
-                    texUpdatePartQty.Text = dataGridViewCarPart.Rows[e.RowIndex].Cells["Qty"].FormattedValue.ToString();
-                    texUpdatePartPrice.Text = dataGridViewCarPart.Rows[e.RowIndex].Cells["Price"].FormattedValue.ToString();
-                    // Load image from byte array
-                    byte[] imageData = (byte[])dataGridViewCarPart.Rows[e.RowIndex].Cells["Image_data"].Value;
-                    if (imageData != null)
-                    {
-                        using (MemoryStream ms = new MemoryStream(imageData))
-                        {
-                            imgUpdateCarPart.Image = System.Drawing.Image.FromStream(ms);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }
+        }
+        private void btnUpdateCarParts_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnClearCarParts_Click(object sender, EventArgs e)
+        {
+
         }
 
+
+        private void btnDeleteCarPart_Click(object sender, EventArgs e)
+        {
+
+        }
         // ************************* commen Functions *********************************************
 
         private void LoadCarTable()
@@ -368,6 +460,11 @@ namespace car_traders
             texPartsCarModel.Clear();
             texPartBrandName.Clear();
             imgBoxCarPats.Image = null;
+        }
+
+        private void clearUpdatePartForm()
+        {
+
         }
 
         private void LoadDashboardCount()
@@ -482,6 +579,27 @@ namespace car_traders
         }
 
         private void materialMaskedTextBox3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void texUpdateCarPartName_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void texUpdatePartQty_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void dataGridViewCars_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabViewPats_Click(object sender, EventArgs e)
         {
 
         }

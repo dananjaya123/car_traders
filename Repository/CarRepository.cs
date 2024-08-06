@@ -12,6 +12,34 @@ namespace car_traders.Repository
     public class CarRepository
     {
 
+        public Boolean saveCar(Car car)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                dbContext.car.Add(car);
+                dbContext.SaveChanges();
+                return true;
+            }
+        }
+
+        public Boolean updateCar(Car car)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                dbContext.car.Update(car);
+                dbContext.SaveChanges();
+                return true;
+            }
+        }
+
+        public Car getCarById(Guid id)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var car = dbContext.car.FirstOrDefault(cp => cp.Id == id);
+                return car;
+            }
+        }
         public List<Car> getAllCarList()
         {
             using (var dbContext = new ApplicationDBContext())
@@ -36,12 +64,18 @@ namespace car_traders.Repository
         }
 
 
-        public List<Car> getAllCarListByModelName(string modelName)
+        public List<Car> getAllCarListByModelName(string searchVal)
         {
             using (var dbContext = new ApplicationDBContext())
             {
                 var cars = dbContext.car
-                                    .Where(cp => cp.Model_name.Contains(modelName))
+                                    .Where(cp => cp.Model_name.Contains(searchVal)
+                                    ||cp.Car_brand.Contains(searchVal)
+                                    ||cp.Color.Contains(searchVal)
+                                    ||cp.Body_type.Contains(searchVal)
+                                    ||cp.Seller_name.Contains(searchVal)
+                                    ||cp.Status.Contains(searchVal)
+                                    )
                                     .ToList();
                 return cars;
             }
