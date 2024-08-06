@@ -44,7 +44,7 @@ namespace car_traders.Repository
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                var cars = dbContext.car_parts.ToList();
+                var cars = dbContext.car_parts.Where(cp=> cp.Is_active==true).ToList();
                 return cars;
             }
         }

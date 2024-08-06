@@ -227,7 +227,7 @@ namespace car_traders
                 {
                     var listViewItem = new ListViewItem(new[]
                     {
-                       part.Brand_name,
+                       part.Parts_name,
                        part.Price.ToString("F2"), // Convert double to string with 2 decimal places
                        part.Qty.ToString(), // Convert int to string
                        part.Category,
@@ -255,21 +255,14 @@ namespace car_traders
             {
                 foreach (ListViewItem item in carPartsListView.SelectedItems)
                 {
-
                     // Assuming the subitems are in the same order as you added them
                     var id = Guid.Parse(item.SubItems[7].Text); // Convert from string to Guid
-                    var brandName = item.SubItems[0].Text;
-                    var price = double.Parse(item.SubItems[1].Text);
-                    var qty = int.Parse(item.SubItems[2].Text);
-                    var category = item.SubItems[3].Text;
-                    var carModel = item.SubItems[4].Text;
-                    var status = item.SubItems[6].Text;
-
+                    
                     var carPart = _carPartsRepository.getCarPartById(id);
-                    byte[] imageData = carPart.Image_data;
+                    
 
                     Form modelBackgraund = new Form();
-                    using (PartUpdateModel model = new PartUpdateModel(id, brandName, price, qty, category, carModel, status, imageData))
+                    using (PartUpdateModel model = new PartUpdateModel(carPart))
                     {
                         modelBackgraund.StartPosition = FormStartPosition.Manual;
                         modelBackgraund.FormBorderStyle = FormBorderStyle.None;
@@ -284,6 +277,7 @@ namespace car_traders
                         model.ShowDialog();
                         modelBackgraund.Dispose();
                     }
+                   
                 }
             }
             catch (Exception ex)

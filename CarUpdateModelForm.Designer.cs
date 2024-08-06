@@ -115,12 +115,13 @@
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
             btnUpdate.NoAccentTextColor = Color.Empty;
-            btnUpdate.Size = new Size(64, 36);
+            btnUpdate.Size = new Size(77, 36);
             btnUpdate.TabIndex = 39;
             btnUpdate.Text = "Update";
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnUpdate.UseAccentColor = false;
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // texBodyType
             // 

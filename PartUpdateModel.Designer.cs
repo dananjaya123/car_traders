@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnDelete = new MaterialSkin.Controls.MaterialButton();
+            lblErrorDescription = new Label();
+            lblErrorPartName = new Label();
+            lblErrorCarModel = new Label();
             lblErrorUpdatePartPrice = new Label();
             lblErrorPartQty = new Label();
-            lblErrorUpadatePartName = new Label();
+            lblErrorBrandName = new Label();
             btnUpdateCarParts = new MaterialSkin.Controls.MaterialButton();
-            btnClearCarParts = new MaterialSkin.Controls.MaterialButton();
             texDescription = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texBrandName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarMode = new MaterialSkin.Controls.MaterialMaskedTextBox();
@@ -48,11 +51,14 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnDelete);
+            panel1.Controls.Add(lblErrorDescription);
+            panel1.Controls.Add(lblErrorPartName);
+            panel1.Controls.Add(lblErrorCarModel);
             panel1.Controls.Add(lblErrorUpdatePartPrice);
             panel1.Controls.Add(lblErrorPartQty);
-            panel1.Controls.Add(lblErrorUpadatePartName);
+            panel1.Controls.Add(lblErrorBrandName);
             panel1.Controls.Add(btnUpdateCarParts);
-            panel1.Controls.Add(btnClearCarParts);
             panel1.Controls.Add(texDescription);
             panel1.Controls.Add(texBrandName);
             panel1.Controls.Add(texCarMode);
@@ -62,8 +68,65 @@
             panel1.Controls.Add(imgUpdateCarPart);
             panel1.Location = new Point(29, 85);
             panel1.Name = "panel1";
-            panel1.Size = new Size(660, 544);
+            panel1.Size = new Size(660, 600);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // btnDelete
+            // 
+            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnDelete.Depth = 0;
+            btnDelete.HighEmphasis = true;
+            btnDelete.Icon = null;
+            btnDelete.Location = new Point(422, 511);
+            btnDelete.Margin = new Padding(4, 6, 4, 6);
+            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            btnDelete.Name = "btnDelete";
+            btnDelete.NoAccentTextColor = Color.Empty;
+            btnDelete.Size = new Size(73, 36);
+            btnDelete.TabIndex = 39;
+            btnDelete.Text = "Delete";
+            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnDelete.UseAccentColor = false;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // lblErrorDescription
+            // 
+            lblErrorDescription.AutoSize = true;
+            lblErrorDescription.BackColor = Color.Transparent;
+            lblErrorDescription.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErrorDescription.ForeColor = Color.Red;
+            lblErrorDescription.Location = new Point(36, 501);
+            lblErrorDescription.Name = "lblErrorDescription";
+            lblErrorDescription.Size = new Size(0, 21);
+            lblErrorDescription.TabIndex = 38;
+            lblErrorDescription.Visible = false;
+            // 
+            // lblErrorPartName
+            // 
+            lblErrorPartName.AutoSize = true;
+            lblErrorPartName.BackColor = Color.Transparent;
+            lblErrorPartName.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErrorPartName.ForeColor = Color.Red;
+            lblErrorPartName.Location = new Point(39, 412);
+            lblErrorPartName.Name = "lblErrorPartName";
+            lblErrorPartName.Size = new Size(0, 21);
+            lblErrorPartName.TabIndex = 37;
+            lblErrorPartName.Visible = false;
+            // 
+            // lblErrorCarModel
+            // 
+            lblErrorCarModel.AutoSize = true;
+            lblErrorCarModel.BackColor = Color.Transparent;
+            lblErrorCarModel.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErrorCarModel.ForeColor = Color.Red;
+            lblErrorCarModel.Location = new Point(327, 318);
+            lblErrorCarModel.Name = "lblErrorCarModel";
+            lblErrorCarModel.Size = new Size(0, 21);
+            lblErrorCarModel.TabIndex = 36;
+            lblErrorCarModel.Visible = false;
             // 
             // lblErrorUpdatePartPrice
             // 
@@ -89,17 +152,17 @@
             lblErrorPartQty.TabIndex = 34;
             lblErrorPartQty.Visible = false;
             // 
-            // lblErrorUpadatePartName
+            // lblErrorBrandName
             // 
-            lblErrorUpadatePartName.AutoSize = true;
-            lblErrorUpadatePartName.BackColor = Color.Transparent;
-            lblErrorUpadatePartName.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblErrorUpadatePartName.ForeColor = Color.Red;
-            lblErrorUpadatePartName.Location = new Point(324, 69);
-            lblErrorUpadatePartName.Name = "lblErrorUpadatePartName";
-            lblErrorUpadatePartName.Size = new Size(0, 21);
-            lblErrorUpadatePartName.TabIndex = 33;
-            lblErrorUpadatePartName.Visible = false;
+            lblErrorBrandName.AutoSize = true;
+            lblErrorBrandName.BackColor = Color.Transparent;
+            lblErrorBrandName.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErrorBrandName.ForeColor = Color.Red;
+            lblErrorBrandName.Location = new Point(324, 69);
+            lblErrorBrandName.Name = "lblErrorBrandName";
+            lblErrorBrandName.Size = new Size(0, 21);
+            lblErrorBrandName.TabIndex = 33;
+            lblErrorBrandName.Visible = false;
             // 
             // btnUpdateCarParts
             // 
@@ -108,7 +171,7 @@
             btnUpdateCarParts.Depth = 0;
             btnUpdateCarParts.HighEmphasis = true;
             btnUpdateCarParts.Icon = null;
-            btnUpdateCarParts.Location = new Point(430, 482);
+            btnUpdateCarParts.Location = new Point(528, 511);
             btnUpdateCarParts.Margin = new Padding(4, 6, 4, 6);
             btnUpdateCarParts.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdateCarParts.Name = "btnUpdateCarParts";
@@ -120,25 +183,6 @@
             btnUpdateCarParts.UseAccentColor = false;
             btnUpdateCarParts.UseVisualStyleBackColor = true;
             btnUpdateCarParts.Click += btnUpdateCarParts_Click;
-            // 
-            // btnClearCarParts
-            // 
-            btnClearCarParts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnClearCarParts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnClearCarParts.Depth = 0;
-            btnClearCarParts.HighEmphasis = true;
-            btnClearCarParts.Icon = null;
-            btnClearCarParts.Location = new Point(538, 482);
-            btnClearCarParts.Margin = new Padding(4, 6, 4, 6);
-            btnClearCarParts.MouseState = MaterialSkin.MouseState.HOVER;
-            btnClearCarParts.Name = "btnClearCarParts";
-            btnClearCarParts.NoAccentTextColor = Color.Empty;
-            btnClearCarParts.Size = new Size(66, 36);
-            btnClearCarParts.TabIndex = 31;
-            btnClearCarParts.Text = "Clear";
-            btnClearCarParts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnClearCarParts.UseAccentColor = false;
-            btnClearCarParts.UseVisualStyleBackColor = true;
             // 
             // texDescription
             // 
@@ -155,7 +199,7 @@
             texDescription.Hint = "Description";
             texDescription.InsertKeyMode = InsertKeyMode.Default;
             texDescription.LeadingIcon = null;
-            texDescription.Location = new Point(30, 411);
+            texDescription.Location = new Point(30, 445);
             texDescription.Mask = "";
             texDescription.MaxLength = 32767;
             texDescription.MouseState = MaterialSkin.MouseState.OUT;
@@ -181,6 +225,7 @@
             texDescription.TrailingIcon = null;
             texDescription.UseSystemPasswordChar = false;
             texDescription.ValidatingType = null;
+            texDescription.KeyPress += texDescription_KeyPress;
             // 
             // texBrandName
             // 
@@ -223,6 +268,7 @@
             texBrandName.TrailingIcon = null;
             texBrandName.UseSystemPasswordChar = false;
             texBrandName.ValidatingType = null;
+            texBrandName.KeyPress += texBrandName_KeyPress;
             // 
             // texCarMode
             // 
@@ -265,6 +311,7 @@
             texCarMode.TrailingIcon = null;
             texCarMode.UseSystemPasswordChar = false;
             texCarMode.ValidatingType = null;
+            texCarMode.KeyPress += texCarMode_KeyPress;
             // 
             // texUpdatePartPrice
             // 
@@ -307,6 +354,7 @@
             texUpdatePartPrice.TrailingIcon = null;
             texUpdatePartPrice.UseSystemPasswordChar = false;
             texUpdatePartPrice.ValidatingType = null;
+            texUpdatePartPrice.KeyPress += texUpdatePartPrice_KeyPress;
             // 
             // texUpdatePartQty
             // 
@@ -349,6 +397,7 @@
             texUpdatePartQty.TrailingIcon = null;
             texUpdatePartQty.UseSystemPasswordChar = false;
             texUpdatePartQty.ValidatingType = null;
+            texUpdatePartQty.KeyPress += texUpdatePartQty_KeyPress;
             // 
             // texPartName
             // 
@@ -365,7 +414,7 @@
             texPartName.Hint = "Part Name";
             texPartName.InsertKeyMode = InsertKeyMode.Default;
             texPartName.LeadingIcon = null;
-            texPartName.Location = new Point(30, 333);
+            texPartName.Location = new Point(30, 356);
             texPartName.Mask = "";
             texPartName.MaxLength = 32767;
             texPartName.MouseState = MaterialSkin.MouseState.OUT;
@@ -391,6 +440,7 @@
             texPartName.TrailingIcon = null;
             texPartName.UseSystemPasswordChar = false;
             texPartName.ValidatingType = null;
+            texPartName.KeyPress += texPartName_KeyPress;
             // 
             // imgUpdateCarPart
             // 
@@ -405,7 +455,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 673);
+            ClientSize = new Size(732, 695);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "PartUpdateModel";
@@ -428,9 +478,12 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox texUpdatePartQty;
         private MaterialSkin.Controls.MaterialMaskedTextBox texPartName;
         private MaterialSkin.Controls.MaterialButton btnUpdateCarParts;
-        private MaterialSkin.Controls.MaterialButton btnClearCarParts;
-        private Label lblErrorUpadatePartName;
+        private Label lblErrorBrandName;
         private Label lblErrorPartQty;
         private Label lblErrorUpdatePartPrice;
+        private Label lblErrorCarModel;
+        private Label lblErrorPartName;
+        private Label lblErrorDescription;
+        private MaterialSkin.Controls.MaterialButton btnDelete;
     }
 }

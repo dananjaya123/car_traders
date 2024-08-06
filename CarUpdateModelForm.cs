@@ -1,4 +1,5 @@
 ﻿using car_traders.Model;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ namespace car_traders
 
         public CarUpdateModelForm(Car car)
         {
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
+
             _car = car;
             InitializeComponent();
             LoadFormData();
@@ -79,6 +83,11 @@ namespace car_traders
             texPrice.Clear();
             texDescription.Clear();
             imgBoxCar.Image = null;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
