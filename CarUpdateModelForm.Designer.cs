@@ -29,10 +29,22 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label1 = new Label();
+            dateTimeCarManuFact = new DateTimePicker();
+            lblAddress = new Label();
+            lblMobileNumber = new Label();
+            lblSellerName = new Label();
+            lblPrice = new Label();
+            lblBodyType = new Label();
+            lblMileage = new Label();
+            lblManufacturYear = new Label();
+            lblModelName = new Label();
+            lblColor = new Label();
+            lblCarBrand = new Label();
+            btnDelete = new MaterialSkin.Controls.MaterialButton();
             imgBoxCar = new PictureBox();
             btnUpdate = new MaterialSkin.Controls.MaterialButton();
             texBodyType = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            texManufacturingYear = new MaterialSkin.Controls.MaterialMaskedTextBox();
             comboTransmission = new MaterialSkin.Controls.MaterialComboBox();
             comboFueltype = new MaterialSkin.Controls.MaterialComboBox();
             texPrice = new MaterialSkin.Controls.MaterialMaskedTextBox();
@@ -44,7 +56,6 @@
             texSellerName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarColor = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarBrand = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            btnDelete = new MaterialSkin.Controls.MaterialButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgBoxCar).BeginInit();
             SuspendLayout();
@@ -52,11 +63,22 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(dateTimeCarManuFact);
+            panel1.Controls.Add(lblAddress);
+            panel1.Controls.Add(lblMobileNumber);
+            panel1.Controls.Add(lblSellerName);
+            panel1.Controls.Add(lblPrice);
+            panel1.Controls.Add(lblBodyType);
+            panel1.Controls.Add(lblMileage);
+            panel1.Controls.Add(lblManufacturYear);
+            panel1.Controls.Add(lblModelName);
+            panel1.Controls.Add(lblColor);
+            panel1.Controls.Add(lblCarBrand);
             panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(imgBoxCar);
             panel1.Controls.Add(btnUpdate);
             panel1.Controls.Add(texBodyType);
-            panel1.Controls.Add(texManufacturingYear);
             panel1.Controls.Add(comboTransmission);
             panel1.Controls.Add(comboFueltype);
             panel1.Controls.Add(texPrice);
@@ -72,6 +94,153 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(932, 691);
             panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(618, 141);
+            label1.Name = "label1";
+            label1.Size = new Size(164, 25);
+            label1.TabIndex = 54;
+            label1.Text = "Manufacturing Year";
+            // 
+            // dateTimeCarManuFact
+            // 
+            dateTimeCarManuFact.Location = new Point(619, 108);
+            dateTimeCarManuFact.Name = "dateTimeCarManuFact";
+            dateTimeCarManuFact.Size = new Size(291, 31);
+            dateTimeCarManuFact.TabIndex = 53;
+            dateTimeCarManuFact.UseWaitCursor = true;
+            // 
+            // lblAddress
+            // 
+            lblAddress.AutoSize = true;
+            lblAddress.ForeColor = Color.Red;
+            lblAddress.Location = new Point(22, 495);
+            lblAddress.Name = "lblAddress";
+            lblAddress.Size = new Size(50, 25);
+            lblAddress.TabIndex = 52;
+            lblAddress.Text = "Error";
+            lblAddress.Visible = false;
+            // 
+            // lblMobileNumber
+            // 
+            lblMobileNumber.AutoSize = true;
+            lblMobileNumber.ForeColor = Color.Red;
+            lblMobileNumber.Location = new Point(622, 402);
+            lblMobileNumber.Name = "lblMobileNumber";
+            lblMobileNumber.Size = new Size(50, 25);
+            lblMobileNumber.TabIndex = 51;
+            lblMobileNumber.Text = "Error";
+            lblMobileNumber.Visible = false;
+            // 
+            // lblSellerName
+            // 
+            lblSellerName.AutoSize = true;
+            lblSellerName.ForeColor = Color.Red;
+            lblSellerName.Location = new Point(22, 402);
+            lblSellerName.Name = "lblSellerName";
+            lblSellerName.Size = new Size(50, 25);
+            lblSellerName.TabIndex = 50;
+            lblSellerName.Text = "Error";
+            lblSellerName.Visible = false;
+            // 
+            // lblPrice
+            // 
+            lblPrice.AutoSize = true;
+            lblPrice.ForeColor = Color.Red;
+            lblPrice.Location = new Point(22, 319);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(50, 25);
+            lblPrice.TabIndex = 49;
+            lblPrice.Text = "Error";
+            lblPrice.Visible = false;
+            // 
+            // lblBodyType
+            // 
+            lblBodyType.AutoSize = true;
+            lblBodyType.ForeColor = Color.Red;
+            lblBodyType.Location = new Point(622, 234);
+            lblBodyType.Name = "lblBodyType";
+            lblBodyType.Size = new Size(50, 25);
+            lblBodyType.TabIndex = 48;
+            lblBodyType.Text = "Error";
+            lblBodyType.Visible = false;
+            // 
+            // lblMileage
+            // 
+            lblMileage.AutoSize = true;
+            lblMileage.ForeColor = Color.Red;
+            lblMileage.Location = new Point(320, 234);
+            lblMileage.Name = "lblMileage";
+            lblMileage.Size = new Size(50, 25);
+            lblMileage.TabIndex = 47;
+            lblMileage.Text = "Error";
+            lblMileage.Visible = false;
+            // 
+            // lblManufacturYear
+            // 
+            lblManufacturYear.AutoSize = true;
+            lblManufacturYear.ForeColor = Color.Red;
+            lblManufacturYear.Location = new Point(622, 157);
+            lblManufacturYear.Name = "lblManufacturYear";
+            lblManufacturYear.Size = new Size(50, 25);
+            lblManufacturYear.TabIndex = 46;
+            lblManufacturYear.Text = "Error";
+            lblManufacturYear.Visible = false;
+            // 
+            // lblModelName
+            // 
+            lblModelName.AutoSize = true;
+            lblModelName.ForeColor = Color.Red;
+            lblModelName.Location = new Point(323, 157);
+            lblModelName.Name = "lblModelName";
+            lblModelName.Size = new Size(50, 25);
+            lblModelName.TabIndex = 45;
+            lblModelName.Text = "Error";
+            lblModelName.Visible = false;
+            // 
+            // lblColor
+            // 
+            lblColor.AutoSize = true;
+            lblColor.ForeColor = Color.Red;
+            lblColor.Location = new Point(622, 78);
+            lblColor.Name = "lblColor";
+            lblColor.Size = new Size(50, 25);
+            lblColor.TabIndex = 44;
+            lblColor.Text = "Error";
+            lblColor.Visible = false;
+            // 
+            // lblCarBrand
+            // 
+            lblCarBrand.AutoSize = true;
+            lblCarBrand.ForeColor = Color.Red;
+            lblCarBrand.Location = new Point(325, 78);
+            lblCarBrand.Name = "lblCarBrand";
+            lblCarBrand.Size = new Size(50, 25);
+            lblCarBrand.TabIndex = 43;
+            lblCarBrand.Text = "Error";
+            lblCarBrand.Visible = false;
+            // 
+            // btnDelete
+            // 
+            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnDelete.Depth = 0;
+            btnDelete.HighEmphasis = true;
+            btnDelete.Icon = null;
+            btnDelete.Location = new Point(821, 609);
+            btnDelete.Margin = new Padding(4, 6, 4, 6);
+            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            btnDelete.Name = "btnDelete";
+            btnDelete.NoAccentTextColor = Color.Empty;
+            btnDelete.Size = new Size(73, 36);
+            btnDelete.TabIndex = 42;
+            btnDelete.Text = "Delete";
+            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnDelete.UseAccentColor = false;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // imgBoxCar
             // 
@@ -144,48 +313,6 @@
             texBodyType.TrailingIcon = null;
             texBodyType.UseSystemPasswordChar = false;
             texBodyType.ValidatingType = null;
-            // 
-            // texManufacturingYear
-            // 
-            texManufacturingYear.AllowPromptAsInput = true;
-            texManufacturingYear.AnimateReadOnly = false;
-            texManufacturingYear.AsciiOnly = false;
-            texManufacturingYear.BackgroundImageLayout = ImageLayout.None;
-            texManufacturingYear.BeepOnError = false;
-            texManufacturingYear.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            texManufacturingYear.Depth = 0;
-            texManufacturingYear.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            texManufacturingYear.HidePromptOnLeave = false;
-            texManufacturingYear.HideSelection = true;
-            texManufacturingYear.Hint = "Manufacturing Year";
-            texManufacturingYear.InsertKeyMode = InsertKeyMode.Default;
-            texManufacturingYear.LeadingIcon = null;
-            texManufacturingYear.Location = new Point(622, 108);
-            texManufacturingYear.Mask = "";
-            texManufacturingYear.MaxLength = 32767;
-            texManufacturingYear.MouseState = MaterialSkin.MouseState.OUT;
-            texManufacturingYear.Name = "texManufacturingYear";
-            texManufacturingYear.PasswordChar = '\0';
-            texManufacturingYear.PrefixSuffixText = null;
-            texManufacturingYear.PromptChar = '_';
-            texManufacturingYear.ReadOnly = false;
-            texManufacturingYear.RejectInputOnFirstFailure = false;
-            texManufacturingYear.ResetOnPrompt = true;
-            texManufacturingYear.ResetOnSpace = true;
-            texManufacturingYear.RightToLeft = RightToLeft.No;
-            texManufacturingYear.SelectedText = "";
-            texManufacturingYear.SelectionLength = 0;
-            texManufacturingYear.SelectionStart = 0;
-            texManufacturingYear.ShortcutsEnabled = true;
-            texManufacturingYear.Size = new Size(263, 48);
-            texManufacturingYear.SkipLiterals = true;
-            texManufacturingYear.TabIndex = 28;
-            texManufacturingYear.TabStop = false;
-            texManufacturingYear.TextAlign = HorizontalAlignment.Left;
-            texManufacturingYear.TextMaskFormat = MaskFormat.IncludeLiterals;
-            texManufacturingYear.TrailingIcon = null;
-            texManufacturingYear.UseSystemPasswordChar = false;
-            texManufacturingYear.ValidatingType = null;
             // 
             // comboTransmission
             // 
@@ -274,6 +401,7 @@
             texPrice.TrailingIcon = null;
             texPrice.UseSystemPasswordChar = false;
             texPrice.ValidatingType = null;
+            texPrice.KeyPress += texPrice_KeyPress;
             // 
             // texMileage
             // 
@@ -316,6 +444,7 @@
             texMileage.TrailingIcon = null;
             texMileage.UseSystemPasswordChar = false;
             texMileage.ValidatingType = null;
+            texMileage.KeyPress += texMileage_KeyPress;
             // 
             // texCarModelName
             // 
@@ -613,26 +742,6 @@
             texCarBrand.ValidatingType = null;
             texCarBrand.Click += texCarBrand_Click;
             // 
-            // btnDelete
-            // 
-            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnDelete.Depth = 0;
-            btnDelete.HighEmphasis = true;
-            btnDelete.Icon = null;
-            btnDelete.Location = new Point(821, 609);
-            btnDelete.Margin = new Padding(4, 6, 4, 6);
-            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
-            btnDelete.Name = "btnDelete";
-            btnDelete.NoAccentTextColor = Color.Empty;
-            btnDelete.Size = new Size(73, 36);
-            btnDelete.TabIndex = 42;
-            btnDelete.Text = "Delete";
-            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnDelete.UseAccentColor = false;
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
             // CarUpdateModelForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -660,11 +769,22 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox texsellerMobileNum;
         private MaterialSkin.Controls.MaterialMaskedTextBox texSellerAddress;
         private MaterialSkin.Controls.MaterialMaskedTextBox texSellerName;
-        private MaterialSkin.Controls.MaterialMaskedTextBox texManufacturingYear;
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarColor;
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarBrand;
         private MaterialSkin.Controls.MaterialButton btnUpdate;
         private PictureBox imgBoxCar;
         private MaterialSkin.Controls.MaterialButton btnDelete;
+        private Label lblAddress;
+        private Label lblMobileNumber;
+        private Label lblSellerName;
+        private Label lblPrice;
+        private Label lblBodyType;
+        private Label lblMileage;
+        private Label lblManufacturYear;
+        private Label lblModelName;
+        private Label lblColor;
+        private Label lblCarBrand;
+        private DateTimePicker dateTimeCarManuFact;
+        private Label label1;
     }
 }

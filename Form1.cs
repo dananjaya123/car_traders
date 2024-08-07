@@ -146,7 +146,7 @@ namespace car_traders
                 {
                     Car_brand = texCarBrand.Text,
                     Color = texCarColor.Text,
-                    Manufacturing_year = texManufacturingYear.Text,
+                    Manufacturing_year = dateTimeCarManuFact.Text,
                     Model_name = texCarModelName.Text,
                     Mileage = int.Parse(texMileage.Text),
                     Fuel_type = comboFueltype.Text,
@@ -430,7 +430,6 @@ namespace car_traders
         {
             texCarBrand.Clear();
             texCarColor.Clear();
-            texManufacturingYear.Clear();
             texCarModelName.Clear();
             texMileage.Clear();
             comboFueltype.SelectedIndex = -1;

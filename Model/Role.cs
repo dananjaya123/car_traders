@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace car_traders.Model
 {
-    internal class Role
+    public class Role
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

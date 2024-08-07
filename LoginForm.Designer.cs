@@ -33,9 +33,14 @@
             texUserName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texPassword = new MaterialSkin.Controls.MaterialMaskedTextBox();
             btnLogin = new MaterialSkin.Controls.MaterialButton();
-            pictureBox1 = new PictureBox();
             lblRegistor = new LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1 = new Panel();
+            pictureBox2 = new PictureBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // mySqlCommandBuilder1
@@ -59,7 +64,7 @@
             texUserName.Hint = "User Name";
             texUserName.InsertKeyMode = InsertKeyMode.Default;
             texUserName.LeadingIcon = null;
-            texUserName.Location = new Point(26, 227);
+            texUserName.Location = new Point(312, 246);
             texUserName.Mask = "";
             texUserName.MaxLength = 32767;
             texUserName.MouseState = MaterialSkin.MouseState.OUT;
@@ -76,7 +81,7 @@
             texUserName.SelectionLength = 0;
             texUserName.SelectionStart = 0;
             texUserName.ShortcutsEnabled = true;
-            texUserName.Size = new Size(410, 48);
+            texUserName.Size = new Size(348, 48);
             texUserName.SkipLiterals = true;
             texUserName.TabIndex = 0;
             texUserName.TabStop = false;
@@ -101,7 +106,7 @@
             texPassword.Hint = "Password";
             texPassword.InsertKeyMode = InsertKeyMode.Default;
             texPassword.LeadingIcon = null;
-            texPassword.Location = new Point(26, 305);
+            texPassword.Location = new Point(312, 314);
             texPassword.Mask = "";
             texPassword.MaxLength = 32767;
             texPassword.MouseState = MaterialSkin.MouseState.OUT;
@@ -118,7 +123,7 @@
             texPassword.SelectionLength = 0;
             texPassword.SelectionStart = 0;
             texPassword.ShortcutsEnabled = true;
-            texPassword.Size = new Size(410, 48);
+            texPassword.Size = new Size(348, 48);
             texPassword.SkipLiterals = true;
             texPassword.TabIndex = 1;
             texPassword.TabStop = false;
@@ -134,9 +139,10 @@
             btnLogin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnLogin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnLogin.Depth = 0;
+            btnLogin.ForeColor = Color.DodgerBlue;
             btnLogin.HighEmphasis = true;
             btnLogin.Icon = (Image)resources.GetObject("btnLogin.Icon");
-            btnLogin.Location = new Point(344, 397);
+            btnLogin.Location = new Point(568, 371);
             btnLogin.Margin = new Padding(4, 6, 4, 6);
             btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             btnLogin.Name = "btnLogin";
@@ -149,41 +155,91 @@
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += materialButton1_Click;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(132, 84);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(157, 122);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
             // lblRegistor
             // 
             lblRegistor.AutoSize = true;
             lblRegistor.LinkColor = Color.Teal;
-            lblRegistor.Location = new Point(344, 356);
+            lblRegistor.Location = new Point(312, 365);
             lblRegistor.Name = "lblRegistor";
             lblRegistor.Size = new Size(105, 25);
             lblRegistor.TabIndex = 4;
             lblRegistor.TabStop = true;
             lblRegistor.Text = "Register her";
+            lblRegistor.LinkClicked += lblRegistor_LinkClicked;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.DodgerBlue;
+            panel1.Controls.Add(pictureBox2);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(3, 64);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(300, 472);
+            panel1.TabIndex = 5;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(54, 42);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(176, 159);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Calibri Light", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(224, 224, 224);
+            label3.Location = new Point(27, 258);
+            label3.Name = "label3";
+            label3.Size = new Size(228, 39);
+            label3.TabIndex = 8;
+            label3.Text = "ABC Car Readers";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Calibri Light", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(224, 224, 224);
+            label2.Location = new Point(27, 219);
+            label2.Name = "label2";
+            label2.Size = new Size(225, 39);
+            label2.TabIndex = 7;
+            label2.Text = "Welcome to the";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.SteelBlue;
+            label1.Location = new Point(455, 143);
+            label1.Name = "label1";
+            label1.Size = new Size(101, 45);
+            label1.TabIndex = 6;
+            label1.Text = "Login";
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(467, 467);
+            ClientSize = new Size(679, 539);
+            Controls.Add(label1);
+            Controls.Add(panel1);
             Controls.Add(lblRegistor);
-            Controls.Add(pictureBox1);
             Controls.Add(btnLogin);
             Controls.Add(texPassword);
             Controls.Add(texUserName);
             Name = "LoginForm";
             Text = "Login";
             Load += LoginForm_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,7 +250,11 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox texUserName;
         private MaterialSkin.Controls.MaterialMaskedTextBox texPassword;
         private MaterialSkin.Controls.MaterialButton btnLogin;
-        private PictureBox pictureBox1;
         private LinkLabel lblRegistor;
+        private Panel panel1;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private PictureBox pictureBox2;
     }
 }

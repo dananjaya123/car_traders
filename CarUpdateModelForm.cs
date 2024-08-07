@@ -36,7 +36,6 @@ namespace car_traders
             // Use _car to populate the form fields
             texCarBrand.Text = _car.Car_brand;
             texCarColor.Text = _car.Color;
-            texManufacturingYear.Text = _car.Manufacturing_year.ToString();
             texCarModelName.Text = _car.Model_name;
             texMileage.Text = _car.Mileage.ToString();
             comboFueltype.SelectedItem = _car.Fuel_type;
@@ -47,6 +46,7 @@ namespace car_traders
             texsellerMobileNum.Text = _car.Mobile_number;
             texPrice.Text = _car.Price.ToString("F2"); // Format as currency
             texDescription.Text = _car.Description;
+            dateTimeCarManuFact.Text = _car.Manufacturing_year;
 
             if (_car.Image_data != null)
             {
@@ -78,7 +78,74 @@ namespace car_traders
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var brand = texCarBrand.Text;
+                var color = texCarColor.Text;
+                var model = texCarModelName;
+                var manuYear = dateTimeCarManuFact.Text;
+                var mileageTex = texMileage.Text;
+                var body = texBodyType.Text;
+                var priceTex = texPrice.Text;
+                var fuel = comboFueltype.Text;
+                var transmission = comboTransmission.Text;
+                var sellerName = texSellerName.Text;
+                var mobile = texsellerMobileNum.Text;
+                var address = texSellerAddress.Text;
+                var description = texDescription.Text;
 
+                if (!int.TryParse(mileageTex, out int mileage) || mileage <= 0)
+                {
+                    lblMileage.Text = "Please Enter a valid Mileage";
+                    lblMileage.Visible = true;
+                    return;
+                }
+                // Validate price
+                if (!double.TryParse(priceTex, out double price) || price <= 0)
+                {
+                    lblPrice.Text = "Please Enter a valid Price";
+                    lblPrice.Visible = true;
+                    return;
+                }
+                // Retrieve the car  from the repository
+                var car = _carRepository.getCarById(_car.Id);
+                if (car != null)
+                {
+                    car.Car_brand = brand;
+                    car.Color = color;
+                    car.Model_name = mobile;
+                    car.Manufacturing_year = manuYear;
+                    car.Mileage = mileage;
+                    car.Body_type = body;
+                    car.Price = price;
+                    car.Fuel_type = fuel;
+                    car.Transmission = transmission;
+                    car.Seller_name = sellerName;
+                    car.Seller_address = address;
+                    car.Mobile_number = mobile;
+                    car.Description = description;
+
+                    // Update the car part in the repository
+                    if (_carRepository.updateCar(car))
+                    {
+                        MessageBox.Show("Car  updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error updating car ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Car  not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -119,6 +186,16 @@ namespace car_traders
             {
                 MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void texPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblPrice.Visible = false;
+        }
+
+        private void texMileage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblMileage.Visible = false;
         }
     }
 }

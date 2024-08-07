@@ -49,6 +49,8 @@
             lblPartsCoun = new Label();
             label5 = new Label();
             tabAddCar = new TabPage();
+            label7 = new Label();
+            dateTimeCarManuFact = new DateTimePicker();
             label3 = new Label();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             btnUploadImage = new MaterialSkin.Controls.MaterialButton();
@@ -65,7 +67,6 @@
             texsellerMobileNum = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texSellerAddress = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texSellerName = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            texManufacturingYear = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarColor = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarBrand = new MaterialSkin.Controls.MaterialMaskedTextBox();
             tabAddCarPats = new TabPage();
@@ -358,6 +359,8 @@
             // 
             // tabAddCar
             // 
+            tabAddCar.Controls.Add(label7);
+            tabAddCar.Controls.Add(dateTimeCarManuFact);
             tabAddCar.Controls.Add(label3);
             tabAddCar.Controls.Add(materialLabel1);
             tabAddCar.Controls.Add(btnUploadImage);
@@ -374,7 +377,6 @@
             tabAddCar.Controls.Add(texsellerMobileNum);
             tabAddCar.Controls.Add(texSellerAddress);
             tabAddCar.Controls.Add(texSellerName);
-            tabAddCar.Controls.Add(texManufacturingYear);
             tabAddCar.Controls.Add(texCarColor);
             tabAddCar.Controls.Add(texCarBrand);
             tabAddCar.ImageKey = "sports-car.png";
@@ -384,6 +386,22 @@
             tabAddCar.Size = new Size(994, 676);
             tabAddCar.TabIndex = 1;
             tabAddCar.Text = "Add Car";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(602, 99);
+            label7.Name = "label7";
+            label7.Size = new Size(164, 25);
+            label7.TabIndex = 55;
+            label7.Text = "Manufacturing Year";
+            // 
+            // dateTimeCarManuFact
+            // 
+            dateTimeCarManuFact.Location = new Point(601, 66);
+            dateTimeCarManuFact.Name = "dateTimeCarManuFact";
+            dateTimeCarManuFact.Size = new Size(300, 31);
+            dateTimeCarManuFact.TabIndex = 25;
             // 
             // label3
             // 
@@ -860,48 +878,6 @@
             texSellerName.TrailingIcon = null;
             texSellerName.UseSystemPasswordChar = false;
             texSellerName.ValidatingType = null;
-            // 
-            // texManufacturingYear
-            // 
-            texManufacturingYear.AllowPromptAsInput = true;
-            texManufacturingYear.AnimateReadOnly = false;
-            texManufacturingYear.AsciiOnly = false;
-            texManufacturingYear.BackgroundImageLayout = ImageLayout.None;
-            texManufacturingYear.BeepOnError = false;
-            texManufacturingYear.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            texManufacturingYear.Depth = 0;
-            texManufacturingYear.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            texManufacturingYear.HidePromptOnLeave = false;
-            texManufacturingYear.HideSelection = true;
-            texManufacturingYear.Hint = "Manufacturing Year";
-            texManufacturingYear.InsertKeyMode = InsertKeyMode.Default;
-            texManufacturingYear.LeadingIcon = null;
-            texManufacturingYear.Location = new Point(601, 66);
-            texManufacturingYear.Mask = "";
-            texManufacturingYear.MaxLength = 32767;
-            texManufacturingYear.MouseState = MaterialSkin.MouseState.OUT;
-            texManufacturingYear.Name = "texManufacturingYear";
-            texManufacturingYear.PasswordChar = '\0';
-            texManufacturingYear.PrefixSuffixText = null;
-            texManufacturingYear.PromptChar = '_';
-            texManufacturingYear.ReadOnly = false;
-            texManufacturingYear.RejectInputOnFirstFailure = false;
-            texManufacturingYear.ResetOnPrompt = true;
-            texManufacturingYear.ResetOnSpace = true;
-            texManufacturingYear.RightToLeft = RightToLeft.No;
-            texManufacturingYear.SelectedText = "";
-            texManufacturingYear.SelectionLength = 0;
-            texManufacturingYear.SelectionStart = 0;
-            texManufacturingYear.ShortcutsEnabled = true;
-            texManufacturingYear.Size = new Size(263, 48);
-            texManufacturingYear.SkipLiterals = true;
-            texManufacturingYear.TabIndex = 2;
-            texManufacturingYear.TabStop = false;
-            texManufacturingYear.TextAlign = HorizontalAlignment.Left;
-            texManufacturingYear.TextMaskFormat = MaskFormat.IncludeLiterals;
-            texManufacturingYear.TrailingIcon = null;
-            texManufacturingYear.UseSystemPasswordChar = false;
-            texManufacturingYear.ValidatingType = null;
             // 
             // texCarColor
             // 
@@ -1708,7 +1684,6 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox texsellerMobileNum;
         private MaterialSkin.Controls.MaterialMaskedTextBox texSellerAddress;
         private MaterialSkin.Controls.MaterialMaskedTextBox texSellerName;
-        private MaterialSkin.Controls.MaterialMaskedTextBox texManufacturingYear;
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarColor;
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarBrand;
         private MaterialSkin.Controls.MaterialButton btnSave;
@@ -1778,5 +1753,7 @@
         private ColumnHeader colCarStatus;
         private ColumnHeader colCarID;
         private ColumnHeader colCarPrice;
+        private DateTimePicker dateTimeCarManuFact;
+        private Label label7;
     }
 }

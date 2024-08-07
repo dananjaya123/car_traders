@@ -1,4 +1,5 @@
 ﻿using car_traders.Dta;
+using car_traders.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,16 @@ namespace car_traders.Repository
 {
     internal class UserRepository
     {
+
+        public Boolean saveUser(User user)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                dbContext.user.Add(user);
+                dbContext.SaveChanges();
+                return true;
+            }
+        }
         public int GetCusotmerCount()
         {
             using (var dbContext = new ApplicationDBContext())
