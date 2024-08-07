@@ -30,7 +30,6 @@
         {
             panel1 = new Panel();
             imgBoxCar = new PictureBox();
-            btnClear = new MaterialSkin.Controls.MaterialButton();
             btnUpdate = new MaterialSkin.Controls.MaterialButton();
             texBodyType = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texManufacturingYear = new MaterialSkin.Controls.MaterialMaskedTextBox();
@@ -45,6 +44,7 @@
             texSellerName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarColor = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarBrand = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            btnDelete = new MaterialSkin.Controls.MaterialButton();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgBoxCar).BeginInit();
             SuspendLayout();
@@ -52,8 +52,8 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(imgBoxCar);
-            panel1.Controls.Add(btnClear);
             panel1.Controls.Add(btnUpdate);
             panel1.Controls.Add(texBodyType);
             panel1.Controls.Add(texManufacturingYear);
@@ -81,26 +81,6 @@
             imgBoxCar.Size = new Size(263, 232);
             imgBoxCar.TabIndex = 41;
             imgBoxCar.TabStop = false;
-            // 
-            // btnClear
-            // 
-            btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnClear.Depth = 0;
-            btnClear.HighEmphasis = true;
-            btnClear.Icon = null;
-            btnClear.Location = new Point(819, 609);
-            btnClear.Margin = new Padding(4, 6, 4, 6);
-            btnClear.MouseState = MaterialSkin.MouseState.HOVER;
-            btnClear.Name = "btnClear";
-            btnClear.NoAccentTextColor = Color.Empty;
-            btnClear.Size = new Size(66, 36);
-            btnClear.TabIndex = 40;
-            btnClear.Text = "Clear";
-            btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnClear.UseAccentColor = false;
-            btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClear_Click;
             // 
             // btnUpdate
             // 
@@ -633,6 +613,26 @@
             texCarBrand.ValidatingType = null;
             texCarBrand.Click += texCarBrand_Click;
             // 
+            // btnDelete
+            // 
+            btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnDelete.Depth = 0;
+            btnDelete.HighEmphasis = true;
+            btnDelete.Icon = null;
+            btnDelete.Location = new Point(821, 609);
+            btnDelete.Margin = new Padding(4, 6, 4, 6);
+            btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            btnDelete.Name = "btnDelete";
+            btnDelete.NoAccentTextColor = Color.Empty;
+            btnDelete.Size = new Size(73, 36);
+            btnDelete.TabIndex = 42;
+            btnDelete.Text = "Delete";
+            btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnDelete.UseAccentColor = false;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // CarUpdateModelForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -663,8 +663,8 @@
         private MaterialSkin.Controls.MaterialMaskedTextBox texManufacturingYear;
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarColor;
         private MaterialSkin.Controls.MaterialMaskedTextBox texCarBrand;
-        private MaterialSkin.Controls.MaterialButton btnClear;
         private MaterialSkin.Controls.MaterialButton btnUpdate;
         private PictureBox imgBoxCar;
+        private MaterialSkin.Controls.MaterialButton btnDelete;
     }
 }

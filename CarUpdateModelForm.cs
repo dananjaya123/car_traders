@@ -1,4 +1,5 @@
 ﻿using car_traders.Model;
+using car_traders.Repository;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -16,13 +17,16 @@ namespace car_traders
     public partial class CarUpdateModelForm : MaterialForm
     {
         private Car _car;
+        private readonly CarRepository _carRepository;
 
         public CarUpdateModelForm(Car car)
         {
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
+            _carRepository = new CarRepository();
             _car = car;
+
             InitializeComponent();
             LoadFormData();
         }
@@ -69,25 +73,52 @@ namespace car_traders
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            texCarBrand.Clear();
-            texCarColor.Clear();
-            texManufacturingYear.Clear();
-            texCarModelName.Clear();
-            texMileage.Clear();
-            comboFueltype.SelectedIndex = -1;
-            comboTransmission.SelectedIndex = -1;
-            texBodyType.Clear();
-            texSellerName.Clear();
-            texSellerAddress.Clear();
-            texsellerMobileNum.Clear();
-            texPrice.Clear();
-            texDescription.Clear();
-            imgBoxCar.Image = null;
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Confirm before deleting
+                var result = MessageBox.Show("Are you sure you want to delete this car ?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Retrieve the car part from the repository
+                    var car = _carRepository.getCarById(_car.Id);
+
+                    if (car != null)
+                    {
+                        // Mark the part as inactive
+                        car.Is_active = false;
+
+                        // Update the car part in the repository
+                        if (_carRepository.updateCar(car))
+                        {
+                            MessageBox.Show("Car deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error deleting car ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Car  not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
