@@ -37,5 +37,28 @@ namespace car_traders
         {
 
         }
+
+        private string GenerateEmailBody(string projectName, string userName, string password, string otp)
+        {
+            string body = $@"
+        <html>
+        <body style='font-family: Arial, sans-serif; color: #333;'>
+            <h2 style='color: #4CAF50;'>Welcome to {projectName}!</h2>
+            <p>Dear {userName},</p>
+            <p>Thank you for registering with <strong>{projectName}</strong>.</p>
+            <p>Here are your login details:</p>
+            <ul style='list-style-type: none; padding: 0;'>
+                <li><strong>Password:</strong> {password}</li>
+                <li><strong>One-Time Password (OTP):</strong> {otp}</li>
+            </ul>
+            <p>Please use the OTP to complete your first login. After logging in, you can change your password in your account settings.</p>
+            <p>If you did not request these details, please contact our support team immediately.</p>
+            <p>Best regards,</p>
+            <p><strong>The {projectName} Team</strong></p>
+        </body>
+        </html>";
+
+            return body;
+        }
     }
 }

@@ -88,6 +88,7 @@
             texName.TrailingIcon = null;
             texName.UseSystemPasswordChar = false;
             texName.ValidatingType = null;
+            texName.KeyPress += texName_KeyPress;
             // 
             // texContactNum
             // 
@@ -130,6 +131,7 @@
             texContactNum.TrailingIcon = null;
             texContactNum.UseSystemPasswordChar = false;
             texContactNum.ValidatingType = null;
+            texContactNum.KeyPress += texContactNum_KeyPress;
             // 
             // texAddress
             // 
@@ -172,6 +174,7 @@
             texAddress.TrailingIcon = null;
             texAddress.UseSystemPasswordChar = false;
             texAddress.ValidatingType = null;
+            texAddress.KeyPress += texAddress_KeyPress;
             // 
             // texEmail
             // 
@@ -214,6 +217,7 @@
             texEmail.TrailingIcon = null;
             texEmail.UseSystemPasswordChar = false;
             texEmail.ValidatingType = null;
+            texEmail.KeyPress += texEmail_KeyPress;
             // 
             // texPassword
             // 
@@ -256,6 +260,7 @@
             texPassword.TrailingIcon = null;
             texPassword.UseSystemPasswordChar = false;
             texPassword.ValidatingType = null;
+            texPassword.KeyPress += texPassword_KeyPress;
             // 
             // texUserName
             // 
@@ -298,6 +303,7 @@
             texUserName.TrailingIcon = null;
             texUserName.UseSystemPasswordChar = false;
             texUserName.ValidatingType = null;
+            texUserName.KeyPress += texUserName_KeyPress;
             // 
             // btnRegister
             // 

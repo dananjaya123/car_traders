@@ -40,8 +40,10 @@
             label2 = new Label();
             label1 = new Label();
             lblForgotPassword = new LinkLabel();
+            pwView = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pwView).BeginInit();
             SuspendLayout();
             // 
             // mySqlCommandBuilder1
@@ -124,7 +126,7 @@
             texPassword.SelectionLength = 0;
             texPassword.SelectionStart = 0;
             texPassword.ShortcutsEnabled = true;
-            texPassword.Size = new Size(348, 48);
+            texPassword.Size = new Size(301, 48);
             texPassword.SkipLiterals = true;
             texPassword.TabIndex = 1;
             texPassword.TabStop = false;
@@ -177,7 +179,7 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(3, 64);
             panel1.Name = "panel1";
-            panel1.Size = new Size(300, 472);
+            panel1.Size = new Size(300, 485);
             panel1.TabIndex = 5;
             // 
             // pictureBox2
@@ -236,11 +238,23 @@
             lblForgotPassword.Text = "Forgot Password";
             lblForgotPassword.LinkClicked += lblForgotPassword_LinkClicked;
             // 
+            // pwView
+            // 
+            pwView.Image = (Image)resources.GetObject("pwView.Image");
+            pwView.Location = new Point(619, 328);
+            pwView.Name = "pwView";
+            pwView.Size = new Size(34, 34);
+            pwView.SizeMode = PictureBoxSizeMode.CenterImage;
+            pwView.TabIndex = 15;
+            pwView.TabStop = false;
+            pwView.Click += pwView_Click;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(679, 539);
+            ClientSize = new Size(679, 552);
+            Controls.Add(pwView);
             Controls.Add(lblForgotPassword);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -254,6 +268,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pwView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -271,5 +286,6 @@
         private Label label1;
         private PictureBox pictureBox2;
         private LinkLabel lblForgotPassword;
+        private PictureBox pwView;
     }
 }

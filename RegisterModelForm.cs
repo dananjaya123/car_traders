@@ -40,11 +40,53 @@ namespace car_traders
         {
             try
             {
+
+
+                // Reset all error labels
+                //ResetErrorLabels();
+
+                // Validate input fields
+                if (string.IsNullOrEmpty(texName.Text))
+                {
+                    lblName.Text = "Name is required.";
+                    lblName.Visible = true;
+                    return;
+                }
+                if (string.IsNullOrEmpty(texContactNum.Text))
+                {
+                    lblMobileNum.Text = "Contact number is required.";
+                    lblMobileNum.Visible = true;
+                    return;
+                }
+                if (string.IsNullOrEmpty(texAddress.Text))
+                {
+                    lblAddress.Text = "Address is required.";
+                    lblAddress.Visible = true;
+                    return;
+                }
+                if (string.IsNullOrEmpty(texUserName.Text))
+                {
+                    lblUserName.Text = "Username is required.";
+                    lblUserName.Visible = true;
+                    return;
+                }
+                if (string.IsNullOrEmpty(texEmail.Text))
+                {
+                    lblEmail.Text = "Email is required.";
+                    lblEmail.Visible = true;
+                    return;
+                }
+                if (string.IsNullOrEmpty(texPassword.Text))
+                {
+                    lblPassword.Text = "Password is required.";
+                    lblPassword.Visible = true;
+                    return;
+                }
+
                 var role = _roleRepository.getRoleByName("CUSTOMER");
 
                 if (role != null)
                 {
-
                     if (_userRepository.IsUserNameOrEmailExists(texUserName.Text, texEmail.Text))
                     {
                         MessageBox.Show("Username or Email already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -71,18 +113,16 @@ namespace car_traders
                     {
                         MessageBox.Show("Success");
                         this.Close();
-
                     }
                     else
                     {
-                        MessageBox.Show("Something went wrong!");
+                        MessageBox.Show("Something went wrong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Canot find a User role", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Cannot find a User role", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             catch (Exception ex)
             {
@@ -91,7 +131,7 @@ namespace car_traders
 
 
         }
-       
+
         private void pwView_Click(object sender, EventArgs e)
         {
             if (texPassword.PasswordChar == '*')
@@ -117,6 +157,59 @@ namespace car_traders
             texAddress.Text = string.Empty;
             texPassword.Text = string.Empty;
             texUserName.Text = string.Empty;
+            ResetErrorLabels();
+        }
+
+        private void ResetErrorLabels()
+        {
+            lblName.Text = "";
+            lblMobileNum.Text = "";
+            lblAddress.Text = "";
+            lblUserName.Text = "";
+            lblEmail.Text = "";
+            lblPassword.Text = "";
+
+            lblName.Visible = false;
+            lblMobileNum.Visible = false;
+            lblAddress.Visible = false;
+            lblUserName.Visible = false;
+            lblEmail.Visible = false;
+            lblPassword.Visible = false;
+        }
+
+        private void texName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblName.Visible = false;
+        }
+
+        private void texContactNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblMobileNum.Visible = false;
+
+        }
+
+        private void texAddress_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblAddress.Visible = false;
+
+        }
+
+        private void texUserName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblUserName.Visible = false;
+
+        }
+
+        private void texEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblEmail.Visible = false;
+
+        }
+
+        private void texPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            lblPassword.Visible = false;
+
         }
     }
 }
