@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace car_traders.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class AddUserCode : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,8 +34,7 @@ namespace car_traders.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Body_type = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Image_url = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Image_data = table.Column<byte[]>(type: "longblob", nullable: true),
                     Seller_name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Seller_address = table.Column<string>(type: "longtext", nullable: false)
@@ -72,8 +71,7 @@ namespace car_traders.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Brand_name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Image_url = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Image_data = table.Column<byte[]>(type: "longblob", nullable: true),
                     Status = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Is_active = table.Column<bool>(type: "tinyint(1)", nullable: false)
@@ -81,6 +79,51 @@ namespace car_traders.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_car_parts", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "order",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Total_amount = table.Column<double>(type: "double", nullable: false),
+                    status = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    qty = table.Column<int>(type: "int", nullable: false),
+                    Is_payment = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    User_code = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Order_code = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Is_active = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_order", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "orderDetails",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Item_name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Item_Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Item_type = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Total_price = table.Column<double>(type: "double", nullable: false),
+                    Qty = table.Column<int>(type: "int", nullable: false),
+                    Order_code = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Is_active = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_orderDetails", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -104,6 +147,8 @@ namespace car_traders.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    User_code = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Contact_num = table.Column<string>(type: "longtext", nullable: false)
@@ -117,87 +162,14 @@ namespace car_traders.Migrations
                     User_name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Is_active = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Role_Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    Role_name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_user", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_user_role_Role_Id",
-                        column: x => x.Role_Id,
-                        principalTable: "role",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "order",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Created = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Total_amount = table.Column<double>(type: "double", nullable: false),
-                    status = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    qty = table.Column<int>(type: "int", nullable: false),
-                    Is_payment = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    User_Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Is_active = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_order", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_order_user_User_Id",
-                        column: x => x.User_Id,
-                        principalTable: "user",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "orderDetails",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Item_name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Item_Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Item_type = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Total_price = table.Column<double>(type: "double", nullable: false),
-                    Qty = table.Column<int>(type: "int", nullable: false),
-                    Order_Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Is_active = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_orderDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_orderDetails_order_Order_Id",
-                        column: x => x.Order_Id,
-                        principalTable: "order",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_order_User_Id",
-                table: "order",
-                column: "User_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_orderDetails_Order_Id",
-                table: "orderDetails",
-                column: "Order_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_user_Role_Id",
-                table: "user",
-                column: "Role_Id");
         }
 
         /// <inheritdoc />
@@ -210,16 +182,16 @@ namespace car_traders.Migrations
                 name: "car_parts");
 
             migrationBuilder.DropTable(
-                name: "orderDetails");
-
-            migrationBuilder.DropTable(
                 name: "order");
 
             migrationBuilder.DropTable(
-                name: "user");
+                name: "orderDetails");
 
             migrationBuilder.DropTable(
                 name: "role");
+
+            migrationBuilder.DropTable(
+                name: "user");
         }
     }
 }

@@ -155,11 +155,16 @@ namespace car_traders.Migrations
                     b.Property<bool>("Is_payment")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("Order_code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<double>("Total_amount")
                         .HasColumnType("double");
 
-                    b.Property<Guid>("User_Id")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("User_code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("qty")
                         .HasColumnType("int");
@@ -169,8 +174,6 @@ namespace car_traders.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("User_Id");
 
                     b.ToTable("order");
                 });
@@ -195,8 +198,9 @@ namespace car_traders.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("Order_Id")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("Order_code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Qty")
                         .HasColumnType("int");
@@ -205,8 +209,6 @@ namespace car_traders.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Order_Id");
 
                     b.ToTable("orderDetails");
                 });
@@ -258,8 +260,13 @@ namespace car_traders.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("Role_Id")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("Role_name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("User_code")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("User_name")
                         .IsRequired()
@@ -267,42 +274,7 @@ namespace car_traders.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Role_Id");
-
                     b.ToTable("user");
-                });
-
-            modelBuilder.Entity("car_traders.Model.Order", b =>
-                {
-                    b.HasOne("car_traders.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("User_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("car_traders.Model.OrderDetails", b =>
-                {
-                    b.HasOne("car_traders.Model.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("Order_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("car_traders.Model.User", b =>
-                {
-                    b.HasOne("car_traders.Model.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("Role_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }

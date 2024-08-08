@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace car_traders.Model
 {
-    internal class User
+    public class User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; } 
+        public string User_code {  get; set; }
         public string Name { get; set; }
         public string Contact_num { get; set; } 
         public string Email { get; set; } 
@@ -20,9 +21,7 @@ namespace car_traders.Model
         public string Password { get; set; }
         public string User_name { get; set; }
         public bool Is_active { get; set; } = true;
-
-        [ForeignKey("Role_Id")]
-        public Role Role { get; set; }
+        public string Role_name { get; set; }
 
     }
 }

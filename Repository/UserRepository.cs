@@ -1,5 +1,6 @@
 ﻿using car_traders.Dta;
 using car_traders.Model;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,17 @@ namespace car_traders.Repository
 {
     internal class UserRepository
     {
-
-        public Boolean saveUser(User user)
+        public int getUserCount()
         {
             using (var dbContext = new ApplicationDBContext())
+            {
+                return dbContext.user.Count();
+
+            }
+        }
+        public Boolean saveUser(Model.User user)
+        {
+            using(var dbContext = new ApplicationDBContext())
             {
                 dbContext.user.Add(user);
                 dbContext.SaveChanges();
@@ -27,7 +35,7 @@ namespace car_traders.Repository
 
                 // Using a native SQL query to get the count of active car parts
                 var count = dbContext.user
-                                     .Where(cp => cp.Is_active && cp.Role.Role_name == "customer")
+                                     .Where(cp => cp.Is_active && cp.Role_name == "CUSTOMER")
                                      .Count();
                 return count;
 

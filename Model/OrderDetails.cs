@@ -20,8 +20,7 @@ namespace car_traders.Model
         public double Total_price { get; set; } = 0.0;
         public int Qty { get; set; } = 0;
 
-        [ForeignKey("Order_Id")]
-        public Order Order { get; set; }
+        public string Order_code { get; set; }
 
         public bool Is_active { get; set; } = true;
 

@@ -18,9 +18,8 @@ namespace car_traders.Model
         public string status { get; set; }
         public int qty { get; set; }
         public bool Is_payment { get; set; } = false;
-
-        [ForeignKey("User_Id")]
-        public User User { get; set; }
+        public string User_code { get; set; }
+        public string Order_code { get; set; }
         public bool Is_active { get; set; } = true;
 
 

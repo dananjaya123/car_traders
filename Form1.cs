@@ -141,7 +141,6 @@ namespace car_traders
         {
             try
             {
-
                 var car = new Car
                 {
                     Car_brand = texCarBrand.Text,

@@ -14,7 +14,7 @@ namespace car_traders.Repository
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                var role = dbContext.role.FirstOrDefault(cp => cp.Is_active && cp.Role_name == roleName);
+                var role = dbContext.role.FirstOrDefault(rl => rl.Is_active && rl.Role_name == roleName);
                 return role;
 
 
