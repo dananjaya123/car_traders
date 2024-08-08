@@ -1,4 +1,5 @@
-﻿using car_traders.Model;
+﻿using car_traders.Common;
+using car_traders.Model;
 using car_traders.Repository;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -20,6 +21,7 @@ namespace car_traders
     {
         private RoleRepository _roleRepository;
         private UserRepository _userRepository;
+        private HashPassword _hashPassword;
         public RegisterModelForm()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace car_traders
 
             _roleRepository = new RoleRepository();
             _userRepository = new UserRepository();
+            _hashPassword = new HashPassword();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -41,6 +44,13 @@ namespace car_traders
 
                 if (role != null)
                 {
+
+                    if (_userRepository.IsUserNameOrEmailExists(texUserName.Text, texEmail.Text))
+                    {
+                        MessageBox.Show("Username or Email already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     var userCount = _userRepository.getUserCount(); // Get the current number of users
                     var userCode = GenerateUserCode(userCount + 1); // Generate the user code for the new user
 
@@ -51,7 +61,7 @@ namespace car_traders
                         Contact_num = texContactNum.Text,
                         Email = texEmail.Text,
                         Address = texAddress.Text,
-                        Password = HashPassword(texPassword.Text),
+                        Password = _hashPassword.HashPasswords(texPassword.Text),
                         User_name = texUserName.Text,
                         Role_name = role.Role_name,
                         Is_active = true
@@ -60,6 +70,8 @@ namespace car_traders
                     if (_userRepository.saveUser(user))
                     {
                         MessageBox.Show("Success");
+                        this.Close();
+
                     }
                     else
                     {
@@ -79,25 +91,10 @@ namespace car_traders
 
 
         }
-        private string HashPassword(string password)
+       
+        private void pwView_Click(object sender, EventArgs e)
         {
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // ComputeHash returns byte array
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-                // Convert byte array to a string
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
-
-            private void pwView_Click(object sender, EventArgs e){
-            if (texPassword.PasswordChar =='*')
+            if (texPassword.PasswordChar == '*')
             {
                 texPassword.PasswordChar = '\0';
             }
@@ -112,42 +109,15 @@ namespace car_traders
             return $"U{userCount:D4}";
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            texName.Text = string.Empty;
+            texContactNum.Text = string.Empty;
+            texEmail.Text = string.Empty;
+            texAddress.Text = string.Empty;
+            texPassword.Text = string.Empty;
+            texUserName.Text = string.Empty;
+        }
     }
 }
 
-
-
-//try
-//{
-//    using (MailMessage mm = new MailMessage())
-//    {
-//        mm.From = new MailAddress("asidananjaya999@gmail.com");
-//        mm.To.Add("asidananjaya123@gmail.com");
-//        mm.Subject = "YOUR PASSWORD HERE";
-//        mm.Body = "Email test send body";
-
-//        using (SmtpClient sc = new SmtpClient("smtp.gmail.com"))
-//        {
-//            sc.Port = 587; // Use 465 for SSL
-//            sc.Credentials = new System.Net.NetworkCredential("asidananjaya999@gmail.com", "asi@$$1234");
-//            sc.EnableSsl = true; // Ensure SSL is enabled
-
-//            // Optional: Increase timeout for slow network connections
-//            sc.Timeout = 10000; // 10 seconds
-
-//            sc.Send(mm); // Send the email
-//        }
-//    }
-
-//    MessageBox.Show("Email has been sent");
-//}
-//catch (SmtpException smtpEx)
-//{
-//    // Display SMTP-specific error message
-//    MessageBox.Show("SMTP error: " + smtpEx.Message);
-//}
-//catch (Exception ex)
-//{
-//    // Display general error message
-//    MessageBox.Show("Error: " + ex.Message);
-//}

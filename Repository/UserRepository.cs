@@ -43,5 +43,21 @@ namespace car_traders.Repository
             }
 
         }
+
+        public bool IsUserNameOrEmailExists(string username, string email)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                return dbContext.user.Any(u => u.User_name == username || u.Email == email);
+            }
+        }
+
+        public Model.User Login(string username, string password)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                return dbContext.user.FirstOrDefault(u => u.User_name == username && u.Password == password && u.Is_active);
+            }
+        }
     }
 }

@@ -39,6 +39,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            lblForgotPassword = new LinkLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -158,8 +159,8 @@
             // lblRegistor
             // 
             lblRegistor.AutoSize = true;
-            lblRegistor.LinkColor = Color.Teal;
-            lblRegistor.Location = new Point(312, 365);
+            lblRegistor.LinkColor = Color.DodgerBlue;
+            lblRegistor.Location = new Point(311, 405);
             lblRegistor.Name = "lblRegistor";
             lblRegistor.Size = new Size(105, 25);
             lblRegistor.TabIndex = 4;
@@ -169,7 +170,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.DodgerBlue;
+            panel1.BackColor = Color.LightSlateGray;
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
@@ -217,17 +218,30 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.SteelBlue;
-            label1.Location = new Point(455, 143);
+            label1.Location = new Point(450, 143);
             label1.Name = "label1";
             label1.Size = new Size(101, 45);
             label1.TabIndex = 6;
             label1.Text = "Login";
+            // 
+            // lblForgotPassword
+            // 
+            lblForgotPassword.AutoSize = true;
+            lblForgotPassword.LinkColor = Color.DodgerBlue;
+            lblForgotPassword.Location = new Point(309, 371);
+            lblForgotPassword.Name = "lblForgotPassword";
+            lblForgotPassword.Size = new Size(146, 25);
+            lblForgotPassword.TabIndex = 7;
+            lblForgotPassword.TabStop = true;
+            lblForgotPassword.Text = "Forgot Password";
+            lblForgotPassword.LinkClicked += lblForgotPassword_LinkClicked;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(679, 539);
+            Controls.Add(lblForgotPassword);
             Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(lblRegistor);
@@ -256,5 +270,6 @@
         private Label label2;
         private Label label1;
         private PictureBox pictureBox2;
+        private LinkLabel lblForgotPassword;
     }
 }

@@ -338,6 +338,7 @@
             btnClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnClear.UseAccentColor = false;
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // lblName
             // 
