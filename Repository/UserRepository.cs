@@ -19,6 +19,17 @@ namespace car_traders.Repository
 
             }
         }
+
+        public Boolean updateUserDetail(Model.User user)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                dbContext.user.Update(user);
+                dbContext.SaveChanges();
+                return true;
+            }
+        }
+
         public Boolean saveUser(Model.User user)
         {
             using(var dbContext = new ApplicationDBContext())
@@ -59,5 +70,18 @@ namespace car_traders.Repository
                 return dbContext.user.FirstOrDefault(u => u.User_name == username && u.Password == password && u.Is_active);
             }
         }
+
+        public Model.User getEqualEmail(string searchVlues)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                
+                var user = dbContext.user
+                                    .Where(u => u.User_name==searchVlues|| u.Email==searchVlues)
+                                    .FirstOrDefault(); 
+                return user;
+            }
+        }
+
     }
 }

@@ -43,7 +43,7 @@ namespace car_traders
 
 
                 // Reset all error labels
-                //ResetErrorLabels();
+                ResetErrorLabels();
 
                 // Validate input fields
                 if (string.IsNullOrEmpty(texName.Text))

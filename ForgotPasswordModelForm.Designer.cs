@@ -33,8 +33,6 @@
             lblUserError = new Label();
             btnSubmit = new MaterialSkin.Controls.MaterialButton();
             btnChangePw = new MaterialSkin.Controls.MaterialButton();
-            lblConfirmPw = new Label();
-            materialMaskedTextBox1 = new MaterialSkin.Controls.MaterialMaskedTextBox();
             lblNewPassword = new Label();
             texNewPassword = new MaterialSkin.Controls.MaterialMaskedTextBox();
             lblOneTimePw = new Label();
@@ -86,13 +84,12 @@
             // lblUserError
             // 
             lblUserError.AutoSize = true;
-            lblUserError.ForeColor = Color.Red;
+            lblUserError.ForeColor = Color.ForestGreen;
             lblUserError.Location = new Point(33, 151);
             lblUserError.Name = "lblUserError";
-            lblUserError.Size = new Size(50, 25);
+            lblUserError.Size = new Size(249, 25);
             lblUserError.TabIndex = 1;
-            lblUserError.Text = "Error";
-            lblUserError.Visible = false;
+            lblUserError.Text = "Enter your user name or email";
             // 
             // btnSubmit
             // 
@@ -113,6 +110,7 @@
             btnSubmit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnSubmit.UseAccentColor = false;
             btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // btnChangePw
             // 
@@ -121,7 +119,7 @@
             btnChangePw.Depth = 0;
             btnChangePw.HighEmphasis = true;
             btnChangePw.Icon = null;
-            btnChangePw.Location = new Point(214, 458);
+            btnChangePw.Location = new Point(226, 372);
             btnChangePw.Margin = new Padding(4, 6, 4, 6);
             btnChangePw.MouseState = MaterialSkin.MouseState.HOVER;
             btnChangePw.Name = "btnChangePw";
@@ -132,60 +130,8 @@
             btnChangePw.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnChangePw.UseAccentColor = false;
             btnChangePw.UseVisualStyleBackColor = true;
-            // 
-            // lblConfirmPw
-            // 
-            lblConfirmPw.AutoSize = true;
-            lblConfirmPw.ForeColor = Color.Red;
-            lblConfirmPw.Location = new Point(33, 422);
-            lblConfirmPw.Name = "lblConfirmPw";
-            lblConfirmPw.Size = new Size(50, 25);
-            lblConfirmPw.TabIndex = 11;
-            lblConfirmPw.Text = "Error";
-            lblConfirmPw.Visible = false;
-            // 
-            // materialMaskedTextBox1
-            // 
-            materialMaskedTextBox1.AllowPromptAsInput = true;
-            materialMaskedTextBox1.AnimateReadOnly = false;
-            materialMaskedTextBox1.AsciiOnly = false;
-            materialMaskedTextBox1.BackgroundImageLayout = ImageLayout.None;
-            materialMaskedTextBox1.BeepOnError = false;
-            materialMaskedTextBox1.CutCopyMaskFormat = MaskFormat.IncludeLiterals;
-            materialMaskedTextBox1.Depth = 0;
-            materialMaskedTextBox1.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialMaskedTextBox1.HidePromptOnLeave = false;
-            materialMaskedTextBox1.HideSelection = true;
-            materialMaskedTextBox1.Hint = "Confirm";
-            materialMaskedTextBox1.ImeMode = ImeMode.Off;
-            materialMaskedTextBox1.InsertKeyMode = InsertKeyMode.Default;
-            materialMaskedTextBox1.LeadingIcon = null;
-            materialMaskedTextBox1.Location = new Point(33, 371);
-            materialMaskedTextBox1.Mask = "";
-            materialMaskedTextBox1.MaxLength = 32767;
-            materialMaskedTextBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialMaskedTextBox1.Name = "materialMaskedTextBox1";
-            materialMaskedTextBox1.PasswordChar = '\0';
-            materialMaskedTextBox1.PrefixSuffixText = null;
-            materialMaskedTextBox1.PromptChar = '_';
-            materialMaskedTextBox1.ReadOnly = false;
-            materialMaskedTextBox1.RejectInputOnFirstFailure = false;
-            materialMaskedTextBox1.ResetOnPrompt = true;
-            materialMaskedTextBox1.ResetOnSpace = true;
-            materialMaskedTextBox1.RightToLeft = RightToLeft.No;
-            materialMaskedTextBox1.SelectedText = "";
-            materialMaskedTextBox1.SelectionLength = 0;
-            materialMaskedTextBox1.SelectionStart = 0;
-            materialMaskedTextBox1.ShortcutsEnabled = true;
-            materialMaskedTextBox1.Size = new Size(344, 48);
-            materialMaskedTextBox1.SkipLiterals = true;
-            materialMaskedTextBox1.TabIndex = 10;
-            materialMaskedTextBox1.TabStop = false;
-            materialMaskedTextBox1.TextAlign = HorizontalAlignment.Left;
-            materialMaskedTextBox1.TextMaskFormat = MaskFormat.IncludeLiterals;
-            materialMaskedTextBox1.TrailingIcon = null;
-            materialMaskedTextBox1.UseSystemPasswordChar = false;
-            materialMaskedTextBox1.ValidatingType = null;
+            btnChangePw.Visible = false;
+            btnChangePw.Click += btnChangePw_Click;
             // 
             // lblNewPassword
             // 
@@ -240,6 +186,8 @@
             texNewPassword.TrailingIcon = null;
             texNewPassword.UseSystemPasswordChar = false;
             texNewPassword.ValidatingType = null;
+            texNewPassword.Visible = false;
+            texNewPassword.KeyPress += texNewPassword_KeyPress;
             // 
             // lblOneTimePw
             // 
@@ -293,16 +241,16 @@
             texOneTimePassword.TrailingIcon = null;
             texOneTimePassword.UseSystemPasswordChar = false;
             texOneTimePassword.ValidatingType = null;
+            texOneTimePassword.Visible = false;
             texOneTimePassword.Click += texOneTimePassword_Click;
+            texOneTimePassword.KeyPress += texOneTimePassword_KeyPress;
             // 
             // ForgotPasswordModelForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(518, 521);
+            ClientSize = new Size(518, 449);
             Controls.Add(btnChangePw);
-            Controls.Add(lblConfirmPw);
-            Controls.Add(materialMaskedTextBox1);
             Controls.Add(texUserName);
             Controls.Add(lblNewPassword);
             Controls.Add(lblUserError);
@@ -325,8 +273,6 @@
         private Label lblOneTimePw;
         private MaterialSkin.Controls.MaterialMaskedTextBox texNewPassword;
         private MaterialSkin.Controls.MaterialButton btnChangePw;
-        private Label lblConfirmPw;
-        private MaterialSkin.Controls.MaterialMaskedTextBox materialMaskedTextBox1;
         private Label lblNewPassword;
     }
 }
