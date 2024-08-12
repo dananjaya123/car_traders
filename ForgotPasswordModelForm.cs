@@ -47,24 +47,23 @@ namespace car_traders
 
         }
 
-        private string GenerateEmailBody(string projectName, string userName, string password, string otp)
+        private string GenerateEmailBody(string projectName, string userName, string password)
         {
             string body = $@"
         <html>
-        <body style='font-family: Arial, sans-serif; color: #333;'>
-            <h2 style='color: #4CAF50;'>Welcome to {projectName}!</h2>
-            <p>Dear {userName},</p>
-            <p>Thank you for registering with <strong>{projectName}</strong>.</p>
-            <p>Here are your login details:</p>
-            <ul style='list-style-type: none; padding: 0;'>
-                <li><strong>Password:</strong> {password}</li>
-                <li><strong>One-Time Password (OTP):</strong> {otp}</li>
-            </ul>
-            <p>Please use the OTP to complete your first login. After logging in, you can change your password in your account settings.</p>
-            <p>If you did not request these details, please contact our support team immediately.</p>
-            <p>Best regards,</p>
-            <p><strong>The {projectName} Team</strong></p>
-        </body>
+<body style='font-family: Arial, sans-serif; color: #333;'>
+    <h2 style='color: #4CAF50;'>Password Reset for {projectName}</h2>
+    <p>Dear {userName},</p>
+    <p>We received a request to reset your password for <strong>{projectName}</strong>.</p>
+    <p>Here is your One-Time Password (OTP) to reset your password:</p>
+    <ul style='list-style-type: none; padding: 0;'>
+        <li><strong>One-Time Password :</strong> {password}</li>
+    </ul>
+    <p>Please use this Password to reset your password. The Password is valid for a limited time.</p>
+    <p>If you did not request a password reset, please contact our support team immediately.</p>
+    <p>Best regards,</p>
+    <p><strong>The {projectName} Team</strong></p>
+</body>
         </html>";
 
             return body;
@@ -94,7 +93,7 @@ namespace car_traders
                         lblUserError.ForeColor = Color.Green;
                         lblUserError.Visible = true;
 
-                        string body = GenerateEmailBody("Car traders", user.User_name, onetimePw, onetimePw);
+                        string body = GenerateEmailBody("Car traders", user.User_name, onetimePw);
                         if (_emailSend.SendEmail("cartraders@gmail.com", user.Email, "One time password", body))
                         {
                             texOneTimePassword.Visible = true;

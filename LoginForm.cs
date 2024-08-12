@@ -72,7 +72,7 @@ namespace car_traders
 
                     if (user.Role_name == "CUSTOMER")
                     {
-                        Form2 form2 = new Form2();
+                        CustomerMainForm form2 = new CustomerMainForm();
                         form2.Show();
                         this.Hide();
 
