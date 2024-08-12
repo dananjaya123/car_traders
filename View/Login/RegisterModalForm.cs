@@ -17,12 +17,12 @@ using System.Windows.Forms;
 
 namespace car_traders
 {
-    public partial class RegisterModelForm : MaterialForm
+    public partial class RegisterModalForm : MaterialForm
     {
         private RoleRepository _roleRepository;
         private UserRepository _userRepository;
         private HashPassword _hashPassword;
-        public RegisterModelForm()
+        public RegisterModalForm()
         {
             InitializeComponent();
             /*MaterialButton desing add*/

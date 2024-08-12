@@ -1,6 +1,6 @@
 ﻿namespace car_traders
 {
-    partial class CarUpdateModelForm
+    partial class CarUpdateModalForm
     {
         /// <summary>
         /// Required designer variable.

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace car_traders
+namespace car_traders.View.Customer
 {
-    public partial class CustomerSearchCarForm : Form
+    public partial class CarOrderForm : Form
     {
-        public CustomerSearchCarForm()
+        public CarOrderForm()
         {
             InitializeComponent();
         }

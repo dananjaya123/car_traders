@@ -17,13 +17,13 @@ using System.Windows.Forms;
 
 namespace car_traders
 {
-    public partial class ForgotPasswordModelForm : MaterialForm
+    public partial class ForgotPasswordModalForm : MaterialForm
     {
         private readonly UserRepository _userRepository;
         private readonly EmailSend _emailSend;
         private readonly IDGenerate _idgenarater;
         private readonly HashPassword _hashPassword;
-        public ForgotPasswordModelForm()
+        public ForgotPasswordModalForm()
         {
             InitializeComponent();
 

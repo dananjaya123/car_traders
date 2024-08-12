@@ -11,9 +11,8 @@ namespace car_traders
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginForm());
-            //Application.Run(new Form1());
-            //Application.Run(new Form2());
+            //Application.Run(new LoginForm());
+            Application.Run(new CustomerMainForm());
         }
     }
 }

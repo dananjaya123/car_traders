@@ -16,13 +16,13 @@ using System.Windows.Forms;
 namespace car_traders
 {
 
-    public partial class PartUpdateModel : MaterialForm
+    public partial class PartUpdateModal : MaterialForm
     {
 
         private readonly CarPartsRepository _carPartsRepository;
         private CarPart _carPart;
 
-        public PartUpdateModel(CarPart carPart)
+        public PartUpdateModal(CarPart carPart)
         {
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
@@ -37,7 +37,7 @@ namespace car_traders
 
         }
 
-        public PartUpdateModel()
+        public PartUpdateModal()
         {
             InitializeComponent();
         }

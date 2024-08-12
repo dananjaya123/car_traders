@@ -17,13 +17,13 @@ using System.Xml.Linq;
 
 namespace car_traders
 {
-    public partial class Form1 : MaterialForm
+    public partial class AdminMainForm : MaterialForm
     {
         private readonly CarRepository _carRepository;
         private readonly CarPartsRepository _carPartsRepository;
         private readonly UserRepository _userRepository;
 
-        public Form1()
+        public AdminMainForm()
         {
             InitializeComponent();
             /*MaterialButton desing add   */
@@ -113,7 +113,7 @@ namespace car_traders
                     var car = _carRepository.getCarById(id);
                     
                     Form modelBackgraund = new Form();
-                    using (CarUpdateModelForm model = new CarUpdateModelForm(car))
+                    using (CarUpdateModalForm model = new CarUpdateModalForm(car))
                     {
                         modelBackgraund.StartPosition = FormStartPosition.Manual;
                         modelBackgraund.FormBorderStyle = FormBorderStyle.None;
@@ -261,7 +261,7 @@ namespace car_traders
                     
 
                     Form modelBackgraund = new Form();
-                    using (PartUpdateModel model = new PartUpdateModel(carPart))
+                    using (PartUpdateModal model = new PartUpdateModal(carPart))
                     {
                         modelBackgraund.StartPosition = FormStartPosition.Manual;
                         modelBackgraund.FormBorderStyle = FormBorderStyle.None;

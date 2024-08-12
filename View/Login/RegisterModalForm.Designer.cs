@@ -1,6 +1,6 @@
 ﻿namespace car_traders
 {
-    partial class RegisterModelForm
+    partial class RegisterModalForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterModelForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterModalForm));
             texName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texContactNum = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texAddress = new MaterialSkin.Controls.MaterialMaskedTextBox();

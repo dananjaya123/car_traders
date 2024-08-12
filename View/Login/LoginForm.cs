@@ -64,7 +64,7 @@ namespace car_traders
                 {
                     if (user.Role_name == "ADMIN")
                     {
-                        Form1 form1 = new Form1();
+                        AdminMainForm form1 = new AdminMainForm();
                         form1.Show();
                         this.Hide();
 
@@ -104,7 +104,7 @@ namespace car_traders
         private void lblRegistor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Form modelBackgraund = new Form();
-            using (RegisterModelForm model = new RegisterModelForm())
+            using (RegisterModalForm model = new RegisterModalForm())
             {
                 modelBackgraund.StartPosition = FormStartPosition.Manual;
                 modelBackgraund.FormBorderStyle = FormBorderStyle.None;
@@ -125,7 +125,7 @@ namespace car_traders
 
         private void lblForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ForgotPasswordModelForm form = new ForgotPasswordModelForm();
+            ForgotPasswordModalForm form = new ForgotPasswordModalForm();
             this.Hide();
             form.Show();
 

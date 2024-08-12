@@ -1,6 +1,6 @@
 ﻿namespace car_traders
 {
-    partial class Form1
+    partial class AdminMainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabDashboard = new TabPage();
             materialFloatingActionButton1 = new MaterialSkin.Controls.MaterialFloatingActionButton();
@@ -1402,7 +1402,6 @@
             tblListViewCar.Size = new Size(924, 477);
             tblListViewCar.TabIndex = 3;
             tblListViewCar.UseCompatibleStateImageBehavior = false;
-            tblListViewCar.View = View.Details;
             tblListViewCar.SelectedIndexChanged += tblListViewCar_SelectedIndexChanged;
             // 
             // colCarBrand
@@ -1540,7 +1539,6 @@
             carPartsListView.Size = new Size(942, 478);
             carPartsListView.TabIndex = 34;
             carPartsListView.UseCompatibleStateImageBehavior = false;
-            carPartsListView.View = View.Details;
             carPartsListView.SelectedIndexChanged += carPartListViewRowSelect;
             // 
             // colName

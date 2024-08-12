@@ -1,6 +1,6 @@
 ﻿namespace car_traders
 {
-    partial class ForgotPasswordModelForm
+    partial class ForgotPasswordModalForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgotPasswordModelForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgotPasswordModalForm));
             texUserName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             lblUserError = new Label();
             btnSubmit = new MaterialSkin.Controls.MaterialButton();

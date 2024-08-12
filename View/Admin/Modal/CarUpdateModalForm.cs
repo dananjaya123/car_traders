@@ -14,12 +14,12 @@ using System.Windows.Forms;
 
 namespace car_traders
 {
-    public partial class CarUpdateModelForm : MaterialForm
+    public partial class CarUpdateModalForm : MaterialForm
     {
         private Car _car;
         private readonly CarRepository _carRepository;
 
-        public CarUpdateModelForm(Car car)
+        public CarUpdateModalForm(Car car)
         {
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);

@@ -34,7 +34,7 @@ namespace car_traders
         private void btnCarSearch_Click(object sender, EventArgs e)
         {
 
-            CustomerSearchCarForm form = new CustomerSearchCarForm();
+            SearchCarForm form = new SearchCarForm();
             pnlMain.Controls.Clear();
 
             form.TopLevel = false;
