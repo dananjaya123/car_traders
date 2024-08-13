@@ -23,6 +23,7 @@ namespace car_traders
     {
         private HashPassword _hashPassword;
         private UserRepository _userRepository;
+        
         public LoginForm()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace car_traders
         {
 
         }
-
+        public static User SesionUserData;
         private void materialButton1_Click(object sender, EventArgs e)
         {
             try
@@ -62,18 +63,19 @@ namespace car_traders
 
                 if (user != null)
                 {
+                    SesionUserData = user;
                     if (user.Role_name == "ADMIN")
                     {
-                        AdminMainForm form1 = new AdminMainForm();
-                        form1.Show();
+                        AdminMainForm admin = new AdminMainForm();
+                        admin.Show();
                         this.Hide();
 
                     }
 
                     if (user.Role_name == "CUSTOMER")
                     {
-                        CustomerMainForm form2 = new CustomerMainForm();
-                        form2.Show();
+                        CustomerMainForm customer = new CustomerMainForm();
+                        customer.Show();
                         this.Hide();
 
 

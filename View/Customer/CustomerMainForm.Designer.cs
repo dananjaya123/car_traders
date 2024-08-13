@@ -35,7 +35,6 @@
             btnCarSearch = new MaterialSkin.Controls.MaterialButton();
             btnCarParts = new MaterialSkin.Controls.MaterialButton();
             materialButton3 = new MaterialSkin.Controls.MaterialButton();
-            pnlLeftSlide = new Panel();
             pnlMain = new Panel();
             pnlSlide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -139,21 +138,13 @@
             materialButton3.UseAccentColor = false;
             materialButton3.UseVisualStyleBackColor = true;
             // 
-            // pnlLeftSlide
-            // 
-            pnlLeftSlide.Dock = DockStyle.Right;
-            pnlLeftSlide.Location = new Point(1068, 64);
-            pnlLeftSlide.Name = "pnlLeftSlide";
-            pnlLeftSlide.Size = new Size(332, 607);
-            pnlLeftSlide.TabIndex = 2;
-            // 
             // pnlMain
             // 
             pnlMain.BackColor = Color.White;
             pnlMain.Dock = DockStyle.Fill;
             pnlMain.Location = new Point(223, 64);
             pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(845, 607);
+            pnlMain.Size = new Size(1177, 607);
             pnlMain.TabIndex = 3;
             // 
             // CustomerMainForm
@@ -162,7 +153,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1403, 674);
             Controls.Add(pnlMain);
-            Controls.Add(pnlLeftSlide);
             Controls.Add(pnlSlide);
             Name = "CustomerMainForm";
             Text = "CAR TRADERS";
@@ -179,7 +169,6 @@
         private MaterialSkin.Controls.MaterialButton btnCarSearch;
         private MaterialSkin.Controls.MaterialButton btnCarParts;
         private MaterialSkin.Controls.MaterialButton materialButton3;
-        private Panel pnlLeftSlide;
         private Panel pnlMain;
         private PictureBox pictureBox1;
     }

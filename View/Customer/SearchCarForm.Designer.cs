@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchCarForm));
             texSearchCar = new TextBox();
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             resultContainer = new FlowLayoutPanel();
+            imgCarDetail = new PictureBox();
+            lblCarModel = new Label();
+            lblColor = new Label();
+            lblManufacturing = new Label();
+            lblMileage = new Label();
+            lblFelType = new Label();
+            lblBodyType = new Label();
+            lblPrice = new Label();
+            timerCardetail = new System.Windows.Forms.Timer(components);
+            btnSubmit = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgCarDetail).BeginInit();
             SuspendLayout();
             // 
             // texSearchCar
@@ -74,13 +86,129 @@
             resultContainer.Size = new Size(776, 214);
             resultContainer.TabIndex = 4;
             // 
+            // imgCarDetail
+            // 
+            imgCarDetail.Location = new Point(832, 73);
+            imgCarDetail.Name = "imgCarDetail";
+            imgCarDetail.Size = new Size(114, 105);
+            imgCarDetail.TabIndex = 5;
+            imgCarDetail.TabStop = false;
+            imgCarDetail.Visible = false;
+            // 
+            // lblCarModel
+            // 
+            lblCarModel.AutoSize = true;
+            lblCarModel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCarModel.Location = new Point(839, 212);
+            lblCarModel.Name = "lblCarModel";
+            lblCarModel.Size = new Size(70, 28);
+            lblCarModel.TabIndex = 6;
+            lblCarModel.Text = "model";
+            lblCarModel.Visible = false;
+            // 
+            // lblColor
+            // 
+            lblColor.AutoSize = true;
+            lblColor.Font = new Font("Segoe UI", 9F);
+            lblColor.Location = new Point(952, 74);
+            lblColor.Name = "lblColor";
+            lblColor.Size = new Size(52, 25);
+            lblColor.TabIndex = 7;
+            lblColor.Text = "color";
+            lblColor.Visible = false;
+            lblColor.Click += lblColor_Click;
+            // 
+            // lblManufacturing
+            // 
+            lblManufacturing.AutoSize = true;
+            lblManufacturing.Font = new Font("Segoe UI", 9F);
+            lblManufacturing.Location = new Point(952, 111);
+            lblManufacturing.Name = "lblManufacturing";
+            lblManufacturing.Size = new Size(45, 25);
+            lblManufacturing.TabIndex = 8;
+            lblManufacturing.Text = "year";
+            lblManufacturing.Visible = false;
+            // 
+            // lblMileage
+            // 
+            lblMileage.AutoSize = true;
+            lblMileage.Font = new Font("Segoe UI", 9F);
+            lblMileage.Location = new Point(952, 153);
+            lblMileage.Name = "lblMileage";
+            lblMileage.Size = new Size(65, 25);
+            lblMileage.TabIndex = 9;
+            lblMileage.Text = "milage";
+            lblMileage.Visible = false;
+            // 
+            // lblFelType
+            // 
+            lblFelType.AutoSize = true;
+            lblFelType.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblFelType.Location = new Point(839, 251);
+            lblFelType.Name = "lblFelType";
+            lblFelType.Size = new Size(47, 28);
+            lblFelType.TabIndex = 10;
+            lblFelType.Text = "fuel";
+            lblFelType.Visible = false;
+            // 
+            // lblBodyType
+            // 
+            lblBodyType.AutoSize = true;
+            lblBodyType.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBodyType.Location = new Point(839, 291);
+            lblBodyType.Name = "lblBodyType";
+            lblBodyType.Size = new Size(58, 28);
+            lblBodyType.TabIndex = 11;
+            lblBodyType.Text = "body";
+            lblBodyType.Visible = false;
+            // 
+            // lblPrice
+            // 
+            lblPrice.AutoSize = true;
+            lblPrice.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrice.ForeColor = SystemColors.Highlight;
+            lblPrice.Location = new Point(839, 346);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(56, 28);
+            lblPrice.TabIndex = 12;
+            lblPrice.Text = "price";
+            lblPrice.Visible = false;
+            // 
+            // timerCardetail
+            // 
+            timerCardetail.Enabled = true;
+            timerCardetail.Tick += timerCardetail_Tick;
+            // 
+            // btnSubmit
+            // 
+            btnSubmit.BackColor = Color.Teal;
+            btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSubmit.ForeColor = SystemColors.ButtonHighlight;
+            btnSubmit.Location = new Point(832, 401);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(333, 76);
+            btnSubmit.TabIndex = 13;
+            btnSubmit.Text = "ORDER REQUEST";
+            btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.Visible = false;
+            btnSubmit.Click += btnSubmit_Click;
+            // 
             // SearchCarForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(845, 607);
+            ClientSize = new Size(1177, 607);
             ControlBox = false;
+            Controls.Add(btnSubmit);
+            Controls.Add(lblPrice);
+            Controls.Add(lblBodyType);
+            Controls.Add(lblFelType);
+            Controls.Add(lblMileage);
+            Controls.Add(lblManufacturing);
+            Controls.Add(lblColor);
+            Controls.Add(lblCarModel);
+            Controls.Add(imgCarDetail);
             Controls.Add(resultContainer);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
@@ -91,7 +219,9 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgCarDetail).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -100,5 +230,15 @@
         private Panel panel1;
         private PictureBox pictureBox1;
         private FlowLayoutPanel resultContainer;
+        private PictureBox imgCarDetail;
+        private Label lblCarModel;
+        private Label lblColor;
+        private Label lblManufacturing;
+        private Label lblMileage;
+        private Label lblFelType;
+        private Label lblBodyType;
+        private Label lblPrice;
+        private System.Windows.Forms.Timer timerCardetail;
+        private Button btnSubmit;
     }
 }

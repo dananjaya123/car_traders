@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace car_traders.Model
 {
-    internal class Order
+    public class Order
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

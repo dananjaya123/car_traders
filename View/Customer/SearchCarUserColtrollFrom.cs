@@ -25,13 +25,19 @@ namespace car_traders.View.Customer
             lblCarName.Text = car.Model_name;
             lblColor.Text = car.Color;
             lblManufacturingYear.Text = car.Manufacturing_year;
-
+            lblPrice.Text = car.Price.ToString("F2");
+            lblStatus.Text = car.Status;
             if (car.Image_data != null)
             {
                 using (MemoryStream ms = new MemoryStream(car.Image_data))
                 {
                     imgCar.Image = System.Drawing.Image.FromStream(ms);
                 }
+            }
+
+            if (car.Status == "SOLD OUT")
+            {
+                lblStatus.ForeColor = Color.Red;
             }
 
 
@@ -41,20 +47,33 @@ namespace car_traders.View.Customer
         {
             this.BackColor = Color.WhiteSmoke;
         }
-
+        private void SearchCarUserColtrollFrom_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+        }
         private void SearchCarUserColtrollFrom_MouseMove(object sender, MouseEventArgs e)
         {
 
         }
 
-        private void SearchCarUserColtrollFrom_MouseLeave(object sender, EventArgs e)
-        {
-            this.BackColor = Color.White;
-        }
+       
 
         private void SearchCarUserColtrollFrom_MouseClick(object sender, MouseEventArgs e)
         {
-            MessageBox.Show(Cardata.Model_name);
+
+        }
+
+        private void SearchCarUserColtrollFrom_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public static bool click = false;
+        public static Car clickCar; 
+        private void SearchCarUserColtrollFrom_Click(object sender, EventArgs e)
+        {
+            click = true;
+            clickCar = Cardata;
         }
     }
 }

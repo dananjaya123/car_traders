@@ -1,4 +1,6 @@
-﻿using MaterialSkin;
+﻿using car_traders.Model;
+using car_traders.View.Customer;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -46,5 +48,6 @@ namespace car_traders
             form.Show();
 
         }
+
     }
 }

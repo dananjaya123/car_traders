@@ -1,4 +1,5 @@
-﻿using System;
+﻿using car_traders.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,20 @@ namespace car_traders.Common
             }
 
             return id;
+        }
+
+        public string OrderCodeGenerate()
+        {
+            OrderRepository repository = new OrderRepository();
+            int orderCount = repository.OrderCount(); // Get the current order count
+
+            // Increment the order count for the new order
+            int newOrderNumber = orderCount + 1;
+
+            // Format the new order number as "OR" followed by a 4-digit number, with leading zeros
+            string orderCode = $"OR{newOrderNumber.ToString("D4")}";
+
+            return orderCode;
         }
     }
 }
