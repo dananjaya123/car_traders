@@ -44,9 +44,11 @@
             lblPrice = new Label();
             timerCardetail = new System.Windows.Forms.Timer(components);
             btnSubmit = new Button();
+            loader = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgCarDetail).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
             SuspendLayout();
             // 
             // texSearchCar
@@ -193,6 +195,17 @@
             btnSubmit.Visible = false;
             btnSubmit.Click += btnSubmit_Click;
             // 
+            // loader
+            // 
+            loader.Image = (Image)resources.GetObject("loader.Image");
+            loader.Location = new Point(967, 483);
+            loader.Name = "loader";
+            loader.Size = new Size(81, 73);
+            loader.SizeMode = PictureBoxSizeMode.CenterImage;
+            loader.TabIndex = 14;
+            loader.TabStop = false;
+            loader.Visible = false;
+            // 
             // SearchCarForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -200,6 +213,7 @@
             BackColor = Color.White;
             ClientSize = new Size(1177, 607);
             ControlBox = false;
+            Controls.Add(loader);
             Controls.Add(btnSubmit);
             Controls.Add(lblPrice);
             Controls.Add(lblBodyType);
@@ -220,6 +234,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgCarDetail).EndInit();
+            ((System.ComponentModel.ISupportInitialize)loader).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -240,5 +255,6 @@
         private Label lblPrice;
         private System.Windows.Forms.Timer timerCardetail;
         private Button btnSubmit;
+        private PictureBox loader;
     }
 }

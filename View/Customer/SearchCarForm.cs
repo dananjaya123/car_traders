@@ -21,12 +21,14 @@ namespace car_traders
         OrderRepository _orderRepository;
         OrderDetailRepository _orderDetailRepository;
         IDGenerate _iDGenerate;
+        EmailSend _emailSend;
         public SearchCarForm()
         {
             _carRepository = new CarRepository();
             _orderRepository = new OrderRepository();
             _orderDetailRepository = new OrderDetailRepository();
             _iDGenerate = new IDGenerate();
+            _emailSend = new EmailSend();
             InitializeComponent();
         }
 
@@ -174,7 +176,7 @@ namespace car_traders
                 User user = LoginForm.SesionUserData;
                 if (user != null)
                 {
-                    MessageBox.Show(user.Email);
+                    loader.Visible= true;
                     Order order = new Order
                     {
                         Total_amount = car.Price,
@@ -203,8 +205,13 @@ namespace car_traders
                         };
                         if (_orderDetailRepository.saveOrderDetail(orderDetails))
                         {
-                            MessageBox.Show("Order request Successfully");
-
+                            
+                            string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), car.Image_data);
+                            if (_emailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))
+                            {
+                                MessageBox.Show("Order request Successfully");
+                                loader.Visible= false;
+                            }
                         }
                     }
 
@@ -219,5 +226,33 @@ namespace car_traders
                 MessageBox.Show($"Search Car Form Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private string GenerateEmailBody(string projectName, string userName, string orderCode, string requestDate, byte[] carImageData)
+        {
+            // Convert car image data to base64 string for embedding in email
+            string carImageBase64 = Convert.ToBase64String(carImageData);
+            string carImageSrc = $"data:image/jpeg;base64,{carImageBase64}";
+
+            string body = $@"
+    <html>
+    <body style='font-family: Arial, sans-serif; color: #333;'>
+        <h2 style='color: #4CAF50;'>Order Confirmation from {projectName}</h2>
+        <p>Dear {userName},</p>
+        <p>Thank you for your order with <strong>{projectName}</strong>. Below are the details of your order:</p>
+        <ul style='list-style-type: none; padding: 0;'>
+            <li><strong>Order Code:</strong> {orderCode}</li>
+            <li><strong>Request Date:</strong> {requestDate}</li>
+        </ul>
+        <p>Here is the image of the car you ordered:</p>
+        <img src='{carImageSrc}' alt='Car Image' style='max-width: 100%; height: auto;' />
+        <p>If you have any questions about your order, please contact our support team.</p>
+        <p>Best regards,</p>
+        <p><strong>The {projectName} Team</strong></p>
+    </body>
+    </html>";
+
+            return body;
+        }
+
     }
 }
