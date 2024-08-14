@@ -19,5 +19,13 @@ namespace car_traders.Repository
                 return true;
             }
         }
+        public OrderDetails getOrderByOrderCode(string orderCode)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var detail = dbContext.orderDetails.FirstOrDefault(cp => cp.Order_code == orderCode);
+                return detail;
+            }
+        }
     }
 }

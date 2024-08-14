@@ -70,7 +70,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = Color.SteelBlue;
+            pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
             pictureBox1.Location = new Point(623, 24);
@@ -183,10 +183,10 @@
             // 
             // btnSubmit
             // 
-            btnSubmit.BackColor = Color.Teal;
+            btnSubmit.BackColor = Color.CornflowerBlue;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
-            btnSubmit.Location = new Point(832, 401);
+            btnSubmit.Location = new Point(832, 429);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(333, 76);
             btnSubmit.TabIndex = 13;
@@ -198,7 +198,7 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(967, 483);
+            loader.Location = new Point(966, 511);
             loader.Name = "loader";
             loader.Size = new Size(81, 73);
             loader.SizeMode = PictureBoxSizeMode.CenterImage;

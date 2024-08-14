@@ -44,6 +44,7 @@
             // 
             // pnlSlide
             // 
+            pnlSlide.BackColor = Color.LightSteelBlue;
             pnlSlide.Controls.Add(btnLogout);
             pnlSlide.Controls.Add(pictureBox1);
             pnlSlide.Controls.Add(tableLayoutPanel1);
@@ -73,6 +74,7 @@
             btnLogout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // pictureBox1
             // 
@@ -164,6 +166,7 @@
             btnViewOrder.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnViewOrder.UseAccentColor = false;
             btnViewOrder.UseVisualStyleBackColor = true;
+            btnViewOrder.Click += btnViewOrder_Click;
             // 
             // pnlMain
             // 

@@ -1,5 +1,6 @@
 ﻿using car_traders.Model;
 using car_traders.View.Customer;
+using car_traders.View.View_Customer.View_Order;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -57,6 +58,28 @@ namespace car_traders
         private void btnCarParts_Click(object sender, EventArgs e)
         {
             SearchCarPartsForm form = new SearchCarPartsForm();
+            pnlMain.Controls.Clear();
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Size = pnlMain.Size;
+            form.Dock = DockStyle.Fill;
+
+            pnlMain.Controls.Add(form);
+            form.Show();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            LoginForm form = new LoginForm();
+            this.Close();
+            form.Show();
+
+        }
+
+        private void btnViewOrder_Click(object sender, EventArgs e)
+        {
+            ViewOrderForm form = new ViewOrderForm();
             pnlMain.Controls.Clear();
 
             form.TopLevel = false;

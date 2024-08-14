@@ -29,5 +29,22 @@ namespace car_traders.Repository
             }
         }
 
+        public List<Order> getAllOrdersByUser(string userCode)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var order = dbContext.order.Where(od => od.Is_active == true && od.User_code == userCode).ToList();
+                return order;
+            }
+        }
+
+        public Order getOrderByOrderCode(string orderCode)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var order = dbContext.order.FirstOrDefault(cp => cp.Order_code == orderCode);
+                return order;
+            }
+        }
     }
 }

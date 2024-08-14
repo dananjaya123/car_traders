@@ -88,7 +88,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = Color.CadetBlue;
+            pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
             pictureBox1.Location = new Point(602, 9);
@@ -120,7 +120,7 @@
             // 
             // btnSubmit
             // 
-            btnSubmit.BackColor = Color.Teal;
+            btnSubmit.BackColor = Color.CornflowerBlue;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
             btnSubmit.Location = new Point(811, 386);

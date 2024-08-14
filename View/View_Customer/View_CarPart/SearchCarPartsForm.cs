@@ -30,6 +30,7 @@ namespace car_traders.View.Customer
             _orderDetailRepository = new OrderDetailRepository();
             _EmailSend = new EmailSend();
             loadCarPartDetail();
+
         }
 
         private void loadCarPartDetail()
@@ -192,6 +193,7 @@ namespace car_traders.View.Customer
         {
             try
             {
+                loader.Visible = true;
                 double total;
                 if (double.TryParse(lblTotal.Text, out total))
                 {
@@ -206,13 +208,13 @@ namespace car_traders.View.Customer
                         User user = LoginForm.SesionUserData;
                         if (user != null)
                         {
-                            loader.Visible = true;
+                            
                             Order order = new Order
                             {
                                 Total_amount = total,
                                 Created = DateTime.Now,
                                 status = "REQUEST",
-                                qty = int.Parse(numInputQty.Value.ToString("F2")),
+                                qty = (int)numInputQty.Value,
                                 Is_payment = false,
                                 User_code = user.User_code,
                                 Order_code = _IDGenerate.OrderCodeGenerate(),
@@ -227,7 +229,7 @@ namespace car_traders.View.Customer
                                     Item_Id = carPart.Id,
                                     Item_type = "PART",
                                     Total_price = total,
-                                    Qty = int.Parse(numInputQty.Value.ToString("F2")),
+                                    Qty = (int)numInputQty.Value,
                                     Order_code = order.Order_code,
                                     Is_active = true
 
@@ -266,6 +268,7 @@ namespace car_traders.View.Customer
             catch (Exception ex)
             {
                 MessageBox.Show($"Click Part Form Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                loader.Visible = false;
             }
         }
 
