@@ -11,6 +11,7 @@ using System.Data;
 using System.Reflection.Metadata;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using car_traders.Common;
 
 namespace car_traders
 {
@@ -19,6 +20,7 @@ namespace car_traders
         private readonly CarRepository _carRepository;
         private readonly CarPartsRepository _carPartsRepository;
         private readonly UserRepository _userRepository;
+        private readonly PDFGenarate _pdfGenarate;
 
         public AdminMainForm()
         {
@@ -33,6 +35,7 @@ namespace car_traders
             _carRepository = new CarRepository();
             _carPartsRepository = new CarPartsRepository();
             _userRepository = new UserRepository();
+            _pdfGenarate = new PDFGenarate();
 
         }
 
@@ -544,85 +547,16 @@ namespace car_traders
 
         }
 
+
+
         private void btnPrintPartList_Click(object sender, EventArgs e)
         {
-            if (carPartsListView.Items.Count > 0)
-            {
-                SaveFileDialog save = new SaveFileDialog
-                {
-                    Filter = "PDF (*.pdf)|*.pdf",
-                    FileName = "Result.pdf"
-                };
+            _pdfGenarate.pdfConverter(carPartsListView, "car_part.pdf");
+        }
 
-                bool ErrorMessage = false;
-
-                if (save.ShowDialog() == DialogResult.OK)
-                {
-                    if (File.Exists(save.FileName))
-                    {
-                        try
-                        {
-                            File.Delete(save.FileName);
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorMessage = true;
-                            MessageBox.Show("Unable to write data to disk: " + ex.Message);
-                        }
-                    }
-
-                    if (!ErrorMessage)
-                    {
-                        try
-                        {
-                            PdfPTable pTable = new PdfPTable(carPartsListView.Columns.Count)
-                            {
-                                DefaultCell = { Padding = 2 },
-                                WidthPercentage = 100,
-                                HorizontalAlignment = Element.ALIGN_LEFT
-                            };
-
-                            // Adding headers
-                            foreach (ColumnHeader col in carPartsListView.Columns)
-                            {
-                                PdfPCell pCell = new PdfPCell(new Phrase(col.Text));
-                                pTable.AddCell(pCell);
-                            }
-
-                            // Adding data rows
-                            foreach (ListViewItem item in carPartsListView.Items)
-                            {
-                                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                                {
-                                    pTable.AddCell(subItem.Text);
-                                }
-                            }
-
-                            using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
-                            {
-                                iTextSharp.text.Document document = new iTextSharp.text.Document(PageSize.A4, 8f, 16f, 16f, 8f);
-                                PdfWriter.GetInstance(document, fileStream);
-
-                                document.Open();
-                                document.Add(pTable);
-                                document.Close();
-
-                                fileStream.Close();
-                            }
-
-                            MessageBox.Show("Data exported successfully", "Info");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error while exporting data: " + ex.Message);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No records found", "Info");
-            }
+        private void btnCarPdfPrint_Click(object sender, EventArgs e)
+        {
+            _pdfGenarate.pdfConverter(tblListViewCar, "car_list.pdf");
         }
     }
 }

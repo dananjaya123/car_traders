@@ -49,5 +49,23 @@ namespace car_traders
 
         }
 
+        private void pnlSlide_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCarParts_Click(object sender, EventArgs e)
+        {
+            SearchCarPartsForm form = new SearchCarPartsForm();
+            pnlMain.Controls.Clear();
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Size = pnlMain.Size;
+            form.Dock = DockStyle.Fill;
+
+            pnlMain.Controls.Add(form);
+            form.Show();
+        }
     }
 }

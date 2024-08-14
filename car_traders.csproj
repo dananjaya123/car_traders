@@ -43,8 +43,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="View\Customer\Modal\" />
-  </ItemGroup>
-
 </Project>

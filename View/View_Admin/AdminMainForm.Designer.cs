@@ -84,6 +84,7 @@
             texPartsDescriptions = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texPartsNaame = new MaterialSkin.Controls.MaterialMaskedTextBox();
             tabViewCars = new TabPage();
+            btnCarPdfPrint = new MaterialSkin.Controls.MaterialButton();
             tblListViewCar = new MaterialSkin.Controls.MaterialListView();
             colCarBrand = new ColumnHeader();
             colColor = new ColumnHeader();
@@ -98,6 +99,7 @@
             texCarTableSearch = new MaterialSkin.Controls.MaterialMaskedTextBox();
             lblCar = new Label();
             tabViewPats = new TabPage();
+            btnPrintPartList = new MaterialSkin.Controls.MaterialButton();
             carPartsListView = new MaterialSkin.Controls.MaterialListView();
             colName = new ColumnHeader();
             colPrice = new ColumnHeader();
@@ -109,7 +111,6 @@
             colID = new ColumnHeader();
             texSearchCarPartTabl = new MaterialSkin.Controls.MaterialMaskedTextBox();
             label1 = new Label();
-            btnPrintPartList = new MaterialSkin.Controls.MaterialButton();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -1376,6 +1377,7 @@
             // 
             // tabViewCars
             // 
+            tabViewCars.Controls.Add(btnCarPdfPrint);
             tabViewCars.Controls.Add(tblListViewCar);
             tabViewCars.Controls.Add(texCarTableSearch);
             tabViewCars.Controls.Add(lblCar);
@@ -1385,6 +1387,26 @@
             tabViewCars.Size = new Size(994, 676);
             tabViewCars.TabIndex = 3;
             tabViewCars.Text = "View Cars";
+            // 
+            // btnCarPdfPrint
+            // 
+            btnCarPdfPrint.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCarPdfPrint.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCarPdfPrint.Depth = 0;
+            btnCarPdfPrint.HighEmphasis = true;
+            btnCarPdfPrint.Icon = (Image)resources.GetObject("btnCarPdfPrint.Icon");
+            btnCarPdfPrint.Image = (Image)resources.GetObject("btnCarPdfPrint.Image");
+            btnCarPdfPrint.Location = new Point(22, 117);
+            btnCarPdfPrint.Margin = new Padding(4, 6, 4, 6);
+            btnCarPdfPrint.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCarPdfPrint.Name = "btnCarPdfPrint";
+            btnCarPdfPrint.NoAccentTextColor = Color.Empty;
+            btnCarPdfPrint.Size = new Size(64, 36);
+            btnCarPdfPrint.TabIndex = 36;
+            btnCarPdfPrint.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCarPdfPrint.UseAccentColor = false;
+            btnCarPdfPrint.UseVisualStyleBackColor = true;
+            btnCarPdfPrint.Click += btnCarPdfPrint_Click;
             // 
             // tblListViewCar
             // 
@@ -1525,6 +1547,26 @@
             tabViewPats.Text = "View Parts";
             tabViewPats.Click += tabViewPats_Click;
             // 
+            // btnPrintPartList
+            // 
+            btnPrintPartList.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPrintPartList.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnPrintPartList.Depth = 0;
+            btnPrintPartList.HighEmphasis = true;
+            btnPrintPartList.Icon = (Image)resources.GetObject("btnPrintPartList.Icon");
+            btnPrintPartList.Image = (Image)resources.GetObject("btnPrintPartList.Image");
+            btnPrintPartList.Location = new Point(17, 84);
+            btnPrintPartList.Margin = new Padding(4, 6, 4, 6);
+            btnPrintPartList.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPrintPartList.Name = "btnPrintPartList";
+            btnPrintPartList.NoAccentTextColor = Color.Empty;
+            btnPrintPartList.Size = new Size(64, 36);
+            btnPrintPartList.TabIndex = 35;
+            btnPrintPartList.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnPrintPartList.UseAccentColor = false;
+            btnPrintPartList.UseVisualStyleBackColor = true;
+            btnPrintPartList.Click += btnPrintPartList_Click;
+            // 
             // carPartsListView
             // 
             carPartsListView.AutoSizeTable = false;
@@ -1639,26 +1681,6 @@
             label1.Size = new Size(161, 25);
             label1.TabIndex = 1;
             label1.Text = "CAR PARTS LIST |";
-            // 
-            // btnPrintPartList
-            // 
-            btnPrintPartList.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnPrintPartList.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnPrintPartList.Depth = 0;
-            btnPrintPartList.HighEmphasis = true;
-            btnPrintPartList.Icon = (Image)resources.GetObject("btnPrintPartList.Icon");
-            btnPrintPartList.Image = (Image)resources.GetObject("btnPrintPartList.Image");
-            btnPrintPartList.Location = new Point(17, 84);
-            btnPrintPartList.Margin = new Padding(4, 6, 4, 6);
-            btnPrintPartList.MouseState = MaterialSkin.MouseState.HOVER;
-            btnPrintPartList.Name = "btnPrintPartList";
-            btnPrintPartList.NoAccentTextColor = Color.Empty;
-            btnPrintPartList.Size = new Size(64, 36);
-            btnPrintPartList.TabIndex = 35;
-            btnPrintPartList.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnPrintPartList.UseAccentColor = false;
-            btnPrintPartList.UseVisualStyleBackColor = true;
-            btnPrintPartList.Click += btnPrintPartList_Click;
             // 
             // AdminMainForm
             // 
@@ -1778,5 +1800,6 @@
         private DateTimePicker dateTimeCarManuFact;
         private Label label7;
         private MaterialSkin.Controls.MaterialButton btnPrintPartList;
+        private MaterialSkin.Controls.MaterialButton btnCarPdfPrint;
     }
 }
