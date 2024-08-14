@@ -1,11 +1,8 @@
 using car_traders.Dta;
 using car_traders.Model;
 using car_traders.Repository;
-using iText.IO.Image;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using iText.Layout.Properties;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore;
@@ -111,7 +108,7 @@ namespace car_traders
                     var id = Guid.Parse(item.SubItems[9].Text); // Convert from string to Guid
 
                     var car = _carRepository.getCarById(id);
-                    
+
                     Form modelBackgraund = new Form();
                     using (CarUpdateModalForm model = new CarUpdateModalForm(car))
                     {
@@ -256,9 +253,9 @@ namespace car_traders
                 {
                     // Assuming the subitems are in the same order as you added them
                     var id = Guid.Parse(item.SubItems[7].Text); // Convert from string to Guid
-                    
+
                     var carPart = _carPartsRepository.getCarPartById(id);
-                    
+
 
                     Form modelBackgraund = new Form();
                     using (PartUpdateModal model = new PartUpdateModal(carPart))
@@ -276,7 +273,7 @@ namespace car_traders
                         model.ShowDialog();
                         modelBackgraund.Dispose();
                     }
-                   
+
                 }
             }
             catch (Exception ex)
@@ -476,55 +473,6 @@ namespace car_traders
 
         }
 
-
-
-        private void GeneratePdf(string fileName, List<string> columnNames, List<List<string>> tableValues)
-        {
-            // Define the file path where the PDF will be saved
-            string filePath = $"{fileName}.pdf";
-
-            // Create a PDF writer instance with the specified file path
-            using (PdfWriter writer = new PdfWriter(filePath))
-            {
-                // Create a PDF document instance with the writer
-                using (PdfDocument pdf = new PdfDocument(writer))
-                {
-                    // Create a Document instance to add elements to the PDF
-                    var document = new iText.Layout.Document(pdf);
-
-
-                    // Create a table with the number of columns matching the column names
-                    Table table = new Table(columnNames.Count);
-                    table.SetWidth(UnitValue.CreatePercentValue(100));
-
-                    // Add header row to the table
-                    foreach (var columnName in columnNames)
-                    {
-                        table.AddHeaderCell(columnName);
-                    }
-
-                    // Loop through the list of table values and add each row to the table
-                    foreach (var rowValues in tableValues)
-                    {
-                        foreach (var cellValue in rowValues)
-                        {
-                            table.AddCell(new Cell().Add(new Paragraph(cellValue)));
-                        }
-                    }
-
-                    // Add the table to the document
-                    document.Add(table);
-
-                    // Close the document to finalize the PDF
-                    document.Close();
-                }
-            }
-
-            // Inform the user that the PDF was generated successfully
-            MessageBox.Show("PDF generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
         {
 
@@ -596,6 +544,85 @@ namespace car_traders
 
         }
 
-        
+        private void btnPrintPartList_Click(object sender, EventArgs e)
+        {
+            if (carPartsListView.Items.Count > 0)
+            {
+                SaveFileDialog save = new SaveFileDialog
+                {
+                    Filter = "PDF (*.pdf)|*.pdf",
+                    FileName = "Result.pdf"
+                };
+
+                bool ErrorMessage = false;
+
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(save.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(save.FileName);
+                        }
+                        catch (Exception ex)
+                        {
+                            ErrorMessage = true;
+                            MessageBox.Show("Unable to write data to disk: " + ex.Message);
+                        }
+                    }
+
+                    if (!ErrorMessage)
+                    {
+                        try
+                        {
+                            PdfPTable pTable = new PdfPTable(carPartsListView.Columns.Count)
+                            {
+                                DefaultCell = { Padding = 2 },
+                                WidthPercentage = 100,
+                                HorizontalAlignment = Element.ALIGN_LEFT
+                            };
+
+                            // Adding headers
+                            foreach (ColumnHeader col in carPartsListView.Columns)
+                            {
+                                PdfPCell pCell = new PdfPCell(new Phrase(col.Text));
+                                pTable.AddCell(pCell);
+                            }
+
+                            // Adding data rows
+                            foreach (ListViewItem item in carPartsListView.Items)
+                            {
+                                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                                {
+                                    pTable.AddCell(subItem.Text);
+                                }
+                            }
+
+                            using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
+                            {
+                                iTextSharp.text.Document document = new iTextSharp.text.Document(PageSize.A4, 8f, 16f, 16f, 8f);
+                                PdfWriter.GetInstance(document, fileStream);
+
+                                document.Open();
+                                document.Add(pTable);
+                                document.Close();
+
+                                fileStream.Close();
+                            }
+
+                            MessageBox.Show("Data exported successfully", "Info");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error while exporting data: " + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No records found", "Info");
+            }
+        }
     }
 }

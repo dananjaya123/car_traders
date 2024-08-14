@@ -1,6 +1,5 @@
 ﻿using car_traders.Model;
 using car_traders.Repository;
-using iText.IO.Image;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;

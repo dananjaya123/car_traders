@@ -37,5 +37,7 @@ namespace car_traders.Common
 
             return orderCode;
         }
+
+        
     }
 }

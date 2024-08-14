@@ -109,6 +109,7 @@
             colID = new ColumnHeader();
             texSearchCarPartTabl = new MaterialSkin.Controls.MaterialMaskedTextBox();
             label1 = new Label();
+            btnPrintPartList = new MaterialSkin.Controls.MaterialButton();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -1402,6 +1403,7 @@
             tblListViewCar.Size = new Size(924, 477);
             tblListViewCar.TabIndex = 3;
             tblListViewCar.UseCompatibleStateImageBehavior = false;
+            tblListViewCar.View = System.Windows.Forms.View.Details;
             tblListViewCar.SelectedIndexChanged += tblListViewCar_SelectedIndexChanged;
             // 
             // colCarBrand
@@ -1511,6 +1513,7 @@
             // 
             // tabViewPats
             // 
+            tabViewPats.Controls.Add(btnPrintPartList);
             tabViewPats.Controls.Add(carPartsListView);
             tabViewPats.Controls.Add(texSearchCarPartTabl);
             tabViewPats.Controls.Add(label1);
@@ -1539,6 +1542,7 @@
             carPartsListView.Size = new Size(942, 478);
             carPartsListView.TabIndex = 34;
             carPartsListView.UseCompatibleStateImageBehavior = false;
+            carPartsListView.View = System.Windows.Forms.View.Details;
             carPartsListView.SelectedIndexChanged += carPartListViewRowSelect;
             // 
             // colName
@@ -1636,7 +1640,27 @@
             label1.TabIndex = 1;
             label1.Text = "CAR PARTS LIST |";
             // 
-            // Form1
+            // btnPrintPartList
+            // 
+            btnPrintPartList.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPrintPartList.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnPrintPartList.Depth = 0;
+            btnPrintPartList.HighEmphasis = true;
+            btnPrintPartList.Icon = (Image)resources.GetObject("btnPrintPartList.Icon");
+            btnPrintPartList.Image = (Image)resources.GetObject("btnPrintPartList.Image");
+            btnPrintPartList.Location = new Point(17, 84);
+            btnPrintPartList.Margin = new Padding(4, 6, 4, 6);
+            btnPrintPartList.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPrintPartList.Name = "btnPrintPartList";
+            btnPrintPartList.NoAccentTextColor = Color.Empty;
+            btnPrintPartList.Size = new Size(64, 36);
+            btnPrintPartList.TabIndex = 35;
+            btnPrintPartList.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnPrintPartList.UseAccentColor = false;
+            btnPrintPartList.UseVisualStyleBackColor = true;
+            btnPrintPartList.Click += btnPrintPartList_Click;
+            // 
+            // AdminMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -1645,7 +1669,7 @@
             DrawerAutoHide = false;
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = materialTabControl1;
-            Name = "Form1";
+            Name = "AdminMainForm";
             Text = "CAR TRADERS";
             Load += Form1_Load;
             materialTabControl1.ResumeLayout(false);
@@ -1753,5 +1777,6 @@
         private ColumnHeader colCarPrice;
         private DateTimePicker dateTimeCarManuFact;
         private Label label7;
+        private MaterialSkin.Controls.MaterialButton btnPrintPartList;
     }
 }
