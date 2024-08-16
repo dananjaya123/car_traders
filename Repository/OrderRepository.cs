@@ -30,6 +30,15 @@ namespace car_traders.Repository
                 return orders;
             }
         }
+        public List<Order> getCustomerOrderByOrderCodeAndStatu(string status, string searchVal)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var orders = dbContext.order.Where(cp => cp.Is_active && cp.Order_code.Contains(searchVal) && cp.status.Contains(status)
+                ).ToList();
+                return orders;
+            }
+        }
 
         public int OrderCount()
         {
@@ -57,7 +66,14 @@ namespace car_traders.Repository
                 return order;
             }
         }
-
+        public List<Order> getAllOrdersByStatus(string status)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var order = dbContext.order.Where(od => od.status == status).ToList();
+                return order;
+            }
+        }
         public Order getOrderByOrderCode(string orderCode)
         {
             using (var dbContext = new ApplicationDBContext())

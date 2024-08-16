@@ -12,6 +12,7 @@ using System.Reflection.Metadata;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using car_traders.Common;
+using car_traders.View.View_Admin.View_Orders;
 
 namespace car_traders
 {
@@ -47,10 +48,25 @@ namespace car_traders
             // load table data
             LoadCarTable();
             loadCarPartsListTable();
+            orderFormsLoad();
 
 
         }
 
+        private void orderFormsLoad()
+        {
+
+            ViewOrderMainForm form = new ViewOrderMainForm();
+            pnlOrderMain.Controls.Clear();
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Size = pnlOrderMain.Size;
+            form.Dock = DockStyle.Fill;
+
+            pnlOrderMain.Controls.Add(form);
+            form.Show();
+        }
 
         private void tabPage4_Click(object sender, EventArgs e)
         {

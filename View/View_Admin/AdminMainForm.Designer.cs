@@ -111,6 +111,9 @@
             colID = new ColumnHeader();
             texSearchCarPartTabl = new MaterialSkin.Controls.MaterialMaskedTextBox();
             label1 = new Label();
+            tabOrders = new TabPage();
+            pnlOrderMain = new Panel();
+            tblCustomer = new TabPage();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -125,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)imgBoxCarPats).BeginInit();
             tabViewCars.SuspendLayout();
             tabViewPats.SuspendLayout();
+            tabOrders.SuspendLayout();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -134,6 +138,8 @@
             materialTabControl1.Controls.Add(tabAddCarPats);
             materialTabControl1.Controls.Add(tabViewCars);
             materialTabControl1.Controls.Add(tabViewPats);
+            materialTabControl1.Controls.Add(tabOrders);
+            materialTabControl1.Controls.Add(tblCustomer);
             materialTabControl1.Cursor = Cursors.Hand;
             materialTabControl1.Depth = 0;
             materialTabControl1.Dock = DockStyle.Fill;
@@ -190,6 +196,7 @@
             imageList1.Images.SetKeyName(4, "parts.png");
             imageList1.Images.SetKeyName(5, "dashboardHumen.png");
             imageList1.Images.SetKeyName(6, "dashboardPart.png");
+            imageList1.Images.SetKeyName(7, "icons8-customer-32.png");
             // 
             // materialCard1
             // 
@@ -1682,6 +1689,35 @@
             label1.TabIndex = 1;
             label1.Text = "CAR PARTS LIST |";
             // 
+            // tabOrders
+            // 
+            tabOrders.Controls.Add(pnlOrderMain);
+            tabOrders.ImageKey = "dashboardPart.png";
+            tabOrders.Location = new Point(4, 39);
+            tabOrders.Name = "tabOrders";
+            tabOrders.Size = new Size(994, 676);
+            tabOrders.TabIndex = 5;
+            tabOrders.Text = "Orders";
+            tabOrders.UseVisualStyleBackColor = true;
+            // 
+            // pnlOrderMain
+            // 
+            pnlOrderMain.BackColor = Color.White;
+            pnlOrderMain.Location = new Point(3, 3);
+            pnlOrderMain.Name = "pnlOrderMain";
+            pnlOrderMain.Size = new Size(988, 674);
+            pnlOrderMain.TabIndex = 0;
+            // 
+            // tblCustomer
+            // 
+            tblCustomer.ImageKey = "icons8-customer-32.png";
+            tblCustomer.Location = new Point(4, 39);
+            tblCustomer.Name = "tblCustomer";
+            tblCustomer.Size = new Size(994, 676);
+            tblCustomer.TabIndex = 6;
+            tblCustomer.Text = "Customers";
+            tblCustomer.UseVisualStyleBackColor = true;
+            // 
             // AdminMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -1715,6 +1751,7 @@
             tabViewCars.PerformLayout();
             tabViewPats.ResumeLayout(false);
             tabViewPats.PerformLayout();
+            tabOrders.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1801,5 +1838,8 @@
         private Label label7;
         private MaterialSkin.Controls.MaterialButton btnPrintPartList;
         private MaterialSkin.Controls.MaterialButton btnCarPdfPrint;
+        private TabPage tabOrders;
+        private Panel pnlOrderMain;
+        private TabPage tblCustomer;
     }
 }
