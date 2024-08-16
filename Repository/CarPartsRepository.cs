@@ -71,5 +71,26 @@ namespace car_traders.Repository
                 return count;
             }
         }
+
+        public bool UpdatePartsStatusAndQty(Guid id, string status, bool isActive,int qty)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var part = dbContext.car_parts.FirstOrDefault(c => c.Id == id);
+
+                if (part != null)
+                {
+                    part.Status = status;
+                    part.Is_active = isActive;
+                    part.Qty = part.Qty + qty;
+
+
+                    dbContext.SaveChanges();
+                    return true;
+                }
+
+                return false;
+            }
+        }
     }
 }

@@ -100,6 +100,10 @@ namespace car_traders.View.Customer
                     lblVisible();
                     carPart = CarPartControlForm.clickCarPartData;
 
+                    if (carPart.Status == "SOLD OUT")
+                    {
+                        lblStatus.ForeColor = Color.Red;
+                    }
 
                     if (carPart.Image_data != null)
                     {
@@ -193,6 +197,14 @@ namespace car_traders.View.Customer
         {
             try
             {
+                if (carPart.Status == "SOLD OUT")
+                {
+                    MessageBox.Show($"SOLD OUT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnSubmit.Visible = false;
+                    return;
+                }
+
+
                 loader.Visible = true;
                 double total;
                 if (double.TryParse(lblTotal.Text, out total))
@@ -237,13 +249,28 @@ namespace car_traders.View.Customer
                                 };
                                 if (_orderDetailRepository.saveOrderDetail(orderDetails))
                                 {
-
-                                    string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), carPart.Image_data);
-                                    if (_EmailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))
+                                    int avilableQty = carPart.Qty - (int)numInputQty.Value;
+                                    if (avilableQty > 0)
                                     {
-                                        MessageBox.Show("Order request Successfully");
-                                        loader.Visible = false;
+                                        carPart.Qty = avilableQty;
+                                    }else if(avilableQty == 0)
+                                    {
+                                        carPart.Qty = avilableQty;
+                                        carPart.Status = "SOLD OUT";
                                     }
+                                    if (_carPartsRepository.updateCarPart(carPart))
+                                    {
+                                        string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), carPart.Image_data);
+                                        if (_EmailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))
+                                        {
+                                            MessageBox.Show("Order request Successfully");
+                                            loader.Visible = false;
+                                            loadCarPartDetail();
+                                            return;
+                                        }
+                                    }
+                                    MessageBox.Show($"something wrong !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
                                 }
                             }
 

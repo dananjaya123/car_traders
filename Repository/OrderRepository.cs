@@ -46,5 +46,14 @@ namespace car_traders.Repository
                 return order;
             }
         }
+        public Boolean updateOrder(Order order)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                dbContext.order.Update(order);
+                dbContext.SaveChanges();
+                return true;
+            }
+        }
     }
 }

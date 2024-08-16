@@ -43,13 +43,11 @@
             lblOrderCodeTag = new Label();
             lblTotalAmountTag = new Label();
             lblItemNameTag = new Label();
-            lblBrandTag = new Label();
             lblQtyTag = new Label();
             lblPaymenTag = new Label();
             btnCancel = new Button();
             lblOrderCode = new Label();
             lblItemName = new Label();
-            lblBrandName = new Label();
             lblQty = new Label();
             lblPayment = new Label();
             lblTotalAmount = new Label();
@@ -163,7 +161,7 @@
             lblTotalAmountTag.AutoSize = true;
             lblTotalAmountTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblTotalAmountTag.ForeColor = SystemColors.WindowFrame;
-            lblTotalAmountTag.Location = new Point(813, 303);
+            lblTotalAmountTag.Location = new Point(813, 268);
             lblTotalAmountTag.Name = "lblTotalAmountTag";
             lblTotalAmountTag.Size = new Size(134, 25);
             lblTotalAmountTag.TabIndex = 41;
@@ -182,25 +180,12 @@
             lblItemNameTag.Text = "Item Name :";
             lblItemNameTag.Visible = false;
             // 
-            // lblBrandTag
-            // 
-            lblBrandTag.AutoSize = true;
-            lblBrandTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            lblBrandTag.ForeColor = SystemColors.WindowFrame;
-            lblBrandTag.Location = new Point(813, 183);
-            lblBrandTag.Name = "lblBrandTag";
-            lblBrandTag.Size = new Size(124, 25);
-            lblBrandTag.TabIndex = 43;
-            lblBrandTag.Text = "Brand Name :";
-            lblBrandTag.Visible = false;
-            lblBrandTag.Click += lblBrandTag_Click;
-            // 
             // lblQtyTag
             // 
             lblQtyTag.AutoSize = true;
             lblQtyTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblQtyTag.ForeColor = SystemColors.WindowFrame;
-            lblQtyTag.Location = new Point(813, 224);
+            lblQtyTag.Location = new Point(813, 189);
             lblQtyTag.Name = "lblQtyTag";
             lblQtyTag.Size = new Size(105, 25);
             lblQtyTag.TabIndex = 44;
@@ -212,7 +197,7 @@
             lblPaymenTag.AutoSize = true;
             lblPaymenTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblPaymenTag.ForeColor = SystemColors.WindowFrame;
-            lblPaymenTag.Location = new Point(813, 263);
+            lblPaymenTag.Location = new Point(813, 228);
             lblPaymenTag.Name = "lblPaymenTag";
             lblPaymenTag.Size = new Size(93, 25);
             lblPaymenTag.TabIndex = 45;
@@ -221,7 +206,8 @@
             // 
             // btnCancel
             // 
-            btnCancel.BackColor = Color.CornflowerBlue;
+            btnCancel.BackColor = Color.IndianRed;
+            btnCancel.Cursor = Cursors.Hand;
             btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = SystemColors.ButtonHighlight;
             btnCancel.Location = new Point(813, 348);
@@ -231,6 +217,7 @@
             btnCancel.Text = "ORDER CANCEL";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Visible = false;
+            btnCancel.Click += btnCancel_Click;
             // 
             // lblOrderCode
             // 
@@ -256,24 +243,12 @@
             lblItemName.Text = "name";
             lblItemName.Visible = false;
             // 
-            // lblBrandName
-            // 
-            lblBrandName.AutoSize = true;
-            lblBrandName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            lblBrandName.ForeColor = SystemColors.WindowFrame;
-            lblBrandName.Location = new Point(937, 183);
-            lblBrandName.Name = "lblBrandName";
-            lblBrandName.Size = new Size(110, 25);
-            lblBrandName.TabIndex = 49;
-            lblBrandName.Text = "BrandName";
-            lblBrandName.Visible = false;
-            // 
             // lblQty
             // 
             lblQty.AutoSize = true;
             lblQty.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblQty.ForeColor = SystemColors.WindowFrame;
-            lblQty.Location = new Point(937, 224);
+            lblQty.Location = new Point(937, 189);
             lblQty.Name = "lblQty";
             lblQty.Size = new Size(39, 25);
             lblQty.TabIndex = 50;
@@ -285,7 +260,7 @@
             lblPayment.AutoSize = true;
             lblPayment.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblPayment.ForeColor = SystemColors.WindowFrame;
-            lblPayment.Location = new Point(937, 263);
+            lblPayment.Location = new Point(937, 228);
             lblPayment.Name = "lblPayment";
             lblPayment.Size = new Size(85, 25);
             lblPayment.TabIndex = 51;
@@ -297,7 +272,7 @@
             lblTotalAmount.AutoSize = true;
             lblTotalAmount.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblTotalAmount.ForeColor = SystemColors.WindowFrame;
-            lblTotalAmount.Location = new Point(944, 302);
+            lblTotalAmount.Location = new Point(944, 267);
             lblTotalAmount.Name = "lblTotalAmount";
             lblTotalAmount.Size = new Size(80, 25);
             lblTotalAmount.TabIndex = 52;
@@ -313,13 +288,11 @@
             Controls.Add(lblTotalAmount);
             Controls.Add(lblPayment);
             Controls.Add(lblQty);
-            Controls.Add(lblBrandName);
             Controls.Add(lblItemName);
             Controls.Add(lblOrderCode);
             Controls.Add(btnCancel);
             Controls.Add(lblPaymenTag);
             Controls.Add(lblQtyTag);
-            Controls.Add(lblBrandTag);
             Controls.Add(lblItemNameTag);
             Controls.Add(lblTotalAmountTag);
             Controls.Add(lblOrderCodeTag);
@@ -354,13 +327,11 @@
         private Label lblOrderCodeTag;
         private Label lblTotalAmountTag;
         private Label lblItemNameTag;
-        private Label lblBrandTag;
         private Label lblQtyTag;
         private Label lblPaymenTag;
         private Button btnCancel;
         private Label lblOrderCode;
         private Label lblItemName;
-        private Label lblBrandName;
         private Label lblQty;
         private Label lblPayment;
         private Label lblTotalAmount;

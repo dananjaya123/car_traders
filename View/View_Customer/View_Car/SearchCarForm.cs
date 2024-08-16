@@ -2,6 +2,7 @@
 using car_traders.Model;
 using car_traders.Repository;
 using car_traders.View.Customer;
+using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -205,13 +206,21 @@ namespace car_traders
                         };
                         if (_orderDetailRepository.saveOrderDetail(orderDetails))
                         {
-                            
-                            string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), car.Image_data);
-                            if (_emailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))
+                            car.Status = "SOLD OUT";
+                            if (_carRepository.updateCar(car))
                             {
-                                MessageBox.Show("Order request Successfully");
-                                loader.Visible= false;
+
+                                string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), car.Image_data);
+                                if (_emailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))
+                                {
+                                    MessageBox.Show("Order request Successfully");
+                                    loadCarDetail();
+                                    loader.Visible = false;
+                                    return;
+                                }
                             }
+                            MessageBox.Show($"something wrong !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
                         }
                     }
 

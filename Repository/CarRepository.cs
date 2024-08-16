@@ -81,5 +81,24 @@ namespace car_traders.Repository
             }
         }
 
+        public bool UpdateCarStatusAndQty(Guid id, string status, bool isActive)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var car = dbContext.car.FirstOrDefault(c => c.Id == id);
+
+                if (car != null)
+                {
+                    car.Status = status;
+                    car.Is_active = isActive;
+
+                    dbContext.SaveChanges();
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
     }
 }

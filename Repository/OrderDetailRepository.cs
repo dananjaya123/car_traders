@@ -27,5 +27,14 @@ namespace car_traders.Repository
                 return detail;
             }
         }
+        public Boolean updateOrderDetail(OrderDetails detail)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                dbContext.orderDetails.Update(detail);
+                dbContext.SaveChanges();
+                return true;
+            }
+        }
     }
 }
