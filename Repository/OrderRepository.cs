@@ -20,12 +20,32 @@ namespace car_traders.Repository
             }
         }
 
+        public List<Order> getCustomerOrderByNameOrOrderCode(string userCOde,string searchVal)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var orders = dbContext.order.Where(cp => cp.User_code.Contains(userCOde)
+                && cp.Is_active && cp.Order_code.Contains(searchVal) || cp.status.Contains(searchVal)
+                ).ToList();
+                return orders;
+            }
+        }
+
         public int OrderCount()
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                int count = dbContext.order.Count(); // Get the count of orders
-                return count; // Return the count
+                int count = dbContext.order.Count();
+                return count; 
+            }
+        }
+
+        public List<Order> getAllActiveOrdersByUser(string userCode)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var order = dbContext.order.Where(od => od.Is_active == true && od.User_code == userCode).ToList();
+                return order;
             }
         }
 
@@ -33,7 +53,7 @@ namespace car_traders.Repository
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                var order = dbContext.order.Where(od => od.Is_active == true && od.User_code == userCode).ToList();
+                var order = dbContext.order.Where(od => od.User_code == userCode).ToList();
                 return order;
             }
         }

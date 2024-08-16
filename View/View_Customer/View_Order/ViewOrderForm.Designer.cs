@@ -38,7 +38,7 @@
             colIsPaid = new ColumnHeader();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            texSearchCarPart = new TextBox();
+            texSearch = new TextBox();
             loader = new PictureBox();
             lblOrderCodeTag = new Label();
             lblTotalAmountTag = new Label();
@@ -51,9 +51,12 @@
             lblQty = new Label();
             lblPayment = new Label();
             lblTotalAmount = new Label();
+            imgItem = new PictureBox();
+            lblStatus = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgItem).BeginInit();
             SuspendLayout();
             // 
             // listViewOrder
@@ -120,18 +123,20 @@
             // panel1
             // 
             panel1.BackColor = Color.WhiteSmoke;
-            panel1.Controls.Add(texSearchCarPart);
+            panel1.Controls.Add(texSearch);
             panel1.Location = new Point(119, 32);
             panel1.Name = "panel1";
             panel1.Size = new Size(485, 54);
             panel1.TabIndex = 17;
             // 
-            // texSearchCarPart
+            // texSearch
             // 
-            texSearchCarPart.Location = new Point(8, 11);
-            texSearchCarPart.Name = "texSearchCarPart";
-            texSearchCarPart.Size = new Size(474, 31);
-            texSearchCarPart.TabIndex = 1;
+            texSearch.Location = new Point(8, 11);
+            texSearch.Name = "texSearch";
+            texSearch.Size = new Size(474, 31);
+            texSearch.TabIndex = 1;
+            texSearch.Tag = "";
+            texSearch.TextChanged += texSearchCarPart_TextChanged;
             // 
             // loader
             // 
@@ -149,7 +154,7 @@
             lblOrderCodeTag.AutoSize = true;
             lblOrderCodeTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblOrderCodeTag.ForeColor = SystemColors.WindowFrame;
-            lblOrderCodeTag.Location = new Point(813, 102);
+            lblOrderCodeTag.Location = new Point(813, 195);
             lblOrderCodeTag.Name = "lblOrderCodeTag";
             lblOrderCodeTag.Size = new Size(118, 25);
             lblOrderCodeTag.TabIndex = 40;
@@ -161,7 +166,7 @@
             lblTotalAmountTag.AutoSize = true;
             lblTotalAmountTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblTotalAmountTag.ForeColor = SystemColors.WindowFrame;
-            lblTotalAmountTag.Location = new Point(813, 268);
+            lblTotalAmountTag.Location = new Point(813, 361);
             lblTotalAmountTag.Name = "lblTotalAmountTag";
             lblTotalAmountTag.Size = new Size(134, 25);
             lblTotalAmountTag.TabIndex = 41;
@@ -173,7 +178,7 @@
             lblItemNameTag.AutoSize = true;
             lblItemNameTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblItemNameTag.ForeColor = SystemColors.WindowFrame;
-            lblItemNameTag.Location = new Point(813, 145);
+            lblItemNameTag.Location = new Point(813, 238);
             lblItemNameTag.Name = "lblItemNameTag";
             lblItemNameTag.Size = new Size(113, 25);
             lblItemNameTag.TabIndex = 42;
@@ -185,7 +190,7 @@
             lblQtyTag.AutoSize = true;
             lblQtyTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblQtyTag.ForeColor = SystemColors.WindowFrame;
-            lblQtyTag.Location = new Point(813, 189);
+            lblQtyTag.Location = new Point(813, 282);
             lblQtyTag.Name = "lblQtyTag";
             lblQtyTag.Size = new Size(105, 25);
             lblQtyTag.TabIndex = 44;
@@ -197,7 +202,7 @@
             lblPaymenTag.AutoSize = true;
             lblPaymenTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblPaymenTag.ForeColor = SystemColors.WindowFrame;
-            lblPaymenTag.Location = new Point(813, 228);
+            lblPaymenTag.Location = new Point(813, 321);
             lblPaymenTag.Name = "lblPaymenTag";
             lblPaymenTag.Size = new Size(93, 25);
             lblPaymenTag.TabIndex = 45;
@@ -210,7 +215,7 @@
             btnCancel.Cursor = Cursors.Hand;
             btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = SystemColors.ButtonHighlight;
-            btnCancel.Location = new Point(813, 348);
+            btnCancel.Location = new Point(813, 407);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(308, 76);
             btnCancel.TabIndex = 46;
@@ -224,7 +229,7 @@
             lblOrderCode.AutoSize = true;
             lblOrderCode.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblOrderCode.ForeColor = SystemColors.WindowFrame;
-            lblOrderCode.Location = new Point(937, 102);
+            lblOrderCode.Location = new Point(937, 195);
             lblOrderCode.Name = "lblOrderCode";
             lblOrderCode.Size = new Size(52, 25);
             lblOrderCode.TabIndex = 47;
@@ -236,7 +241,7 @@
             lblItemName.AutoSize = true;
             lblItemName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblItemName.ForeColor = SystemColors.WindowFrame;
-            lblItemName.Location = new Point(937, 145);
+            lblItemName.Location = new Point(937, 238);
             lblItemName.Name = "lblItemName";
             lblItemName.Size = new Size(58, 25);
             lblItemName.TabIndex = 48;
@@ -248,7 +253,7 @@
             lblQty.AutoSize = true;
             lblQty.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblQty.ForeColor = SystemColors.WindowFrame;
-            lblQty.Location = new Point(937, 189);
+            lblQty.Location = new Point(937, 282);
             lblQty.Name = "lblQty";
             lblQty.Size = new Size(39, 25);
             lblQty.TabIndex = 50;
@@ -260,7 +265,7 @@
             lblPayment.AutoSize = true;
             lblPayment.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblPayment.ForeColor = SystemColors.WindowFrame;
-            lblPayment.Location = new Point(937, 228);
+            lblPayment.Location = new Point(937, 321);
             lblPayment.Name = "lblPayment";
             lblPayment.Size = new Size(85, 25);
             lblPayment.TabIndex = 51;
@@ -272,12 +277,33 @@
             lblTotalAmount.AutoSize = true;
             lblTotalAmount.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblTotalAmount.ForeColor = SystemColors.WindowFrame;
-            lblTotalAmount.Location = new Point(944, 267);
+            lblTotalAmount.Location = new Point(944, 360);
             lblTotalAmount.Name = "lblTotalAmount";
             lblTotalAmount.Size = new Size(80, 25);
             lblTotalAmount.TabIndex = 52;
             lblTotalAmount.Text = "Amount";
             lblTotalAmount.Visible = false;
+            // 
+            // imgItem
+            // 
+            imgItem.Location = new Point(858, 32);
+            imgItem.Name = "imgItem";
+            imgItem.Size = new Size(164, 122);
+            imgItem.TabIndex = 53;
+            imgItem.TabStop = false;
+            imgItem.Visible = false;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
+            lblStatus.ForeColor = Color.ForestGreen;
+            lblStatus.Location = new Point(813, 157);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(62, 25);
+            lblStatus.TabIndex = 54;
+            lblStatus.Text = "status";
+            lblStatus.Visible = false;
             // 
             // ViewOrderForm
             // 
@@ -285,6 +311,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1133, 495);
+            Controls.Add(lblStatus);
+            Controls.Add(imgItem);
             Controls.Add(lblTotalAmount);
             Controls.Add(lblPayment);
             Controls.Add(lblQty);
@@ -303,10 +331,12 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ViewOrderForm";
             Text = "ViewOrderForm";
+            Load += ViewOrderForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)loader).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgItem).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -322,7 +352,7 @@
         private ColumnHeader colIsPaid;
         private PictureBox pictureBox1;
         private Panel panel1;
-        private TextBox texSearchCarPart;
+        private TextBox texSearch;
         private PictureBox loader;
         private Label lblOrderCodeTag;
         private Label lblTotalAmountTag;
@@ -335,5 +365,7 @@
         private Label lblQty;
         private Label lblPayment;
         private Label lblTotalAmount;
+        private PictureBox imgItem;
+        private Label lblStatus;
     }
 }

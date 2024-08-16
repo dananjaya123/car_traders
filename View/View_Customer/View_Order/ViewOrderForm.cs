@@ -1,5 +1,7 @@
 ﻿using car_traders.Model;
 using car_traders.Repository;
+using car_traders.View.View_Customer.View_CarPart;
+using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,6 +61,41 @@ namespace car_traders.View.View_Customer.View_Order
                 MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void texSearchCarPart_TextChanged(object sender, EventArgs e)
+        {
+            if (texSearch.TextLength >= 1)
+            {
+                List<Order> orderList = _orderRepository.getCustomerOrderByNameOrOrderCode(sesionUser.User_code, texSearch.Text);
+                listViewOrder.Items.Clear();
+                if (orderList == null || orderList.Count == 0)
+                {
+                    MessageBox.Show("No Order found .");
+                    return;
+                }
+
+
+                foreach (var order in orderList)
+                {
+                    var listViewItem = new ListViewItem(new[]
+                    {
+                       order.Order_code,
+                       order.status,
+                       order.Total_amount.ToString("F2"), // Convert double to string with 2 decimal places
+                       order.Created.ToString("yyyy/mm/dd"),
+                       order.qty.ToString(),
+                       order.Is_payment? "PAID" : "NOT PAID"
+
+                    });
+
+                    listViewOrder.Items.Add(listViewItem);
+                }
+
+            }
+            else
+            {
+                loadTable();
+            }
+        }
         private void lblBrandTag_Click(object sender, EventArgs e)
         {
 
@@ -73,23 +110,58 @@ namespace car_traders.View.View_Customer.View_Order
                 foreach (ListViewItem item in listViewOrder.SelectedItems)
                 {
                     loader.Visible = true;
-
                     var orderCode = item.SubItems[0].Text;
 
-                     order = _orderRepository.getOrderByOrderCode(orderCode);
+                    order = _orderRepository.getOrderByOrderCode(orderCode);
                     if (order != null)
                     {
-                          detail = _orderDetailRepository.getOrderByOrderCode(order.Order_code);
+                        detail = _orderDetailRepository.getOrderByOrderCode(order.Order_code);
                         if (detail != null)
                         {
                             visibleLable();
+                            statusCheck();
+                            
 
                             lblItemName.Text = detail.Item_name;
                             lblOrderCode.Text = order.Order_code;
                             lblPayment.Text = order.Is_payment ? "PAID" : "NOT PAID";
                             lblQty.Text = detail.Qty.ToString();
                             lblTotalAmount.Text = order.Total_amount.ToString("F2");
-                           
+                            lblStatus.Text = order.status;
+
+                            if (detail.Item_type.Equals("CAR"))
+                            {
+                               var car = _carRepository.getCarById(detail.Item_Id);
+                                if (car.Image_data != null)
+                                {
+                                    using (MemoryStream ms = new MemoryStream(car.Image_data))
+                                    {
+                                        imgItem.Image = System.Drawing.Image.FromStream(ms);
+                                    }
+                                }
+
+                            }
+                            else if (detail.Item_type.Equals("PART"))
+                            {
+                                var part = _carPartsRepository.getCarPartById(detail.Item_Id);
+                                if (part.Image_data != null)
+                                {
+                                    using (MemoryStream ms = new MemoryStream(part.Image_data))
+                                    {
+                                        imgItem.Image = System.Drawing.Image.FromStream(ms);
+                                    }
+                                }
+                            }
+
+                            if (lblPayment.Text == "NOT PAID")
+                            {
+                                lblPayment.ForeColor = Color.Red;
+                            }
+
+                            
+
+
+
                         }
 
                     }
@@ -110,6 +182,19 @@ namespace car_traders.View.View_Customer.View_Order
             }
         }
 
+        private void statusCheck()
+        {
+            lblStatus.ForeColor = Color.Green;
+            if (order.status == "CANSEL")
+            {
+                lblStatus.ForeColor = Color.Red;
+            }
+            else if (order.status == "PAID")
+            {
+                lblStatus.ForeColor = Color.Blue;
+            }
+        }
+
         private void visibleLable()
         {
             lblItemName.Visible = true;
@@ -117,7 +202,9 @@ namespace car_traders.View.View_Customer.View_Order
             lblPayment.Visible = true;
             lblQty.Visible = true;
             lblTotalAmount.Visible = true;
+            lblStatus.Visible = true;
 
+            imgItem.Visible = true;
             btnCancel.Visible = true;
 
             lblItemNameTag.Visible = true;
@@ -131,7 +218,7 @@ namespace car_traders.View.View_Customer.View_Order
         {
             try
             {
-                if (order.status !="REQUEST")
+                if (order.status != "REQUEST")
                 {
                     loadTable();
                     MessageBox.Show($"This Order cnot be cancel !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -149,14 +236,14 @@ namespace car_traders.View.View_Customer.View_Order
                     order.status = "CANSEL";
                     order.Is_active = false;
 
-                   if(_orderRepository.updateOrder(order))
+                    if (_orderRepository.updateOrder(order))
                     {
                         if (orderType.Equals("PART"))
                         {
-                            if(_carPartsRepository.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
+                            if (_carPartsRepository.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
                             {
                                 MessageBox.Show($" Your order is cancel", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return;
+
                             }
                         }
                         else if (orderType.Equals("CAR"))
@@ -164,10 +251,11 @@ namespace car_traders.View.View_Customer.View_Order
                             if (_carRepository.UpdateCarStatusAndQty(detail.Item_Id, "AVAILABLE", true))
                             {
                                 MessageBox.Show($" Your order is cancel", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                return;
+
                             }
                         }
                         loadTable();
+                        return;
 
                     }
 
@@ -179,6 +267,11 @@ namespace car_traders.View.View_Customer.View_Order
                 MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+        private void ViewOrderForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
