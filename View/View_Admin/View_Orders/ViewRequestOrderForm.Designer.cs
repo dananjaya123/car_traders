@@ -55,6 +55,7 @@
             listViewOrder = new MaterialSkin.Controls.MaterialListView();
             btnPayment = new Button();
             btnCarPdfPrint = new MaterialSkin.Controls.MaterialButton();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)imgItem).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -231,7 +232,7 @@
             pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(497, 12);
+            pictureBox1.Location = new Point(511, 86);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(56, 54);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -242,9 +243,9 @@
             // 
             panel1.BackColor = Color.WhiteSmoke;
             panel1.Controls.Add(texSearch);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(23, 86);
             panel1.Name = "panel1";
-            panel1.Size = new Size(485, 54);
+            panel1.Size = new Size(491, 54);
             panel1.TabIndex = 56;
             // 
             // colIsPaid
@@ -279,7 +280,7 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(559, 12);
+            loader.Location = new Point(214, 23);
             loader.Name = "loader";
             loader.Size = new Size(75, 54);
             loader.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -295,13 +296,13 @@
             listViewOrder.Columns.AddRange(new ColumnHeader[] { colOrderCode, colStatus, colTotalAmount, colOrderDate, colQty, colIsPaid });
             listViewOrder.Depth = 0;
             listViewOrder.FullRowSelect = true;
-            listViewOrder.Location = new Point(12, 138);
+            listViewOrder.Location = new Point(12, 168);
             listViewOrder.MinimumSize = new Size(200, 100);
             listViewOrder.MouseLocation = new Point(-1, -1);
             listViewOrder.MouseState = MaterialSkin.MouseState.OUT;
             listViewOrder.Name = "listViewOrder";
             listViewOrder.OwnerDraw = true;
-            listViewOrder.Size = new Size(658, 463);
+            listViewOrder.Size = new Size(658, 432);
             listViewOrder.TabIndex = 55;
             listViewOrder.UseCompatibleStateImageBehavior = false;
             listViewOrder.View = System.Windows.Forms.View.Details;
@@ -330,7 +331,7 @@
             btnCarPdfPrint.HighEmphasis = true;
             btnCarPdfPrint.Icon = (Image)resources.GetObject("btnCarPdfPrint.Icon");
             btnCarPdfPrint.Image = (Image)resources.GetObject("btnCarPdfPrint.Image");
-            btnCarPdfPrint.Location = new Point(606, 93);
+            btnCarPdfPrint.Location = new Point(595, 104);
             btnCarPdfPrint.Margin = new Padding(4, 6, 4, 6);
             btnCarPdfPrint.MouseState = MaterialSkin.MouseState.HOVER;
             btnCarPdfPrint.Name = "btnCarPdfPrint";
@@ -342,12 +343,24 @@
             btnCarPdfPrint.UseVisualStyleBackColor = true;
             btnCarPdfPrint.Click += btnCarPdfPrint_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlDarkDark;
+            label1.Location = new Point(23, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(185, 30);
+            label1.TabIndex = 74;
+            label1.Text = "ORDER REQUEST ";
+            // 
             // ViewRequestOrderForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(988, 612);
+            Controls.Add(label1);
             Controls.Add(btnCarPdfPrint);
             Controls.Add(btnPayment);
             Controls.Add(lblStatus);
@@ -371,6 +384,7 @@
             Name = "ViewRequestOrderForm";
             ShowInTaskbar = false;
             Text = "ViewOrderForm";
+            Load += ViewRequestOrderForm_Load;
             ((System.ComponentModel.ISupportInitialize)imgItem).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -408,5 +422,6 @@
         private MaterialSkin.Controls.MaterialListView listViewOrder;
         private Button btnPayment;
         private MaterialSkin.Controls.MaterialButton btnCarPdfPrint;
+        private Label label1;
     }
 }

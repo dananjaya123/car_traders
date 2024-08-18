@@ -173,7 +173,7 @@ namespace car_traders.View.View_Admin.View_Orders
         {
             if (texSearch.TextLength >= 1)
             {
-                List<Model.Order> orderList = _orderRepository.getCustomerOrderByOrderCodeAndStatu("REQUEST", texSearch.Text);
+                List<Model.Order> orderList = _orderRepository.getCustomerOrderByOrderCodeAndStatu("REJECT", texSearch.Text);
                 listViewRejectOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
                 {

@@ -55,6 +55,7 @@
             lblCustomerName = new Label();
             lblMobileNUm = new Label();
             lblCustomerContactTag = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)imgItem).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -241,7 +242,7 @@
             pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(509, 11);
+            pictureBox1.Location = new Point(513, 74);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(56, 54);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -252,7 +253,7 @@
             // 
             panel1.BackColor = Color.WhiteSmoke;
             panel1.Controls.Add(texSearch);
-            panel1.Location = new Point(24, 11);
+            panel1.Location = new Point(28, 74);
             panel1.Name = "panel1";
             panel1.Size = new Size(485, 54);
             panel1.TabIndex = 75;
@@ -260,7 +261,7 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(571, 11);
+            loader.Location = new Point(219, 12);
             loader.Name = "loader";
             loader.Size = new Size(75, 54);
             loader.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -336,12 +337,24 @@
             lblCustomerContactTag.Text = "Mobile Number :";
             lblCustomerContactTag.Visible = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlDarkDark;
+            label1.Location = new Point(28, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(157, 30);
+            label1.TabIndex = 96;
+            label1.Text = "ORDER REJECT";
+            // 
             // ViewRejectOrderForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(988, 612);
+            Controls.Add(label1);
             Controls.Add(lblMobileNUm);
             Controls.Add(lblCustomerContactTag);
             Controls.Add(btnCarPdfPrint);
@@ -401,5 +414,6 @@
         private Label lblCustomerName;
         private Label lblMobileNUm;
         private Label lblCustomerContactTag;
+        private Label label1;
     }
 }

@@ -33,7 +33,7 @@ namespace car_traders.View.View_Admin.View_Orders
             loadTable();
         }
 
-   
+
         private void loadTable()
         {
             try
@@ -292,6 +292,11 @@ namespace car_traders.View.View_Admin.View_Orders
                 model.ShowDialog();
                 modelBackgraund.Dispose();
             }
+        }
+
+        private void ViewRequestOrderForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
