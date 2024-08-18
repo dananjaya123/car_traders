@@ -1,6 +1,7 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
 using car_traders.Repository;
+using car_traders.View.View_Admin.Modal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,7 @@ namespace car_traders.View.View_Admin.View_Orders
             loadTable();
         }
 
+   
         private void loadTable()
         {
             try
@@ -269,6 +271,27 @@ namespace car_traders.View.View_Admin.View_Orders
         private void btnCarPdfPrint_Click(object sender, EventArgs e)
         {
             _pdfGenarate.pdfConverter(listViewOrder, "order_request.pdf");
+        }
+
+        private void btnPayment_Click(object sender, EventArgs e)
+        {
+            Form modelBackgraund = new Form();
+            using (PaymentModalForm model = new PaymentModalForm())
+            {
+                model.loadData(order);
+                modelBackgraund.StartPosition = FormStartPosition.Manual;
+                modelBackgraund.FormBorderStyle = FormBorderStyle.None;
+                modelBackgraund.Opacity = .0;
+                modelBackgraund.BackColor = Color.Black;
+                modelBackgraund.Size = this.Size;
+                modelBackgraund.Location = this.Location;
+                modelBackgraund.ShowInTaskbar = false;
+                modelBackgraund.Show();
+                model.Owner = modelBackgraund;
+
+                model.ShowDialog();
+                modelBackgraund.Dispose();
+            }
         }
     }
 }

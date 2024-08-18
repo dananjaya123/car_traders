@@ -36,10 +36,7 @@ namespace car_traders
 
         }
 
-        public PartUpdateModal()
-        {
-            InitializeComponent();
-        }
+  
 
         private void loadTextValues()
         {

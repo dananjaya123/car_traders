@@ -82,6 +82,17 @@ namespace car_traders.Repository
                 return user;
             }
         }
+        public Model.User getUserByUsercode(string userCode)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+
+                var user = dbContext.user
+                                    .Where(u => u.User_code == userCode)
+                                    .FirstOrDefault();
+                return user;
+            }
+        }
 
     }
 }

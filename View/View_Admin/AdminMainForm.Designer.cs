@@ -407,6 +407,7 @@
             // 
             // dateTimeCarManuFact
             // 
+            dateTimeCarManuFact.Format = DateTimePickerFormat.Short;
             dateTimeCarManuFact.Location = new Point(601, 66);
             dateTimeCarManuFact.Name = "dateTimeCarManuFact";
             dateTimeCarManuFact.Size = new Size(300, 31);

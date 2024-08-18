@@ -1,0 +1,101 @@
+﻿using car_traders.Common;
+using car_traders.Model;
+using car_traders.Repository;
+using car_traders.View.View_Admin.View_Orders;
+using MaterialSkin.Controls;
+using Org.BouncyCastle.Crypto.Macs;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace car_traders.View.View_Admin.Modal
+{
+    public partial class PaymentModalForm : MaterialForm
+    {
+        readonly OrderRepository _orderRepository;
+        readonly UserRepository _userRepository;
+        private Order orderData;
+        readonly EmailSend _emailSend;
+        public PaymentModalForm()
+        {
+            _orderRepository = new OrderRepository();
+            _userRepository = new UserRepository();
+            _emailSend = new EmailSend();
+            InitializeComponent();
+        }
+
+        public void loadData(Order order)
+        {
+            orderData = order;
+            lblTotalAmount.Text = orderData.Total_amount.ToString("F2");
+            texPaidAmount.Text = orderData.Total_amount.ToString("F2");
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            var paidAmont = texPaidAmount.Text;
+            if (!double.TryParse(paidAmont, out double paid) || paid <= 0)
+            {
+                lblError.Text = "Please Enter a valid Amount";
+                lblError.Visible = true;
+                return;
+            }
+
+            if (paid != double.Parse(lblTotalAmount.Text.ToString()))
+            {
+                MessageBox.Show("Please Enter a valid Amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+
+            }
+
+            orderData.status = "PAID";
+            orderData.Is_payment = true;
+            if (_orderRepository.updateOrder(orderData))
+            {
+                var userdata = _userRepository.getUserByUsercode(orderData.User_code);
+                string mailBody = GenerateEmailBody("car traders", userdata.Name, orderData.Order_code, paidAmont);
+
+                if (_emailSend.SendEmail("cartraders@gmail.com", userdata.Email, "Payment successfully", mailBody))
+                {
+                    MessageBox.Show("Payment successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              
+
+                }
+            }
+
+        }
+
+        private string GenerateEmailBody(string projectName, string userName, string orderCode, string amount)
+        {
+
+            string body = $@"
+            <html>
+                 <body style='font-family: Arial, sans-serif; color: #333;'>
+                <h2 style='color: #4CAF50;'>Payment Confirmation from {projectName}</h2>
+                <p>Dear {userName},</p>
+                <p>Thank you for your order with <strong>{projectName}</strong>. Below are the Payment details of your order:</p>
+                <ul style='list-style-type: none; padding: 0;'>
+                    <li><strong>Order Code:</strong> {orderCode}</li>
+                    <li><strong>Order Amount:</strong> {amount}</li>
+                </ul>
+                <p>If you have any questions about your order, please contact our support team.</p>
+                <p>Best regards,</p>
+                <p><strong>The {projectName} Team</strong></p>
+            </body>
+            </html>";
+
+            return body;
+        }
+
+        private void PaymentModalForm_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

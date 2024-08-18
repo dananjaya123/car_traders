@@ -320,6 +320,7 @@
             btnPayment.Text = "PAY";
             btnPayment.UseVisualStyleBackColor = false;
             btnPayment.Visible = false;
+            btnPayment.Click += btnPayment_Click;
             // 
             // btnCarPdfPrint
             // 
