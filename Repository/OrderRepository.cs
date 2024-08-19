@@ -91,5 +91,20 @@ namespace car_traders.Repository
                 return true;
             }
         }
+
+        public List<Order> getCustomerByOrders(string userCode, string searchVal)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var orders = (from order in dbContext.order
+                              join user in dbContext.user on order.User_code equals user.User_code
+                              where order.User_code.Contains(userCode)
+                                    && order.Is_active
+                                    && (order.Order_code.Contains(searchVal) || order.status.Contains(searchVal))
+                              select order).ToList();
+
+                return orders;
+            }
+        }
     }
 }

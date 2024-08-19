@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using car_traders.Common;
 using car_traders.View.View_Admin.View_Orders;
+using car_traders.View.View_Admin.View_Customer;
 
 namespace car_traders
 {
@@ -49,7 +50,7 @@ namespace car_traders
             LoadCarTable();
             loadCarPartsListTable();
             orderFormsLoad();
-
+            customerFormLoad();
 
         }
 
@@ -65,6 +66,21 @@ namespace car_traders
             form.Dock = DockStyle.Fill;
 
             pnlOrderMain.Controls.Add(form);
+            form.Show();
+        }
+
+        private void customerFormLoad()
+        {
+
+            ViewCustomerForm form = new ViewCustomerForm();
+            pnlCustomerMain.Controls.Clear();
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Size = pnlOrderMain.Size;
+            form.Dock = DockStyle.Fill;
+
+            pnlCustomerMain.Controls.Add(form);
             form.Show();
         }
 

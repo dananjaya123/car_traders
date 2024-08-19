@@ -3,6 +3,7 @@ using car_traders.Model;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,32 @@ namespace car_traders.Repository
                                     .Where(u => u.User_code == userCode)
                                     .FirstOrDefault();
                 return user;
+            }
+        }
+
+        public List<Model.User> getUsersByRole(string role)
+        {
+            using(var dbContext = new ApplicationDBContext())
+            {
+                var users = dbContext.user.Where(u=>u.Role_name==role).ToList();
+                return users;
+            }
+        }
+
+        public List<Model.User> getUserByserchValues(string searchVlues,string role)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+
+                var users = dbContext.user
+                                    .Where(u => u.Role_name.Equals(role) && (u.User_name.Contains(searchVlues) 
+                                    || u.Email.Contains(searchVlues)
+                                    || u.User_code.Contains(searchVlues)
+                                    ||u.Name.Contains(searchVlues)
+                                    ||u.Contact_num.Contains(searchVlues) 
+                                    || u.Address.Contains(searchVlues)))
+                                    .ToList();
+                return users;
             }
         }
 

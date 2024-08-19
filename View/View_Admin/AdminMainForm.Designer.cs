@@ -114,6 +114,7 @@
             tabOrders = new TabPage();
             pnlOrderMain = new Panel();
             tblCustomer = new TabPage();
+            pnlCustomerMain = new Panel();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
             materialCard1.SuspendLayout();
@@ -129,6 +130,7 @@
             tabViewCars.SuspendLayout();
             tabViewPats.SuspendLayout();
             tabOrders.SuspendLayout();
+            tblCustomer.SuspendLayout();
             SuspendLayout();
             // 
             // materialTabControl1
@@ -1711,6 +1713,7 @@
             // 
             // tblCustomer
             // 
+            tblCustomer.Controls.Add(pnlCustomerMain);
             tblCustomer.ImageKey = "icons8-customer-32.png";
             tblCustomer.Location = new Point(4, 39);
             tblCustomer.Name = "tblCustomer";
@@ -1718,6 +1721,13 @@
             tblCustomer.TabIndex = 6;
             tblCustomer.Text = "Customers";
             tblCustomer.UseVisualStyleBackColor = true;
+            // 
+            // pnlCustomerMain
+            // 
+            pnlCustomerMain.Location = new Point(3, 3);
+            pnlCustomerMain.Name = "pnlCustomerMain";
+            pnlCustomerMain.Size = new Size(991, 677);
+            pnlCustomerMain.TabIndex = 0;
             // 
             // AdminMainForm
             // 
@@ -1753,6 +1763,7 @@
             tabViewPats.ResumeLayout(false);
             tabViewPats.PerformLayout();
             tabOrders.ResumeLayout(false);
+            tblCustomer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1842,5 +1853,6 @@
         private TabPage tabOrders;
         private Panel pnlOrderMain;
         private TabPage tblCustomer;
+        private Panel pnlCustomerMain;
     }
 }

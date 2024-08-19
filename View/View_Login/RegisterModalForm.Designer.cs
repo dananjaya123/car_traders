@@ -44,6 +44,7 @@
             lblEmail = new Label();
             lblPassword = new Label();
             pwView = new PictureBox();
+            btnUpdate = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)pwView).BeginInit();
             SuspendLayout();
             // 
@@ -332,7 +333,7 @@
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
             btnClear.Icon = null;
-            btnClear.Location = new Point(362, 609);
+            btnClear.Location = new Point(371, 609);
             btnClear.Margin = new Padding(4, 6, 4, 6);
             btnClear.MouseState = MaterialSkin.MouseState.HOVER;
             btnClear.Name = "btnClear";
@@ -423,11 +424,33 @@
             pwView.TabStop = false;
             pwView.Click += pwView_Click;
             // 
-            // RegisterModelForm
+            // btnUpdate
+            // 
+            btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnUpdate.Depth = 0;
+            btnUpdate.HighEmphasis = true;
+            btnUpdate.Icon = null;
+            btnUpdate.Location = new Point(286, 609);
+            btnUpdate.Margin = new Padding(4, 6, 4, 6);
+            btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.NoAccentTextColor = Color.Empty;
+            btnUpdate.Size = new Size(77, 36);
+            btnUpdate.TabIndex = 15;
+            btnUpdate.Text = "update";
+            btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnUpdate.UseAccentColor = false;
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Visible = false;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
+            // RegisterModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(574, 667);
+            Controls.Add(btnUpdate);
             Controls.Add(pwView);
             Controls.Add(lblPassword);
             Controls.Add(lblEmail);
@@ -443,7 +466,7 @@
             Controls.Add(texAddress);
             Controls.Add(texContactNum);
             Controls.Add(texName);
-            Name = "RegisterModelForm";
+            Name = "RegisterModalForm";
             Text = "Register Form";
             ((System.ComponentModel.ISupportInitialize)pwView).EndInit();
             ResumeLayout(false);
@@ -467,5 +490,6 @@
         private Label lblEmail;
         private Label lblPassword;
         private PictureBox pwView;
+        private MaterialSkin.Controls.MaterialButton btnUpdate;
     }
 }
