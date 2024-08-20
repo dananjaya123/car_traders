@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Repository
+namespace car_traders.Service
 {
-    public class CarPartsRepository
+    public class CarPartsService
     {
-        public Boolean saveCarPart(CarPart carPart)
+        public bool saveCarPart(CarPart carPart)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -19,9 +19,9 @@ namespace car_traders.Repository
                 dbContext.SaveChanges();
                 return true;
             }
-        } 
-        
-        public Boolean updateCarPart(CarPart carPart)
+        }
+
+        public bool updateCarPart(CarPart carPart)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -44,7 +44,7 @@ namespace car_traders.Repository
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                var cars = dbContext.car_parts.Where(cp=> cp.Is_active==true).ToList();
+                var cars = dbContext.car_parts.Where(cp => cp.Is_active == true).ToList();
                 return cars;
             }
         }
@@ -55,13 +55,14 @@ namespace car_traders.Repository
                 var carsParts = dbContext.car_parts.Where(cp => cp.Parts_name.Contains(searchVal)
                 || cp.Car_model.Contains(searchVal)
                 || cp.Status.Contains(searchVal)
-                ||cp.Category.Contains(searchVal)
+                || cp.Category.Contains(searchVal)
                 ).ToList();
                 return carsParts;
             }
         }
 
-        public int getActiveCarPartsCaount() {
+        public int getActiveCarPartsCaount()
+        {
             using (var dbContext = new ApplicationDBContext())
             {
                 // Using a native SQL query to get the count of active car parts
@@ -72,7 +73,7 @@ namespace car_traders.Repository
             }
         }
 
-        public bool UpdatePartsStatusAndQty(Guid id, string status, bool isActive,int qty)
+        public bool UpdatePartsStatusAndQty(Guid id, string status, bool isActive, int qty)
         {
             using (var dbContext = new ApplicationDBContext())
             {

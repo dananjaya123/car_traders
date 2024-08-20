@@ -1,6 +1,6 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using car_traders.View.Customer;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
@@ -18,16 +18,16 @@ namespace car_traders
     public partial class SearchCarForm : Form
     {
 
-        CarRepository _carRepository;
-        OrderRepository _orderRepository;
-        OrderDetailRepository _orderDetailRepository;
+        CarService _carService;
+        OrderService _orderService;
+        OrderDetailService _orderDetailService;
         IDGenerate _iDGenerate;
         EmailSend _emailSend;
         public SearchCarForm()
         {
-            _carRepository = new CarRepository();
-            _orderRepository = new OrderRepository();
-            _orderDetailRepository = new OrderDetailRepository();
+            _carService = new CarService();
+            _orderService = new OrderService();
+            _orderDetailService = new OrderDetailService();
             _iDGenerate = new IDGenerate();
             _emailSend = new EmailSend();
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace car_traders
         private void loadCarDetail()
         {
             resultContainer.Controls.Clear();
-            List<Car> carList = _carRepository.getAllCarList();
+            List<Car> carList = _carService.getAllCarList();
             if (carList == null || carList.Count == 0)
             {
                 MessageBox.Show("No cars found in the database.");
@@ -71,7 +71,7 @@ namespace car_traders
             if (texSearchCar.TextLength >= 1)
             {
                 resultContainer.Controls.Clear();
-                List<Car> carList = _carRepository.getAllCarListByModelName(texSearchCar.Text);
+                List<Car> carList = _carService.getAllCarListByModelName(texSearchCar.Text);
                 if (carList == null || carList.Count == 0)
                 {
                     MessageBox.Show("No cars found in the database.");
@@ -190,7 +190,7 @@ namespace car_traders
                         Is_active = true
 
                     };
-                    if (_orderRepository.plaseOrder(order))
+                    if (_orderService.plaseOrder(order))
                     {
                         OrderDetails orderDetails = new OrderDetails
                         {
@@ -204,10 +204,10 @@ namespace car_traders
 
 
                         };
-                        if (_orderDetailRepository.saveOrderDetail(orderDetails))
+                        if (_orderDetailService.saveOrderDetail(orderDetails))
                         {
                             car.Status = "SOLD OUT";
-                            if (_carRepository.updateCar(car))
+                            if (_carService.updateCar(car))
                             {
 
                                 string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), car.Image_data);

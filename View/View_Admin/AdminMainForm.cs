@@ -1,6 +1,5 @@
 using car_traders.Dta;
 using car_traders.Model;
-using car_traders.Repository;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using MaterialSkin;
@@ -14,14 +13,16 @@ using System.Xml.Linq;
 using car_traders.Common;
 using car_traders.View.View_Admin.View_Orders;
 using car_traders.View.View_Admin.View_Customer;
+using car_traders.Service;
 
 namespace car_traders
 {
     public partial class AdminMainForm : MaterialForm
     {
-        private readonly CarRepository _carRepository;
-        private readonly CarPartsRepository _carPartsRepository;
-        private readonly UserRepository _userRepository;
+        private readonly CarService _carService;
+        private readonly CarPartsService _carPartService;
+        private readonly OrderService _orderService;
+        private readonly UserService _userService;
         private readonly PDFGenarate _pdfGenarate;
 
         public AdminMainForm()
@@ -34,10 +35,11 @@ namespace car_traders
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
             // Initialize CarRepository
-            _carRepository = new CarRepository();
-            _carPartsRepository = new CarPartsRepository();
-            _userRepository = new UserRepository();
+            _carService = new CarService();
+            _carPartService = new CarPartsService();
+            _userService = new UserService();
             _pdfGenarate = new PDFGenarate();
+            _orderService = new OrderService();
 
         }
 
@@ -142,7 +144,7 @@ namespace car_traders
                     // Assuming the subitems are in the same order as you added them
                     var id = Guid.Parse(item.SubItems[9].Text); // Convert from string to Guid
 
-                    var car = _carRepository.getCarById(id);
+                    var car = _carService.getCarById(id);
 
                     Form modelBackgraund = new Form();
                     using (CarUpdateModalForm model = new CarUpdateModalForm(car))
@@ -196,7 +198,7 @@ namespace car_traders
                     car.Image_data = ImageToByteArray(imgBoxCar.Image);
                 }
 
-                if (_carRepository.saveCar(car))
+                if (_carService.saveCar(car))
                 {
                     MessageBox.Show("Car added successfully");
                 }
@@ -240,7 +242,7 @@ namespace car_traders
             }
             else
             {
-                List<Car> carList = _carRepository.getAllCarListByModelName(searchModelName);
+                List<Car> carList = _carService.getAllCarListByModelName(searchModelName);
                 loadCarListTable(carList);
             }
 
@@ -289,7 +291,7 @@ namespace car_traders
                     // Assuming the subitems are in the same order as you added them
                     var id = Guid.Parse(item.SubItems[7].Text); // Convert from string to Guid
 
-                    var carPart = _carPartsRepository.getCarPartById(id);
+                    var carPart = _carPartService.getCarPartById(id);
 
 
                     Form modelBackgraund = new Form();
@@ -340,7 +342,7 @@ namespace car_traders
                 {
                     carPart.Image_data = ImageToByteArray(imgBoxCarPats.Image);
                 }
-                if (_carPartsRepository.saveCarPart(carPart))
+                if (_carPartService.saveCarPart(carPart))
                 {
                     MessageBox.Show("Car Part added successfully");
                     loadCarPartsListTable();
@@ -392,7 +394,7 @@ namespace car_traders
                 }
                 else
                 {
-                    List<CarPart> parts = _carPartsRepository.getCarPartsByPartName(searchVal);
+                    List<CarPart> parts = _carPartService.getCarPartsByPartName(searchVal);
                     loadCarPartsListTable(parts);
                 }
             }
@@ -426,13 +428,13 @@ namespace car_traders
 
         private void LoadCarTable()
         {
-            List<Car> carList = _carRepository.getAllCarList();
+            List<Car> carList = _carService.getAllCarList();
             loadCarListTable(carList);
         }
 
         private void loadCarPartsListTable()
         {
-            var carParts = _carPartsRepository.getAllCarPartList();
+            var carParts = _carPartService.getAllCarPartList();
             loadCarPartsListTable(carParts);
         }
         private byte[] ImageToByteArray(System.Drawing.Image image)
@@ -494,17 +496,21 @@ namespace car_traders
         private void LoadDashboardCount()
         {
             //car count
-            int carCount = _carRepository.GetCarCount();
+            int carCount = _carService.GetCarCount();
             lblCarCount.Text = carCount.ToString();
 
             //car parts count
-            int partCount = _carPartsRepository.getActiveCarPartsCaount();
+            int partCount = _carPartService.getActiveCarPartsCaount();
             lblPartsCoun.Text = partCount.ToString();
 
             //active customer load
-            int customerCount = _userRepository.GetCusotmerCount();
+            int customerCount = _userService.GetCusotmerCount();
             lblCustomerCount.Text = customerCount.ToString();
 
+            //get activeorder count
+            lblOrdersCount.Text = _orderService.GetActiveOrderCount().ToString();
+
+            lblIncome.Text = _orderService.GetPaidOrderAmount().ToString("F2");
 
         }
 

@@ -1,6 +1,6 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -18,7 +18,7 @@ namespace car_traders
 {
     public partial class ForgotPasswordModalForm : MaterialForm
     {
-        private readonly UserRepository _userRepository;
+        private readonly UserService _userService;
         private readonly EmailSend _emailSend;
         private readonly IDGenerate _idgenarater;
         private readonly HashPassword _hashPassword;
@@ -30,7 +30,7 @@ namespace car_traders
 
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
-            _userRepository = new UserRepository();
+            _userService = new UserService();
             _emailSend = new EmailSend();
             _idgenarater = new IDGenerate();
             _hashPassword = new HashPassword();
@@ -76,7 +76,7 @@ namespace car_traders
                 lblUserError.Visible = false;
                 var searchVal = texUserName.Text;
 
-                user = _userRepository.getEqualEmail(searchVal);
+                user = _userService.getEqualEmail(searchVal);
                 if (user != null)
                 {
 
@@ -86,7 +86,7 @@ namespace car_traders
                     user.Password = hashOneTimePw;
 
 
-                    if (_userRepository.updateUserDetail(user))
+                    if (_userService.updateUserDetail(user))
                     {
                         lblUserError.Text = "Please check your Email. sent the One time Password";
                         lblUserError.ForeColor = Color.Green;
@@ -139,7 +139,7 @@ namespace car_traders
                     texNewPassword.Visible = true;
                     var newPw = texNewPassword.Text;
                     user.Password = _hashPassword.HashPasswords(newPw);
-                    if (_userRepository.updateUserDetail(user))
+                    if (_userService.updateUserDetail(user))
                     {
                         MessageBox.Show("Password change succsess.", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();

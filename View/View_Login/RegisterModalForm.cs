@@ -1,6 +1,6 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -21,8 +21,8 @@ namespace car_traders
 {
     public partial class RegisterModalForm : MaterialForm
     {
-        private RoleRepository _roleRepository;
-        private UserRepository _userRepository;
+        private RoleService _roleService;
+        private UserService _userService;
         private HashPassword _hashPassword;
         readonly EmailSend _EmailSend;
         public RegisterModalForm()
@@ -34,8 +34,8 @@ namespace car_traders
             //materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
-            _roleRepository = new RoleRepository();
-            _userRepository = new UserRepository();
+            _roleService = new RoleService();
+            _userService = new UserService();
             _hashPassword = new HashPassword();
             _EmailSend = new EmailSend();
         }
@@ -87,17 +87,17 @@ namespace car_traders
                     return;
                 }
 
-                var role = _roleRepository.getRoleByName("CUSTOMER");
+                var role = _roleService.getRoleByName("CUSTOMER");
 
                 if (role != null)
                 {
-                    if (_userRepository.IsUserNameOrEmailExists(texUserName.Text, texEmail.Text))
+                    if (_userService.IsUserNameOrEmailExists(texUserName.Text, texEmail.Text))
                     {
                         MessageBox.Show("Username or Email already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    var userCount = _userRepository.getUserCount(); // Get the current number of users
+                    var userCount = _userService.getUserCount(); // Get the current number of users
                     var userCode = GenerateUserCode(userCount + 1); // Generate the user code for the new user
 
                     var user = new User
@@ -113,7 +113,7 @@ namespace car_traders
                         Is_active = true
                     };
 
-                    if (_userRepository.saveUser(user))
+                    if (_userService.saveUser(user))
                     {
                         MessageBox.Show("Success");
                         this.Close();
@@ -220,45 +220,41 @@ namespace car_traders
         public void UdateUser(User user)
         {
             userData = user;
+
             btnRegister.Visible = false;
             btnClear.Visible = false;
             btnUpdate.Visible = true;
 
-            texName.Text = user.Name;
-            texContactNum.Text = user.Contact_num;
-            texAddress.Text = user.Address;
-            texUserName.Text = user.User_name;
-            texEmail.Text = user.Email;
+            texName.Text = userData.Name;
+            texContactNum.Text = userData.Contact_num;
+            texAddress.Text = userData.Address;
+            texUserName.Text = userData.User_name;
+            texEmail.Text = userData.Email;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try {
                 string pw = texPassword.Text;
-                var user = new User
-                {
-                    Name = texName.Text,
-                    User_code = userData.User_code,
-                    Contact_num = texContactNum.Text,
-                    Email = texEmail.Text,
-                    Address = texAddress.Text,
-                    User_name = texUserName.Text,
-                    Role_name = userData.Role_name,
-                    Password = userData.Password,
-                    Is_active = true
-                   
-                };
+
+                userData.Name = texName.Text;
+                userData.Contact_num = texContactNum.Text;
+                userData.Email = texEmail.Text;
+                userData.Address = texAddress.Text;
+                userData.User_name = texUserName.Text;
+                userData.Is_active = true;
+
                 if (pw != "")
                 {
-                    user.Password = _hashPassword.HashPasswords(pw);
+                    userData.Password = _hashPassword.HashPasswords(pw);
                  }
 
-                if (_userRepository.updateUserDetail(user))
+                if (_userService.updateUserDetail(userData))
                 {
                     if (pw != "")
                     {
-                        string body = GenerateEmailBody("car traders",user.User_name,user.Contact_num,user.Email,user.Address,pw);
-                        _EmailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body);
+                        string body = GenerateEmailBody("car traders", userData.User_name, userData.Contact_num, userData.Email, userData.Address,pw);
+                        _EmailSend.SendEmail("cartraders@gmail.com", userData.Email, "Order Request ", body);
                     }
                         
                     MessageBox.Show("Success");
@@ -280,23 +276,23 @@ namespace car_traders
   
 
             string body = $@"
-<html>
-<body style='font-family: Arial, sans-serif; color: #333;'>
-    <h2 style='color: #4CAF50;'>User Details Updated - {projectName}</h2>
-    <p>Dear {userName},</p>
-    <p>Your user details have been successfully updated in <strong>{projectName}</strong>. Below are your updated details:</p>
-    <ul style='list-style-type: none; padding: 0;'>
-        <li><strong>Contact Number:</strong> {contactNum}</li>
-        <li><strong>Email:</strong> {email}</li>
-        <li><strong>Address:</strong> {address}</li>
-        <li><strong>User name:</strong> {userName}</li>
-        <li><strong>Password:</strong> {password}</li>
-    </ul>
-    <p>If you have any questions about your account, please contact our support team.</p>
-    <p>Best regards,</p>
-    <p><strong>The {projectName} Team</strong></p>
-</body>
-</html>";
+        <html>
+            <body style='font-family: Arial, sans-serif; color: #333;'>
+                <h2 style='color: #4CAF50;'>User Details Updated - {projectName}</h2>
+                <p>Dear {userName},</p>
+                <p>Your user details have been successfully updated in <strong>{projectName}</strong>. Below are your updated details:</p>
+                <ul style='list-style-type: none; padding: 0;'>
+                     <li><strong>Contact Number:</strong> {contactNum}</li>
+                    <li><strong>Email:</strong> {email}</li>
+                    <li><strong>Address:</strong> {address}</li>
+                    <li><strong>User name:</strong> {userName}</li>
+                    <li><strong>Password:</strong> {password}</li>
+               </ul>
+                <p>If you have any questions about your account, please contact our support team.</p>
+                <p>Best regards,</p>
+                <p><strong>The {projectName} Team</strong></p>
+            </body>
+        </html>";
 
             return body;
         }

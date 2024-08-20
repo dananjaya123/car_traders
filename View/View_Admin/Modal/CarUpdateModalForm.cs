@@ -1,5 +1,5 @@
 ﻿using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -17,14 +17,14 @@ namespace car_traders
     public partial class CarUpdateModalForm : MaterialForm
     {
         private Car _car;
-        private readonly CarRepository _carRepository;
+        private readonly CarService _carService;
 
         public CarUpdateModalForm(Car car)
         {
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
-            _carRepository = new CarRepository();
+            _carService = new CarService();
             _car = car;
 
             InitializeComponent();
@@ -108,7 +108,7 @@ namespace car_traders
                     return;
                 }
                 // Retrieve the car  from the repository
-                var car = _carRepository.getCarById(_car.Id);
+                var car = _carService.getCarById(_car.Id);
                 if (car != null)
                 {
                     car.Car_brand = brand;
@@ -126,7 +126,7 @@ namespace car_traders
                     car.Description = description;
 
                     // Update the car part in the repository
-                    if (_carRepository.updateCar(car))
+                    if (_carService.updateCar(car))
                     {
                         MessageBox.Show("Car  updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
@@ -158,7 +158,7 @@ namespace car_traders
                 if (result == DialogResult.Yes)
                 {
                     // Retrieve the car part from the repository
-                    var car = _carRepository.getCarById(_car.Id);
+                    var car = _carService.getCarById(_car.Id);
 
                     if (car != null)
                     {
@@ -166,7 +166,7 @@ namespace car_traders
                         car.Is_active = false;
 
                         // Update the car part in the repository
-                        if (_carRepository.updateCar(car))
+                        if (_carService.updateCar(car))
                         {
                             MessageBox.Show("Car deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();

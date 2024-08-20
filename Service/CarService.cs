@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Repository
+namespace car_traders.Service
 {
-    public class CarRepository
+    public class CarService
     {
 
-        public Boolean saveCar(Car car)
+        public bool saveCar(Car car)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -22,7 +22,7 @@ namespace car_traders.Repository
             }
         }
 
-        public Boolean updateCar(Car car)
+        public bool updateCar(Car car)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -44,7 +44,7 @@ namespace car_traders.Repository
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                var cars =dbContext.car.Where(cr=> cr.Is_active==true).ToList();
+                var cars = dbContext.car.Where(cr => cr.Is_active == true).ToList();
                 return cars;
             }
         }
@@ -70,11 +70,11 @@ namespace car_traders.Repository
             {
                 var cars = dbContext.car
                                     .Where(cp => cp.Model_name.Contains(searchVal)
-                                    ||cp.Car_brand.Contains(searchVal)
-                                    ||cp.Color.Contains(searchVal)
-                                    ||cp.Body_type.Contains(searchVal)
-                                    ||cp.Seller_name.Contains(searchVal)
-                                    ||cp.Status.Contains(searchVal)
+                                    || cp.Car_brand.Contains(searchVal)
+                                    || cp.Color.Contains(searchVal)
+                                    || cp.Body_type.Contains(searchVal)
+                                    || cp.Seller_name.Contains(searchVal)
+                                    || cp.Status.Contains(searchVal)
                                     )
                                     .ToList();
                 return cars;

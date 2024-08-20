@@ -1,6 +1,6 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using car_traders.View.View_Admin.Modal;
 using System;
 using System.Collections.Generic;
@@ -16,19 +16,19 @@ namespace car_traders.View.View_Admin.View_Orders
 {
     public partial class ViewRequestOrderForm : Form
     {
-        OrderRepository _orderRepository;
-        OrderDetailRepository _orderDetailRepository;
-        CarRepository _carRepository;
-        CarPartsRepository _carPartsRepository;
+        OrderService _orderService;
+        OrderDetailService _orderDetailService;
+        CarService _carService;
+        CarPartsService _carPartsService;
         User sesionUser = LoginForm.SesionUserData;
         PDFGenarate _pdfGenarate;
         public ViewRequestOrderForm()
         {
             InitializeComponent();
-            _orderRepository = new OrderRepository();
-            _orderDetailRepository = new OrderDetailRepository();
-            _carRepository = new CarRepository();
-            _carPartsRepository = new CarPartsRepository();
+            _orderService = new OrderService();
+            _orderDetailService = new OrderDetailService();
+            _carService = new CarService();
+            _carPartsService = new CarPartsService();
             _pdfGenarate = new PDFGenarate();
             loadTable();
         }
@@ -38,7 +38,7 @@ namespace car_traders.View.View_Admin.View_Orders
         {
             try
             {
-                List<Order> orderList = _orderRepository.getAllOrdersByStatus("REQUEST");
+                List<Order> orderList = _orderService.getAllOrdersByStatus("REQUEST");
                 listViewOrder.Items.Clear();
 
                 foreach (var order in orderList)
@@ -80,16 +80,16 @@ namespace car_traders.View.View_Admin.View_Orders
 
 
                 detail.Is_active = false;
-                if (_orderDetailRepository.updateOrderDetail(detail))
+                if (_orderDetailService.updateOrderDetail(detail))
                 {
                     order.status = "REJECT";
                     order.Is_active = false;
 
-                    if (_orderRepository.updateOrder(order))
+                    if (_orderService.updateOrder(order))
                     {
                         if (orderType.Equals("PART"))
                         {
-                            if (_carPartsRepository.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
+                            if (_carPartsService.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
                             {
                                 MessageBox.Show($" Your order is reject", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -97,7 +97,7 @@ namespace car_traders.View.View_Admin.View_Orders
                         }
                         else if (orderType.Equals("CAR"))
                         {
-                            if (_carRepository.UpdateCarStatusAndQty(detail.Item_Id, "AVAILABLE", true))
+                            if (_carService.UpdateCarStatusAndQty(detail.Item_Id, "AVAILABLE", true))
                             {
                                 MessageBox.Show($" Your order is reject", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -129,10 +129,10 @@ namespace car_traders.View.View_Admin.View_Orders
                     loader.Visible = true;
                     var orderCode = item.SubItems[0].Text;
 
-                    order = _orderRepository.getOrderByOrderCode(orderCode);
+                    order = _orderService.getOrderByOrderCode(orderCode);
                     if (order != null)
                     {
-                        detail = _orderDetailRepository.getOrderByOrderCode(order.Order_code);
+                        detail = _orderDetailService.getOrderByOrderCode(order.Order_code);
                         if (detail != null)
                         {
                             visibleLable();
@@ -148,7 +148,7 @@ namespace car_traders.View.View_Admin.View_Orders
 
                             if (detail.Item_type.Equals("CAR"))
                             {
-                                var car = _carRepository.getCarById(detail.Item_Id);
+                                var car = _carService.getCarById(detail.Item_Id);
                                 if (car.Image_data != null)
                                 {
                                     using (MemoryStream ms = new MemoryStream(car.Image_data))
@@ -160,7 +160,7 @@ namespace car_traders.View.View_Admin.View_Orders
                             }
                             else if (detail.Item_type.Equals("PART"))
                             {
-                                var part = _carPartsRepository.getCarPartById(detail.Item_Id);
+                                var part = _carPartsService.getCarPartById(detail.Item_Id);
                                 if (part.Image_data != null)
                                 {
                                     using (MemoryStream ms = new MemoryStream(part.Image_data))
@@ -236,7 +236,7 @@ namespace car_traders.View.View_Admin.View_Orders
         {
             if (texSearch.TextLength >= 1)
             {
-                List<Order> orderList = _orderRepository.getCustomerOrderByOrderCodeAndStatu("REQUEST", texSearch.Text);
+                List<Order> orderList = _orderService.getCustomerOrderByOrderCodeAndStatu("REQUEST", texSearch.Text);
                 listViewOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
                 {

@@ -32,8 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabDashboard = new TabPage();
-            materialFloatingActionButton1 = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            materialFloatingActionButton5 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             imageList1 = new ImageList(components);
+            materialCard5 = new MaterialSkin.Controls.MaterialCard();
+            panel5 = new Panel();
+            label8 = new Label();
+            lblIncome = new Label();
+            materialFloatingActionButton4 = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            materialCard4 = new MaterialSkin.Controls.MaterialCard();
+            panel4 = new Panel();
+            label9 = new Label();
+            lblOrdersCount = new Label();
+            materialFloatingActionButton1 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             panel1 = new Panel();
             lblCustomerCount = new Label();
@@ -117,6 +127,10 @@
             pnlCustomerMain = new Panel();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
+            materialCard5.SuspendLayout();
+            panel5.SuspendLayout();
+            materialCard4.SuspendLayout();
+            panel4.SuspendLayout();
             materialCard1.SuspendLayout();
             panel1.SuspendLayout();
             materialCard3.SuspendLayout();
@@ -156,6 +170,10 @@
             // 
             // tabDashboard
             // 
+            tabDashboard.Controls.Add(materialFloatingActionButton5);
+            tabDashboard.Controls.Add(materialCard5);
+            tabDashboard.Controls.Add(materialFloatingActionButton4);
+            tabDashboard.Controls.Add(materialCard4);
             tabDashboard.Controls.Add(materialFloatingActionButton1);
             tabDashboard.Controls.Add(materialCard1);
             tabDashboard.Controls.Add(materialFloatingActionButton3);
@@ -171,20 +189,20 @@
             tabDashboard.Text = "Dashboard";
             tabDashboard.Click += tabDashboard_Click;
             // 
-            // materialFloatingActionButton1
+            // materialFloatingActionButton5
             // 
-            materialFloatingActionButton1.BackColor = Color.White;
-            materialFloatingActionButton1.Depth = 0;
-            materialFloatingActionButton1.Icon = Properties.Resources.dashboardPart;
-            materialFloatingActionButton1.ImageIndex = 6;
-            materialFloatingActionButton1.ImageList = imageList1;
-            materialFloatingActionButton1.Location = new Point(243, 68);
-            materialFloatingActionButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialFloatingActionButton1.Name = "materialFloatingActionButton1";
-            materialFloatingActionButton1.Size = new Size(58, 62);
-            materialFloatingActionButton1.TabIndex = 15;
-            materialFloatingActionButton1.Text = "materialFloatingActionButton1";
-            materialFloatingActionButton1.UseVisualStyleBackColor = false;
+            materialFloatingActionButton5.BackColor = Color.White;
+            materialFloatingActionButton5.Depth = 0;
+            materialFloatingActionButton5.Icon = Properties.Resources.dashboardPart;
+            materialFloatingActionButton5.ImageIndex = 6;
+            materialFloatingActionButton5.ImageList = imageList1;
+            materialFloatingActionButton5.Location = new Point(539, 258);
+            materialFloatingActionButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialFloatingActionButton5.Name = "materialFloatingActionButton5";
+            materialFloatingActionButton5.Size = new Size(58, 62);
+            materialFloatingActionButton5.TabIndex = 22;
+            materialFloatingActionButton5.Text = "materialFloatingActionButton5";
+            materialFloatingActionButton5.UseVisualStyleBackColor = false;
             // 
             // imageList1
             // 
@@ -199,6 +217,128 @@
             imageList1.Images.SetKeyName(5, "dashboardHumen.png");
             imageList1.Images.SetKeyName(6, "dashboardPart.png");
             imageList1.Images.SetKeyName(7, "icons8-customer-32.png");
+            // 
+            // materialCard5
+            // 
+            materialCard5.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard5.Controls.Add(panel5);
+            materialCard5.Depth = 0;
+            materialCard5.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard5.Location = new Point(337, 227);
+            materialCard5.Margin = new Padding(14);
+            materialCard5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard5.Name = "materialCard5";
+            materialCard5.Padding = new Padding(14);
+            materialCard5.Size = new Size(233, 123);
+            materialCard5.TabIndex = 21;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.Goldenrod;
+            panel5.Controls.Add(label8);
+            panel5.Controls.Add(lblIncome);
+            panel5.Location = new Point(0, 0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(233, 124);
+            panel5.TabIndex = 13;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Gainsboro;
+            label8.Location = new Point(4, 5);
+            label8.Name = "label8";
+            label8.Size = new Size(125, 38);
+            label8.TabIndex = 17;
+            label8.Text = "INCOME";
+            // 
+            // lblIncome
+            // 
+            lblIncome.AutoSize = true;
+            lblIncome.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblIncome.ForeColor = Color.Gainsboro;
+            lblIncome.Location = new Point(3, 46);
+            lblIncome.Name = "lblIncome";
+            lblIncome.Size = new Size(33, 38);
+            lblIncome.TabIndex = 18;
+            lblIncome.Text = "0";
+            // 
+            // materialFloatingActionButton4
+            // 
+            materialFloatingActionButton4.BackColor = Color.White;
+            materialFloatingActionButton4.Depth = 0;
+            materialFloatingActionButton4.Icon = Properties.Resources.dashboardPart;
+            materialFloatingActionButton4.ImageIndex = 6;
+            materialFloatingActionButton4.ImageList = imageList1;
+            materialFloatingActionButton4.Location = new Point(243, 258);
+            materialFloatingActionButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialFloatingActionButton4.Name = "materialFloatingActionButton4";
+            materialFloatingActionButton4.Size = new Size(58, 62);
+            materialFloatingActionButton4.TabIndex = 20;
+            materialFloatingActionButton4.Text = "materialFloatingActionButton4";
+            materialFloatingActionButton4.UseVisualStyleBackColor = false;
+            // 
+            // materialCard4
+            // 
+            materialCard4.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard4.Controls.Add(panel4);
+            materialCard4.Depth = 0;
+            materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard4.Location = new Point(41, 227);
+            materialCard4.Margin = new Padding(14);
+            materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard4.Name = "materialCard4";
+            materialCard4.Padding = new Padding(14);
+            materialCard4.Size = new Size(233, 123);
+            materialCard4.TabIndex = 19;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.PaleVioletRed;
+            panel4.Controls.Add(label9);
+            panel4.Controls.Add(lblOrdersCount);
+            panel4.Location = new Point(0, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(233, 124);
+            panel4.TabIndex = 13;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Gainsboro;
+            label9.Location = new Point(4, 5);
+            label9.Name = "label9";
+            label9.Size = new Size(122, 38);
+            label9.TabIndex = 17;
+            label9.Text = "ORDERS";
+            // 
+            // lblOrdersCount
+            // 
+            lblOrdersCount.AutoSize = true;
+            lblOrdersCount.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblOrdersCount.ForeColor = Color.Gainsboro;
+            lblOrdersCount.Location = new Point(3, 46);
+            lblOrdersCount.Name = "lblOrdersCount";
+            lblOrdersCount.Size = new Size(33, 38);
+            lblOrdersCount.TabIndex = 18;
+            lblOrdersCount.Text = "0";
+            // 
+            // materialFloatingActionButton1
+            // 
+            materialFloatingActionButton1.BackColor = Color.White;
+            materialFloatingActionButton1.Depth = 0;
+            materialFloatingActionButton1.Icon = Properties.Resources.dashboardPart;
+            materialFloatingActionButton1.ImageIndex = 6;
+            materialFloatingActionButton1.ImageList = imageList1;
+            materialFloatingActionButton1.Location = new Point(243, 68);
+            materialFloatingActionButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialFloatingActionButton1.Name = "materialFloatingActionButton1";
+            materialFloatingActionButton1.Size = new Size(58, 62);
+            materialFloatingActionButton1.TabIndex = 15;
+            materialFloatingActionButton1.Text = "materialFloatingActionButton1";
+            materialFloatingActionButton1.UseVisualStyleBackColor = false;
             // 
             // materialCard1
             // 
@@ -242,9 +382,9 @@
             label4.ForeColor = Color.Gainsboro;
             label4.Location = new Point(6, 6);
             label4.Name = "label4";
-            label4.Size = new Size(151, 38);
+            label4.Size = new Size(177, 38);
             label4.TabIndex = 13;
-            label4.Text = "Customers";
+            label4.Text = "CUSTOMERS";
             label4.Click += label4_Click;
             // 
             // materialFloatingActionButton3
@@ -303,9 +443,9 @@
             label6.ForeColor = Color.Gainsboro;
             label6.Location = new Point(5, 6);
             label6.Name = "label6";
-            label6.Size = new Size(59, 38);
+            label6.Size = new Size(85, 38);
             label6.TabIndex = 15;
-            label6.Text = "Car";
+            label6.Text = "CARS";
             // 
             // materialFloatingActionButton2
             // 
@@ -364,9 +504,9 @@
             label5.ForeColor = Color.Gainsboro;
             label5.Location = new Point(10, 6);
             label5.Name = "label5";
-            label5.Size = new Size(80, 38);
+            label5.Size = new Size(96, 38);
             label5.TabIndex = 14;
-            label5.Text = "Parts";
+            label5.Text = "PARTS";
             // 
             // tabAddCar
             // 
@@ -1743,6 +1883,12 @@
             Load += Form1_Load;
             materialTabControl1.ResumeLayout(false);
             tabDashboard.ResumeLayout(false);
+            materialCard5.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            materialCard4.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             materialCard1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -1854,5 +2000,15 @@
         private Panel pnlOrderMain;
         private TabPage tblCustomer;
         private Panel pnlCustomerMain;
+        private Label lblOrdersCount;
+        private Label label9;
+        private MaterialSkin.Controls.MaterialFloatingActionButton materialFloatingActionButton5;
+        private MaterialSkin.Controls.MaterialCard materialCard5;
+        private Panel panel5;
+        private Label label8;
+        private Label lblIncome;
+        private MaterialSkin.Controls.MaterialFloatingActionButton materialFloatingActionButton4;
+        private MaterialSkin.Controls.MaterialCard materialCard4;
+        private Panel panel4;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using car_traders.View.View_Admin.View_Orders;
 using MaterialSkin.Controls;
 using Org.BouncyCastle.Crypto.Macs;
@@ -18,14 +18,14 @@ namespace car_traders.View.View_Admin.Modal
 {
     public partial class PaymentModalForm : MaterialForm
     {
-        readonly OrderRepository _orderRepository;
-        readonly UserRepository _userRepository;
+        readonly OrderService _orderService;
+        readonly UserService _userService;
         private Order orderData;
         readonly EmailSend _emailSend;
         public PaymentModalForm()
         {
-            _orderRepository = new OrderRepository();
-            _userRepository = new UserRepository();
+            _orderService = new OrderService();
+            _userService = new UserService();
             _emailSend = new EmailSend();
             InitializeComponent();
         }
@@ -56,9 +56,9 @@ namespace car_traders.View.View_Admin.Modal
 
             orderData.status = "PAID";
             orderData.Is_payment = true;
-            if (_orderRepository.updateOrder(orderData))
+            if (_orderService.updateOrder(orderData))
             {
-                var userdata = _userRepository.getUserByUsercode(orderData.User_code);
+                var userdata = _userService.getUserByUsercode(orderData.User_code);
                 string mailBody = GenerateEmailBody("car traders", userdata.Name, orderData.Order_code, paidAmont);
 
                 if (_emailSend.SendEmail("cartraders@gmail.com", userdata.Email, "Payment successfully", mailBody))

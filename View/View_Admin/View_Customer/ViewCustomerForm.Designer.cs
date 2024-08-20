@@ -223,6 +223,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(991, 677);
             Controls.Add(btnReload);
             Controls.Add(btnAddCustomer);

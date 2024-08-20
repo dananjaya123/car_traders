@@ -1,5 +1,4 @@
 ﻿using car_traders.Model;
-using car_traders.Repository;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -16,13 +15,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using car_traders.Common;
+using car_traders.Service;
 
 namespace car_traders
 {
     public partial class LoginForm : MaterialForm
     {
         private HashPassword _hashPassword;
-        private UserRepository _userRepository;
+        private UserService _userService;
         
         public LoginForm()
         {
@@ -33,7 +33,7 @@ namespace car_traders
             //materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
-            _userRepository = new UserRepository();
+            _userService = new UserService();
             _hashPassword = new HashPassword();
         }
 
@@ -59,7 +59,7 @@ namespace car_traders
                 string hashedPassword = _hashPassword.HashPasswords(password);
 
 
-                var user = _userRepository.Login(userName, hashedPassword);
+                var user = _userService.Login(userName, hashedPassword);
 
                 if (user != null)
                 {

@@ -1,5 +1,5 @@
 ﻿using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -18,7 +18,7 @@ namespace car_traders
     public partial class PartUpdateModal : MaterialForm
     {
 
-        private readonly CarPartsRepository _carPartsRepository;
+        private readonly CarPartsService _carPartsService;
         private CarPart _carPart;
 
         public PartUpdateModal(CarPart carPart)
@@ -29,7 +29,7 @@ namespace car_traders
 
             _carPart = carPart;
 
-            _carPartsRepository = new CarPartsRepository();
+            _carPartsService = new CarPartsService();
 
             InitializeComponent();
             loadTextValues();
@@ -117,7 +117,7 @@ namespace car_traders
 
 
                 // Retrieve the car part from the repository
-                var carPart = _carPartsRepository.getCarPartById(_carPart.Id);
+                var carPart = _carPartsService.getCarPartById(_carPart.Id);
 
                 if (carPart != null)
                 {
@@ -131,7 +131,7 @@ namespace car_traders
 
 
                     // Update the car part in the repository
-                    if (_carPartsRepository.updateCarPart(carPart))
+                    if (_carPartsService.updateCarPart(carPart))
                     {
                         MessageBox.Show("Car Part updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
@@ -197,7 +197,7 @@ namespace car_traders
                 if (result == DialogResult.Yes)
                 {
                     // Retrieve the car part from the repository
-                    var part = _carPartsRepository.getCarPartById(_carPart.Id);
+                    var part = _carPartsService.getCarPartById(_carPart.Id);
 
                     if (part != null)
                     {
@@ -205,7 +205,7 @@ namespace car_traders
                         part.Is_active = false;
 
                         // Update the car part in the repository
-                        if (_carPartsRepository.updateCarPart(part))
+                        if (_carPartsService.updateCarPart(part))
                         {
                             MessageBox.Show("Car Part deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();

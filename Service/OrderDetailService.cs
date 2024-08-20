@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Repository
+namespace car_traders.Service
 {
-    internal class OrderDetailRepository
+    internal class OrderDetailService
     {
-        public Boolean saveOrderDetail(OrderDetails details)
+        public bool saveOrderDetail(OrderDetails details)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -27,7 +27,7 @@ namespace car_traders.Repository
                 return detail;
             }
         }
-        public Boolean updateOrderDetail(OrderDetails detail)
+        public bool updateOrderDetail(OrderDetails detail)
         {
             using (var dbContext = new ApplicationDBContext())
             {

@@ -1,5 +1,5 @@
 ﻿using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using car_traders.View.View_Customer.View_CarPart;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
@@ -16,19 +16,19 @@ namespace car_traders.View.View_Customer.View_Order
 {
     public partial class ViewOrderForm : Form
     {
-        OrderRepository _orderRepository;
-        OrderDetailRepository _orderDetailRepository;
-        CarRepository _carRepository;
-        CarPartsRepository _carPartsRepository;
+        OrderService _orderService;
+        OrderDetailService _orderDetailService;
+        CarService _carService;
+        CarPartsService _carPartsService;
         User sesionUser = LoginForm.SesionUserData;
         public ViewOrderForm()
         {
 
             InitializeComponent();
-            _orderRepository = new OrderRepository();
-            _orderDetailRepository = new OrderDetailRepository();
-            _carRepository = new CarRepository();
-            _carPartsRepository = new CarPartsRepository();
+            _orderService = new OrderService();
+            _orderDetailService = new OrderDetailService();
+            _carService = new CarService();
+            _carPartsService = new CarPartsService();
             loadTable();
         }
 
@@ -36,7 +36,7 @@ namespace car_traders.View.View_Customer.View_Order
         {
             try
             {
-                List<Order> orderList = _orderRepository.getAllOrdersByUser(sesionUser.User_code);
+                List<Order> orderList = _orderService.getAllOrdersByUser(sesionUser.User_code);
                 listViewOrder.Items.Clear();
 
                 foreach (var order in orderList)
@@ -65,7 +65,7 @@ namespace car_traders.View.View_Customer.View_Order
         {
             if (texSearch.TextLength >= 1)
             {
-                List<Order> orderList = _orderRepository.getCustomerOrderByNameOrOrderCode(sesionUser.User_code, texSearch.Text);
+                List<Order> orderList = _orderService.getCustomerOrderByNameOrOrderCode(sesionUser.User_code, texSearch.Text);
                 listViewOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
                 {
@@ -112,10 +112,10 @@ namespace car_traders.View.View_Customer.View_Order
                     loader.Visible = true;
                     var orderCode = item.SubItems[0].Text;
 
-                    order = _orderRepository.getOrderByOrderCode(orderCode);
+                    order = _orderService.getOrderByOrderCode(orderCode);
                     if (order != null)
                     {
-                        detail = _orderDetailRepository.getOrderByOrderCode(order.Order_code);
+                        detail = _orderDetailService.getOrderByOrderCode(order.Order_code);
                         if (detail != null)
                         {
                             visibleLable();
@@ -131,7 +131,7 @@ namespace car_traders.View.View_Customer.View_Order
 
                             if (detail.Item_type.Equals("CAR"))
                             {
-                               var car = _carRepository.getCarById(detail.Item_Id);
+                               var car = _carService.getCarById(detail.Item_Id);
                                 if (car.Image_data != null)
                                 {
                                     using (MemoryStream ms = new MemoryStream(car.Image_data))
@@ -143,7 +143,7 @@ namespace car_traders.View.View_Customer.View_Order
                             }
                             else if (detail.Item_type.Equals("PART"))
                             {
-                                var part = _carPartsRepository.getCarPartById(detail.Item_Id);
+                                var part = _carPartsService.getCarPartById(detail.Item_Id);
                                 if (part.Image_data != null)
                                 {
                                     using (MemoryStream ms = new MemoryStream(part.Image_data))
@@ -231,16 +231,16 @@ namespace car_traders.View.View_Customer.View_Order
 
 
                 detail.Is_active = false;
-                if (_orderDetailRepository.updateOrderDetail(detail))
+                if (_orderDetailService.updateOrderDetail(detail))
                 {
                     order.status = "CANSEL";
                     order.Is_active = false;
 
-                    if (_orderRepository.updateOrder(order))
+                    if (_orderService.updateOrder(order))
                     {
                         if (orderType.Equals("PART"))
                         {
-                            if (_carPartsRepository.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
+                            if (_carPartsService.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
                             {
                                 MessageBox.Show($" Your order is cancel", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -248,7 +248,7 @@ namespace car_traders.View.View_Customer.View_Order
                         }
                         else if (orderType.Equals("CAR"))
                         {
-                            if (_carRepository.UpdateCarStatusAndQty(detail.Item_Id, "AVAILABLE", true))
+                            if (_carService.UpdateCarStatusAndQty(detail.Item_Id, "AVAILABLE", true))
                             {
                                 MessageBox.Show($" Your order is cancel", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

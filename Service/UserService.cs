@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Repository
+namespace car_traders.Service
 {
-    internal class UserRepository
+    internal class UserService
     {
         public int getUserCount()
         {
@@ -21,7 +21,7 @@ namespace car_traders.Repository
             }
         }
 
-        public Boolean updateUserDetail(Model.User user)
+        public bool updateUserDetail(Model.User user)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -31,9 +31,9 @@ namespace car_traders.Repository
             }
         }
 
-        public Boolean saveUser(Model.User user)
+        public bool saveUser(Model.User user)
         {
-            using(var dbContext = new ApplicationDBContext())
+            using (var dbContext = new ApplicationDBContext())
             {
                 dbContext.user.Add(user);
                 dbContext.SaveChanges();
@@ -76,10 +76,10 @@ namespace car_traders.Repository
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                
+
                 var user = dbContext.user
-                                    .Where(u => u.User_name==searchVlues|| u.Email==searchVlues)
-                                    .FirstOrDefault(); 
+                                    .Where(u => u.User_name == searchVlues || u.Email == searchVlues)
+                                    .FirstOrDefault();
                 return user;
             }
         }
@@ -97,24 +97,24 @@ namespace car_traders.Repository
 
         public List<Model.User> getUsersByRole(string role)
         {
-            using(var dbContext = new ApplicationDBContext())
+            using (var dbContext = new ApplicationDBContext())
             {
-                var users = dbContext.user.Where(u=>u.Role_name==role).ToList();
+                var users = dbContext.user.Where(u => u.Role_name == role).ToList();
                 return users;
             }
         }
 
-        public List<Model.User> getUserByserchValues(string searchVlues,string role)
+        public List<Model.User> getUserByserchValues(string searchVlues, string role)
         {
             using (var dbContext = new ApplicationDBContext())
             {
 
                 var users = dbContext.user
-                                    .Where(u => u.Role_name.Equals(role) && (u.User_name.Contains(searchVlues) 
+                                    .Where(u => u.Role_name.Equals(role) && (u.User_name.Contains(searchVlues)
                                     || u.Email.Contains(searchVlues)
                                     || u.User_code.Contains(searchVlues)
-                                    ||u.Name.Contains(searchVlues)
-                                    ||u.Contact_num.Contains(searchVlues) 
+                                    || u.Name.Contains(searchVlues)
+                                    || u.Contact_num.Contains(searchVlues)
                                     || u.Address.Contains(searchVlues)))
                                     .ToList();
                 return users;

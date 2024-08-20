@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Repository
+namespace car_traders.Service
 {
-    internal class RoleRepository
+    internal class RoleService
     {
         public Role getRoleByName(string roleName)
         {
@@ -21,6 +21,6 @@ namespace car_traders.Repository
             }
 
         }
-       
+
     }
 }

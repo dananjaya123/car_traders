@@ -1,6 +1,6 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using car_traders.View.View_Customer.View_CarPart;
 using System;
 using System.Collections.Generic;
@@ -16,18 +16,18 @@ namespace car_traders.View.Customer
 {
     public partial class SearchCarPartsForm : Form
     {
-        CarPartsRepository _carPartsRepository;
-        OrderRepository _orderRepository;
+        CarPartsService _carPartsService;
+        OrderService _orderService;
         IDGenerate _IDGenerate;
-        OrderDetailRepository _orderDetailRepository;
+        OrderDetailService _orderDetailService;
         EmailSend _EmailSend;
         public SearchCarPartsForm()
         {
             InitializeComponent();
-            _carPartsRepository = new CarPartsRepository();
-            _orderRepository = new OrderRepository();
+            _carPartsService = new CarPartsService();
+            _orderService = new OrderService();
             _IDGenerate = new IDGenerate();
-            _orderDetailRepository = new OrderDetailRepository();
+            _orderDetailService = new OrderDetailService();
             _EmailSend = new EmailSend();
             loadCarPartDetail();
 
@@ -36,7 +36,7 @@ namespace car_traders.View.Customer
         private void loadCarPartDetail()
         {
             resultContainer.Controls.Clear();
-            List<CarPart> partlist = _carPartsRepository.getAllCarPartList();
+            List<CarPart> partlist = _carPartsService.getAllCarPartList();
             if (partlist == null || partlist.Count == 0)
             {
                 MessageBox.Show("No Part found in the database.");
@@ -66,7 +66,7 @@ namespace car_traders.View.Customer
             if (texSearchCarPart.TextLength >= 1)
             {
                 resultContainer.Controls.Clear();
-                List<CarPart> partlist = _carPartsRepository.getCarPartsByPartName(texSearchCarPart.Text);
+                List<CarPart> partlist = _carPartsService.getCarPartsByPartName(texSearchCarPart.Text);
                 if (partlist == null || partlist.Count == 0)
                 {
                     MessageBox.Show("No Part found in the database.");
@@ -233,7 +233,7 @@ namespace car_traders.View.Customer
                                 Is_active = true
 
                             };
-                            if (_orderRepository.plaseOrder(order))
+                            if (_orderService.plaseOrder(order))
                             {
                                 OrderDetails orderDetails = new OrderDetails
                                 {
@@ -247,7 +247,7 @@ namespace car_traders.View.Customer
 
 
                                 };
-                                if (_orderDetailRepository.saveOrderDetail(orderDetails))
+                                if (_orderDetailService.saveOrderDetail(orderDetails))
                                 {
                                     int avilableQty = carPart.Qty - (int)numInputQty.Value;
                                     if (avilableQty > 0)
@@ -258,7 +258,7 @@ namespace car_traders.View.Customer
                                         carPart.Qty = avilableQty;
                                         carPart.Status = "SOLD OUT";
                                     }
-                                    if (_carPartsRepository.updateCarPart(carPart))
+                                    if (_carPartsService.updateCarPart(carPart))
                                     {
                                         string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), carPart.Image_data);
                                         if (_EmailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))

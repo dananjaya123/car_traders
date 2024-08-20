@@ -6,11 +6,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Repository
+namespace car_traders.Service
 {
-    internal class OrderRepository
+    internal class OrderService
     {
-        public Boolean plaseOrder(Order order)
+        public int GetActiveOrderCount()
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+
+                var count = dbContext.order
+                                     .Where(cp => cp.Is_active)
+                                     .Count();
+                return count;
+
+
+            }
+
+        }
+
+        public double GetPaidOrderAmount()
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var sum = dbContext.order
+                                   .Where(order => order.Is_active && order.status.Equals("PAID"))
+                                   .Sum(order => order.Total_amount);
+
+                return sum;
+            }
+        }
+        public bool plaseOrder(Order order)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -20,7 +46,7 @@ namespace car_traders.Repository
             }
         }
 
-        public List<Order> getCustomerOrderByNameOrOrderCode(string userCOde,string searchVal)
+        public List<Order> getCustomerOrderByNameOrOrderCode(string userCOde, string searchVal)
         {
             using (var dbContext = new ApplicationDBContext())
             {
@@ -45,7 +71,7 @@ namespace car_traders.Repository
             using (var dbContext = new ApplicationDBContext())
             {
                 int count = dbContext.order.Count();
-                return count; 
+                return count;
             }
         }
 
@@ -82,7 +108,7 @@ namespace car_traders.Repository
                 return order;
             }
         }
-        public Boolean updateOrder(Order order)
+        public bool updateOrder(Order order)
         {
             using (var dbContext = new ApplicationDBContext())
             {

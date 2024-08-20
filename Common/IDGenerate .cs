@@ -1,4 +1,4 @@
-﻿using car_traders.Repository;
+﻿using car_traders.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace car_traders.Common
 
         public string OrderCodeGenerate()
         {
-            OrderRepository repository = new OrderRepository();
+            OrderService repository = new OrderService();
             int orderCount = repository.OrderCount(); // Get the current order count
 
             // Increment the order count for the new order

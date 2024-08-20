@@ -1,6 +1,6 @@
 ﻿using car_traders.Common;
 using car_traders.Model;
-using car_traders.Repository;
+using car_traders.Service;
 using Mysqlx.Crud;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
@@ -18,12 +18,12 @@ namespace car_traders.View.View_Admin.View_Customer
 {
     public partial class ViewCustomerForm : Form
     {
-        UserRepository _userRepository;
+        UserService _userService;
         PDFGenarate _pdfGenarate;
         public ViewCustomerForm()
         {
             InitializeComponent();
-            _userRepository = new UserRepository();
+            _userService = new UserService();
             _pdfGenarate = new PDFGenarate();
             loadTable();
         }
@@ -31,7 +31,7 @@ namespace car_traders.View.View_Admin.View_Customer
         {
             try
             {
-                List<User> userList = _userRepository.getUsersByRole("CUSTOMER");
+                List<User> userList = _userService.getUsersByRole("CUSTOMER");
                 listViewCustomer.Items.Clear();
                 if (userList.Count > 0)
                 {
@@ -82,8 +82,6 @@ namespace car_traders.View.View_Admin.View_Customer
         private User userData;
         private void listViewCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             try
             {
                 foreach (ListViewItem item in listViewCustomer.SelectedItems)
@@ -91,12 +89,13 @@ namespace car_traders.View.View_Admin.View_Customer
                     loader.Visible = true;
                     var userCode = item.SubItems[0].Text;
 
-                    userData = _userRepository.getUserByUsercode(userCode);
+                    userData = _userService.getUserByUsercode(userCode);
                     if (userData != null)
                     {
                         Form modelBackgraund = new Form();
                         using (RegisterModalForm model = new RegisterModalForm())
                         {
+      
                             model.UdateUser(userData);
 
                             modelBackgraund.StartPosition = FormStartPosition.Manual;
@@ -141,7 +140,7 @@ namespace car_traders.View.View_Admin.View_Customer
         {
             if (texSearch.TextLength >= 1)
             {
-                List<User> userList = _userRepository.getUserByserchValues(texSearch.Text, "CUSTOMER");
+                List<User> userList = _userService.getUserByserchValues(texSearch.Text, "CUSTOMER");
 
                 listViewCustomer.Items.Clear();
 
