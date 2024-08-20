@@ -14,8 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using car_traders.Common;
 using car_traders.Service;
+using car_traders.Service.Common;
 
 namespace car_traders
 {

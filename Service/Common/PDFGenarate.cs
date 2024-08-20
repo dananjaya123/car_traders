@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Common
+namespace car_traders.Service.Common
 {
     internal class PDFGenarate
     {
@@ -67,7 +67,7 @@ namespace car_traders.Common
 
                             using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
                             {
-                                iTextSharp.text.Document document = new iTextSharp.text.Document(PageSize.A4, 8f, 16f, 16f, 8f);
+                                Document document = new Document(PageSize.A4, 8f, 16f, 16f, 8f);
                                 PdfWriter.GetInstance(document, fileStream);
 
                                 document.Open();

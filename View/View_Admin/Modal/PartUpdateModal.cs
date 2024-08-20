@@ -42,7 +42,7 @@ namespace car_traders
         {
             texBrandName.Text = _carPart.Brand_name;
             texUpdatePartQty.Text = _carPart.Qty.ToString();
-            texUpdatePartPrice.Text = _carPart.Price.ToString();
+            texUpdatePartPrice.Text = _carPart.Price.ToString("F2");
             texCarMode.Text = _carPart.Car_model;
             texPartName.Text = _carPart.Parts_name;
             texDescription.Text = _carPart.Description;

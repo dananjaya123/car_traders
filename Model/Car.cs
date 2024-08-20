@@ -22,11 +22,12 @@ namespace car_traders.Model
         public string Transmission { get; set; }
         public string Body_type { get; set; }
         public byte[]? Image_data { get; set; }
-        public string Seller_name { get; set; }
-        public string Seller_address { get; set; }
-        public string Mobile_number { get; set; }
+        public string? Seller_name { get; set; }
+        public string? Seller_address { get; set; }
+        public string? Mobile_number { get; set; }
+        public string Selling_type { get; set; }
         public double Price { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public string Status { get; set; } = "available"; //available,soldout
         public bool Is_active { get; set; }

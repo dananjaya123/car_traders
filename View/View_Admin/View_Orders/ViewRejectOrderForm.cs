@@ -1,6 +1,6 @@
-﻿using car_traders.Common;
-using car_traders.Model;
+﻿using car_traders.Model;
 using car_traders.Service;
+using car_traders.Service.Common;
 using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;

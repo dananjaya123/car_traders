@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Common
+namespace car_traders.Service.Common
 {
     internal class IDGenerate
     {
@@ -38,6 +38,6 @@ namespace car_traders.Common
             return orderCode;
         }
 
-        
+
     }
 }

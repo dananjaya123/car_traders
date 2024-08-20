@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Common
+namespace car_traders.Service.Common
 {
     internal class HashPassword
     {

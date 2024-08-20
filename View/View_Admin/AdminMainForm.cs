@@ -10,10 +10,11 @@ using System.Data;
 using System.Reflection.Metadata;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using car_traders.Common;
 using car_traders.View.View_Admin.View_Orders;
 using car_traders.View.View_Admin.View_Customer;
 using car_traders.Service;
+using car_traders.Service.Common;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace car_traders
 {
@@ -171,10 +172,61 @@ namespace car_traders
             }
         }
 
+        private void comboCarSellerType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string type = comboCarSellerType.Text;
+            if (type.Equals("USED"))
+            {
+                texSellerName.Visible = true;
+                texsellerMobileNum.Visible = true;
+                texSellerAddress.Visible = true;
+            }
+            else
+            {
+                texSellerName.Visible = false;
+                texsellerMobileNum.Visible = false;
+                texSellerAddress.Visible = false;
+            }
+        }
+
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+
+                if (string.IsNullOrWhiteSpace(texCarBrand.Text) ||
+                string.IsNullOrWhiteSpace(texCarColor.Text) ||
+                string.IsNullOrWhiteSpace(dateTimeCarManuFact.Text) ||
+                string.IsNullOrWhiteSpace(texCarModelName.Text) ||
+                string.IsNullOrWhiteSpace(texMileage.Text) ||
+                string.IsNullOrWhiteSpace(comboFueltype.Text) ||
+                string.IsNullOrWhiteSpace(comboTransmission.Text) ||
+                string.IsNullOrWhiteSpace(comboCarSellerType.Text) ||
+                string.IsNullOrWhiteSpace(texBodyType.Text) ||
+                string.IsNullOrWhiteSpace(texSellerName.Text) ||
+                string.IsNullOrWhiteSpace(texSellerAddress.Text) ||
+                string.IsNullOrWhiteSpace(texsellerMobileNum.Text) ||
+                string.IsNullOrWhiteSpace(texPrice.Text) ||
+                string.IsNullOrWhiteSpace(texDescription.Text))
+                {
+                    lblCarFormError.Visible = true;
+                    lblCarFormError.Text = "Please fill in all required fields.";
+                    return;
+                }
+
+                if (!int.TryParse(texMileage.Text, out int mileage))
+                {
+                    lblCarFormError.Visible = true;
+                    lblCarFormError.Text = "Mileage must be a valid numbers.(ex : 10000)";
+                    return;
+                }
+                if (!double.TryParse(texPrice.Text, out double price))
+                {
+                    lblCarFormError.Visible = true;
+                    lblCarFormError.Text = "Price must be a valid price.(ex : 1234)";
+                    return;
+                }
                 var car = new Car
                 {
                     Car_brand = texCarBrand.Text,
@@ -190,6 +242,7 @@ namespace car_traders
                     Mobile_number = texsellerMobileNum.Text,
                     Price = double.Parse(texPrice.Text),
                     Description = texDescription.Text,
+                    Selling_type = comboCarSellerType.Text,
                     Is_active = true
                 };
                 // Convert image from PictureBox to byte array
@@ -325,13 +378,36 @@ namespace car_traders
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(texPartsNaame.Text) ||
+                string.IsNullOrWhiteSpace(comboPartCategory.Text) ||
+                string.IsNullOrWhiteSpace(texPartsCarModel.Text) ||
+                string.IsNullOrWhiteSpace(texPartBrandName.Text))
+                {
+                    lblcarPartFormError.Visible = true;
+                    lblcarPartFormError.Text = "Please fill in all required fields.";
+                    return;
+                }
+
+                if (!int.TryParse(texPartsQty.Text, out int qty))
+                {
+                    lblcarPartFormError.Visible = true;
+                    lblcarPartFormError.Text = "Qty must be a valid qty.(ex : 10)";
+                    return;
+                }
+
+                if (!double.TryParse(texPartsPrice.Text, out double price))
+                {
+                    lblcarPartFormError.Visible = true;
+                    lblcarPartFormError.Text = "Price must be a valid price.(ex : 1234.00)";
+                    return;
+                }
                 var carPart = new CarPart
                 {
                     Parts_name = texPartsNaame.Text,
                     Description = texPartsDescriptions.Text,
                     Price = double.Parse(texPartsPrice.Text),
                     Qty = int.Parse(texPartsQty.Text),
-                    Category = texPartsCategory.Text,
+                    Category = comboPartCategory.Text,
                     Car_model = texPartsCarModel.Text,
                     Brand_name = texPartBrandName.Text,
                     Is_active = true
@@ -474,6 +550,8 @@ namespace car_traders
             texPrice.Clear();
             texDescription.Clear();
             imgBoxCar.Image = null;
+
+            lblCarFormError.Visible = false;
         }
 
         private void cleanCarParts()
@@ -482,10 +560,10 @@ namespace car_traders
             texPartsDescriptions.Clear();
             texPartsPrice.Clear();
             texPartsQty.Clear();
-            texPartsCategory.Clear();
             texPartsCarModel.Clear();
             texPartBrandName.Clear();
             imgBoxCarPats.Image = null;
+            lblcarPartFormError.Visible = false;
         }
 
         private void clearUpdatePartForm()
@@ -595,6 +673,16 @@ namespace car_traders
         private void btnCarPdfPrint_Click(object sender, EventArgs e)
         {
             _pdfGenarate.pdfConverter(tblListViewCar, "car_list.pdf");
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            loadCarPartsListTable();
+        }
+
+        private void btnCarTableReload_Click(object sender, EventArgs e)
+        {
+            LoadCarTable();
         }
     }
 }

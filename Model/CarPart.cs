@@ -14,7 +14,7 @@ namespace car_traders.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string Parts_name { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public double Price { get; set; } = 0.0;
         public int Qty { get; set; } = 0;
         public string Category { get; set; }

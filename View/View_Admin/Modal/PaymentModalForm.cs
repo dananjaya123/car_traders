@@ -1,6 +1,6 @@
-﻿using car_traders.Common;
-using car_traders.Model;
+﻿using car_traders.Model;
 using car_traders.Service;
+using car_traders.Service.Common;
 using car_traders.View.View_Admin.View_Orders;
 using MaterialSkin.Controls;
 using Org.BouncyCastle.Crypto.Macs;

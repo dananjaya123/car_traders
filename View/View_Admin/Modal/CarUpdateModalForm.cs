@@ -94,7 +94,7 @@ namespace car_traders
                 var address = texSellerAddress.Text;
                 var description = texDescription.Text;
 
-                if (!int.TryParse(mileageTex, out int mileage) || mileage <= 0)
+                if (!int.TryParse(mileageTex, out int mileage) || mileage < 0)
                 {
                     lblMileage.Text = "Please Enter a valid Mileage";
                     lblMileage.Visible = true;

@@ -79,7 +79,7 @@
             btnDelete.Depth = 0;
             btnDelete.HighEmphasis = true;
             btnDelete.Icon = null;
-            btnDelete.Location = new Point(422, 511);
+            btnDelete.Location = new Point(537, 511);
             btnDelete.Margin = new Padding(4, 6, 4, 6);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
@@ -171,7 +171,7 @@
             btnUpdateCarParts.Depth = 0;
             btnUpdateCarParts.HighEmphasis = true;
             btnUpdateCarParts.Icon = null;
-            btnUpdateCarParts.Location = new Point(528, 511);
+            btnUpdateCarParts.Location = new Point(452, 511);
             btnUpdateCarParts.Margin = new Padding(4, 6, 4, 6);
             btnUpdateCarParts.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdateCarParts.Name = "btnUpdateCarParts";
@@ -451,14 +451,14 @@
             imgUpdateCarPart.TabIndex = 24;
             imgUpdateCarPart.TabStop = false;
             // 
-            // PartUpdateModel
+            // PartUpdateModal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(732, 695);
+            ClientSize = new Size(754, 751);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Name = "PartUpdateModel";
+            Name = "PartUpdateModal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Part Update";
             panel1.ResumeLayout(false);

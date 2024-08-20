@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace car_traders.Common
+namespace car_traders.Service.Common
 {
     internal class EmailSend
     {
@@ -26,11 +26,11 @@ namespace car_traders.Common
             // Initialize with Gmail SMTP settings
             smtpServer = "smtp.gmail.com";
             smtpPort = 587; // Gmail SMTP port for TLS
-            smtpUser = "asidananjaya123@gmail.com"; 
+            smtpUser = "asidananjaya123@gmail.com";
             smtpPass = "ugpy frpp emgs jenq";
         }
 
-        public Boolean SendEmail(string fromEmail, string toEmail, string subject, string body)
+        public bool SendEmail(string fromEmail, string toEmail, string subject, string body)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace car_traders.Common
             }
             catch (Exception ex)
             {
-               return false;
+                return false;
             }
         }
     }
