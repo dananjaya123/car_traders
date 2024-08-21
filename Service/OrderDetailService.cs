@@ -27,6 +27,16 @@ namespace car_traders.Service
                 return detail;
             }
         }
+        public List<OrderDetails> getOrderDetailListByOrderCode(string orderCode)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var detailsList = dbContext.orderDetails
+                                           .Where(od => od.Order_code == orderCode)
+                                           .ToList();
+                return detailsList;
+            }
+        }
         public bool updateOrderDetail(OrderDetails detail)
         {
             using (var dbContext = new ApplicationDBContext())

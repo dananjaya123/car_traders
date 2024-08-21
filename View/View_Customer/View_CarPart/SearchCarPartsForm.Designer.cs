@@ -55,6 +55,8 @@
             lblTotalTag = new Label();
             label2 = new Label();
             lblTotal = new Label();
+            btnViewCart = new Button();
+            lblCartOrderCount = new Label();
             ((System.ComponentModel.ISupportInitialize)imgCarPart).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -91,7 +93,7 @@
             pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(602, 9);
+            pictureBox1.Location = new Point(496, 10);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(56, 54);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -102,7 +104,7 @@
             // 
             panel1.BackColor = Color.WhiteSmoke;
             panel1.Controls.Add(texSearchCarPart);
-            panel1.Location = new Point(117, 9);
+            panel1.Location = new Point(11, 10);
             panel1.Name = "panel1";
             panel1.Size = new Size(485, 54);
             panel1.TabIndex = 15;
@@ -110,9 +112,9 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(946, 468);
+            loader.Location = new Point(558, 10);
             loader.Name = "loader";
-            loader.Size = new Size(81, 73);
+            loader.Size = new Size(66, 54);
             loader.SizeMode = PictureBoxSizeMode.CenterImage;
             loader.TabIndex = 27;
             loader.TabStop = false;
@@ -123,11 +125,14 @@
             btnSubmit.BackColor = Color.CornflowerBlue;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
-            btnSubmit.Location = new Point(811, 386);
+            btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
+            btnSubmit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSubmit.Location = new Point(821, 386);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(333, 76);
+            btnSubmit.Padding = new Padding(20, 0, 0, 0);
+            btnSubmit.Size = new Size(323, 76);
             btnSubmit.TabIndex = 26;
-            btnSubmit.Text = "ORDER REQUEST";
+            btnSubmit.Text = "ADD TO CART";
             btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Visible = false;
             btnSubmit.Click += btnSubmit_Click;
@@ -341,13 +346,38 @@
             lblTotal.TextAlign = ContentAlignment.MiddleCenter;
             lblTotal.Visible = false;
             // 
+            // btnViewCart
+            // 
+            btnViewCart.BackColor = Color.DarkCyan;
+            btnViewCart.Image = (Image)resources.GetObject("btnViewCart.Image");
+            btnViewCart.Location = new Point(651, 9);
+            btnViewCart.Name = "btnViewCart";
+            btnViewCart.Size = new Size(85, 54);
+            btnViewCart.TabIndex = 45;
+            btnViewCart.UseVisualStyleBackColor = false;
+            btnViewCart.Click += btnViewCart_Click;
+            // 
+            // lblCartOrderCount
+            // 
+            lblCartOrderCount.AutoSize = true;
+            lblCartOrderCount.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCartOrderCount.ForeColor = Color.DarkCyan;
+            lblCartOrderCount.Location = new Point(737, 6);
+            lblCartOrderCount.Name = "lblCartOrderCount";
+            lblCartOrderCount.Size = new Size(22, 25);
+            lblCartOrderCount.TabIndex = 46;
+            lblCartOrderCount.Text = "0";
+            lblCartOrderCount.Visible = false;
+            // 
             // SearchCarPartsForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1155, 551);
+            ClientSize = new Size(1217, 607);
             ControlBox = false;
+            Controls.Add(lblCartOrderCount);
+            Controls.Add(btnViewCart);
             Controls.Add(lblTotal);
             Controls.Add(lblTotalTag);
             Controls.Add(label2);
@@ -412,5 +442,7 @@
         private Label lblTotalTag;
         private Label label2;
         private Label lblTotal;
+        private Button btnViewCart;
+        private Label lblCartOrderCount;
     }
 }

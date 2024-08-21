@@ -101,7 +101,7 @@ namespace car_traders.View.View_Customer.View_Order
 
         }
 
-        private OrderDetails detail;
+        private List<OrderDetails> detailList;
         private Order order;
         private void listViewOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -115,53 +115,47 @@ namespace car_traders.View.View_Customer.View_Order
                     order = _orderService.getOrderByOrderCode(orderCode);
                     if (order != null)
                     {
-                        detail = _orderDetailService.getOrderByOrderCode(order.Order_code);
-                        if (detail != null)
+                        detailList = _orderDetailService.getOrderDetailListByOrderCode(order.Order_code);
+                        if (detailList != null)
                         {
                             visibleLable();
                             statusCheck();
-                            
 
-                            lblItemName.Text = detail.Item_name;
+                            //lblItemName.Text = detail.Item_name;
                             lblOrderCode.Text = order.Order_code;
                             lblPayment.Text = order.Is_payment ? "PAID" : "NOT PAID";
-                            lblQty.Text = detail.Qty.ToString();
+                            lblQty.Text = order.qty.ToString();
                             lblTotalAmount.Text = order.Total_amount.ToString("F2");
                             lblStatus.Text = order.status;
 
-                            if (detail.Item_type.Equals("CAR"))
-                            {
-                               var car = _carService.getCarById(detail.Item_Id);
-                                if (car.Image_data != null)
-                                {
-                                    using (MemoryStream ms = new MemoryStream(car.Image_data))
-                                    {
-                                        imgItem.Image = System.Drawing.Image.FromStream(ms);
-                                    }
-                                }
+                            //if (detail.Item_type.Equals("CAR"))
+                            //{
+                            //   var car = _carService.getCarById(detail.Item_Id);
+                            //    if (car.Image_data != null)
+                            //    {
+                            //        using (MemoryStream ms = new MemoryStream(car.Image_data))
+                            //        {
+                            //            imgItem.Image = System.Drawing.Image.FromStream(ms);
+                            //        }
+                            //    }
 
-                            }
-                            else if (detail.Item_type.Equals("PART"))
-                            {
-                                var part = _carPartsService.getCarPartById(detail.Item_Id);
-                                if (part.Image_data != null)
-                                {
-                                    using (MemoryStream ms = new MemoryStream(part.Image_data))
-                                    {
-                                        imgItem.Image = System.Drawing.Image.FromStream(ms);
-                                    }
-                                }
-                            }
+                            //}
+                            //else if (detail.Item_type.Equals("PART"))
+                            //{
+                            //    var part = _carPartsService.getCarPartById(detail.Item_Id);
+                            //    if (part.Image_data != null)
+                            //    {
+                            //        using (MemoryStream ms = new MemoryStream(part.Image_data))
+                            //        {
+                            //            imgItem.Image = System.Drawing.Image.FromStream(ms);
+                            //        }
+                            //    }
+                            //}
 
                             if (lblPayment.Text == "NOT PAID")
                             {
                                 lblPayment.ForeColor = Color.Red;
                             }
-
-                            
-
-
-
                         }
 
                     }
@@ -185,7 +179,7 @@ namespace car_traders.View.View_Customer.View_Order
         private void statusCheck()
         {
             lblStatus.ForeColor = Color.Green;
-            if (order.status == "CANSEL")
+            if (order.status == "CANCEL")
             {
                 lblStatus.ForeColor = Color.Red;
             }
@@ -197,17 +191,15 @@ namespace car_traders.View.View_Customer.View_Order
 
         private void visibleLable()
         {
-            lblItemName.Visible = true;
             lblOrderCode.Visible = true;
             lblPayment.Visible = true;
             lblQty.Visible = true;
             lblTotalAmount.Visible = true;
             lblStatus.Visible = true;
 
-            imgItem.Visible = true;
             btnCancel.Visible = true;
+            btnViewDetails.Visible = true;
 
-            lblItemNameTag.Visible = true;
             lblOrderCodeTag.Visible = true;
             lblPaymenTag.Visible = true;
             lblQtyTag.Visible = true;
@@ -218,60 +210,89 @@ namespace car_traders.View.View_Customer.View_Order
         {
             try
             {
+                // Check if the order is in the "REQUEST" status
                 if (order.status != "REQUEST")
                 {
                     loadTable();
-                    MessageBox.Show($"This Order cnot be cancel !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"This Order cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                order.status = "CANCEL";
+                order.Is_active = false;
+                if (!_orderService.updateOrder(order))
+                {
+                    MessageBox.Show($"This Order cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var itemId = detail.Item_Id;
-                var orderCode = detail.Order_code;
-                var orderType = detail.Item_type;
-
-
-                detail.Is_active = false;
-                if (_orderDetailService.updateOrderDetail(detail))
+                foreach (var detailItem in detailList)
                 {
-                    order.status = "CANSEL";
-                    order.Is_active = false;
 
-                    if (_orderService.updateOrder(order))
+
+                    var itemId = detailItem.Item_Id;
+                    var orderType = detailItem.Item_type;
+
+                    // Deactivate the order detail
+                    detailItem.Is_active = false;
+                    if (_orderDetailService.updateOrderDetail(detailItem))
                     {
+
                         if (orderType.Equals("PART"))
                         {
-                            if (_carPartsService.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
+                            if (!_carPartsService.UpdatePartsStatusAndQty(itemId, "AVAILABLE", true, detailItem.Qty))
                             {
-                                MessageBox.Show($" Your order is cancel", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                                MessageBox.Show($"{detailItem.Item_name} This Part cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
                             }
                         }
                         else if (orderType.Equals("CAR"))
                         {
-                            if (_carService.UpdateCarStatusAndQty(detail.Item_Id, "AVAILABLE", true))
+                            if (!_carService.UpdateCarStatusAndQty(itemId, "AVAILABLE", true))
                             {
-                                MessageBox.Show($" Your order is cancel", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                                MessageBox.Show($"{detailItem.Item_name} This Car cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
                             }
                         }
-                        loadTable();
-                        return;
 
                     }
-
                 }
+                MessageBox.Show($"{order.Order_code} This Order canceled", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadTable();
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void ViewOrderForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void lblStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnViewDetails_Click(object sender, EventArgs e)
+        {
+            Form modelBackgraund = new Form();
+            using (ViewOrderDetailModalForm model = new ViewOrderDetailModalForm(detailList, this))
+            {
+                modelBackgraund.StartPosition = FormStartPosition.Manual;
+                modelBackgraund.FormBorderStyle = FormBorderStyle.None;
+                modelBackgraund.Opacity = .0;
+                modelBackgraund.BackColor = Color.Black;
+                modelBackgraund.Size = this.Size;
+                modelBackgraund.Location = this.Location;
+                modelBackgraund.ShowInTaskbar = false;
+                modelBackgraund.Show();
+                model.Owner = modelBackgraund;
+
+                model.ShowDialog();
+                modelBackgraund.Dispose();
+            }
         }
     }
 }

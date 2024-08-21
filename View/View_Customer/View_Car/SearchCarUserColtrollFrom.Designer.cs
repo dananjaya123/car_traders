@@ -36,6 +36,7 @@
             lblCarName = new Label();
             lblStatus = new Label();
             label1 = new Label();
+            lblCarSelingType = new Label();
             ((System.ComponentModel.ISupportInitialize)imgCar).BeginInit();
             SuspendLayout();
             // 
@@ -111,10 +112,22 @@
             label1.TabIndex = 11;
             label1.Text = "Rs :";
             // 
+            // lblCarSelingType
+            // 
+            lblCarSelingType.AutoSize = true;
+            lblCarSelingType.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCarSelingType.ForeColor = Color.DarkCyan;
+            lblCarSelingType.Location = new Point(604, 30);
+            lblCarSelingType.Name = "lblCarSelingType";
+            lblCarSelingType.Size = new Size(52, 28);
+            lblCarSelingType.TabIndex = 12;
+            lblCarSelingType.Text = "type";
+            // 
             // SearchCarUserColtrollFrom
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblCarSelingType);
             Controls.Add(label1);
             Controls.Add(lblStatus);
             Controls.Add(lblPrice);
@@ -145,5 +158,6 @@
         private Label lblCarName;
         private Label lblStatus;
         private Label label1;
+        private Label lblCarSelingType;
     }
 }

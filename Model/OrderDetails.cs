@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace car_traders.Model
 {
-    internal class OrderDetails
+    public class OrderDetails
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -27,6 +27,7 @@ namespace car_traders.View.Customer
             lblManufacturingYear.Text = car.Manufacturing_year;
             lblPrice.Text = car.Price.ToString("F2");
             lblStatus.Text = car.Status;
+            lblCarSelingType.Text = car.Selling_type;
             if (car.Image_data != null)
             {
                 using (MemoryStream ms = new MemoryStream(car.Image_data))

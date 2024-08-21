@@ -124,6 +124,7 @@ namespace car_traders.View.Customer
                     lblStatus.Text = carPart.Status;
                     lblPrice.Text = carPart.Price.ToString("F2");
 
+
                 }
             }
             catch (Exception ex)
@@ -175,7 +176,7 @@ namespace car_traders.View.Customer
             {
                 if (int.Parse(lblQty.Text) < numInputQty.Value)
                 {
-                    MessageBox.Show("Please check your selected qty  "+lblQty.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please check your selected qty  " + lblQty.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 // Convert numInputQty.Value to double for multiplication
@@ -193,6 +194,7 @@ namespace car_traders.View.Customer
 
         }
 
+        private List<OrderDetails> OrderDetailsList = new List<OrderDetails>();
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -220,59 +222,29 @@ namespace car_traders.View.Customer
                         User user = LoginForm.SesionUserData;
                         if (user != null)
                         {
+
+                            OrderDetails orderDetails = new OrderDetails
+                        {
+                            Item_name = carPart.Parts_name,
+                            Item_Id = carPart.Id,
+                            Item_type = "PART",
+                            Total_price = total,
+                            Qty = (int)numInputQty.Value,
+                            //Order_code = order.Order_code,
+                            Is_active = true
+
+
+                        };
+                            OrderDetailsList.Add(orderDetails);//add to order detail list 
+
+                            lblCartOrderCount.Text = OrderDetailsList.Count.ToString(); // set detail list count
+
+                            lblCartOrderCount.Visible = true;
+                            lblTotal.Text = "0";
+                            numInputQty.Value = 0;
+                            loader.Visible = false;
+
                             
-                            Order order = new Order
-                            {
-                                Total_amount = total,
-                                Created = DateTime.Now,
-                                status = "REQUEST",
-                                qty = (int)numInputQty.Value,
-                                Is_payment = false,
-                                User_code = user.User_code,
-                                Order_code = _IDGenerate.OrderCodeGenerate(),
-                                Is_active = true
-
-                            };
-                            if (_orderService.plaseOrder(order))
-                            {
-                                OrderDetails orderDetails = new OrderDetails
-                                {
-                                    Item_name = carPart.Parts_name,
-                                    Item_Id = carPart.Id,
-                                    Item_type = "PART",
-                                    Total_price = total,
-                                    Qty = (int)numInputQty.Value,
-                                    Order_code = order.Order_code,
-                                    Is_active = true
-
-
-                                };
-                                if (_orderDetailService.saveOrderDetail(orderDetails))
-                                {
-                                    int avilableQty = carPart.Qty - (int)numInputQty.Value;
-                                    if (avilableQty > 0)
-                                    {
-                                        carPart.Qty = avilableQty;
-                                    }else if(avilableQty == 0)
-                                    {
-                                        carPart.Qty = avilableQty;
-                                        carPart.Status = "SOLD OUT";
-                                    }
-                                    if (_carPartsService.updateCarPart(carPart))
-                                    {
-                                        string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), carPart.Image_data);
-                                        if (_EmailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))
-                                        {
-                                            MessageBox.Show("Order request Successfully");
-                                            loader.Visible = false;
-                                            loadCarPartDetail();
-                                            return;
-                                        }
-                                    }
-                                    MessageBox.Show($"something wrong !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    return;
-                                }
-                            }
 
                         }
                         else
@@ -299,31 +271,38 @@ namespace car_traders.View.Customer
             }
         }
 
-        private string GenerateEmailBody(string projectName, string userName, string orderCode, string requestDate, byte[] carImageData)
+
+
+        private void btnViewCart_Click(object sender, EventArgs e)
         {
-            // Convert car image data to base64 string for embedding in email
-            string carImageBase64 = Convert.ToBase64String(carImageData);
-            string carImageSrc = $"data:image/jpeg;base64,{carImageBase64}";
+            Form modelBackgraund = new Form();
+            using (CarPartsCartViewModalForm model = new CarPartsCartViewModalForm(OrderDetailsList, this))
+            {
+                modelBackgraund.StartPosition = FormStartPosition.Manual;
+                modelBackgraund.FormBorderStyle = FormBorderStyle.None;
+                modelBackgraund.Opacity = .0;
+                modelBackgraund.BackColor = Color.Black;
+                modelBackgraund.Size = this.Size;
+                modelBackgraund.Location = this.Location;
+                modelBackgraund.ShowInTaskbar = false;
+                modelBackgraund.Show();
+                model.Owner = modelBackgraund;
 
-            string body = $@"
-    <html>
-    <body style='font-family: Arial, sans-serif; color: #333;'>
-        <h2 style='color: #4CAF50;'>Order Confirmation from {projectName}</h2>
-        <p>Dear {userName},</p>
-        <p>Thank you for your order with <strong>{projectName}</strong>. Below are the details of your order:</p>
-        <ul style='list-style-type: none; padding: 0;'>
-            <li><strong>Order Code:</strong> {orderCode}</li>
-            <li><strong>Request Date:</strong> {requestDate}</li>
-        </ul>
-        <p>Here is the image of the car Part you ordered:</p>
-        <img src='{carImageSrc}' alt='Car Image' style='max-width: 100%; height: auto;' />
-        <p>If you have any questions about your order, please contact our support team.</p>
-        <p>Best regards,</p>
-        <p><strong>The {projectName} Team</strong></p>
-    </body>
-    </html>";
-
-            return body;
+                model.ShowDialog();
+                modelBackgraund.Dispose();
+            }
         }
+
+        public void ClearOrderDetailsList()
+        {
+            OrderDetailsList.Clear();
+            lblCartOrderCount.Text = "0";
+            lblCartOrderCount.Visible = false;
+            loadCarPartDetail();
+        }
+
+       
+
+      
     }
 }
