@@ -16,11 +16,11 @@ namespace car_traders.View.View_Customer.View_Order
 {
     public partial class ViewOrderForm : Form
     {
-        OrderService _orderService;
-        OrderDetailService _orderDetailService;
-        CarService _carService;
-        CarPartsService _carPartsService;
-        User sesionUser = LoginForm.SesionUserData;
+        readonly OrderService _orderService;
+        readonly OrderDetailService _orderDetailService;
+        readonly CarService _carService;
+        readonly CarPartsService _carPartsService;
+        readonly User sesionUser = LoginForm.SesionUserData;
         public ViewOrderForm()
         {
 

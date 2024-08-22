@@ -2,6 +2,8 @@
 using car_traders.Service;
 using car_traders.Service.Common;
 using car_traders.View.View_Admin.Modal;
+using car_traders.View.View_Customer.View_Order;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,15 +16,16 @@ using System.Windows.Forms;
 
 namespace car_traders.View.View_Admin.View_Orders
 {
-    public partial class ViewRequestOrderForm : Form
+    public partial class ViewOrderForm : Form
     {
-        OrderService _orderService;
-        OrderDetailService _orderDetailService;
-        CarService _carService;
-        CarPartsService _carPartsService;
-        User sesionUser = LoginForm.SesionUserData;
-        PDFGenarate _pdfGenarate;
-        public ViewRequestOrderForm()
+        readonly OrderService _orderService;
+        readonly OrderDetailService _orderDetailService;
+        readonly CarService _carService;
+        readonly CarPartsService _carPartsService;
+        readonly User sesionUser = LoginForm.SesionUserData;
+        readonly PDFGenarate _pdfGenarate;
+        private string btnSelectValue = "";
+        public ViewOrderForm()
         {
             InitializeComponent();
             _orderService = new OrderService();
@@ -30,15 +33,20 @@ namespace car_traders.View.View_Admin.View_Orders
             _carService = new CarService();
             _carPartsService = new CarPartsService();
             _pdfGenarate = new PDFGenarate();
-            loadTable();
+            
         }
 
-
+        public void selectMainFormButtonValues(string btnValue)
+        {
+            btnSelectValue = btnValue;
+            lblTitle.Text = $"ORDER {btnValue} FORM";
+            loadTable();
+        }
         private void loadTable()
         {
             try
             {
-                List<Order> orderList = _orderService.getAllOrdersByStatus("REQUEST");
+                List<Model.Order> orderList = _orderService.getAllOrdersByStatus(btnSelectValue);
                 listViewOrder.Items.Clear();
 
                 foreach (var order in orderList)
@@ -63,63 +71,10 @@ namespace car_traders.View.View_Admin.View_Orders
                 MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (order.status != "REQUEST")
-                {
-                    loadTable();
-                    MessageBox.Show($"This Order cnot be REJECT !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                var itemId = detail.Item_Id;
-                var orderCode = detail.Order_code;
-                var orderType = detail.Item_type;
 
 
-                detail.Is_active = false;
-                if (_orderDetailService.updateOrderDetail(detail))
-                {
-                    order.status = "REJECT";
-                    order.Is_active = false;
-
-                    if (_orderService.updateOrder(order))
-                    {
-                        if (orderType.Equals("PART"))
-                        {
-                            if (_carPartsService.UpdatePartsStatusAndQty(detail.Item_Id, "AVAILABLE", true, detail.Qty))
-                            {
-                                MessageBox.Show($" Your order is reject", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            }
-                        }
-                        else if (orderType.Equals("CAR"))
-                        {
-                            if (_carService.UpdateCarStatusAndQty(detail.Item_Id, "AVAILABLE", true))
-                            {
-                                MessageBox.Show($" Your order is reject", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            }
-                        }
-                        loadTable();
-                        return;
-
-                    }
-
-                }
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
-
-        private OrderDetails detail;
-        private Order order;
+        private List<OrderDetails> detailList;
+        private Model.Order order;
         private void listViewOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -132,53 +87,22 @@ namespace car_traders.View.View_Admin.View_Orders
                     order = _orderService.getOrderByOrderCode(orderCode);
                     if (order != null)
                     {
-                        detail = _orderDetailService.getOrderByOrderCode(order.Order_code);
-                        if (detail != null)
+                        detailList = _orderDetailService.getOrderDetailListByOrderCode(order.Order_code);
+                        if (detailList != null)
                         {
                             visibleLable();
                             statusCheck();
 
-
-                            lblItemName.Text = detail.Item_name;
                             lblOrderCode.Text = order.Order_code;
                             lblPayment.Text = order.Is_payment ? "PAID" : "NOT PAID";
-                            lblQty.Text = detail.Qty.ToString();
+                            lblQty.Text = order.qty.ToString();
                             lblTotalAmount.Text = order.Total_amount.ToString("F2");
                             lblStatus.Text = order.status;
-
-                            if (detail.Item_type.Equals("CAR"))
-                            {
-                                var car = _carService.getCarById(detail.Item_Id);
-                                if (car.Image_data != null)
-                                {
-                                    using (MemoryStream ms = new MemoryStream(car.Image_data))
-                                    {
-                                        imgItem.Image = System.Drawing.Image.FromStream(ms);
-                                    }
-                                }
-
-                            }
-                            else if (detail.Item_type.Equals("PART"))
-                            {
-                                var part = _carPartsService.getCarPartById(detail.Item_Id);
-                                if (part.Image_data != null)
-                                {
-                                    using (MemoryStream ms = new MemoryStream(part.Image_data))
-                                    {
-                                        imgItem.Image = System.Drawing.Image.FromStream(ms);
-                                    }
-                                }
-                            }
 
                             if (lblPayment.Text == "NOT PAID")
                             {
                                 lblPayment.ForeColor = Color.Red;
                             }
-
-
-
-
-
                         }
 
                     }
@@ -203,40 +127,48 @@ namespace car_traders.View.View_Admin.View_Orders
         private void statusCheck()
         {
             lblStatus.ForeColor = Color.Green;
-            if (order.status == "CANSEL")
+            if (order.status == "CANCEL" || order.status == "REJECT")
             {
                 lblStatus.ForeColor = Color.Red;
+                unVisibleButton();
             }
             else if (order.status == "PAID")
             {
                 lblStatus.ForeColor = Color.Blue;
+                unVisibleButton();
             }
+        }
+
+        private void unVisibleButton()
+        {
+            btnCancel.Visible = false;
+            btnPayment.Visible = false;
         }
         private void visibleLable()
         {
-            lblItemName.Visible = true;
             lblOrderCode.Visible = true;
             lblPayment.Visible = true;
             lblQty.Visible = true;
             lblTotalAmount.Visible = true;
             lblStatus.Visible = true;
 
-            imgItem.Visible = true;
             btnCancel.Visible = true;
+            btnViewDetails.Visible = true;
             btnPayment.Visible = true;
 
-            lblItemNameTag.Visible = true;
             lblOrderCodeTag.Visible = true;
             lblPaymenTag.Visible = true;
             lblQtyTag.Visible = true;
             lblTotalAmountTag.Visible = true;
+            lblStatusTag.Visible = true;
         }
 
         private void texSearch_TextChanged(object sender, EventArgs e)
         {
             if (texSearch.TextLength >= 1)
             {
-                List<Order> orderList = _orderService.getCustomerOrderByOrderCodeAndStatu("REQUEST", texSearch.Text);
+                
+                List<Model.Order> orderList = _orderService.getCustomerOrderByOrderCodeAndStatu(btnSelectValue, texSearch.Text);
                 listViewOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
                 {
@@ -268,9 +200,63 @@ namespace car_traders.View.View_Admin.View_Orders
             }
         }
 
-        private void btnCarPdfPrint_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            _pdfGenarate.pdfConverter(listViewOrder, "order_request.pdf");
+            try
+            {
+                // Check if the order is in the "REQUEST" status
+                if (order.status != "REQUEST")
+                {
+                    loadTable();
+                    MessageBox.Show($"This Order cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                order.status = "REJECT";
+                order.Is_active = false;
+                if (!_orderService.updateOrder(order))
+                {
+                    MessageBox.Show($"This Order cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                foreach (var detailItem in detailList)
+                {
+
+
+                    var itemId = detailItem.Item_Id;
+                    var orderType = detailItem.Item_type;
+
+                    // Deactivate the order detail
+                    detailItem.Is_active = false;
+                    if (_orderDetailService.updateOrderDetail(detailItem))
+                    {
+
+                        if (orderType.Equals("PART"))
+                        {
+                            if (!_carPartsService.UpdatePartsStatusAndQty(itemId, "AVAILABLE", true, detailItem.Qty))
+                            {
+                                MessageBox.Show($"{detailItem.Item_name} This Part cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+                        }
+                        else if (orderType.Equals("CAR"))
+                        {
+                            if (!_carService.UpdateCarStatusAndQty(itemId, "AVAILABLE", true))
+                            {
+                                MessageBox.Show($"{detailItem.Item_name} This Car cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+                MessageBox.Show($"{order.Order_code} This Order reject", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnPayment_Click(object sender, EventArgs e)
@@ -294,8 +280,34 @@ namespace car_traders.View.View_Admin.View_Orders
             }
         }
 
-        private void ViewRequestOrderForm_Load(object sender, EventArgs e)
+        private void btnViewDetails_Click(object sender, EventArgs e)
         {
+            Form modelBackgraund = new Form();
+            using (CustomerOrderDetailViewModalForm model = new CustomerOrderDetailViewModalForm(detailList, order, this))
+            {
+                modelBackgraund.StartPosition = FormStartPosition.Manual;
+                modelBackgraund.FormBorderStyle = FormBorderStyle.None;
+                modelBackgraund.Opacity = .0;
+                modelBackgraund.BackColor = Color.Black;
+                modelBackgraund.Size = this.Size;
+                modelBackgraund.Location = this.Location;
+                modelBackgraund.ShowInTaskbar = false;
+                modelBackgraund.Show();
+                model.Owner = modelBackgraund;
+
+                model.ShowDialog();
+                modelBackgraund.Dispose();
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCarPdfPrint_Click(object sender, EventArgs e)
+        {
+            _pdfGenarate.pdfConverter(listViewOrder, $"{btnSelectValue}.pdf");
 
         }
     }

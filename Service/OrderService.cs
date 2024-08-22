@@ -60,7 +60,7 @@ namespace car_traders.Service
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                var orders = dbContext.order.Where(cp => cp.Is_active && cp.Order_code.Contains(searchVal) && cp.status.Contains(status)
+                var orders = dbContext.order.Where(cp => cp.Order_code.Contains(searchVal) && cp.status.Contains(status)
                 ).ToList();
                 return orders;
             }

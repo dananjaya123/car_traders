@@ -1,6 +1,6 @@
 ﻿namespace car_traders
 {
-    partial class PartUpdateModal
+    partial class CarPartUpdateModal
     {
         /// <summary>
         /// Required designer variable.

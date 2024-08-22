@@ -348,7 +348,7 @@ namespace car_traders
 
 
                     Form modelBackgraund = new Form();
-                    using (PartUpdateModal model = new PartUpdateModal(carPart))
+                    using (CarPartUpdateModal model = new CarPartUpdateModal(carPart))
                     {
                         modelBackgraund.StartPosition = FormStartPosition.Manual;
                         modelBackgraund.FormBorderStyle = FormBorderStyle.None;

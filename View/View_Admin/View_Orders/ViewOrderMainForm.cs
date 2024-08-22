@@ -19,9 +19,9 @@ namespace car_traders.View.View_Admin.View_Orders
 
         private void btnOrderRequestView_Click(object sender, EventArgs e)
         {
-            ViewRequestOrderForm form = new ViewRequestOrderForm();
+            ViewOrderForm form = new ViewOrderForm();
             pnlMain.Controls.Clear();
-
+            form.selectMainFormButtonValues("REQUEST");
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Size = pnlMain.Size;
@@ -33,9 +33,9 @@ namespace car_traders.View.View_Admin.View_Orders
 
         private void btnCancelOrderView_Click(object sender, EventArgs e)
         {
-            VIewCancelOrderForm form = new VIewCancelOrderForm();
+            ViewOrderForm form = new ViewOrderForm();
             pnlMain.Controls.Clear();
-
+            form.selectMainFormButtonValues("CANCEL");
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Size = pnlMain.Size;
@@ -47,9 +47,9 @@ namespace car_traders.View.View_Admin.View_Orders
 
         private void btnRejectOrderView_Click(object sender, EventArgs e)
         {
-            ViewRejectOrderForm form = new ViewRejectOrderForm();
+            ViewOrderForm form = new ViewOrderForm();
             pnlMain.Controls.Clear();
-
+            form.selectMainFormButtonValues("REJECT");
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Size = pnlMain.Size;
@@ -61,9 +61,9 @@ namespace car_traders.View.View_Admin.View_Orders
 
         private void btnPaidOrderView_Click(object sender, EventArgs e)
         {
-            ViewPaidOrderForm form = new ViewPaidOrderForm();
+            ViewOrderForm form = new ViewOrderForm();
             pnlMain.Controls.Clear();
-
+            form.selectMainFormButtonValues("PAID");
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Size = pnlMain.Size;
