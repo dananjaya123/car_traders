@@ -37,6 +37,16 @@ namespace car_traders.Service
                 return detailsList;
             }
         }
+
+        public OrderDetails getOrderDetailByDetailID(Guid id)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var detailData = dbContext.orderDetails.FirstOrDefault(od => od.Id.Equals(id));
+                                           
+                return detailData;
+            }
+        }
         public bool updateOrderDetail(OrderDetails detail)
         {
             using (var dbContext = new ApplicationDBContext())

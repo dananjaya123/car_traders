@@ -36,10 +36,13 @@
             colItemType = new ColumnHeader();
             colPrice = new ColumnHeader();
             colId = new ColumnHeader();
+            colDetailID = new ColumnHeader();
             imgItem = new PictureBox();
-            lblStatus = new Label();
             numberQty = new NumericUpDown();
             btnCancel = new Button();
+            lblExist = new Label();
+            lblOrderDetailID = new Label();
+            lblType = new Label();
             ((System.ComponentModel.ISupportInitialize)imgItem).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numberQty).BeginInit();
             SuspendLayout();
@@ -49,7 +52,7 @@
             listViewOrderDetail.AutoSizeTable = false;
             listViewOrderDetail.BackColor = Color.FromArgb(255, 255, 255);
             listViewOrderDetail.BorderStyle = BorderStyle.None;
-            listViewOrderDetail.Columns.AddRange(new ColumnHeader[] { colItemName, colQty, colOrderCode, colItemType, colPrice, colId });
+            listViewOrderDetail.Columns.AddRange(new ColumnHeader[] { colItemName, colQty, colOrderCode, colItemType, colPrice, colId, colDetailID });
             listViewOrderDetail.Depth = 0;
             listViewOrderDetail.FullRowSelect = true;
             listViewOrderDetail.Location = new Point(6, 106);
@@ -94,6 +97,12 @@
             colId.Text = "Id";
             colId.Width = 0;
             // 
+            // colDetailID
+            // 
+            colDetailID.Text = "id";
+            colDetailID.TextAlign = HorizontalAlignment.Center;
+            colDetailID.Width = 0;
+            // 
             // imgItem
             // 
             imgItem.Image = (Image)resources.GetObject("imgItem.Image");
@@ -105,23 +114,11 @@
             imgItem.TabStop = false;
             imgItem.Visible = false;
             // 
-            // lblStatus
-            // 
-            lblStatus.AutoSize = true;
-            lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStatus.ForeColor = Color.Green;
-            lblStatus.Location = new Point(739, 276);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(63, 25);
-            lblStatus.TabIndex = 17;
-            lblStatus.Text = "status";
-            lblStatus.Visible = false;
-            // 
             // numberQty
             // 
-            numberQty.Location = new Point(739, 311);
+            numberQty.Location = new Point(723, 290);
             numberQty.Name = "numberQty";
-            numberQty.Size = new Size(190, 31);
+            numberQty.Size = new Size(206, 31);
             numberQty.TabIndex = 18;
             numberQty.Visible = false;
             // 
@@ -132,23 +129,53 @@
             btnCancel.ForeColor = SystemColors.ButtonHighlight;
             btnCancel.Image = (Image)resources.GetObject("btnCancel.Image");
             btnCancel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancel.Location = new Point(739, 399);
+            btnCancel.Location = new Point(723, 416);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new Padding(20, 0, 0, 0);
-            btnCancel.Size = new Size(190, 76);
+            btnCancel.Size = new Size(206, 76);
             btnCancel.TabIndex = 27;
             btnCancel.Text = "CANCEL";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Visible = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
+            // lblExist
+            // 
+            lblExist.AutoSize = true;
+            lblExist.Location = new Point(723, 324);
+            lblExist.Name = "lblExist";
+            lblExist.Size = new Size(0, 25);
+            lblExist.TabIndex = 28;
+            lblExist.Visible = false;
+            // 
+            // lblOrderDetailID
+            // 
+            lblOrderDetailID.AutoSize = true;
+            lblOrderDetailID.Location = new Point(723, 377);
+            lblOrderDetailID.Name = "lblOrderDetailID";
+            lblOrderDetailID.Size = new Size(0, 25);
+            lblOrderDetailID.TabIndex = 29;
+            lblOrderDetailID.Visible = false;
+            // 
+            // lblType
+            // 
+            lblType.AutoSize = true;
+            lblType.Location = new Point(798, 377);
+            lblType.Name = "lblType";
+            lblType.Size = new Size(0, 25);
+            lblType.TabIndex = 30;
+            lblType.Visible = false;
             // 
             // ViewOrderDetailModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(945, 517);
+            Controls.Add(lblType);
+            Controls.Add(lblOrderDetailID);
+            Controls.Add(lblExist);
             Controls.Add(btnCancel);
             Controls.Add(numberQty);
-            Controls.Add(lblStatus);
             Controls.Add(imgItem);
             Controls.Add(listViewOrderDetail);
             Name = "ViewOrderDetailModalForm";
@@ -163,7 +190,6 @@
 
         private MaterialSkin.Controls.MaterialListView listViewOrderDetail;
         private PictureBox imgItem;
-        private Label lblStatus;
         private NumericUpDown numberQty;
         private Button btnCancel;
         private ColumnHeader colItemName;
@@ -172,5 +198,9 @@
         private ColumnHeader colItemType;
         private ColumnHeader colPrice;
         private ColumnHeader colId;
+        private Label lblExist;
+        private ColumnHeader colDetailID;
+        private Label lblOrderDetailID;
+        private Label lblType;
     }
 }

@@ -32,6 +32,10 @@ namespace car_traders.View.View_Customer.View_Order
             loadTable();
         }
 
+        public void reloadViewOrderData()
+        {
+            loadTable();
+        }
         private void loadTable()
         {
             try
@@ -121,36 +125,11 @@ namespace car_traders.View.View_Customer.View_Order
                             visibleLable();
                             statusCheck();
 
-                            //lblItemName.Text = detail.Item_name;
                             lblOrderCode.Text = order.Order_code;
                             lblPayment.Text = order.Is_payment ? "PAID" : "NOT PAID";
                             lblQty.Text = order.qty.ToString();
                             lblTotalAmount.Text = order.Total_amount.ToString("F2");
                             lblStatus.Text = order.status;
-
-                            //if (detail.Item_type.Equals("CAR"))
-                            //{
-                            //   var car = _carService.getCarById(detail.Item_Id);
-                            //    if (car.Image_data != null)
-                            //    {
-                            //        using (MemoryStream ms = new MemoryStream(car.Image_data))
-                            //        {
-                            //            imgItem.Image = System.Drawing.Image.FromStream(ms);
-                            //        }
-                            //    }
-
-                            //}
-                            //else if (detail.Item_type.Equals("PART"))
-                            //{
-                            //    var part = _carPartsService.getCarPartById(detail.Item_Id);
-                            //    if (part.Image_data != null)
-                            //    {
-                            //        using (MemoryStream ms = new MemoryStream(part.Image_data))
-                            //        {
-                            //            imgItem.Image = System.Drawing.Image.FromStream(ms);
-                            //        }
-                            //    }
-                            //}
 
                             if (lblPayment.Text == "NOT PAID")
                             {
@@ -278,7 +257,7 @@ namespace car_traders.View.View_Customer.View_Order
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
             Form modelBackgraund = new Form();
-            using (ViewOrderDetailModalForm model = new ViewOrderDetailModalForm(detailList, this))
+            using (ViewOrderDetailModalForm model = new ViewOrderDetailModalForm(detailList, order, this))
             {
                 modelBackgraund.StartPosition = FormStartPosition.Manual;
                 modelBackgraund.FormBorderStyle = FormBorderStyle.None;
