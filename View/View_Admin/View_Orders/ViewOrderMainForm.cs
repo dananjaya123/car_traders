@@ -72,5 +72,10 @@ namespace car_traders.View.View_Admin.View_Orders
             pnlMain.Controls.Add(form);
             form.Show();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -97,6 +97,7 @@
             texPartsDescriptions = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texPartsNaame = new MaterialSkin.Controls.MaterialMaskedTextBox();
             tabViewCars = new TabPage();
+            btnCarTableReload = new MaterialSkin.Controls.MaterialButton();
             btnCarPdfPrint = new MaterialSkin.Controls.MaterialButton();
             tblListViewCar = new MaterialSkin.Controls.MaterialListView();
             colCarBrand = new ColumnHeader();
@@ -129,7 +130,6 @@
             pnlOrderMain = new Panel();
             tblCustomer = new TabPage();
             pnlCustomerMain = new Panel();
-            btnCarTableReload = new MaterialSkin.Controls.MaterialButton();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
             materialCard5.SuspendLayout();
@@ -170,7 +170,7 @@
             materialTabControl1.Multiline = true;
             materialTabControl1.Name = "materialTabControl1";
             materialTabControl1.SelectedIndex = 0;
-            materialTabControl1.Size = new Size(1002, 719);
+            materialTabControl1.Size = new Size(1422, 744);
             materialTabControl1.TabIndex = 0;
             // 
             // tabDashboard
@@ -189,7 +189,7 @@
             tabDashboard.Location = new Point(4, 39);
             tabDashboard.Name = "tabDashboard";
             tabDashboard.Padding = new Padding(3);
-            tabDashboard.Size = new Size(994, 676);
+            tabDashboard.Size = new Size(1414, 701);
             tabDashboard.TabIndex = 0;
             tabDashboard.Text = "Dashboard";
             tabDashboard.Click += tabDashboard_Click;
@@ -201,7 +201,7 @@
             materialFloatingActionButton5.Icon = Properties.Resources.dashboardPart;
             materialFloatingActionButton5.ImageIndex = 6;
             materialFloatingActionButton5.ImageList = imageList1;
-            materialFloatingActionButton5.Location = new Point(539, 258);
+            materialFloatingActionButton5.Location = new Point(1295, 68);
             materialFloatingActionButton5.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton5.Name = "materialFloatingActionButton5";
             materialFloatingActionButton5.Size = new Size(58, 62);
@@ -222,6 +222,7 @@
             imageList1.Images.SetKeyName(5, "dashboardHumen.png");
             imageList1.Images.SetKeyName(6, "dashboardPart.png");
             imageList1.Images.SetKeyName(7, "icons8-customer-32.png");
+            imageList1.Images.SetKeyName(8, "icons8-logout-64.png");
             // 
             // materialCard5
             // 
@@ -229,7 +230,7 @@
             materialCard5.Controls.Add(panel5);
             materialCard5.Depth = 0;
             materialCard5.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard5.Location = new Point(337, 227);
+            materialCard5.Location = new Point(1093, 37);
             materialCard5.Margin = new Padding(14);
             materialCard5.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard5.Name = "materialCard5";
@@ -276,7 +277,7 @@
             materialFloatingActionButton4.Icon = Properties.Resources.dashboardPart;
             materialFloatingActionButton4.ImageIndex = 6;
             materialFloatingActionButton4.ImageList = imageList1;
-            materialFloatingActionButton4.Location = new Point(243, 258);
+            materialFloatingActionButton4.Location = new Point(1026, 68);
             materialFloatingActionButton4.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton4.Name = "materialFloatingActionButton4";
             materialFloatingActionButton4.Size = new Size(58, 62);
@@ -290,7 +291,7 @@
             materialCard4.Controls.Add(panel4);
             materialCard4.Depth = 0;
             materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard4.Location = new Point(41, 227);
+            materialCard4.Location = new Point(824, 37);
             materialCard4.Margin = new Padding(14);
             materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard4.Name = "materialCard4";
@@ -337,7 +338,7 @@
             materialFloatingActionButton1.Icon = Properties.Resources.dashboardPart;
             materialFloatingActionButton1.ImageIndex = 6;
             materialFloatingActionButton1.ImageList = imageList1;
-            materialFloatingActionButton1.Location = new Point(243, 68);
+            materialFloatingActionButton1.Location = new Point(213, 68);
             materialFloatingActionButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton1.Name = "materialFloatingActionButton1";
             materialFloatingActionButton1.Size = new Size(58, 62);
@@ -351,7 +352,7 @@
             materialCard1.Controls.Add(panel1);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(41, 37);
+            materialCard1.Location = new Point(11, 37);
             materialCard1.Margin = new Padding(14);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
@@ -399,7 +400,7 @@
             materialFloatingActionButton3.Icon = Properties.Resources.dashBoardCar;
             materialFloatingActionButton3.ImageIndex = 0;
             materialFloatingActionButton3.ImageList = imageList1;
-            materialFloatingActionButton3.Location = new Point(846, 68);
+            materialFloatingActionButton3.Location = new Point(755, 68);
             materialFloatingActionButton3.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton3.Name = "materialFloatingActionButton3";
             materialFloatingActionButton3.Size = new Size(58, 62);
@@ -413,7 +414,7 @@
             materialCard3.Controls.Add(panel3);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(644, 37);
+            materialCard3.Location = new Point(553, 37);
             materialCard3.Margin = new Padding(14);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
@@ -459,7 +460,7 @@
             materialFloatingActionButton2.Icon = Properties.Resources.dashboardPart;
             materialFloatingActionButton2.ImageIndex = 6;
             materialFloatingActionButton2.ImageList = imageList1;
-            materialFloatingActionButton2.Location = new Point(539, 68);
+            materialFloatingActionButton2.Location = new Point(484, 68);
             materialFloatingActionButton2.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton2.Name = "materialFloatingActionButton2";
             materialFloatingActionButton2.Size = new Size(58, 62);
@@ -473,7 +474,7 @@
             materialCard2.Controls.Add(panel2);
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(337, 37);
+            materialCard2.Location = new Point(282, 37);
             materialCard2.Margin = new Padding(14);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
@@ -541,7 +542,7 @@
             tabAddCar.Location = new Point(4, 39);
             tabAddCar.Name = "tabAddCar";
             tabAddCar.Padding = new Padding(3);
-            tabAddCar.Size = new Size(994, 676);
+            tabAddCar.Size = new Size(1414, 701);
             tabAddCar.TabIndex = 1;
             tabAddCar.Text = "Add Car";
             // 
@@ -1182,7 +1183,7 @@
             tabAddCarPats.ImageKey = "racing.png";
             tabAddCarPats.Location = new Point(4, 39);
             tabAddCarPats.Name = "tabAddCarPats";
-            tabAddCarPats.Size = new Size(994, 676);
+            tabAddCarPats.Size = new Size(1414, 701);
             tabAddCarPats.TabIndex = 2;
             tabAddCarPats.Text = "Add Car Parts";
             // 
@@ -1577,9 +1578,30 @@
             tabViewCars.ImageKey = "carList.png";
             tabViewCars.Location = new Point(4, 39);
             tabViewCars.Name = "tabViewCars";
-            tabViewCars.Size = new Size(994, 676);
+            tabViewCars.Size = new Size(1414, 701);
             tabViewCars.TabIndex = 3;
             tabViewCars.Text = "View Cars";
+            // 
+            // btnCarTableReload
+            // 
+            btnCarTableReload.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCarTableReload.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnCarTableReload.Depth = 0;
+            btnCarTableReload.HighEmphasis = true;
+            btnCarTableReload.Icon = (Image)resources.GetObject("btnCarTableReload.Icon");
+            btnCarTableReload.Image = (Image)resources.GetObject("btnCarTableReload.Image");
+            btnCarTableReload.Location = new Point(94, 117);
+            btnCarTableReload.Margin = new Padding(4, 6, 4, 6);
+            btnCarTableReload.MouseState = MaterialSkin.MouseState.HOVER;
+            btnCarTableReload.Name = "btnCarTableReload";
+            btnCarTableReload.NoAccentTextColor = Color.Empty;
+            btnCarTableReload.Size = new Size(64, 36);
+            btnCarTableReload.TabIndex = 144;
+            btnCarTableReload.Text = "  ";
+            btnCarTableReload.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnCarTableReload.UseAccentColor = false;
+            btnCarTableReload.UseVisualStyleBackColor = true;
+            btnCarTableReload.Click += btnCarTableReload_Click;
             // 
             // btnCarPdfPrint
             // 
@@ -1615,7 +1637,7 @@
             tblListViewCar.MouseState = MaterialSkin.MouseState.OUT;
             tblListViewCar.Name = "tblListViewCar";
             tblListViewCar.OwnerDraw = true;
-            tblListViewCar.Size = new Size(971, 477);
+            tblListViewCar.Size = new Size(1010, 477);
             tblListViewCar.TabIndex = 3;
             tblListViewCar.UseCompatibleStateImageBehavior = false;
             tblListViewCar.View = System.Windows.Forms.View.Details;
@@ -1664,7 +1686,7 @@
             // 
             colCarPrice.DisplayIndex = 9;
             colCarPrice.Text = "Price";
-            colCarPrice.Width = 1500;
+            colCarPrice.Width = 150;
             // 
             // colCarID
             // 
@@ -1687,7 +1709,7 @@
             texCarTableSearch.Hint = "Search ";
             texCarTableSearch.InsertKeyMode = InsertKeyMode.Default;
             texCarTableSearch.LeadingIcon = null;
-            texCarTableSearch.Location = new Point(670, 73);
+            texCarTableSearch.Location = new Point(545, 108);
             texCarTableSearch.Mask = "";
             texCarTableSearch.MaxLength = 32767;
             texCarTableSearch.MouseState = MaterialSkin.MouseState.OUT;
@@ -1704,7 +1726,7 @@
             texCarTableSearch.SelectionLength = 0;
             texCarTableSearch.SelectionStart = 0;
             texCarTableSearch.ShortcutsEnabled = true;
-            texCarTableSearch.Size = new Size(276, 48);
+            texCarTableSearch.Size = new Size(460, 48);
             texCarTableSearch.SkipLiterals = true;
             texCarTableSearch.TabIndex = 2;
             texCarTableSearch.TabStop = false;
@@ -1737,7 +1759,7 @@
             tabViewPats.ImageKey = "parts.png";
             tabViewPats.Location = new Point(4, 39);
             tabViewPats.Name = "tabViewPats";
-            tabViewPats.Size = new Size(994, 676);
+            tabViewPats.Size = new Size(1414, 701);
             tabViewPats.TabIndex = 4;
             tabViewPats.Text = "View Parts";
             tabViewPats.Click += tabViewPats_Click;
@@ -1797,7 +1819,7 @@
             carPartsListView.MouseState = MaterialSkin.MouseState.OUT;
             carPartsListView.Name = "carPartsListView";
             carPartsListView.OwnerDraw = true;
-            carPartsListView.Size = new Size(942, 478);
+            carPartsListView.Size = new Size(979, 478);
             carPartsListView.TabIndex = 34;
             carPartsListView.UseCompatibleStateImageBehavior = false;
             carPartsListView.View = System.Windows.Forms.View.Details;
@@ -1858,7 +1880,7 @@
             texSearchCarPartTabl.Hint = "Search";
             texSearchCarPartTabl.InsertKeyMode = InsertKeyMode.Default;
             texSearchCarPartTabl.LeadingIcon = null;
-            texSearchCarPartTabl.Location = new Point(567, 72);
+            texSearchCarPartTabl.Location = new Point(548, 72);
             texSearchCarPartTabl.Mask = "";
             texSearchCarPartTabl.MaxLength = 32767;
             texSearchCarPartTabl.MouseState = MaterialSkin.MouseState.OUT;
@@ -1875,7 +1897,7 @@
             texSearchCarPartTabl.SelectionLength = 0;
             texSearchCarPartTabl.SelectionStart = 0;
             texSearchCarPartTabl.ShortcutsEnabled = true;
-            texSearchCarPartTabl.Size = new Size(375, 48);
+            texSearchCarPartTabl.Size = new Size(445, 48);
             texSearchCarPartTabl.SkipLiterals = true;
             texSearchCarPartTabl.TabIndex = 4;
             texSearchCarPartTabl.TabStop = false;
@@ -1904,7 +1926,7 @@
             tabOrders.ImageKey = "dashboardPart.png";
             tabOrders.Location = new Point(4, 39);
             tabOrders.Name = "tabOrders";
-            tabOrders.Size = new Size(994, 676);
+            tabOrders.Size = new Size(1414, 701);
             tabOrders.TabIndex = 5;
             tabOrders.Text = "Orders";
             tabOrders.UseVisualStyleBackColor = true;
@@ -1912,9 +1934,10 @@
             // pnlOrderMain
             // 
             pnlOrderMain.BackColor = Color.White;
-            pnlOrderMain.Location = new Point(3, 3);
+            pnlOrderMain.Dock = DockStyle.Fill;
+            pnlOrderMain.Location = new Point(0, 0);
             pnlOrderMain.Name = "pnlOrderMain";
-            pnlOrderMain.Size = new Size(988, 674);
+            pnlOrderMain.Size = new Size(1414, 701);
             pnlOrderMain.TabIndex = 0;
             // 
             // tblCustomer
@@ -1923,44 +1946,24 @@
             tblCustomer.ImageKey = "icons8-customer-32.png";
             tblCustomer.Location = new Point(4, 39);
             tblCustomer.Name = "tblCustomer";
-            tblCustomer.Size = new Size(994, 676);
+            tblCustomer.Size = new Size(1414, 701);
             tblCustomer.TabIndex = 6;
             tblCustomer.Text = "Customers";
             tblCustomer.UseVisualStyleBackColor = true;
             // 
             // pnlCustomerMain
             // 
-            pnlCustomerMain.Location = new Point(3, 3);
+            pnlCustomerMain.Dock = DockStyle.Fill;
+            pnlCustomerMain.Location = new Point(0, 0);
             pnlCustomerMain.Name = "pnlCustomerMain";
-            pnlCustomerMain.Size = new Size(991, 677);
+            pnlCustomerMain.Size = new Size(1414, 701);
             pnlCustomerMain.TabIndex = 0;
-            // 
-            // btnCarTableReload
-            // 
-            btnCarTableReload.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnCarTableReload.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnCarTableReload.Depth = 0;
-            btnCarTableReload.HighEmphasis = true;
-            btnCarTableReload.Icon = (Image)resources.GetObject("btnCarTableReload.Icon");
-            btnCarTableReload.Image = (Image)resources.GetObject("btnCarTableReload.Image");
-            btnCarTableReload.Location = new Point(94, 117);
-            btnCarTableReload.Margin = new Padding(4, 6, 4, 6);
-            btnCarTableReload.MouseState = MaterialSkin.MouseState.HOVER;
-            btnCarTableReload.Name = "btnCarTableReload";
-            btnCarTableReload.NoAccentTextColor = Color.Empty;
-            btnCarTableReload.Size = new Size(64, 36);
-            btnCarTableReload.TabIndex = 144;
-            btnCarTableReload.Text = "  ";
-            btnCarTableReload.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnCarTableReload.UseAccentColor = false;
-            btnCarTableReload.UseVisualStyleBackColor = true;
-            btnCarTableReload.Click += btnCarTableReload_Click;
             // 
             // AdminMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1008, 786);
+            ClientSize = new Size(1428, 811);
             Controls.Add(materialTabControl1);
             DrawerAutoHide = false;
             DrawerShowIconsWhenHidden = true;

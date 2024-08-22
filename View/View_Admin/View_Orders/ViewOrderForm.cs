@@ -22,6 +22,7 @@ namespace car_traders.View.View_Admin.View_Orders
         readonly OrderDetailService _orderDetailService;
         readonly CarService _carService;
         readonly CarPartsService _carPartsService;
+        readonly UserService _userService;
         readonly User sesionUser = LoginForm.SesionUserData;
         readonly PDFGenarate _pdfGenarate;
         private string btnSelectValue = "";
@@ -33,7 +34,9 @@ namespace car_traders.View.View_Admin.View_Orders
             _carService = new CarService();
             _carPartsService = new CarPartsService();
             _pdfGenarate = new PDFGenarate();
-            
+            _userService = new UserService();
+
+
         }
 
         public void selectMainFormButtonValues(string btnValue)
@@ -88,11 +91,19 @@ namespace car_traders.View.View_Admin.View_Orders
                     if (order != null)
                     {
                         detailList = _orderDetailService.getOrderDetailListByOrderCode(order.Order_code);
+                        Model.User userData = _userService.getUserByUsercode(order.User_code);
                         if (detailList != null)
                         {
                             visibleLable();
                             statusCheck();
 
+                            //load user data
+                            lblUserName.Text = userData.Name;
+                            lblMobileNumber.Text = userData.Contact_num;
+                            lblAddress.Text = userData.Address;
+                            lblUserCode.Text = userData.User_code;
+
+                            // load order data
                             lblOrderCode.Text = order.Order_code;
                             lblPayment.Text = order.Is_payment ? "PAID" : "NOT PAID";
                             lblQty.Text = order.qty.ToString();
@@ -146,6 +157,7 @@ namespace car_traders.View.View_Admin.View_Orders
         }
         private void visibleLable()
         {
+
             lblOrderCode.Visible = true;
             lblPayment.Visible = true;
             lblQty.Visible = true;
@@ -161,6 +173,16 @@ namespace car_traders.View.View_Admin.View_Orders
             lblQtyTag.Visible = true;
             lblTotalAmountTag.Visible = true;
             lblStatusTag.Visible = true;
+
+            lblUserNameTag.Visible = true;
+            lblMobileTag.Visible = true;
+            lblUserCodeTag.Visible = true;
+            lblAddressTag.Visible = true;
+
+            lblUserName.Visible = true;
+            lblMobileNumber.Visible = true;
+            lblAddress.Visible = true;
+            lblUserCode.Visible = true;
         }
 
         private void texSearch_TextChanged(object sender, EventArgs e)

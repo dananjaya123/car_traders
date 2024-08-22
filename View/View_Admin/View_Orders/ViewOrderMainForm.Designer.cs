@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewOrderMainForm));
             panel1 = new Panel();
+            btnPaidOrderView = new MaterialSkin.Controls.MaterialButton();
             btnRejectOrderView = new MaterialSkin.Controls.MaterialButton();
             btnCancelOrderView = new MaterialSkin.Controls.MaterialButton();
             btnOrderRequestView = new MaterialSkin.Controls.MaterialButton();
             pnlMain = new Panel();
-            btnPaidOrderView = new MaterialSkin.Controls.MaterialButton();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,8 +48,29 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(988, 62);
+            panel1.Size = new Size(1414, 62);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // btnPaidOrderView
+            // 
+            btnPaidOrderView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPaidOrderView.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnPaidOrderView.Depth = 0;
+            btnPaidOrderView.HighEmphasis = true;
+            btnPaidOrderView.Icon = (Image)resources.GetObject("btnPaidOrderView.Icon");
+            btnPaidOrderView.Location = new Point(525, 15);
+            btnPaidOrderView.Margin = new Padding(4, 6, 4, 6);
+            btnPaidOrderView.MouseState = MaterialSkin.MouseState.HOVER;
+            btnPaidOrderView.Name = "btnPaidOrderView";
+            btnPaidOrderView.NoAccentTextColor = Color.Empty;
+            btnPaidOrderView.Size = new Size(141, 36);
+            btnPaidOrderView.TabIndex = 4;
+            btnPaidOrderView.Text = "Paid orders";
+            btnPaidOrderView.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnPaidOrderView.UseAccentColor = false;
+            btnPaidOrderView.UseVisualStyleBackColor = true;
+            btnPaidOrderView.Click += btnPaidOrderView_Click;
             // 
             // btnRejectOrderView
             // 
@@ -116,34 +137,14 @@
             pnlMain.Dock = DockStyle.Fill;
             pnlMain.Location = new Point(0, 62);
             pnlMain.Name = "pnlMain";
-            pnlMain.Size = new Size(988, 612);
+            pnlMain.Size = new Size(1414, 639);
             pnlMain.TabIndex = 1;
-            // 
-            // btnPaidOrderView
-            // 
-            btnPaidOrderView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnPaidOrderView.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            btnPaidOrderView.Depth = 0;
-            btnPaidOrderView.HighEmphasis = true;
-            btnPaidOrderView.Icon = (Image)resources.GetObject("btnPaidOrderView.Icon");
-            btnPaidOrderView.Location = new Point(525, 15);
-            btnPaidOrderView.Margin = new Padding(4, 6, 4, 6);
-            btnPaidOrderView.MouseState = MaterialSkin.MouseState.HOVER;
-            btnPaidOrderView.Name = "btnPaidOrderView";
-            btnPaidOrderView.NoAccentTextColor = Color.Empty;
-            btnPaidOrderView.Size = new Size(152, 36);
-            btnPaidOrderView.TabIndex = 4;
-            btnPaidOrderView.Text = "Paid orders";
-            btnPaidOrderView.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            btnPaidOrderView.UseAccentColor = false;
-            btnPaidOrderView.UseVisualStyleBackColor = true;
-            btnPaidOrderView.Click += btnPaidOrderView_Click;
             // 
             // ViewOrderMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(988, 674);
+            ClientSize = new Size(1414, 701);
             Controls.Add(pnlMain);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
