@@ -158,16 +158,22 @@ namespace car_traders.View.View_Customer.View_Order
         private void statusCheck()
         {
             lblStatus.ForeColor = Color.Green;
-            if (order.status == "CANCEL")
+            if (order.status == "CANCEL" || order.status == "REJECT")
             {
                 lblStatus.ForeColor = Color.Red;
+                unVisibleButton();
             }
             else if (order.status == "PAID")
             {
                 lblStatus.ForeColor = Color.Blue;
+                unVisibleButton();
             }
         }
 
+        private void unVisibleButton()
+        {
+            btnCancel.Visible = false;
+        }
         private void visibleLable()
         {
             lblOrderCode.Visible = true;

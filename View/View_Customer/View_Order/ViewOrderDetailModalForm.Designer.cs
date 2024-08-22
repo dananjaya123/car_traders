@@ -61,7 +61,7 @@
             listViewOrderDetail.MouseState = MaterialSkin.MouseState.OUT;
             listViewOrderDetail.Name = "listViewOrderDetail";
             listViewOrderDetail.OwnerDraw = true;
-            listViewOrderDetail.Size = new Size(711, 396);
+            listViewOrderDetail.Size = new Size(700, 318);
             listViewOrderDetail.TabIndex = 0;
             listViewOrderDetail.UseCompatibleStateImageBehavior = false;
             listViewOrderDetail.View = System.Windows.Forms.View.Details;
@@ -106,7 +106,7 @@
             // imgItem
             // 
             imgItem.Image = (Image)resources.GetObject("imgItem.Image");
-            imgItem.Location = new Point(723, 106);
+            imgItem.Location = new Point(723, 112);
             imgItem.Name = "imgItem";
             imgItem.Size = new Size(206, 167);
             imgItem.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -129,7 +129,7 @@
             btnCancel.ForeColor = SystemColors.ButtonHighlight;
             btnCancel.Image = (Image)resources.GetObject("btnCancel.Image");
             btnCancel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancel.Location = new Point(723, 416);
+            btnCancel.Location = new Point(723, 346);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new Padding(20, 0, 0, 0);
             btnCancel.Size = new Size(206, 76);
@@ -142,7 +142,7 @@
             // lblExist
             // 
             lblExist.AutoSize = true;
-            lblExist.Location = new Point(723, 324);
+            lblExist.Location = new Point(746, 76);
             lblExist.Name = "lblExist";
             lblExist.Size = new Size(0, 25);
             lblExist.TabIndex = 28;
@@ -151,7 +151,7 @@
             // lblOrderDetailID
             // 
             lblOrderDetailID.AutoSize = true;
-            lblOrderDetailID.Location = new Point(723, 377);
+            lblOrderDetailID.Location = new Point(821, 76);
             lblOrderDetailID.Name = "lblOrderDetailID";
             lblOrderDetailID.Size = new Size(0, 25);
             lblOrderDetailID.TabIndex = 29;
@@ -160,7 +160,7 @@
             // lblType
             // 
             lblType.AutoSize = true;
-            lblType.Location = new Point(798, 377);
+            lblType.Location = new Point(887, 76);
             lblType.Name = "lblType";
             lblType.Size = new Size(0, 25);
             lblType.TabIndex = 30;
@@ -170,7 +170,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 517);
+            ClientSize = new Size(945, 451);
             Controls.Add(lblType);
             Controls.Add(lblOrderDetailID);
             Controls.Add(lblExist);
@@ -180,6 +180,7 @@
             Controls.Add(listViewOrderDetail);
             Name = "ViewOrderDetailModalForm";
             Text = "Order Details";
+            Load += ViewOrderDetailModalForm_Load;
             ((System.ComponentModel.ISupportInitialize)imgItem).EndInit();
             ((System.ComponentModel.ISupportInitialize)numberQty).EndInit();
             ResumeLayout(false);

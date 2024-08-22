@@ -3,6 +3,7 @@ using car_traders.Service;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Mysqlx.Crud;
+using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,8 @@ namespace car_traders.View.View_Customer.View_Order
         readonly OrderDetailService _orderDetailService;
         public ViewOrderDetailModalForm(List<OrderDetails> detailList, Model.Order order, ViewOrderForm viewOrderForm)
         {
+
+
             InitializeComponent();
             _orderDetailList = detailList;
             _order = order;
@@ -41,6 +44,12 @@ namespace car_traders.View.View_Customer.View_Order
 
             loadOrderDetail();
 
+
+        }
+
+        private void ViewOrderDetailModalForm_Load(object sender, EventArgs e)
+        {
+           
         }
 
         private void loadOrderDetail()
@@ -79,6 +88,8 @@ namespace car_traders.View.View_Customer.View_Order
             {
                 if (listViewOrderDetail.SelectedItems.Count > 0)
                 {
+                  
+
                     // Assuming the ID is stored as text in the sixth column (index 5)
                     string itemIdString = listViewOrderDetail.SelectedItems[0].SubItems[5].Text;
                     string detailID = listViewOrderDetail.SelectedItems[0].SubItems[6].Text;
@@ -89,7 +100,7 @@ namespace car_traders.View.View_Customer.View_Order
                     string qty = listViewOrderDetail.SelectedItems[0].SubItems[1].Text;
 
                     Guid itemId = Guid.Parse(itemIdString); // Convert the string to a Guid
-                    
+
 
                     numberQty.Value = int.Parse(qty);
                     lblExist.Text = qty;
@@ -120,9 +131,18 @@ namespace car_traders.View.View_Customer.View_Order
                         }
                     }
 
+                    // order statsu wise btton visibility
+                    if (_order.status.Equals("CANCEL") || _order.status.Equals("PAID") || _order.status.Equals("REJECT"))
+                    {
+                        btnCancel.Visible = false;
+                    }
+                    else
+                    {
+                        numberQty.Visible = true;
+                        btnCancel.Visible = true;
+                    }
+
                     imgItem.Visible = true;
-                    numberQty.Visible = true;
-                    btnCancel.Visible = true;
                     imgItem.SizeMode = PictureBoxSizeMode.Zoom;
                 }
             }
@@ -141,17 +161,18 @@ namespace car_traders.View.View_Customer.View_Order
                 MessageBox.Show($"Can't cancel this item. please check your qty count !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (qty <= existQty) {
+            else if (qty <= existQty)
+            {
                 Guid id = Guid.Parse(lblOrderDetailID.Text);
                 OrderDetails detailsData = _orderDetailService.getOrderDetailByDetailID(id);
                 if (detailsData != null)
                 {
                     //check input and exist detail qty and save
                     int availableQty = existQty - qty;
-                    double unitPrice = detailsData.Total_price/existQty;
-                    double availableTotalPrice = unitPrice*availableQty;
+                    double unitPrice = detailsData.Total_price / existQty;
+                    double availableTotalPrice = unitPrice * availableQty;
                     double removeQtyTotalPrice = unitPrice * qty;
-                    if (availableQty==0)
+                    if (availableQty == 0)
                     {
                         detailsData.Is_active = false;
                     }
@@ -194,10 +215,12 @@ namespace car_traders.View.View_Customer.View_Order
                             loadOrderDetail();
                             this.Close();
                         }
-                     
+
                     }
                 }
             }
         }
+
+       
     }
 }
