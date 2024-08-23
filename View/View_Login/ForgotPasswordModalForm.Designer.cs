@@ -118,13 +118,14 @@
             btnChangePw.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnChangePw.Depth = 0;
             btnChangePw.HighEmphasis = true;
-            btnChangePw.Icon = null;
-            btnChangePw.Location = new Point(226, 372);
+            btnChangePw.Icon = (Image)resources.GetObject("btnChangePw.Icon");
+            btnChangePw.ImageAlign = ContentAlignment.MiddleLeft;
+            btnChangePw.Location = new Point(307, 359);
             btnChangePw.Margin = new Padding(4, 6, 4, 6);
             btnChangePw.MouseState = MaterialSkin.MouseState.HOVER;
             btnChangePw.Name = "btnChangePw";
             btnChangePw.NoAccentTextColor = Color.Empty;
-            btnChangePw.Size = new Size(163, 36);
+            btnChangePw.Size = new Size(191, 36);
             btnChangePw.TabIndex = 12;
             btnChangePw.Text = "Change Password";
             btnChangePw.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -245,7 +246,7 @@
             texOneTimePassword.Click += texOneTimePassword_Click;
             texOneTimePassword.KeyPress += texOneTimePassword_KeyPress;
             // 
-            // ForgotPasswordModelForm
+            // ForgotPasswordModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -258,7 +259,7 @@
             Controls.Add(btnSubmit);
             Controls.Add(lblOneTimePw);
             Controls.Add(texOneTimePassword);
-            Name = "ForgotPasswordModelForm";
+            Name = "ForgotPasswordModalForm";
             Text = "Forgot Password";
             ResumeLayout(false);
             PerformLayout();

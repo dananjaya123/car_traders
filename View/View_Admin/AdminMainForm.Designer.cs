@@ -141,6 +141,7 @@
             tblCustomer = new TabPage();
             pnlCustomerMain = new Panel();
             btnLogout = new Button();
+            lblRegister = new LinkLabel();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
             materialCard5.SuspendLayout();
@@ -2143,11 +2144,26 @@
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += button1_Click;
             // 
+            // lblRegister
+            // 
+            lblRegister.ActiveLinkColor = Color.Turquoise;
+            lblRegister.AutoSize = true;
+            lblRegister.BackColor = Color.Transparent;
+            lblRegister.LinkColor = Color.Silver;
+            lblRegister.Location = new Point(1104, 33);
+            lblRegister.Name = "lblRegister";
+            lblRegister.Size = new Size(105, 25);
+            lblRegister.TabIndex = 2;
+            lblRegister.TabStop = true;
+            lblRegister.Text = "Register her";
+            lblRegister.LinkClicked += lblRegister_LinkClicked;
+            // 
             // AdminMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1428, 811);
+            Controls.Add(lblRegister);
             Controls.Add(btnLogout);
             Controls.Add(materialTabControl1);
             DrawerAutoHide = false;
@@ -2202,6 +2218,7 @@
             tabOrders.ResumeLayout(false);
             tblCustomer.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -2317,5 +2334,6 @@
         private ColumnHeader colStatus;
         private ColumnHeader colID;
         private MaterialSkin.Controls.MaterialCard materialCard13;
+        private LinkLabel lblRegister;
     }
 }

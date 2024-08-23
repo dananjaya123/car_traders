@@ -37,16 +37,20 @@
             btnCarParts = new MaterialSkin.Controls.MaterialButton();
             btnViewOrder = new MaterialSkin.Controls.MaterialButton();
             pnlMain = new Panel();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            panel1 = new Panel();
             pnlSlide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlSlide
             // 
             pnlSlide.BackColor = Color.LightSteelBlue;
+            pnlSlide.Controls.Add(panel1);
+            pnlSlide.Controls.Add(materialCard1);
             pnlSlide.Controls.Add(btnLogout);
-            pnlSlide.Controls.Add(pictureBox1);
             pnlSlide.Controls.Add(tableLayoutPanel1);
             pnlSlide.Dock = DockStyle.Left;
             pnlSlide.Location = new Point(3, 64);
@@ -79,9 +83,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(48, 12);
+            pictureBox1.Location = new Point(-1, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(67, 76);
+            pictureBox1.Size = new Size(154, 137);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -93,7 +97,7 @@
             tableLayoutPanel1.Controls.Add(btnCarSearch, 0, 0);
             tableLayoutPanel1.Controls.Add(btnCarParts, 0, 1);
             tableLayoutPanel1.Controls.Add(btnViewOrder, 0, 2);
-            tableLayoutPanel1.Location = new Point(6, 130);
+            tableLayoutPanel1.Location = new Point(6, 175);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -177,6 +181,28 @@
             pnlMain.Size = new Size(1217, 607);
             pnlMain.TabIndex = 3;
             // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(10, 19);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(153, 137);
+            materialCard1.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LightSteelBlue;
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(10, 19);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(153, 137);
+            panel1.TabIndex = 1;
+            // 
             // CustomerMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -191,6 +217,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -203,5 +230,7 @@
         private Panel pnlMain;
         private PictureBox pictureBox1;
         private MaterialSkin.Controls.MaterialButton btnLogout;
+        private Panel panel1;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

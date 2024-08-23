@@ -37,15 +37,17 @@
             lblStatus = new Label();
             label1 = new Label();
             lblCarSelingType = new Label();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             ((System.ComponentModel.ISupportInitialize)imgCar).BeginInit();
+            materialCard1.SuspendLayout();
             SuspendLayout();
             // 
             // imgCar
             // 
             imgCar.Image = (Image)resources.GetObject("imgCar.Image");
-            imgCar.Location = new Point(10, 9);
+            imgCar.Location = new Point(2, 2);
             imgCar.Name = "imgCar";
-            imgCar.Size = new Size(241, 196);
+            imgCar.Size = new Size(230, 203);
             imgCar.SizeMode = PictureBoxSizeMode.CenterImage;
             imgCar.TabIndex = 5;
             imgCar.TabStop = false;
@@ -55,7 +57,7 @@
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPrice.ForeColor = SystemColors.Highlight;
-            lblPrice.Location = new Point(294, 157);
+            lblPrice.Location = new Point(280, 153);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(56, 28);
             lblPrice.TabIndex = 9;
@@ -65,7 +67,7 @@
             // 
             lblManufacturingYear.AutoSize = true;
             lblManufacturingYear.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblManufacturingYear.Location = new Point(257, 114);
+            lblManufacturingYear.Location = new Point(243, 110);
             lblManufacturingYear.Name = "lblManufacturingYear";
             lblManufacturingYear.Size = new Size(189, 28);
             lblManufacturingYear.TabIndex = 8;
@@ -75,7 +77,7 @@
             // 
             lblColor.AutoSize = true;
             lblColor.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblColor.Location = new Point(257, 70);
+            lblColor.Location = new Point(243, 66);
             lblColor.Name = "lblColor";
             lblColor.Size = new Size(60, 28);
             lblColor.TabIndex = 7;
@@ -85,7 +87,7 @@
             // 
             lblCarName.AutoSize = true;
             lblCarName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCarName.Location = new Point(256, 30);
+            lblCarName.Location = new Point(242, 26);
             lblCarName.Name = "lblCarName";
             lblCarName.Size = new Size(101, 28);
             lblCarName.TabIndex = 6;
@@ -96,7 +98,7 @@
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStatus.ForeColor = Color.DarkCyan;
-            lblStatus.Location = new Point(604, 157);
+            lblStatus.Location = new Point(590, 153);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(66, 28);
             lblStatus.TabIndex = 10;
@@ -106,7 +108,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(256, 155);
+            label1.Location = new Point(242, 151);
             label1.Name = "label1";
             label1.Size = new Size(44, 28);
             label1.TabIndex = 11;
@@ -117,36 +119,48 @@
             lblCarSelingType.AutoSize = true;
             lblCarSelingType.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCarSelingType.ForeColor = Color.DarkCyan;
-            lblCarSelingType.Location = new Point(604, 30);
+            lblCarSelingType.Location = new Point(590, 26);
             lblCarSelingType.Name = "lblCarSelingType";
             lblCarSelingType.Size = new Size(52, 28);
             lblCarSelingType.TabIndex = 12;
             lblCarSelingType.Text = "type";
             // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgCar);
+            materialCard1.Controls.Add(lblCarSelingType);
+            materialCard1.Controls.Add(lblCarName);
+            materialCard1.Controls.Add(label1);
+            materialCard1.Controls.Add(lblColor);
+            materialCard1.Controls.Add(lblStatus);
+            materialCard1.Controls.Add(lblManufacturingYear);
+            materialCard1.Controls.Add(lblPrice);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(12, 5);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(734, 205);
+            materialCard1.TabIndex = 13;
+            materialCard1.Click += SearchCarUserColtrollFrom_Click;
+            materialCard1.MouseLeave += SearchCarUserColtrollFrom_MouseLeave;
+            materialCard1.MouseHover += SearchCarUserColtrollFrom_MouseHover;
+            // 
             // SearchCarUserColtrollFrom
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(lblCarSelingType);
-            Controls.Add(label1);
-            Controls.Add(lblStatus);
-            Controls.Add(lblPrice);
-            Controls.Add(lblManufacturingYear);
-            Controls.Add(lblColor);
-            Controls.Add(lblCarName);
-            Controls.Add(imgCar);
+            Controls.Add(materialCard1);
             Cursor = Cursors.Hand;
             Name = "SearchCarUserColtrollFrom";
             Size = new Size(776, 214);
-            Load += SearchCarUserColtrollFrom_Load;
-            Click += SearchCarUserColtrollFrom_Click;
-            MouseClick += SearchCarUserColtrollFrom_MouseClick;
-            MouseLeave += SearchCarUserColtrollFrom_MouseLeave;
-            MouseHover += SearchCarUserColtrollFrom_MouseHover;
-            MouseMove += SearchCarUserColtrollFrom_MouseMove;
             ((System.ComponentModel.ISupportInitialize)imgCar).EndInit();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -159,5 +173,6 @@
         private Label lblStatus;
         private Label label1;
         private Label lblCarSelingType;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

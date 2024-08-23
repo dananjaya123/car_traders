@@ -45,17 +45,21 @@
             timerCardetail = new System.Windows.Forms.Timer(components);
             btnSubmit = new Button();
             loader = new PictureBox();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            materialCard2 = new MaterialSkin.Controls.MaterialCard();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgCarDetail).BeginInit();
             ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
+            materialCard1.SuspendLayout();
+            materialCard2.SuspendLayout();
             SuspendLayout();
             // 
             // texSearchCar
             // 
-            texSearchCar.Location = new Point(8, 11);
+            texSearchCar.Location = new Point(13, 11);
             texSearchCar.Name = "texSearchCar";
-            texSearchCar.Size = new Size(474, 31);
+            texSearchCar.Size = new Size(518, 31);
             texSearchCar.TabIndex = 1;
             texSearchCar.TextChanged += texSearchCar_TextChanged;
             // 
@@ -63,9 +67,9 @@
             // 
             panel1.BackColor = Color.WhiteSmoke;
             panel1.Controls.Add(texSearchCar);
-            panel1.Location = new Point(138, 24);
+            panel1.Location = new Point(21, 11);
             panel1.Name = "panel1";
-            panel1.Size = new Size(485, 54);
+            panel1.Size = new Size(542, 54);
             panel1.TabIndex = 2;
             // 
             // pictureBox1
@@ -73,7 +77,7 @@
             pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(623, 24);
+            pictureBox1.Location = new Point(566, 11);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(56, 54);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -83,14 +87,14 @@
             // 
             // resultContainer
             // 
-            resultContainer.Location = new Point(31, 95);
+            resultContainer.Location = new Point(31, 118);
             resultContainer.Name = "resultContainer";
             resultContainer.Size = new Size(776, 214);
             resultContainer.TabIndex = 4;
             // 
             // imgCarDetail
             // 
-            imgCarDetail.Location = new Point(832, 73);
+            imgCarDetail.Location = new Point(17, 28);
             imgCarDetail.Name = "imgCarDetail";
             imgCarDetail.Size = new Size(114, 105);
             imgCarDetail.TabIndex = 5;
@@ -101,7 +105,7 @@
             // 
             lblCarModel.AutoSize = true;
             lblCarModel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCarModel.Location = new Point(839, 212);
+            lblCarModel.Location = new Point(24, 167);
             lblCarModel.Name = "lblCarModel";
             lblCarModel.Size = new Size(70, 28);
             lblCarModel.TabIndex = 6;
@@ -112,7 +116,7 @@
             // 
             lblColor.AutoSize = true;
             lblColor.Font = new Font("Segoe UI", 9F);
-            lblColor.Location = new Point(952, 74);
+            lblColor.Location = new Point(137, 29);
             lblColor.Name = "lblColor";
             lblColor.Size = new Size(52, 25);
             lblColor.TabIndex = 7;
@@ -124,7 +128,7 @@
             // 
             lblManufacturing.AutoSize = true;
             lblManufacturing.Font = new Font("Segoe UI", 9F);
-            lblManufacturing.Location = new Point(952, 111);
+            lblManufacturing.Location = new Point(137, 66);
             lblManufacturing.Name = "lblManufacturing";
             lblManufacturing.Size = new Size(45, 25);
             lblManufacturing.TabIndex = 8;
@@ -135,7 +139,7 @@
             // 
             lblMileage.AutoSize = true;
             lblMileage.Font = new Font("Segoe UI", 9F);
-            lblMileage.Location = new Point(952, 153);
+            lblMileage.Location = new Point(137, 108);
             lblMileage.Name = "lblMileage";
             lblMileage.Size = new Size(65, 25);
             lblMileage.TabIndex = 9;
@@ -146,7 +150,7 @@
             // 
             lblFelType.AutoSize = true;
             lblFelType.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblFelType.Location = new Point(839, 251);
+            lblFelType.Location = new Point(24, 206);
             lblFelType.Name = "lblFelType";
             lblFelType.Size = new Size(47, 28);
             lblFelType.TabIndex = 10;
@@ -157,7 +161,7 @@
             // 
             lblBodyType.AutoSize = true;
             lblBodyType.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblBodyType.Location = new Point(839, 291);
+            lblBodyType.Location = new Point(24, 246);
             lblBodyType.Name = "lblBodyType";
             lblBodyType.Size = new Size(58, 28);
             lblBodyType.TabIndex = 11;
@@ -169,7 +173,7 @@
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPrice.ForeColor = SystemColors.Highlight;
-            lblPrice.Location = new Point(839, 346);
+            lblPrice.Location = new Point(24, 301);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(56, 28);
             lblPrice.TabIndex = 12;
@@ -186,7 +190,7 @@
             btnSubmit.BackColor = Color.CornflowerBlue;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
-            btnSubmit.Location = new Point(832, 429);
+            btnSubmit.Location = new Point(24, 452);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(333, 76);
             btnSubmit.TabIndex = 13;
@@ -198,13 +202,52 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(966, 511);
+            loader.Location = new Point(689, 7);
             loader.Name = "loader";
-            loader.Size = new Size(81, 73);
+            loader.Size = new Size(76, 62);
             loader.SizeMode = PictureBoxSizeMode.CenterImage;
             loader.TabIndex = 14;
             loader.TabStop = false;
             loader.Visible = false;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgCarDetail);
+            materialCard1.Controls.Add(btnSubmit);
+            materialCard1.Controls.Add(lblCarModel);
+            materialCard1.Controls.Add(lblPrice);
+            materialCard1.Controls.Add(lblColor);
+            materialCard1.Controls.Add(lblBodyType);
+            materialCard1.Controls.Add(lblManufacturing);
+            materialCard1.Controls.Add(lblFelType);
+            materialCard1.Controls.Add(lblMileage);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(822, 23);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(369, 561);
+            materialCard1.TabIndex = 0;
+            // 
+            // materialCard2
+            // 
+            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(panel1);
+            materialCard2.Controls.Add(pictureBox1);
+            materialCard2.Controls.Add(loader);
+            materialCard2.Depth = 0;
+            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard2.Location = new Point(31, 26);
+            materialCard2.Margin = new Padding(14);
+            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard2.Name = "materialCard2";
+            materialCard2.Padding = new Padding(14);
+            materialCard2.Size = new Size(776, 75);
+            materialCard2.TabIndex = 15;
+            materialCard2.Paint += materialCard2_Paint;
             // 
             // SearchCarForm
             // 
@@ -213,19 +256,9 @@
             BackColor = Color.White;
             ClientSize = new Size(1217, 607);
             ControlBox = false;
-            Controls.Add(loader);
-            Controls.Add(btnSubmit);
-            Controls.Add(lblPrice);
-            Controls.Add(lblBodyType);
-            Controls.Add(lblFelType);
-            Controls.Add(lblMileage);
-            Controls.Add(lblManufacturing);
-            Controls.Add(lblColor);
-            Controls.Add(lblCarModel);
-            Controls.Add(imgCarDetail);
+            Controls.Add(materialCard2);
+            Controls.Add(materialCard1);
             Controls.Add(resultContainer);
-            Controls.Add(pictureBox1);
-            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SearchCarForm";
             Text = "CustomerSearchCarForm";
@@ -235,8 +268,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgCarDetail).EndInit();
             ((System.ComponentModel.ISupportInitialize)loader).EndInit();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
+            materialCard2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -256,5 +291,7 @@
         private System.Windows.Forms.Timer timerCardetail;
         private Button btnSubmit;
         private PictureBox loader;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private MaterialSkin.Controls.MaterialCard materialCard2;
     }
 }

@@ -43,8 +43,10 @@
             lblExist = new Label();
             lblOrderDetailID = new Label();
             lblType = new Label();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             ((System.ComponentModel.ISupportInitialize)imgItem).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numberQty).BeginInit();
+            materialCard1.SuspendLayout();
             SuspendLayout();
             // 
             // listViewOrderDetail
@@ -61,7 +63,7 @@
             listViewOrderDetail.MouseState = MaterialSkin.MouseState.OUT;
             listViewOrderDetail.Name = "listViewOrderDetail";
             listViewOrderDetail.OwnerDraw = true;
-            listViewOrderDetail.Size = new Size(700, 318);
+            listViewOrderDetail.Size = new Size(735, 325);
             listViewOrderDetail.TabIndex = 0;
             listViewOrderDetail.UseCompatibleStateImageBehavior = false;
             listViewOrderDetail.View = System.Windows.Forms.View.Details;
@@ -70,7 +72,7 @@
             // colItemName
             // 
             colItemName.Text = "Name";
-            colItemName.Width = 200;
+            colItemName.Width = 180;
             // 
             // colQty
             // 
@@ -106,7 +108,7 @@
             // imgItem
             // 
             imgItem.Image = (Image)resources.GetObject("imgItem.Image");
-            imgItem.Location = new Point(723, 112);
+            imgItem.Location = new Point(17, 11);
             imgItem.Name = "imgItem";
             imgItem.Size = new Size(206, 167);
             imgItem.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -116,7 +118,7 @@
             // 
             // numberQty
             // 
-            numberQty.Location = new Point(723, 290);
+            numberQty.Location = new Point(17, 189);
             numberQty.Name = "numberQty";
             numberQty.Size = new Size(206, 31);
             numberQty.TabIndex = 18;
@@ -129,7 +131,7 @@
             btnCancel.ForeColor = SystemColors.ButtonHighlight;
             btnCancel.Image = (Image)resources.GetObject("btnCancel.Image");
             btnCancel.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCancel.Location = new Point(723, 346);
+            btnCancel.Location = new Point(17, 230);
             btnCancel.Name = "btnCancel";
             btnCancel.Padding = new Padding(20, 0, 0, 0);
             btnCancel.Size = new Size(206, 76);
@@ -142,47 +144,65 @@
             // lblExist
             // 
             lblExist.AutoSize = true;
-            lblExist.Location = new Point(746, 76);
+            lblExist.Location = new Point(792, 87);
             lblExist.Name = "lblExist";
-            lblExist.Size = new Size(0, 25);
+            lblExist.Size = new Size(22, 25);
             lblExist.TabIndex = 28;
+            lblExist.Text = "0";
             lblExist.Visible = false;
             // 
             // lblOrderDetailID
             // 
             lblOrderDetailID.AutoSize = true;
-            lblOrderDetailID.Location = new Point(821, 76);
+            lblOrderDetailID.Location = new Point(839, 87);
             lblOrderDetailID.Name = "lblOrderDetailID";
-            lblOrderDetailID.Size = new Size(0, 25);
+            lblOrderDetailID.Size = new Size(27, 25);
             lblOrderDetailID.TabIndex = 29;
+            lblOrderDetailID.Text = "id";
             lblOrderDetailID.Visible = false;
             // 
             // lblType
             // 
             lblType.AutoSize = true;
-            lblType.Location = new Point(887, 76);
+            lblType.Location = new Point(891, 87);
             lblType.Name = "lblType";
-            lblType.Size = new Size(0, 25);
+            lblType.Size = new Size(47, 25);
             lblType.TabIndex = 30;
+            lblType.Text = "type";
             lblType.Visible = false;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgItem);
+            materialCard1.Controls.Add(numberQty);
+            materialCard1.Controls.Add(btnCancel);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(749, 115);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(246, 316);
+            materialCard1.TabIndex = 31;
             // 
             // ViewOrderDetailModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 451);
+            ClientSize = new Size(1035, 451);
+            Controls.Add(materialCard1);
             Controls.Add(lblType);
-            Controls.Add(lblOrderDetailID);
-            Controls.Add(lblExist);
-            Controls.Add(btnCancel);
-            Controls.Add(numberQty);
-            Controls.Add(imgItem);
             Controls.Add(listViewOrderDetail);
+            Controls.Add(lblExist);
+            Controls.Add(lblOrderDetailID);
             Name = "ViewOrderDetailModalForm";
             Text = "Order Details";
             Load += ViewOrderDetailModalForm_Load;
             ((System.ComponentModel.ISupportInitialize)imgItem).EndInit();
             ((System.ComponentModel.ISupportInitialize)numberQty).EndInit();
+            materialCard1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -203,5 +223,6 @@
         private ColumnHeader colDetailID;
         private Label lblOrderDetailID;
         private Label lblType;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

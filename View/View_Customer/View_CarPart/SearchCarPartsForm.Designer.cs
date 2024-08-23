@@ -57,11 +57,17 @@
             lblTotal = new Label();
             btnViewCart = new Button();
             lblCartOrderCount = new Label();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            materialCard3 = new MaterialSkin.Controls.MaterialCard();
             ((System.ComponentModel.ISupportInitialize)imgCarPart).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numInputQty).BeginInit();
+            materialCard1.SuspendLayout();
+            materialCard2.SuspendLayout();
+            materialCard3.SuspendLayout();
             SuspendLayout();
             // 
             // texSearchCarPart
@@ -74,7 +80,7 @@
             // 
             // imgCarPart
             // 
-            imgCarPart.Location = new Point(811, 58);
+            imgCarPart.Location = new Point(34, 37);
             imgCarPart.Name = "imgCarPart";
             imgCarPart.Size = new Size(114, 105);
             imgCarPart.TabIndex = 18;
@@ -83,7 +89,7 @@
             // 
             // resultContainer
             // 
-            resultContainer.Location = new Point(10, 80);
+            resultContainer.Location = new Point(10, 121);
             resultContainer.Name = "resultContainer";
             resultContainer.Size = new Size(776, 214);
             resultContainer.TabIndex = 17;
@@ -93,7 +99,7 @@
             pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(496, 10);
+            pictureBox1.Location = new Point(502, 13);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(56, 54);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -104,7 +110,7 @@
             // 
             panel1.BackColor = Color.WhiteSmoke;
             panel1.Controls.Add(texSearchCarPart);
-            panel1.Location = new Point(11, 10);
+            panel1.Location = new Point(17, 13);
             panel1.Name = "panel1";
             panel1.Size = new Size(485, 54);
             panel1.TabIndex = 15;
@@ -112,7 +118,7 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(558, 10);
+            loader.Location = new Point(564, 13);
             loader.Name = "loader";
             loader.Size = new Size(66, 54);
             loader.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -127,7 +133,7 @@
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
             btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
             btnSubmit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSubmit.Location = new Point(821, 386);
+            btnSubmit.Location = new Point(44, 365);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Padding = new Padding(20, 0, 0, 0);
             btnSubmit.Size = new Size(323, 76);
@@ -147,7 +153,7 @@
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPrice.ForeColor = SystemColors.Highlight;
-            lblPrice.Location = new Point(859, 266);
+            lblPrice.Location = new Point(82, 245);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(56, 28);
             lblPrice.TabIndex = 25;
@@ -159,7 +165,7 @@
             lblModel.AutoSize = true;
             lblModel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblModel.ForeColor = SystemColors.WindowFrame;
-            lblModel.Location = new Point(1011, 94);
+            lblModel.Location = new Point(234, 73);
             lblModel.Name = "lblModel";
             lblModel.Size = new Size(65, 25);
             lblModel.TabIndex = 31;
@@ -171,7 +177,7 @@
             lblBrand.AutoSize = true;
             lblBrand.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblBrand.ForeColor = SystemColors.WindowFrame;
-            lblBrand.Location = new Point(1011, 58);
+            lblBrand.Location = new Point(234, 37);
             lblBrand.Name = "lblBrand";
             lblBrand.Size = new Size(61, 25);
             lblBrand.TabIndex = 30;
@@ -183,7 +189,7 @@
             lblQty.AutoSize = true;
             lblQty.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblQty.ForeColor = SystemColors.WindowFrame;
-            lblQty.Location = new Point(968, 218);
+            lblQty.Location = new Point(191, 197);
             lblQty.Name = "lblQty";
             lblQty.Size = new Size(39, 25);
             lblQty.TabIndex = 29;
@@ -195,7 +201,7 @@
             lblCarPartName.AutoSize = true;
             lblCarPartName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblCarPartName.ForeColor = SystemColors.WindowFrame;
-            lblCarPartName.Location = new Point(946, 178);
+            lblCarPartName.Location = new Point(169, 157);
             lblCarPartName.Name = "lblCarPartName";
             lblCarPartName.Size = new Size(100, 25);
             lblCarPartName.TabIndex = 28;
@@ -207,7 +213,7 @@
             lblPriceTag.AutoSize = true;
             lblPriceTag.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPriceTag.ForeColor = SystemColors.WindowFrame;
-            lblPriceTag.Location = new Point(821, 266);
+            lblPriceTag.Location = new Point(44, 245);
             lblPriceTag.Name = "lblPriceTag";
             lblPriceTag.Size = new Size(44, 28);
             lblPriceTag.TabIndex = 32;
@@ -219,7 +225,7 @@
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStatus.ForeColor = Color.DarkCyan;
-            lblStatus.Location = new Point(1044, 266);
+            lblStatus.Location = new Point(267, 245);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(66, 28);
             lblStatus.TabIndex = 33;
@@ -231,7 +237,7 @@
             lblCategory.AutoSize = true;
             lblCategory.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblCategory.ForeColor = SystemColors.WindowFrame;
-            lblCategory.Location = new Point(1032, 138);
+            lblCategory.Location = new Point(255, 117);
             lblCategory.Name = "lblCategory";
             lblCategory.Size = new Size(88, 25);
             lblCategory.TabIndex = 34;
@@ -240,7 +246,7 @@
             // 
             // numInputQty
             // 
-            numInputQty.Location = new Point(821, 313);
+            numInputQty.Location = new Point(44, 292);
             numInputQty.Name = "numInputQty";
             numInputQty.Size = new Size(302, 31);
             numInputQty.TabIndex = 36;
@@ -252,7 +258,7 @@
             lblQtyTag.AutoSize = true;
             lblQtyTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblQtyTag.ForeColor = SystemColors.WindowFrame;
-            lblQtyTag.Location = new Point(816, 218);
+            lblQtyTag.Location = new Point(39, 197);
             lblQtyTag.Name = "lblQtyTag";
             lblQtyTag.Size = new Size(139, 25);
             lblQtyTag.TabIndex = 37;
@@ -265,7 +271,7 @@
             lblBranTag.AutoSize = true;
             lblBranTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblBranTag.ForeColor = SystemColors.WindowFrame;
-            lblBranTag.Location = new Point(931, 58);
+            lblBranTag.Location = new Point(154, 37);
             lblBranTag.Name = "lblBranTag";
             lblBranTag.Size = new Size(70, 25);
             lblBranTag.TabIndex = 38;
@@ -277,7 +283,7 @@
             lblModelTag.AutoSize = true;
             lblModelTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblModelTag.ForeColor = SystemColors.WindowFrame;
-            lblModelTag.Location = new Point(935, 94);
+            lblModelTag.Location = new Point(158, 73);
             lblModelTag.Name = "lblModelTag";
             lblModelTag.Size = new Size(75, 25);
             lblModelTag.TabIndex = 39;
@@ -290,7 +296,7 @@
             lblCategoryTag.AutoSize = true;
             lblCategoryTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblCategoryTag.ForeColor = SystemColors.WindowFrame;
-            lblCategoryTag.Location = new Point(935, 138);
+            lblCategoryTag.Location = new Point(158, 117);
             lblCategoryTag.Name = "lblCategoryTag";
             lblCategoryTag.Size = new Size(97, 25);
             lblCategoryTag.TabIndex = 40;
@@ -302,7 +308,7 @@
             lblParNameTag.AutoSize = true;
             lblParNameTag.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
             lblParNameTag.ForeColor = SystemColors.WindowFrame;
-            lblParNameTag.Location = new Point(818, 178);
+            lblParNameTag.Location = new Point(41, 157);
             lblParNameTag.Name = "lblParNameTag";
             lblParNameTag.Size = new Size(109, 25);
             lblParNameTag.TabIndex = 41;
@@ -314,7 +320,7 @@
             lblTotalTag.AutoSize = true;
             lblTotalTag.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotalTag.ForeColor = SystemColors.WindowFrame;
-            lblTotalTag.Location = new Point(821, 351);
+            lblTotalTag.Location = new Point(44, 330);
             lblTotalTag.Name = "lblTotalTag";
             lblTotalTag.Size = new Size(93, 28);
             lblTotalTag.TabIndex = 43;
@@ -326,7 +332,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.Highlight;
-            label2.Location = new Point(859, 351);
+            label2.Location = new Point(82, 330);
             label2.Name = "label2";
             label2.Size = new Size(56, 28);
             label2.TabIndex = 42;
@@ -338,7 +344,7 @@
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTotal.ForeColor = SystemColors.Highlight;
-            lblTotal.Location = new Point(921, 351);
+            lblTotal.Location = new Point(144, 330);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(50, 28);
             lblTotal.TabIndex = 44;
@@ -350,7 +356,7 @@
             // 
             btnViewCart.BackColor = Color.DarkCyan;
             btnViewCart.Image = (Image)resources.GetObject("btnViewCart.Image");
-            btnViewCart.Location = new Point(651, 9);
+            btnViewCart.Location = new Point(17, 10);
             btnViewCart.Name = "btnViewCart";
             btnViewCart.Size = new Size(85, 54);
             btnViewCart.TabIndex = 45;
@@ -362,12 +368,75 @@
             lblCartOrderCount.AutoSize = true;
             lblCartOrderCount.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCartOrderCount.ForeColor = Color.DarkCyan;
-            lblCartOrderCount.Location = new Point(737, 6);
+            lblCartOrderCount.Location = new Point(103, 7);
             lblCartOrderCount.Name = "lblCartOrderCount";
             lblCartOrderCount.Size = new Size(22, 25);
             lblCartOrderCount.TabIndex = 46;
             lblCartOrderCount.Text = "0";
             lblCartOrderCount.Visible = false;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgCarPart);
+            materialCard1.Controls.Add(btnSubmit);
+            materialCard1.Controls.Add(lblPrice);
+            materialCard1.Controls.Add(lblTotal);
+            materialCard1.Controls.Add(lblCarPartName);
+            materialCard1.Controls.Add(lblTotalTag);
+            materialCard1.Controls.Add(lblQty);
+            materialCard1.Controls.Add(label2);
+            materialCard1.Controls.Add(lblBrand);
+            materialCard1.Controls.Add(lblParNameTag);
+            materialCard1.Controls.Add(lblModel);
+            materialCard1.Controls.Add(lblCategoryTag);
+            materialCard1.Controls.Add(lblPriceTag);
+            materialCard1.Controls.Add(lblModelTag);
+            materialCard1.Controls.Add(lblStatus);
+            materialCard1.Controls.Add(lblBranTag);
+            materialCard1.Controls.Add(lblCategory);
+            materialCard1.Controls.Add(lblQtyTag);
+            materialCard1.Controls.Add(numInputQty);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(800, 121);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(394, 463);
+            materialCard1.TabIndex = 47;
+            // 
+            // materialCard2
+            // 
+            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(panel1);
+            materialCard2.Controls.Add(loader);
+            materialCard2.Controls.Add(pictureBox1);
+            materialCard2.Depth = 0;
+            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard2.Location = new Point(10, 23);
+            materialCard2.Margin = new Padding(14);
+            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard2.Name = "materialCard2";
+            materialCard2.Padding = new Padding(14);
+            materialCard2.Size = new Size(642, 80);
+            materialCard2.TabIndex = 48;
+            // 
+            // materialCard3
+            // 
+            materialCard3.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard3.Controls.Add(btnViewCart);
+            materialCard3.Controls.Add(lblCartOrderCount);
+            materialCard3.Depth = 0;
+            materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard3.Location = new Point(655, 23);
+            materialCard3.Margin = new Padding(14);
+            materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard3.Name = "materialCard3";
+            materialCard3.Padding = new Padding(14);
+            materialCard3.Size = new Size(137, 81);
+            materialCard3.TabIndex = 49;
             // 
             // SearchCarPartsForm
             // 
@@ -376,31 +445,10 @@
             BackColor = Color.White;
             ClientSize = new Size(1217, 607);
             ControlBox = false;
-            Controls.Add(lblCartOrderCount);
-            Controls.Add(btnViewCart);
-            Controls.Add(lblTotal);
-            Controls.Add(lblTotalTag);
-            Controls.Add(label2);
-            Controls.Add(lblParNameTag);
-            Controls.Add(lblCategoryTag);
-            Controls.Add(lblModelTag);
-            Controls.Add(lblBranTag);
-            Controls.Add(lblQtyTag);
-            Controls.Add(numInputQty);
-            Controls.Add(lblCategory);
-            Controls.Add(lblStatus);
-            Controls.Add(lblPriceTag);
-            Controls.Add(lblModel);
-            Controls.Add(lblBrand);
-            Controls.Add(lblQty);
-            Controls.Add(lblCarPartName);
-            Controls.Add(lblPrice);
-            Controls.Add(imgCarPart);
+            Controls.Add(materialCard3);
+            Controls.Add(materialCard2);
+            Controls.Add(materialCard1);
             Controls.Add(resultContainer);
-            Controls.Add(pictureBox1);
-            Controls.Add(panel1);
-            Controls.Add(loader);
-            Controls.Add(btnSubmit);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SearchCarPartsForm";
             Text = "SearchCarPartsForm";
@@ -411,8 +459,12 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)loader).EndInit();
             ((System.ComponentModel.ISupportInitialize)numInputQty).EndInit();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
+            materialCard2.ResumeLayout(false);
+            materialCard3.ResumeLayout(false);
+            materialCard3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -444,5 +496,8 @@
         private Label lblTotal;
         private Button btnViewCart;
         private Label lblCartOrderCount;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private MaterialSkin.Controls.MaterialCard materialCard2;
+        private MaterialSkin.Controls.MaterialCard materialCard3;
     }
 }

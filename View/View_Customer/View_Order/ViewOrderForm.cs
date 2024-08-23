@@ -279,5 +279,10 @@ namespace car_traders.View.View_Customer.View_Order
                 modelBackgraund.Dispose();
             }
         }
+
+        private void materialCard1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

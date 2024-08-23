@@ -37,14 +37,16 @@
             lblQty = new Label();
             lblCarPartName = new Label();
             imgCarPart = new PictureBox();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             ((System.ComponentModel.ISupportInitialize)imgCarPart).BeginInit();
+            materialCard1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(253, 167);
+            label1.Location = new Point(262, 159);
             label1.Name = "label1";
             label1.Size = new Size(44, 28);
             label1.TabIndex = 22;
@@ -55,7 +57,7 @@
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStatus.ForeColor = Color.DarkCyan;
-            lblStatus.Location = new Point(601, 169);
+            lblStatus.Location = new Point(610, 161);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(66, 28);
             lblStatus.TabIndex = 21;
@@ -66,7 +68,7 @@
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPrice.ForeColor = SystemColors.Highlight;
-            lblPrice.Location = new Point(291, 169);
+            lblPrice.Location = new Point(300, 161);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(56, 28);
             lblPrice.TabIndex = 20;
@@ -76,7 +78,7 @@
             // 
             lblCarModel.AutoSize = true;
             lblCarModel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCarModel.Location = new Point(250, 127);
+            lblCarModel.Location = new Point(259, 119);
             lblCarModel.Name = "lblCarModel";
             lblCarModel.Size = new Size(70, 28);
             lblCarModel.TabIndex = 19;
@@ -86,7 +88,7 @@
             // 
             lblBrand.AutoSize = true;
             lblBrand.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblBrand.Location = new Point(250, 88);
+            lblBrand.Location = new Point(259, 80);
             lblBrand.Name = "lblBrand";
             lblBrand.Size = new Size(65, 28);
             lblBrand.TabIndex = 18;
@@ -96,7 +98,7 @@
             // 
             lblQty.AutoSize = true;
             lblQty.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblQty.Location = new Point(250, 50);
+            lblQty.Location = new Point(259, 42);
             lblQty.Name = "lblQty";
             lblQty.Size = new Size(41, 28);
             lblQty.TabIndex = 17;
@@ -106,7 +108,7 @@
             // 
             lblCarPartName.AutoSize = true;
             lblCarPartName.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCarPartName.Location = new Point(250, 12);
+            lblCarPartName.Location = new Point(259, 4);
             lblCarPartName.Name = "lblCarPartName";
             lblCarPartName.Size = new Size(108, 28);
             lblCarPartName.TabIndex = 16;
@@ -115,34 +117,49 @@
             // imgCarPart
             // 
             imgCarPart.Image = (Image)resources.GetObject("imgCarPart.Image");
-            imgCarPart.Location = new Point(3, 12);
+            imgCarPart.Location = new Point(0, 0);
             imgCarPart.Name = "imgCarPart";
-            imgCarPart.Size = new Size(241, 196);
+            imgCarPart.Size = new Size(233, 192);
             imgCarPart.SizeMode = PictureBoxSizeMode.CenterImage;
             imgCarPart.TabIndex = 15;
             imgCarPart.TabStop = false;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgCarPart);
+            materialCard1.Controls.Add(label1);
+            materialCard1.Controls.Add(lblCarPartName);
+            materialCard1.Controls.Add(lblStatus);
+            materialCard1.Controls.Add(lblQty);
+            materialCard1.Controls.Add(lblPrice);
+            materialCard1.Controls.Add(lblBrand);
+            materialCard1.Controls.Add(lblCarModel);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(12, 9);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(741, 192);
+            materialCard1.TabIndex = 23;
+            materialCard1.Click += CarPartControlForm_Click;
+            materialCard1.MouseLeave += CarPartControlForm_MouseLeave;
+            materialCard1.MouseHover += CarPartControlForm_MouseHover;
             // 
             // CarPartControlForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
-            Controls.Add(lblStatus);
-            Controls.Add(lblPrice);
-            Controls.Add(lblCarModel);
-            Controls.Add(lblBrand);
-            Controls.Add(lblQty);
-            Controls.Add(lblCarPartName);
-            Controls.Add(imgCarPart);
+            Controls.Add(materialCard1);
             Cursor = Cursors.Hand;
             Name = "CarPartControlForm";
             Size = new Size(776, 214);
-            Click += CarPartControlForm_Click;
-            MouseLeave += CarPartControlForm_MouseLeave;
-            MouseHover += CarPartControlForm_MouseHover;
             ((System.ComponentModel.ISupportInitialize)imgCarPart).EndInit();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -155,5 +172,6 @@
         private Label lblQty;
         private Label lblCarPartName;
         private PictureBox imgCarPart;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

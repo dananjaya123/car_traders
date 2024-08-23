@@ -698,5 +698,25 @@ namespace car_traders
         {
             this.Close();
         }
+
+        private void lblRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form modelBackgraund = new Form();
+            using (RegisterModalForm model = new RegisterModalForm())
+            {
+                modelBackgraund.StartPosition = FormStartPosition.Manual;
+                modelBackgraund.FormBorderStyle = FormBorderStyle.None;
+                modelBackgraund.Opacity = .50;
+                modelBackgraund.BackColor = Color.Black;
+                modelBackgraund.Size = this.Size;
+                modelBackgraund.Location = this.Location;
+                modelBackgraund.ShowInTaskbar = false;
+                modelBackgraund.Show();
+                model.Owner = modelBackgraund;
+
+                model.ShowDialog();
+                modelBackgraund.Dispose();
+            }
+        }
     }
 }

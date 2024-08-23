@@ -106,7 +106,7 @@ namespace car_traders
                 if (SearchCarUserColtrollFrom.click == true)
                 {
                     lblVisible();
-                     car = SearchCarUserColtrollFrom.clickCar;
+                    car = SearchCarUserColtrollFrom.clickCar;
 
 
                     if (car.Image_data != null)
@@ -135,7 +135,7 @@ namespace car_traders
             {
                 MessageBox.Show($"Search Car Form Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void lblVisible()
@@ -177,7 +177,7 @@ namespace car_traders
                 User user = LoginForm.SesionUserData;
                 if (user != null)
                 {
-                    loader.Visible= true;
+                    loader.Visible = true;
                     Order order = new Order
                     {
                         Total_amount = car.Price,
@@ -186,7 +186,7 @@ namespace car_traders
                         qty = 1,
                         Is_payment = false,
                         User_code = user.User_code,
-                        Order_code =_iDGenerate.OrderCodeGenerate(),
+                        Order_code = _iDGenerate.OrderCodeGenerate(),
                         Is_active = true
 
                     };
@@ -196,8 +196,8 @@ namespace car_traders
                         {
                             Item_name = car.Model_name,
                             Item_Id = car.Id,
-                            Item_type="CAR",
-                            Total_price= car.Price,
+                            Item_type = "CAR",
+                            Total_price = car.Price,
                             Qty = 1,
                             Order_code = order.Order_code,
                             Is_active = true
@@ -263,5 +263,9 @@ namespace car_traders
             return body;
         }
 
+        private void materialCard2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

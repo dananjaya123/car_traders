@@ -52,22 +52,6 @@ namespace car_traders.View.Customer
         {
             this.BackColor = Color.White;
         }
-        private void SearchCarUserColtrollFrom_MouseMove(object sender, MouseEventArgs e)
-        {
-
-        }
-
-       
-
-        private void SearchCarUserColtrollFrom_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void SearchCarUserColtrollFrom_Load(object sender, EventArgs e)
-        {
-
-        }
 
         public static bool click = false;
         public static Car clickCar; 

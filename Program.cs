@@ -12,7 +12,7 @@ namespace car_traders
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new LoginForm());
-            Application.Run(new AdminMainForm());
+            Application.Run(new CustomerMainForm());
 
         }
     }
