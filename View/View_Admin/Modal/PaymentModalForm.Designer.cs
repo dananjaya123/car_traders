@@ -29,21 +29,69 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentModalForm));
-            lblAmountTag = new Label();
-            texPaidAmount = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            btnSubmit = new Button();
-            lblTotalAmount = new Label();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             lblError = new Label();
+            lblTotalAmount = new Label();
+            btnSubmit = new Button();
+            texPaidAmount = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            lblAmountTag = new Label();
+            materialCard1.SuspendLayout();
             SuspendLayout();
             // 
-            // lblAmountTag
+            // materialCard1
             // 
-            lblAmountTag.AutoSize = true;
-            lblAmountTag.Location = new Point(16, 97);
-            lblAmountTag.Name = "lblAmountTag";
-            lblAmountTag.Size = new Size(128, 25);
-            lblAmountTag.TabIndex = 0;
-            lblAmountTag.Text = "Total Amount :";
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(lblError);
+            materialCard1.Controls.Add(lblTotalAmount);
+            materialCard1.Controls.Add(btnSubmit);
+            materialCard1.Controls.Add(texPaidAmount);
+            materialCard1.Controls.Add(lblAmountTag);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(17, 78);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(361, 257);
+            materialCard1.TabIndex = 0;
+            // 
+            // lblError
+            // 
+            lblError.AutoSize = true;
+            lblError.ForeColor = Color.Firebrick;
+            lblError.Location = new Point(12, 139);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(50, 25);
+            lblError.TabIndex = 9;
+            lblError.Text = "Error";
+            lblError.Visible = false;
+            // 
+            // lblTotalAmount
+            // 
+            lblTotalAmount.AutoSize = true;
+            lblTotalAmount.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalAmount.ForeColor = Color.SteelBlue;
+            lblTotalAmount.Location = new Point(165, 37);
+            lblTotalAmount.Name = "lblTotalAmount";
+            lblTotalAmount.Size = new Size(0, 28);
+            lblTotalAmount.TabIndex = 8;
+            // 
+            // btnSubmit
+            // 
+            btnSubmit.BackColor = Color.CornflowerBlue;
+            btnSubmit.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSubmit.ForeColor = Color.White;
+            btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
+            btnSubmit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSubmit.Location = new Point(12, 172);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Padding = new Padding(20, 0, 0, 0);
+            btnSubmit.Size = new Size(341, 64);
+            btnSubmit.TabIndex = 7;
+            btnSubmit.Text = "Submit";
+            btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // texPaidAmount
             // 
@@ -60,7 +108,7 @@
             texPaidAmount.Hint = "Paid Amount";
             texPaidAmount.InsertKeyMode = InsertKeyMode.Default;
             texPaidAmount.LeadingIcon = null;
-            texPaidAmount.Location = new Point(22, 148);
+            texPaidAmount.Location = new Point(12, 88);
             texPaidAmount.Mask = "";
             texPaidAmount.MaxLength = 32767;
             texPaidAmount.MouseState = MaterialSkin.MouseState.OUT;
@@ -79,7 +127,7 @@
             texPaidAmount.ShortcutsEnabled = true;
             texPaidAmount.Size = new Size(341, 48);
             texPaidAmount.SkipLiterals = true;
-            texPaidAmount.TabIndex = 1;
+            texPaidAmount.TabIndex = 6;
             texPaidAmount.TabStop = false;
             texPaidAmount.TextAlign = HorizontalAlignment.Left;
             texPaidAmount.TextMaskFormat = MaskFormat.IncludeLiterals;
@@ -87,65 +135,36 @@
             texPaidAmount.UseSystemPasswordChar = false;
             texPaidAmount.ValidatingType = null;
             // 
-            // btnSubmit
+            // lblAmountTag
             // 
-            btnSubmit.BackColor = Color.CornflowerBlue;
-            btnSubmit.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSubmit.ForeColor = Color.White;
-            btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
-            btnSubmit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSubmit.Location = new Point(95, 232);
-            btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(155, 60);
-            btnSubmit.TabIndex = 2;
-            btnSubmit.Text = "Submit";
-            btnSubmit.UseVisualStyleBackColor = false;
-            btnSubmit.Click += btnSubmit_Click;
-            // 
-            // lblTotalAmount
-            // 
-            lblTotalAmount.AutoSize = true;
-            lblTotalAmount.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotalAmount.ForeColor = Color.SteelBlue;
-            lblTotalAmount.Location = new Point(159, 97);
-            lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(0, 28);
-            lblTotalAmount.TabIndex = 3;
-            // 
-            // lblError
-            // 
-            lblError.AutoSize = true;
-            lblError.ForeColor = Color.Firebrick;
-            lblError.Location = new Point(22, 199);
-            lblError.Name = "lblError";
-            lblError.Size = new Size(50, 25);
-            lblError.TabIndex = 4;
-            lblError.Text = "Error";
-            lblError.Visible = false;
+            lblAmountTag.AutoSize = true;
+            lblAmountTag.Location = new Point(22, 37);
+            lblAmountTag.Name = "lblAmountTag";
+            lblAmountTag.Size = new Size(128, 25);
+            lblAmountTag.TabIndex = 5;
+            lblAmountTag.Text = "Total Amount :";
             // 
             // PaymentModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(395, 352);
-            Controls.Add(lblError);
-            Controls.Add(lblTotalAmount);
-            Controls.Add(btnSubmit);
-            Controls.Add(texPaidAmount);
-            Controls.Add(lblAmountTag);
+            Controls.Add(materialCard1);
             Name = "PaymentModalForm";
             Text = "Payment";
             Load += PaymentModalForm_Load;
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label lblAmountTag;
-        private MaterialSkin.Controls.MaterialMaskedTextBox texPaidAmount;
-        private Button btnSubmit;
-        private Label lblTotalAmount;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
         private Label lblError;
+        private Label lblTotalAmount;
+        private Button btnSubmit;
+        private MaterialSkin.Controls.MaterialMaskedTextBox texPaidAmount;
+        private Label lblAmountTag;
     }
 }

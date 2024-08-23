@@ -64,7 +64,7 @@ namespace car_traders.View.View_Admin.Modal
                 if (_emailSend.SendEmail("cartraders@gmail.com", userdata.Email, "Payment successfully", mailBody))
                 {
                     MessageBox.Show("Payment successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-              
+
 
                 }
             }

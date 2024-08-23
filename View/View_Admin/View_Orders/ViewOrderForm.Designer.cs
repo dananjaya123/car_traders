@@ -65,11 +65,13 @@
             lblMobileTag = new Label();
             lblUserName = new Label();
             lblUserNameTag = new Label();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             pnlOrderLoad.SuspendLayout();
             pnlCustomerData.SuspendLayout();
+            materialCard1.SuspendLayout();
             SuspendLayout();
             // 
             // listViewOrder
@@ -140,7 +142,7 @@
             pictureBox1.BackColor = Color.CornflowerBlue;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(591, 75);
+            pictureBox1.Location = new Point(729, 23);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(56, 54);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -151,16 +153,16 @@
             // 
             panel1.BackColor = Color.WhiteSmoke;
             panel1.Controls.Add(texSearch);
-            panel1.Location = new Point(12, 75);
+            panel1.Location = new Point(28, 23);
             panel1.Name = "panel1";
-            panel1.Size = new Size(577, 54);
+            panel1.Size = new Size(702, 54);
             panel1.TabIndex = 29;
             // 
             // texSearch
             // 
-            texSearch.Location = new Point(4, 11);
+            texSearch.Location = new Point(11, 11);
             texSearch.Name = "texSearch";
-            texSearch.Size = new Size(566, 31);
+            texSearch.Size = new Size(676, 31);
             texSearch.TabIndex = 1;
             texSearch.Tag = "";
             texSearch.TextChanged += texSearch_TextChanged;
@@ -332,7 +334,7 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = SystemColors.ControlDarkDark;
-            lblTitle.Location = new Point(12, 19);
+            lblTitle.Location = new Point(12, 8);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(82, 30);
             lblTitle.TabIndex = 78;
@@ -347,7 +349,7 @@
             btnCarPdfPrint.HighEmphasis = true;
             btnCarPdfPrint.Icon = (Image)resources.GetObject("btnCarPdfPrint.Icon");
             btnCarPdfPrint.Image = (Image)resources.GetObject("btnCarPdfPrint.Image");
-            btnCarPdfPrint.Location = new Point(849, 104);
+            btnCarPdfPrint.Location = new Point(830, 52);
             btnCarPdfPrint.Margin = new Padding(4, 6, 4, 6);
             btnCarPdfPrint.MouseState = MaterialSkin.MouseState.HOVER;
             btnCarPdfPrint.Name = "btnCarPdfPrint";
@@ -407,12 +409,12 @@
             pnlCustomerData.Controls.Add(lblUserNameTag);
             pnlCustomerData.Depth = 0;
             pnlCustomerData.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            pnlCustomerData.Location = new Point(924, 59);
+            pnlCustomerData.Location = new Point(924, 47);
             pnlCustomerData.Margin = new Padding(14);
             pnlCustomerData.MouseState = MaterialSkin.MouseState.HOVER;
             pnlCustomerData.Name = "pnlCustomerData";
             pnlCustomerData.Padding = new Padding(14);
-            pnlCustomerData.Size = new Size(420, 185);
+            pnlCustomerData.Size = new Size(420, 197);
             pnlCustomerData.TabIndex = 81;
             // 
             // lblAddress
@@ -511,21 +513,35 @@
             lblUserNameTag.Text = "Name  :";
             lblUserNameTag.Visible = false;
             // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(panel1);
+            materialCard1.Controls.Add(pictureBox1);
+            materialCard1.Controls.Add(btnCarPdfPrint);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(12, 47);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(903, 97);
+            materialCard1.TabIndex = 82;
+            // 
             // ViewOrderForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1414, 639);
+            Controls.Add(materialCard1);
             Controls.Add(pnlCustomerData);
             Controls.Add(pnlOrderLoad);
             Controls.Add(btnCancel);
             Controls.Add(lblTitle);
             Controls.Add(btnViewDetails);
-            Controls.Add(btnCarPdfPrint);
             Controls.Add(btnPayment);
             Controls.Add(loader);
-            Controls.Add(pictureBox1);
-            Controls.Add(panel1);
             Controls.Add(listViewOrder);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ViewOrderForm";
@@ -539,6 +555,8 @@
             pnlOrderLoad.PerformLayout();
             pnlCustomerData.ResumeLayout(false);
             pnlCustomerData.PerformLayout();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -581,5 +599,6 @@
         private Label lblMobileTag;
         private Label lblUserName;
         private Label lblUserNameTag;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

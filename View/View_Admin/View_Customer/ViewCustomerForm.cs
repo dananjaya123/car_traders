@@ -95,7 +95,7 @@ namespace car_traders.View.View_Admin.View_Customer
                         Form modelBackgraund = new Form();
                         using (RegisterModalForm model = new RegisterModalForm())
                         {
-      
+
                             model.UdateUser(userData);
 
                             modelBackgraund.StartPosition = FormStartPosition.Manual;

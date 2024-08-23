@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarPartUpdateModal));
             panel1 = new Panel();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            imgUpdateCarPart = new PictureBox();
             btnDelete = new MaterialSkin.Controls.MaterialButton();
             lblErrorDescription = new Label();
             lblErrorPartName = new Label();
@@ -43,14 +46,15 @@
             texUpdatePartPrice = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texUpdatePartQty = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texPartName = new MaterialSkin.Controls.MaterialMaskedTextBox();
-            imgUpdateCarPart = new PictureBox();
             panel1.SuspendLayout();
+            materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgUpdateCarPart).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(materialCard1);
             panel1.Controls.Add(btnDelete);
             panel1.Controls.Add(lblErrorDescription);
             panel1.Controls.Add(lblErrorPartName);
@@ -65,12 +69,34 @@
             panel1.Controls.Add(texUpdatePartPrice);
             panel1.Controls.Add(texUpdatePartQty);
             panel1.Controls.Add(texPartName);
-            panel1.Controls.Add(imgUpdateCarPart);
             panel1.Location = new Point(29, 85);
             panel1.Name = "panel1";
             panel1.Size = new Size(660, 600);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgUpdateCarPart);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(23, 18);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(279, 237);
+            materialCard1.TabIndex = 40;
+            // 
+            // imgUpdateCarPart
+            // 
+            imgUpdateCarPart.BorderStyle = BorderStyle.FixedSingle;
+            imgUpdateCarPart.Location = new Point(13, 10);
+            imgUpdateCarPart.Name = "imgUpdateCarPart";
+            imgUpdateCarPart.Size = new Size(254, 216);
+            imgUpdateCarPart.TabIndex = 24;
+            imgUpdateCarPart.TabStop = false;
             // 
             // btnDelete
             // 
@@ -78,13 +104,14 @@
             btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnDelete.Depth = 0;
             btnDelete.HighEmphasis = true;
-            btnDelete.Icon = null;
-            btnDelete.Location = new Point(537, 511);
+            btnDelete.Icon = (Image)resources.GetObject("btnDelete.Icon");
+            btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
+            btnDelete.Location = new Point(504, 511);
             btnDelete.Margin = new Padding(4, 6, 4, 6);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
             btnDelete.NoAccentTextColor = Color.Empty;
-            btnDelete.Size = new Size(73, 36);
+            btnDelete.Size = new Size(101, 36);
             btnDelete.TabIndex = 39;
             btnDelete.Text = "Delete";
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -170,13 +197,15 @@
             btnUpdateCarParts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdateCarParts.Depth = 0;
             btnUpdateCarParts.HighEmphasis = true;
-            btnUpdateCarParts.Icon = null;
-            btnUpdateCarParts.Location = new Point(452, 511);
+            btnUpdateCarParts.Icon = (Image)resources.GetObject("btnUpdateCarParts.Icon");
+            btnUpdateCarParts.Image = (Image)resources.GetObject("btnUpdateCarParts.Image");
+            btnUpdateCarParts.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdateCarParts.Location = new Point(384, 511);
             btnUpdateCarParts.Margin = new Padding(4, 6, 4, 6);
             btnUpdateCarParts.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdateCarParts.Name = "btnUpdateCarParts";
             btnUpdateCarParts.NoAccentTextColor = Color.Empty;
-            btnUpdateCarParts.Size = new Size(77, 36);
+            btnUpdateCarParts.Size = new Size(105, 36);
             btnUpdateCarParts.TabIndex = 32;
             btnUpdateCarParts.Text = "Update";
             btnUpdateCarParts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -442,27 +471,19 @@
             texPartName.ValidatingType = null;
             texPartName.KeyPress += texPartName_KeyPress;
             // 
-            // imgUpdateCarPart
-            // 
-            imgUpdateCarPart.BorderStyle = BorderStyle.FixedSingle;
-            imgUpdateCarPart.Location = new Point(33, 22);
-            imgUpdateCarPart.Name = "imgUpdateCarPart";
-            imgUpdateCarPart.Size = new Size(263, 232);
-            imgUpdateCarPart.TabIndex = 24;
-            imgUpdateCarPart.TabStop = false;
-            // 
-            // PartUpdateModal
+            // CarPartUpdateModal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(754, 751);
+            ClientSize = new Size(733, 755);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Name = "PartUpdateModal";
+            Name = "CarPartUpdateModal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Part Update";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            materialCard1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)imgUpdateCarPart).EndInit();
             ResumeLayout(false);
         }
@@ -485,5 +506,6 @@
         private Label lblErrorPartName;
         private Label lblErrorDescription;
         private MaterialSkin.Controls.MaterialButton btnDelete;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

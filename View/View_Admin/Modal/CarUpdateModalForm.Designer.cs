@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarUpdateModalForm));
             panel1 = new Panel();
             label1 = new Label();
             dateTimeCarManuFact = new DateTimePicker();
@@ -42,7 +43,6 @@
             lblColor = new Label();
             lblCarBrand = new Label();
             btnDelete = new MaterialSkin.Controls.MaterialButton();
-            imgBoxCar = new PictureBox();
             btnUpdate = new MaterialSkin.Controls.MaterialButton();
             texBodyType = new MaterialSkin.Controls.MaterialMaskedTextBox();
             comboTransmission = new MaterialSkin.Controls.MaterialComboBox();
@@ -56,8 +56,11 @@
             texSellerName = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarColor = new MaterialSkin.Controls.MaterialMaskedTextBox();
             texCarBrand = new MaterialSkin.Controls.MaterialMaskedTextBox();
+            imgBoxCar = new PictureBox();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgBoxCar).BeginInit();
+            materialCard1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -76,7 +79,6 @@
             panel1.Controls.Add(lblColor);
             panel1.Controls.Add(lblCarBrand);
             panel1.Controls.Add(btnDelete);
-            panel1.Controls.Add(imgBoxCar);
             panel1.Controls.Add(btnUpdate);
             panel1.Controls.Add(texBodyType);
             panel1.Controls.Add(comboTransmission);
@@ -106,9 +108,10 @@
             // 
             // dateTimeCarManuFact
             // 
+            dateTimeCarManuFact.Format = DateTimePickerFormat.Short;
             dateTimeCarManuFact.Location = new Point(619, 108);
             dateTimeCarManuFact.Name = "dateTimeCarManuFact";
-            dateTimeCarManuFact.Size = new Size(291, 31);
+            dateTimeCarManuFact.Size = new Size(266, 31);
             dateTimeCarManuFact.TabIndex = 53;
             dateTimeCarManuFact.UseWaitCursor = true;
             // 
@@ -228,28 +231,20 @@
             btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnDelete.Depth = 0;
             btnDelete.HighEmphasis = true;
-            btnDelete.Icon = null;
-            btnDelete.Location = new Point(821, 609);
+            btnDelete.Icon = (Image)resources.GetObject("btnDelete.Icon");
+            btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
+            btnDelete.Location = new Point(794, 609);
             btnDelete.Margin = new Padding(4, 6, 4, 6);
             btnDelete.MouseState = MaterialSkin.MouseState.HOVER;
             btnDelete.Name = "btnDelete";
             btnDelete.NoAccentTextColor = Color.Empty;
-            btnDelete.Size = new Size(73, 36);
+            btnDelete.Size = new Size(101, 36);
             btnDelete.TabIndex = 42;
             btnDelete.Text = "Delete";
             btnDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             btnDelete.UseAccentColor = false;
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
-            // 
-            // imgBoxCar
-            // 
-            imgBoxCar.BorderStyle = BorderStyle.FixedSingle;
-            imgBoxCar.Location = new Point(22, 27);
-            imgBoxCar.Name = "imgBoxCar";
-            imgBoxCar.Size = new Size(263, 232);
-            imgBoxCar.TabIndex = 41;
-            imgBoxCar.TabStop = false;
             // 
             // btnUpdate
             // 
@@ -258,13 +253,14 @@
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
             btnUpdate.HighEmphasis = true;
-            btnUpdate.Icon = null;
-            btnUpdate.Location = new Point(732, 609);
+            btnUpdate.Icon = (Image)resources.GetObject("btnUpdate.Icon");
+            btnUpdate.Image = (Image)resources.GetObject("btnUpdate.Image");
+            btnUpdate.Location = new Point(678, 609);
             btnUpdate.Margin = new Padding(4, 6, 4, 6);
             btnUpdate.MouseState = MaterialSkin.MouseState.HOVER;
             btnUpdate.Name = "btnUpdate";
             btnUpdate.NoAccentTextColor = Color.Empty;
-            btnUpdate.Size = new Size(77, 36);
+            btnUpdate.Size = new Size(105, 36);
             btnUpdate.TabIndex = 39;
             btnUpdate.Text = "Update";
             btnUpdate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -520,7 +516,7 @@
             texDescription.SelectionLength = 0;
             texDescription.SelectionStart = 0;
             texDescription.ShortcutsEnabled = true;
-            texDescription.Size = new Size(863, 48);
+            texDescription.Size = new Size(872, 48);
             texDescription.SkipLiterals = true;
             texDescription.TabIndex = 32;
             texDescription.TabStop = false;
@@ -742,17 +738,42 @@
             texCarBrand.ValidatingType = null;
             texCarBrand.Click += texCarBrand_Click;
             // 
-            // CarUpdateModelForm
+            // imgBoxCar
+            // 
+            imgBoxCar.BorderStyle = BorderStyle.FixedSingle;
+            imgBoxCar.Location = new Point(14, 12);
+            imgBoxCar.Name = "imgBoxCar";
+            imgBoxCar.Size = new Size(263, 232);
+            imgBoxCar.TabIndex = 41;
+            imgBoxCar.TabStop = false;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgBoxCar);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(33, 89);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(292, 257);
+            materialCard1.TabIndex = 55;
+            // 
+            // CarUpdateModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(978, 796);
+            Controls.Add(materialCard1);
             Controls.Add(panel1);
-            Name = "CarUpdateModelForm";
+            Name = "CarUpdateModalForm";
             Text = "Car Details Update";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)imgBoxCar).EndInit();
+            materialCard1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -786,5 +807,6 @@
         private Label lblCarBrand;
         private DateTimePicker dateTimeCarManuFact;
         private Label label1;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

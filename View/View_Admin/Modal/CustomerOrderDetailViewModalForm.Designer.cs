@@ -38,7 +38,9 @@
             colId = new ColumnHeader();
             colDetailID = new ColumnHeader();
             imgItem = new PictureBox();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             ((System.ComponentModel.ISupportInitialize)imgItem).BeginInit();
+            materialCard1.SuspendLayout();
             SuspendLayout();
             // 
             // listViewOrderDetail
@@ -49,13 +51,13 @@
             listViewOrderDetail.Columns.AddRange(new ColumnHeader[] { colItemName, colQty, colOrderCode, colItemType, colPrice, colId, colDetailID });
             listViewOrderDetail.Depth = 0;
             listViewOrderDetail.FullRowSelect = true;
-            listViewOrderDetail.Location = new Point(6, 100);
+            listViewOrderDetail.Location = new Point(9, 100);
             listViewOrderDetail.MinimumSize = new Size(200, 100);
             listViewOrderDetail.MouseLocation = new Point(-1, -1);
             listViewOrderDetail.MouseState = MaterialSkin.MouseState.OUT;
             listViewOrderDetail.Name = "listViewOrderDetail";
             listViewOrderDetail.OwnerDraw = true;
-            listViewOrderDetail.Size = new Size(700, 313);
+            listViewOrderDetail.Size = new Size(751, 280);
             listViewOrderDetail.TabIndex = 31;
             listViewOrderDetail.UseCompatibleStateImageBehavior = false;
             listViewOrderDetail.View = System.Windows.Forms.View.Details;
@@ -100,24 +102,39 @@
             // imgItem
             // 
             imgItem.Image = (Image)resources.GetObject("imgItem.Image");
-            imgItem.Location = new Point(712, 100);
+            imgItem.Location = new Point(17, 17);
             imgItem.Name = "imgItem";
-            imgItem.Size = new Size(220, 174);
+            imgItem.Size = new Size(304, 246);
             imgItem.SizeMode = PictureBoxSizeMode.CenterImage;
             imgItem.TabIndex = 32;
             imgItem.TabStop = false;
             imgItem.Visible = false;
             // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(imgItem);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(774, 100);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(338, 280);
+            materialCard1.TabIndex = 33;
+            // 
             // CustomerOrderDetailViewModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(946, 458);
+            ClientSize = new Size(1148, 397);
+            Controls.Add(materialCard1);
             Controls.Add(listViewOrderDetail);
-            Controls.Add(imgItem);
             Name = "CustomerOrderDetailViewModalForm";
             Text = "Order Details";
             ((System.ComponentModel.ISupportInitialize)imgItem).EndInit();
+            materialCard1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -132,5 +149,6 @@
         private ColumnHeader colId;
         private ColumnHeader colDetailID;
         private PictureBox imgItem;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
     }
 }

@@ -204,15 +204,24 @@ namespace car_traders
                 string.IsNullOrWhiteSpace(comboTransmission.Text) ||
                 string.IsNullOrWhiteSpace(comboCarSellerType.Text) ||
                 string.IsNullOrWhiteSpace(texBodyType.Text) ||
-                string.IsNullOrWhiteSpace(texSellerName.Text) ||
-                string.IsNullOrWhiteSpace(texSellerAddress.Text) ||
-                string.IsNullOrWhiteSpace(texsellerMobileNum.Text) ||
                 string.IsNullOrWhiteSpace(texPrice.Text) ||
                 string.IsNullOrWhiteSpace(texDescription.Text))
                 {
                     lblCarFormError.Visible = true;
                     lblCarFormError.Text = "Please fill in all required fields.";
                     return;
+                }
+
+                if (comboCarSellerType.Text.Equals("USED"))
+                {
+                    if (string.IsNullOrWhiteSpace(texSellerName.Text) ||
+                        string.IsNullOrWhiteSpace(texSellerAddress.Text) ||
+                        string.IsNullOrWhiteSpace(texsellerMobileNum.Text))
+                    {
+                        lblCarFormError.Visible = true;
+                        lblCarFormError.Text = "Please fill in all required fields.";
+                        return;
+                    }
                 }
 
                 if (!int.TryParse(texMileage.Text, out int mileage))
@@ -683,6 +692,11 @@ namespace car_traders
         private void btnCarTableReload_Click(object sender, EventArgs e)
         {
             LoadCarTable();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
