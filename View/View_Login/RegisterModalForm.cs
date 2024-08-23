@@ -40,6 +40,11 @@ namespace car_traders
             _EmailSend = new EmailSend();
         }
 
+        private string selectRole = "CUSTOMER";
+        public void selectedRole(string role)
+        {
+            selectRole = role;
+        }
         private void btnRegister_Click(object sender, EventArgs e)
         {
             try
@@ -87,7 +92,7 @@ namespace car_traders
                     return;
                 }
 
-                var role = _roleService.getRoleByName("CUSTOMER");
+                var role = _roleService.getRoleByName(selectRole);
 
                 if (role != null)
                 {

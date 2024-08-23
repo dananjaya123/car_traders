@@ -108,6 +108,7 @@ namespace car_traders
             Form modelBackgraund = new Form();
             using (RegisterModalForm model = new RegisterModalForm())
             {
+                model.selectedRole("CUSTOMER");
                 modelBackgraund.StartPosition = FormStartPosition.Manual;
                 modelBackgraund.FormBorderStyle = FormBorderStyle.None;
                 modelBackgraund.Opacity = .50;
