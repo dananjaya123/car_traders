@@ -57,12 +57,15 @@ namespace car_traders
                 resultContainer.Controls.Add(form);
 
             }
-            resultContainer.Height = resultContainer.Controls.Count * 214;
+            //resultContainer.Height = resultContainer.Controls.Count * 214;
 
-
-            // Enable AutoScroll for the FlowLayoutPanel.
+            // Ensure FlowLayoutPanel is set to flow vertically
+            resultContainer.Height = 2 * 214;
+            resultContainer.FlowDirection = FlowDirection.TopDown; // Controls are added from top to bottom
+            resultContainer.WrapContents = false; // Prevents wrapping to a new row, ensuring a single column layout
             resultContainer.HorizontalScroll.Maximum = 0;
             resultContainer.HorizontalScroll.Visible = false;
+            // Enable AutoScroll to make the scrollbar appear when needed
             resultContainer.AutoScroll = true;
 
         }
