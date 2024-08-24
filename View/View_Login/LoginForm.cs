@@ -14,8 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using car_traders.Service;
 using car_traders.Service.Common;
+using car_traders.Service;
 
 namespace car_traders
 {
@@ -23,7 +23,7 @@ namespace car_traders
     {
         private HashPassword _hashPassword;
         private UserService _userService;
-        
+
         public LoginForm()
         {
             InitializeComponent();
@@ -124,7 +124,7 @@ namespace car_traders
             }
         }
 
-        
+
 
         private void lblForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -144,6 +144,11 @@ namespace car_traders
             {
                 texPassword.PasswordChar = '*';
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

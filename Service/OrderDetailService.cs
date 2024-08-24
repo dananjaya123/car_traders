@@ -43,7 +43,7 @@ namespace car_traders.Service
             using (var dbContext = new ApplicationDBContext())
             {
                 var detailData = dbContext.orderDetails.FirstOrDefault(od => od.Id.Equals(id));
-                                           
+
                 return detailData;
             }
         }

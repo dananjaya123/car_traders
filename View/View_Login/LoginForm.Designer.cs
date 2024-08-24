@@ -41,9 +41,13 @@
             label1 = new Label();
             lblForgotPassword = new LinkLabel();
             pwView = new PictureBox();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            materialCard2 = new MaterialSkin.Controls.MaterialCard();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pwView).BeginInit();
+            materialCard1.SuspendLayout();
+            materialCard2.SuspendLayout();
             SuspendLayout();
             // 
             // mySqlCommandBuilder1
@@ -172,26 +176,26 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.LightSlateGray;
-            panel1.Controls.Add(pictureBox2);
+            panel1.BackColor = Color.SlateGray;
+            panel1.Controls.Add(materialCard1);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(3, 64);
+            panel1.Location = new Point(2, -8);
             panel1.Name = "panel1";
-            panel1.Size = new Size(300, 485);
+            panel1.Size = new Size(299, 492);
             panel1.TabIndex = 5;
             // 
             // pictureBox2
             // 
-            pictureBox2.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox2.BackColor = Color.Teal;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(54, 42);
+            pictureBox2.Location = new Point(0, 0);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(176, 159);
             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label3
             // 
@@ -249,15 +253,43 @@
             pwView.TabStop = false;
             pwView.Click += pwView_Click;
             // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(pictureBox2);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(64, 26);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(176, 159);
+            materialCard1.TabIndex = 16;
+            // 
+            // materialCard2
+            // 
+            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(panel1);
+            materialCard2.Depth = 0;
+            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard2.Location = new Point(-2, 66);
+            materialCard2.Margin = new Padding(14);
+            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard2.Name = "materialCard2";
+            materialCard2.Padding = new Padding(14);
+            materialCard2.Size = new Size(300, 486);
+            materialCard2.TabIndex = 16;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(679, 552);
+            Controls.Add(materialCard2);
             Controls.Add(pwView);
             Controls.Add(lblForgotPassword);
             Controls.Add(label1);
-            Controls.Add(panel1);
             Controls.Add(lblRegistor);
             Controls.Add(btnLogin);
             Controls.Add(texPassword);
@@ -269,6 +301,8 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pwView).EndInit();
+            materialCard1.ResumeLayout(false);
+            materialCard2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -287,5 +321,7 @@
         private PictureBox pictureBox2;
         private LinkLabel lblForgotPassword;
         private PictureBox pwView;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private MaterialSkin.Controls.MaterialCard materialCard2;
     }
 }

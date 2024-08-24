@@ -30,8 +30,6 @@ namespace car_traders
             InitializeComponent();
             /*MaterialButton desing add*/
             var materialSkinManager = MaterialSkinManager.Instance;
-            //materialSkinManager.AddFormToManage(this);
-            //materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
             _roleService = new RoleService();
@@ -39,6 +37,7 @@ namespace car_traders
             _hashPassword = new HashPassword();
             _EmailSend = new EmailSend();
         }
+
 
         private string selectRole = "CUSTOMER";
         public void selectedRole(string role)

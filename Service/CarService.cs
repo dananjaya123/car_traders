@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace car_traders.Service
 {
-    public class CarService
+    public class CarService 
     {
 
-        public bool saveCar(Car car)
+        public bool SaveCar(Car car)
         {
             using (var dbContext = new ApplicationDBContext())
             {

@@ -12,9 +12,9 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using car_traders.View.View_Admin.View_Orders;
 using car_traders.View.View_Admin.View_Customer;
-using car_traders.Service;
 using car_traders.Service.Common;
 using Microsoft.VisualBasic.ApplicationServices;
+using car_traders.Service;
 
 namespace car_traders
 {
@@ -260,7 +260,7 @@ namespace car_traders
                     car.Image_data = ImageToByteArray(imgBoxCar.Image);
                 }
 
-                if (_carService.saveCar(car))
+                if (_carService.SaveCar(car))
                 {
                     MessageBox.Show("Car added successfully");
                 }
