@@ -140,6 +140,8 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Visible = false;
             btnCancel.Click += btnCancel_Click;
+            btnCancel.MouseLeave += btnCancel_MouseLeave;
+            btnCancel.MouseHover += btnCancel_MouseHover;
             // 
             // lblExist
             // 

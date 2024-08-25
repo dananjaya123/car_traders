@@ -94,6 +94,7 @@
             // btnSubmit
             // 
             btnSubmit.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnSubmit.Cursor = Cursors.Hand;
             btnSubmit.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnSubmit.Depth = 0;
             btnSubmit.HighEmphasis = true;
@@ -115,6 +116,7 @@
             // btnChangePw
             // 
             btnChangePw.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnChangePw.Cursor = Cursors.Hand;
             btnChangePw.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnChangePw.Depth = 0;
             btnChangePw.HighEmphasis = true;

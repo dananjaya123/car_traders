@@ -35,18 +35,18 @@
             btnLogin = new MaterialSkin.Controls.MaterialButton();
             lblRegistor = new LinkLabel();
             panel1 = new Panel();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             pictureBox2 = new PictureBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             lblForgotPassword = new LinkLabel();
             pwView = new PictureBox();
-            materialCard1 = new MaterialSkin.Controls.MaterialCard();
             materialCard2 = new MaterialSkin.Controls.MaterialCard();
             panel1.SuspendLayout();
+            materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pwView).BeginInit();
-            materialCard1.SuspendLayout();
             materialCard2.SuspendLayout();
             SuspendLayout();
             // 
@@ -144,6 +144,7 @@
             // btnLogin
             // 
             btnLogin.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogin.Cursor = Cursors.Hand;
             btnLogin.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnLogin.Depth = 0;
             btnLogin.ForeColor = Color.DodgerBlue;
@@ -180,10 +181,24 @@
             panel1.Controls.Add(materialCard1);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(2, -8);
+            panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(299, 492);
+            panel1.Size = new Size(300, 492);
             panel1.TabIndex = 5;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(pictureBox2);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(64, 26);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(176, 159);
+            materialCard1.TabIndex = 16;
             // 
             // pictureBox2
             // 
@@ -244,6 +259,7 @@
             // 
             // pwView
             // 
+            pwView.Cursor = Cursors.Hand;
             pwView.Image = (Image)resources.GetObject("pwView.Image");
             pwView.Location = new Point(619, 328);
             pwView.Name = "pwView";
@@ -253,32 +269,18 @@
             pwView.TabStop = false;
             pwView.Click += pwView_Click;
             // 
-            // materialCard1
-            // 
-            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(pictureBox2);
-            materialCard1.Depth = 0;
-            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(64, 26);
-            materialCard1.Margin = new Padding(14);
-            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(176, 159);
-            materialCard1.TabIndex = 16;
-            // 
             // materialCard2
             // 
             materialCard2.BackColor = Color.FromArgb(255, 255, 255);
             materialCard2.Controls.Add(panel1);
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(-2, 66);
+            materialCard2.Location = new Point(-2, 60);
             materialCard2.Margin = new Padding(14);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
             materialCard2.Padding = new Padding(14);
-            materialCard2.Size = new Size(300, 486);
+            materialCard2.Size = new Size(300, 492);
             materialCard2.TabIndex = 16;
             // 
             // LoginForm
@@ -299,9 +301,9 @@
             Load += LoginForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            materialCard1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pwView).EndInit();
-            materialCard1.ResumeLayout(false);
             materialCard2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

@@ -89,6 +89,7 @@
             // btnSubmit
             // 
             btnSubmit.BackColor = Color.CornflowerBlue;
+            btnSubmit.Cursor = Cursors.Hand;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
             btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
@@ -101,10 +102,13 @@
             btnSubmit.Text = "ORDER REQUEST";
             btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Click += btnSubmit_Click;
+            btnSubmit.MouseLeave += btnSubmit_MouseLeave;
+            btnSubmit.MouseHover += btnSubmit_MouseHover;
             // 
             // btnCancel
             // 
             btnCancel.BackColor = Color.LightCoral;
+            btnCancel.Cursor = Cursors.Hand;
             btnCancel.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = SystemColors.ButtonHighlight;
             btnCancel.Image = (Image)resources.GetObject("btnCancel.Image");
@@ -118,6 +122,8 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Visible = false;
             btnCancel.Click += btnCancel_Click;
+            btnCancel.MouseLeave += btnCancel_MouseLeave;
+            btnCancel.MouseHover += btnCancel_MouseHover;
             // 
             // loader
             // 

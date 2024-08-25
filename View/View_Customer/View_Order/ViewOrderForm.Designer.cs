@@ -217,6 +217,8 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Visible = false;
             btnCancel.Click += btnCancel_Click;
+            btnCancel.MouseLeave += btnCancel_MouseLeave;
+            btnCancel.MouseHover += btnCancel_MouseHover;
             // 
             // lblOrderCode
             // 
@@ -295,6 +297,8 @@
             btnViewDetails.UseVisualStyleBackColor = false;
             btnViewDetails.Visible = false;
             btnViewDetails.Click += btnViewDetails_Click;
+            btnViewDetails.MouseLeave += btnViewDetails_MouseLeave;
+            btnViewDetails.MouseHover += btnViewDetails_MouseHover;
             // 
             // materialCard1
             // 

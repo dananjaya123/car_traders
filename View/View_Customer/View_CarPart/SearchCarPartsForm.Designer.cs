@@ -129,6 +129,7 @@
             // btnSubmit
             // 
             btnSubmit.BackColor = Color.CornflowerBlue;
+            btnSubmit.Cursor = Cursors.Hand;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
             btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
@@ -142,6 +143,8 @@
             btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Visible = false;
             btnSubmit.Click += btnSubmit_Click;
+            btnSubmit.MouseLeave += btnSubmit_MouseLeave;
+            btnSubmit.MouseHover += btnSubmit_MouseHover;
             // 
             // timerCarPart
             // 
@@ -355,6 +358,7 @@
             // btnViewCart
             // 
             btnViewCart.BackColor = Color.DarkCyan;
+            btnViewCart.Cursor = Cursors.Hand;
             btnViewCart.Image = (Image)resources.GetObject("btnViewCart.Image");
             btnViewCart.Location = new Point(17, 10);
             btnViewCart.Name = "btnViewCart";
@@ -362,6 +366,8 @@
             btnViewCart.TabIndex = 45;
             btnViewCart.UseVisualStyleBackColor = false;
             btnViewCart.Click += btnViewCart_Click;
+            btnViewCart.MouseLeave += btnViewCart_MouseLeave;
+            btnViewCart.MouseHover += btnViewCart_MouseHover;
             // 
             // lblCartOrderCount
             // 

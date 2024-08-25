@@ -228,6 +228,7 @@
             // btnDelete
             // 
             btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDelete.Cursor = Cursors.Hand;
             btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnDelete.Depth = 0;
             btnDelete.HighEmphasis = true;
@@ -250,6 +251,7 @@
             // 
             btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             btnUpdate.BackColor = Color.Transparent;
+            btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
             btnUpdate.HighEmphasis = true;

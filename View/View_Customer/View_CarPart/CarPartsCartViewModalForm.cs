@@ -251,5 +251,25 @@ namespace car_traders.View.View_Customer.View_CarPart
         {
 
         }
+
+        private void btnSubmit_MouseHover(object sender, EventArgs e)
+        {
+            btnSubmit.BackColor = Color.DarkBlue;
+        }
+
+        private void btnSubmit_MouseLeave(object sender, EventArgs e)
+        {
+            btnSubmit.BackColor = Color.CornflowerBlue;
+        }
+
+        private void btnCancel_MouseHover(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.DarkRed;
+        }
+
+        private void btnCancel_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.IndianRed;
+        }
     }
 }

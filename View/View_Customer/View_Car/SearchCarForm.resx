@@ -153,6 +153,19 @@
   <metadata name="timerCardetail.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="btnSubmit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAGJSURBVEhL7ZVNK0RhGIZnKCJpZGLBhiz8CxnskB/AWtRs
+        WEpZocQCNVkTfoIkdlZsfJWvkhJFCgsLi+O6z3nGzDBnzvFRNnPV1cx7P8/zvlPnbU6kyJ/gOE4lNmGz
+        fcas9HPYpA1X8Bbv8QL3zEt8wGtcxoSNhYOBKTzAAay1+AvU4tiP+zhtcWFobMQbrLIoEPXiHTZY5A9N
+        4zhpy9AwM4djtswPDVE8xxaLQsNMK15hqUUeBDFcx1nswC0rfRtmd7ELF3ANYwpHUXTjKu5gjc2Ehplq
+        m9XGfShGVEjgIdbhK6Z5wseQqjeN9qjHI2y3891fkMQ0L6jBN3dVGPWo99ldeSRt2wyES17NmcESy3T9
+        NhX6sIEf15nvE27KXhZlUOjVnHmMWqx82E3zM2Rt6tMNXHTTgAPENuqh6+/iRIEPx6ge9eoBpwk84Lf8
+        zwEpr5bDIHYGqJ7PpGzbDIS9mH0tT7HCyr7Qo3fFmQYM7dFj5Vwo6O9XLxVZZnEg9JZnzcUtLhKGSOQd
+        FmFy/AdAvm0AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="loader.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhQABAAMQAAAQCBKyqrNTW1Ozu7MTGxLS2tOTi5Pz6/MzOzLSytNze3PT29Ly+vOzq7AwODKyu

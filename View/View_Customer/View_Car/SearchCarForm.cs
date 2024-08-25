@@ -270,5 +270,15 @@ namespace car_traders
         {
 
         }
+
+        private void btnSubmit_MouseHover(object sender, EventArgs e)
+        {
+            btnSubmit.BackColor = Color.DarkBlue;
+        }
+
+        private void btnSubmit_MouseLeave(object sender, EventArgs e)
+        {
+            btnSubmit.BackColor = Color.CornflowerBlue;
+        }
     }
 }

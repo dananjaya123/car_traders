@@ -101,6 +101,7 @@
             // btnDelete
             // 
             btnDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnDelete.Cursor = Cursors.Hand;
             btnDelete.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnDelete.Depth = 0;
             btnDelete.HighEmphasis = true;
@@ -194,6 +195,7 @@
             // btnUpdateCarParts
             // 
             btnUpdateCarParts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpdateCarParts.Cursor = Cursors.Hand;
             btnUpdateCarParts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdateCarParts.Depth = 0;
             btnUpdateCarParts.HighEmphasis = true;
@@ -475,7 +477,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(733, 755);
+            ClientSize = new Size(755, 811);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "CarPartUpdateModal";

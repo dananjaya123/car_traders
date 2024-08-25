@@ -33,7 +33,6 @@
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabDashboard = new TabPage();
             materialFloatingActionButton5 = new MaterialSkin.Controls.MaterialFloatingActionButton();
-            imageList1 = new ImageList(components);
             materialCard5 = new MaterialSkin.Controls.MaterialCard();
             panel5 = new Panel();
             label8 = new Label();
@@ -49,6 +48,7 @@
             lblCustomerCount = new Label();
             label4 = new Label();
             materialFloatingActionButton3 = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            imageList1 = new ImageList(components);
             materialCard3 = new MaterialSkin.Controls.MaterialCard();
             panel3 = new Panel();
             lblCarCount = new Label();
@@ -220,9 +220,8 @@
             // 
             materialFloatingActionButton5.BackColor = Color.White;
             materialFloatingActionButton5.Depth = 0;
-            materialFloatingActionButton5.Icon = Properties.Resources.dashboardPart;
-            materialFloatingActionButton5.ImageIndex = 6;
-            materialFloatingActionButton5.ImageList = imageList1;
+            materialFloatingActionButton5.Icon = (Image)resources.GetObject("materialFloatingActionButton5.Icon");
+            materialFloatingActionButton5.Image = (Image)resources.GetObject("materialFloatingActionButton5.Image");
             materialFloatingActionButton5.Location = new Point(1295, 68);
             materialFloatingActionButton5.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton5.Name = "materialFloatingActionButton5";
@@ -230,21 +229,6 @@
             materialFloatingActionButton5.TabIndex = 22;
             materialFloatingActionButton5.Text = "materialFloatingActionButton5";
             materialFloatingActionButton5.UseVisualStyleBackColor = false;
-            // 
-            // imageList1
-            // 
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
-            imageList1.TransparentColor = Color.Transparent;
-            imageList1.Images.SetKeyName(0, "sports-car.png");
-            imageList1.Images.SetKeyName(1, "home.png");
-            imageList1.Images.SetKeyName(2, "racing.png");
-            imageList1.Images.SetKeyName(3, "carList.png");
-            imageList1.Images.SetKeyName(4, "parts.png");
-            imageList1.Images.SetKeyName(5, "dashboardHumen.png");
-            imageList1.Images.SetKeyName(6, "dashboardPart.png");
-            imageList1.Images.SetKeyName(7, "icons8-customer-32.png");
-            imageList1.Images.SetKeyName(8, "icons8-logout-64.png");
             // 
             // materialCard5
             // 
@@ -296,9 +280,8 @@
             // 
             materialFloatingActionButton4.BackColor = Color.White;
             materialFloatingActionButton4.Depth = 0;
-            materialFloatingActionButton4.Icon = Properties.Resources.dashboardPart;
-            materialFloatingActionButton4.ImageIndex = 6;
-            materialFloatingActionButton4.ImageList = imageList1;
+            materialFloatingActionButton4.Icon = (Image)resources.GetObject("materialFloatingActionButton4.Icon");
+            materialFloatingActionButton4.Image = (Image)resources.GetObject("materialFloatingActionButton4.Image");
             materialFloatingActionButton4.Location = new Point(1026, 68);
             materialFloatingActionButton4.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton4.Name = "materialFloatingActionButton4";
@@ -357,9 +340,8 @@
             // 
             materialFloatingActionButton1.BackColor = Color.White;
             materialFloatingActionButton1.Depth = 0;
-            materialFloatingActionButton1.Icon = Properties.Resources.dashboardPart;
-            materialFloatingActionButton1.ImageIndex = 6;
-            materialFloatingActionButton1.ImageList = imageList1;
+            materialFloatingActionButton1.Icon = (Image)resources.GetObject("materialFloatingActionButton1.Icon");
+            materialFloatingActionButton1.Image = (Image)resources.GetObject("materialFloatingActionButton1.Image");
             materialFloatingActionButton1.Location = new Point(213, 68);
             materialFloatingActionButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialFloatingActionButton1.Name = "materialFloatingActionButton1";
@@ -429,6 +411,21 @@
             materialFloatingActionButton3.TabIndex = 12;
             materialFloatingActionButton3.Text = "materialFloatingActionButton3";
             materialFloatingActionButton3.UseVisualStyleBackColor = false;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "sports-car.png");
+            imageList1.Images.SetKeyName(1, "home.png");
+            imageList1.Images.SetKeyName(2, "racing.png");
+            imageList1.Images.SetKeyName(3, "carList.png");
+            imageList1.Images.SetKeyName(4, "parts.png");
+            imageList1.Images.SetKeyName(5, "dashboardHumen.png");
+            imageList1.Images.SetKeyName(6, "dashboardPart.png");
+            imageList1.Images.SetKeyName(7, "icons8-customer-32.png");
+            imageList1.Images.SetKeyName(8, "icons8-logout-64.png");
             // 
             // materialCard3
             // 
@@ -2134,6 +2131,7 @@
             // 
             // btnLogout
             // 
+            btnLogout.Cursor = Cursors.Hand;
             btnLogout.Image = (Image)resources.GetObject("btnLogout.Image");
             btnLogout.ImageAlign = ContentAlignment.MiddleLeft;
             btnLogout.Location = new Point(1306, 28);

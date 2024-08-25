@@ -227,17 +227,17 @@ namespace car_traders.View.Customer
                         {
 
                             OrderDetails orderDetails = new OrderDetails
-                        {
-                            Item_name = carPart.Parts_name,
-                            Item_Id = carPart.Id,
-                            Item_type = "PART",
-                            Total_price = total,
-                            Qty = (int)numInputQty.Value,
-                            //Order_code = order.Order_code,
-                            Is_active = true
+                            {
+                                Item_name = carPart.Parts_name,
+                                Item_Id = carPart.Id,
+                                Item_type = "PART",
+                                Total_price = total,
+                                Qty = (int)numInputQty.Value,
+                                //Order_code = order.Order_code,
+                                Is_active = true
 
 
-                        };
+                            };
                             OrderDetailsList.Add(orderDetails);//add to order detail list 
 
                             lblCartOrderCount.Text = OrderDetailsList.Count.ToString(); // set detail list count
@@ -247,7 +247,7 @@ namespace car_traders.View.Customer
                             numInputQty.Value = 0;
                             loader.Visible = false;
 
-                            
+
 
                         }
                         else
@@ -304,8 +304,25 @@ namespace car_traders.View.Customer
             loadCarPartDetail();
         }
 
-       
+        private void btnSubmit_MouseHover(object sender, EventArgs e)
+        {
+            btnSubmit.BackColor = Color.DarkBlue;
+        }
 
-      
+        private void btnSubmit_MouseLeave(object sender, EventArgs e)
+        {
+            btnSubmit.BackColor = Color.CornflowerBlue;
+        }
+
+        private void btnViewCart_MouseHover(object sender, EventArgs e)
+        {
+            btnViewCart.BackColor = Color.Teal;
+
+        }
+
+        private void btnViewCart_MouseLeave(object sender, EventArgs e)
+        {
+            btnViewCart.BackColor = Color.DarkCyan;
+        }
     }
 }

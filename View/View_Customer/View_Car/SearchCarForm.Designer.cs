@@ -188,16 +188,22 @@
             // btnSubmit
             // 
             btnSubmit.BackColor = Color.CornflowerBlue;
+            btnSubmit.Cursor = Cursors.Hand;
             btnSubmit.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = SystemColors.ButtonHighlight;
+            btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
+            btnSubmit.ImageAlign = ContentAlignment.MiddleLeft;
             btnSubmit.Location = new Point(24, 452);
             btnSubmit.Name = "btnSubmit";
+            btnSubmit.Padding = new Padding(20, 0, 0, 0);
             btnSubmit.Size = new Size(333, 76);
             btnSubmit.TabIndex = 13;
             btnSubmit.Text = "ORDER REQUEST";
             btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Visible = false;
             btnSubmit.Click += btnSubmit_Click;
+            btnSubmit.MouseLeave += btnSubmit_MouseLeave;
+            btnSubmit.MouseHover += btnSubmit_MouseHover;
             // 
             // loader
             // 

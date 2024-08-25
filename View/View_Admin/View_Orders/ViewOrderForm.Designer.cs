@@ -292,6 +292,8 @@
             btnPayment.UseVisualStyleBackColor = false;
             btnPayment.Visible = false;
             btnPayment.Click += btnPayment_Click;
+            btnPayment.MouseLeave += btnPayment_MouseLeave;
+            btnPayment.MouseHover += btnPayment_MouseHover;
             // 
             // btnCancel
             // 
@@ -310,6 +312,8 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Visible = false;
             btnCancel.Click += btnCancel_Click;
+            btnCancel.MouseLeave += btnCancel_MouseLeave;
+            btnCancel.MouseHover += btnCancel_MouseHover;
             // 
             // btnViewDetails
             // 
@@ -328,6 +332,8 @@
             btnViewDetails.UseVisualStyleBackColor = false;
             btnViewDetails.Visible = false;
             btnViewDetails.Click += btnViewDetails_Click;
+            btnViewDetails.MouseLeave += btnViewDetails_MouseLeave;
+            btnViewDetails.MouseHover += btnViewDetails_MouseHover;
             // 
             // lblTitle
             // 

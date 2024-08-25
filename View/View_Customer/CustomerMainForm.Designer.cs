@@ -30,19 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerMainForm));
             pnlSlide = new Panel();
-            btnLogout = new MaterialSkin.Controls.MaterialButton();
+            panel1 = new Panel();
             pictureBox1 = new PictureBox();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            btnLogout = new MaterialSkin.Controls.MaterialButton();
             tableLayoutPanel1 = new TableLayoutPanel();
             btnCarSearch = new MaterialSkin.Controls.MaterialButton();
             btnCarParts = new MaterialSkin.Controls.MaterialButton();
             btnViewOrder = new MaterialSkin.Controls.MaterialButton();
             pnlMain = new Panel();
-            materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            panel1 = new Panel();
             pnlSlide.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlSlide
@@ -59,9 +59,42 @@
             pnlSlide.TabIndex = 1;
             pnlSlide.Paint += pnlSlide_Paint;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.LightSteelBlue;
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(10, 19);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(153, 137);
+            panel1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-1, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(154, 137);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(10, 19);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.Size = new Size(153, 137);
+            materialCard1.TabIndex = 0;
+            // 
             // btnLogout
             // 
             btnLogout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnLogout.Cursor = Cursors.Hand;
             btnLogout.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnLogout.Depth = 0;
             btnLogout.HighEmphasis = true;
@@ -79,16 +112,6 @@
             btnLogout.UseAccentColor = false;
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-1, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(154, 137);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // tableLayoutPanel1
             // 
@@ -109,6 +132,7 @@
             // btnCarSearch
             // 
             btnCarSearch.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCarSearch.Cursor = Cursors.Hand;
             btnCarSearch.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnCarSearch.Depth = 0;
             btnCarSearch.Dock = DockStyle.Fill;
@@ -131,6 +155,7 @@
             // btnCarParts
             // 
             btnCarParts.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnCarParts.Cursor = Cursors.Hand;
             btnCarParts.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnCarParts.Depth = 0;
             btnCarParts.Dock = DockStyle.Fill;
@@ -153,6 +178,7 @@
             // btnViewOrder
             // 
             btnViewOrder.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnViewOrder.Cursor = Cursors.Hand;
             btnViewOrder.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnViewOrder.Depth = 0;
             btnViewOrder.Dock = DockStyle.Fill;
@@ -181,28 +207,6 @@
             pnlMain.Size = new Size(1217, 607);
             pnlMain.TabIndex = 3;
             // 
-            // materialCard1
-            // 
-            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Depth = 0;
-            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(10, 19);
-            materialCard1.Margin = new Padding(14);
-            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.Size = new Size(153, 137);
-            materialCard1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.LightSteelBlue;
-            panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(10, 19);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(153, 137);
-            panel1.TabIndex = 1;
-            // 
             // CustomerMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -214,10 +218,10 @@
             Text = "CAR TRADERS";
             pnlSlide.ResumeLayout(false);
             pnlSlide.PerformLayout();
+            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 

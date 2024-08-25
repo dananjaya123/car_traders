@@ -49,7 +49,7 @@ namespace car_traders.View.View_Customer.View_Order
 
         private void ViewOrderDetailModalForm_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void loadOrderDetail()
@@ -88,7 +88,7 @@ namespace car_traders.View.View_Customer.View_Order
             {
                 if (listViewOrderDetail.SelectedItems.Count > 0)
                 {
-                  
+
 
                     // Assuming the ID is stored as text in the sixth column (index 5)
                     string itemIdString = listViewOrderDetail.SelectedItems[0].SubItems[5].Text;
@@ -221,6 +221,15 @@ namespace car_traders.View.View_Customer.View_Order
             }
         }
 
-       
+        private void btnCancel_MouseHover(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.DarkRed;
+        }
+
+        private void btnCancel_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.IndianRed;
+
+        }
     }
 }

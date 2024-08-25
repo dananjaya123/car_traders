@@ -100,10 +100,6 @@ namespace car_traders.View.View_Customer.View_Order
                 loadTable();
             }
         }
-        private void lblBrandTag_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private List<OrderDetails> detailList;
         private Order order;
@@ -193,6 +189,7 @@ namespace car_traders.View.View_Customer.View_Order
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            loader.Visible = true;
             try
             {
                 // Check if the order is in the "REQUEST" status
@@ -243,6 +240,7 @@ namespace car_traders.View.View_Customer.View_Order
                 }
                 MessageBox.Show($"{order.Order_code} This Order canceled", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadTable();
+                loader.Visible = false;
             }
             catch (Exception ex)
             {
@@ -262,6 +260,7 @@ namespace car_traders.View.View_Customer.View_Order
 
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
+            loader.Visible = true;
             Form modelBackgraund = new Form();
             using (ViewOrderDetailModalForm model = new ViewOrderDetailModalForm(detailList, order, this))
             {
@@ -277,12 +276,33 @@ namespace car_traders.View.View_Customer.View_Order
 
                 model.ShowDialog();
                 modelBackgraund.Dispose();
+                loader.Visible = false;
             }
         }
 
         private void materialCard1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnViewDetails_MouseHover(object sender, EventArgs e)
+        {
+            btnViewDetails.BackColor = Color.DarkBlue;
+        }
+
+        private void btnViewDetails_MouseLeave(object sender, EventArgs e)
+        {
+            btnViewDetails.BackColor = Color.CornflowerBlue;
+        }
+
+        private void btnCancel_MouseHover(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.DarkRed;
+        }
+
+        private void btnCancel_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.IndianRed;
         }
     }
 }

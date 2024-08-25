@@ -309,6 +309,7 @@
             // btnRegister
             // 
             btnRegister.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnRegister.Cursor = Cursors.Hand;
             btnRegister.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnRegister.Depth = 0;
             btnRegister.HighEmphasis = true;
@@ -330,6 +331,7 @@
             // btnClear
             // 
             btnClear.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnClear.Cursor = Cursors.Hand;
             btnClear.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnClear.Depth = 0;
             btnClear.HighEmphasis = true;
@@ -429,6 +431,7 @@
             // btnUpdate
             // 
             btnUpdate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnUpdate.Depth = 0;
             btnUpdate.HighEmphasis = true;

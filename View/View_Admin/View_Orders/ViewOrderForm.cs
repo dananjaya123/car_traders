@@ -189,7 +189,7 @@ namespace car_traders.View.View_Admin.View_Orders
         {
             if (texSearch.TextLength >= 1)
             {
-                
+
                 List<Model.Order> orderList = _orderService.getCustomerOrderByOrderCodeAndStatu(btnSelectValue, texSearch.Text);
                 listViewOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
@@ -331,6 +331,36 @@ namespace car_traders.View.View_Admin.View_Orders
         {
             _pdfGenarate.pdfConverter(listViewOrder, $"{btnSelectValue}.pdf");
 
+        }
+
+        private void btnPayment_MouseHover(object sender, EventArgs e)
+        {
+            btnPayment.BackColor = Color.DarkBlue;
+        }
+
+        private void btnPayment_MouseLeave(object sender, EventArgs e)
+        {
+            btnPayment.BackColor = Color.CornflowerBlue;
+        }
+
+        private void btnViewDetails_MouseHover(object sender, EventArgs e)
+        {
+            btnViewDetails.BackColor = Color.Teal;
+        }
+
+        private void btnViewDetails_MouseLeave(object sender, EventArgs e)
+        {
+            btnViewDetails.BackColor = Color.DarkCyan;
+        }
+
+        private void btnCancel_MouseHover(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.DarkRed;
+        }
+
+        private void btnCancel_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancel.BackColor = Color.IndianRed;
         }
     }
 }

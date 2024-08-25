@@ -68,6 +68,7 @@
             // btnPdfPrint
             // 
             btnPdfPrint.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnPdfPrint.Cursor = Cursors.Hand;
             btnPdfPrint.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnPdfPrint.Depth = 0;
             btnPdfPrint.HighEmphasis = true;
@@ -129,6 +130,7 @@
             // btnAddCustomer
             // 
             btnAddCustomer.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAddCustomer.Cursor = Cursors.Hand;
             btnAddCustomer.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnAddCustomer.Depth = 0;
             btnAddCustomer.HighEmphasis = true;
@@ -150,6 +152,7 @@
             // btnReload
             // 
             btnReload.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReload.Cursor = Cursors.Hand;
             btnReload.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             btnReload.Depth = 0;
             btnReload.HighEmphasis = true;

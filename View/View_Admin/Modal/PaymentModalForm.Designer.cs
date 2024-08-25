@@ -80,6 +80,7 @@
             // btnSubmit
             // 
             btnSubmit.BackColor = Color.CornflowerBlue;
+            btnSubmit.Cursor = Cursors.Hand;
             btnSubmit.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = Color.White;
             btnSubmit.Image = (Image)resources.GetObject("btnSubmit.Image");
@@ -92,6 +93,8 @@
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Click += btnSubmit_Click;
+            btnSubmit.MouseLeave += btnSubmit_MouseLeave;
+            btnSubmit.MouseHover += btnSubmit_MouseHover;
             // 
             // texPaidAmount
             // 
