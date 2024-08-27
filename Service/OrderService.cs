@@ -100,6 +100,26 @@ namespace car_traders.Service
                 return order;
             }
         }
+
+        public List<Order> getAllOrdersByDateWise(string status, DateTime fromDate, DateTime toDate, string searchVal)
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+                var query = dbContext.order
+                    .Where(od => od.status == status &&
+                          od.Created >= fromDate &&
+                          od.Created <= toDate);
+
+                // Apply search filter only if searchVal is not null or empty
+                if (!string.IsNullOrEmpty(searchVal))
+                {
+                    query = query.Where(od => od.User_code.Contains(searchVal) || od.Order_code.Contains(searchVal));
+                }
+
+                return query.ToList();
+            }
+        }
+
         public Order getOrderByOrderCode(string orderCode)
         {
             using (var dbContext = new ApplicationDBContext())

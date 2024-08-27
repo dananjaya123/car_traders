@@ -128,10 +128,10 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(196, 502);
+            loader.Location = new Point(147, 209);
             loader.Name = "loader";
-            loader.Size = new Size(82, 76);
-            loader.SizeMode = PictureBoxSizeMode.CenterImage;
+            loader.Size = new Size(210, 210);
+            loader.SizeMode = PictureBoxSizeMode.Zoom;
             loader.TabIndex = 29;
             loader.TabStop = false;
             loader.Visible = false;

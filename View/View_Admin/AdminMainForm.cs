@@ -15,6 +15,7 @@ using car_traders.View.View_Admin.View_Customer;
 using car_traders.Service.Common;
 using Microsoft.VisualBasic.ApplicationServices;
 using car_traders.Service;
+using car_traders.View.View_Admin.View_Report;
 
 namespace car_traders
 {
@@ -54,7 +55,22 @@ namespace car_traders
             loadCarPartsListTable();
             orderFormsLoad();
             customerFormLoad();
+            reportFormLoad();
 
+        }
+
+        private void reportFormLoad()
+        {
+            ViewReportMainForm form = new ViewReportMainForm();
+            pnlReporMain.Controls.Clear();
+
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Size = pnlReporMain.Size;
+            form.Dock = DockStyle.Fill;
+
+            pnlReporMain.Controls.Add(form);
+            form.Show();
         }
 
         private void orderFormsLoad()
@@ -305,7 +321,17 @@ namespace car_traders
             else
             {
                 List<Car> carList = _carService.getAllCarListByModelName(searchModelName);
-                loadCarListTable(carList);
+                if (carList.Count <= 0)
+                {
+                    pnlEmptyMsCar.Visible = true;
+                }
+                else
+                {
+                    pnlEmptyMsCar.Visible = false;
+                    loadCarListTable(carList);
+                    
+                }
+
             }
 
         }
@@ -480,7 +506,17 @@ namespace car_traders
                 else
                 {
                     List<CarPart> parts = _carPartService.getCarPartsByPartName(searchVal);
-                    loadCarPartsListTable(parts);
+
+                    if (parts.Count <=0)
+                    {
+                        pnlEmptyCartPartMs.Visible = true;
+                    }
+                    else
+                    {
+                        pnlEmptyCartPartMs.Visible = false;
+                        loadCarPartsListTable(parts);
+                        
+                    }
                 }
             }
             catch (Exception ex)
@@ -718,6 +754,16 @@ namespace car_traders
                 model.ShowDialog();
                 modelBackgraund.Dispose();
             }
+        }
+
+        private void btnCarEmptyMsBoxClose_Click(object sender, EventArgs e)
+        {
+            pnlEmptyMsCar.Visible = false;
+        }
+
+        private void btnEmptyCarPartMsClose_Click(object sender, EventArgs e)
+        {
+            pnlEmptyCartPartMs.Visible = false;
         }
     }
 }

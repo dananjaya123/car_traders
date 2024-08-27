@@ -216,6 +216,7 @@
             Controls.Add(pnlSlide);
             Name = "CustomerMainForm";
             Text = "CAR TRADERS";
+            Load += CustomerMainForm_Load;
             pnlSlide.ResumeLayout(false);
             pnlSlide.PerformLayout();
             panel1.ResumeLayout(false);

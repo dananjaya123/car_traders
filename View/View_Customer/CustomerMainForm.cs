@@ -52,7 +52,16 @@ namespace car_traders
 
         private void pnlSlide_Paint(object sender, PaintEventArgs e)
         {
+            SearchCarForm form = new SearchCarForm();
+            pnlMain.Controls.Clear();
 
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Size = pnlMain.Size;
+            form.Dock = DockStyle.Fill;
+
+            pnlMain.Controls.Add(form);
+            form.Show();
         }
 
         private void btnCarParts_Click(object sender, EventArgs e)
@@ -89,6 +98,11 @@ namespace car_traders
 
             pnlMain.Controls.Add(form);
             form.Show();
+        }
+
+        private void CustomerMainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -150,6 +150,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ViewOrderMainForm";
             Text = "ViewOrderMainForm";
+            Load += ViewOrderMainForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

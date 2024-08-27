@@ -121,9 +121,16 @@ namespace car_traders.View.View_Customer.View_CarPart
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            loader.Visible = true;
             try
             {
-                loader.Visible = true;
+                if (ordersList.Count <= 0)
+                {
+                    MessageBox.Show($"Please select the cart parts", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    loader.Visible = false;
+                    return;
+                }
+
 
                 // Calculate the total quantity from the order details list
                 int totalQty = ordersList.Sum(od => od.Qty);
@@ -196,12 +203,13 @@ namespace car_traders.View.View_Customer.View_CarPart
                             // Reload the table
                             loadCartDataList();
 
-                            loader.Visible = false;
+                            
                             lblPartsName.Text = "";
                             lblPartsName.Visible = false;
                             btnCancel.Visible = false;
 
-                            MessageBox.Show("Cart order submitted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("order submitted successfully!", "Success");
+                            loader.Visible = false;
                             // Clear the OrderDetailsList in the original form
                             searchCarForm.ClearOrderDetailsList();
                             this.Close(); // Close the modal form after submission

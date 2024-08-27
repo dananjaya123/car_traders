@@ -32,7 +32,7 @@ namespace car_traders.Service.Common
             int newOrderNumber = orderCount + 1;
 
             // Format the new order number as "OR" followed by a 4-digit number, with leading zeros
-            string orderCode = $"OR{newOrderNumber.ToString("D4")}";
+            string orderCode = $"CT{newOrderNumber.ToString("D4")}";
 
             return orderCode;
         }

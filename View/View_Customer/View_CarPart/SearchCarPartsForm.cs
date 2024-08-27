@@ -202,6 +202,7 @@ namespace car_traders.View.Customer
         {
             try
             {
+                loader.Visible = true;
                 if (carPart.Status == "SOLD OUT")
                 {
                     MessageBox.Show($"SOLD OUT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -210,7 +211,7 @@ namespace car_traders.View.Customer
                 }
 
 
-                loader.Visible = true;
+               
                 double total;
                 if (double.TryParse(lblTotal.Text, out total))
                 {
@@ -278,6 +279,11 @@ namespace car_traders.View.Customer
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
+            if (OrderDetailsList.Count <=0)
+            {
+                MessageBox.Show("Select the Car parts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             Form modelBackgraund = new Form();
             using (CarPartsCartViewModalForm model = new CarPartsCartViewModalForm(OrderDetailsList, this))
             {

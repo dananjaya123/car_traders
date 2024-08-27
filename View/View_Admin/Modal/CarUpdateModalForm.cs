@@ -82,7 +82,7 @@ namespace car_traders
             {
                 var brand = texCarBrand.Text;
                 var color = texCarColor.Text;
-                var model = texCarModelName;
+                var model = texCarModelName.Text;
                 var manuYear = dateTimeCarManuFact.Text;
                 var mileageTex = texMileage.Text;
                 var body = texBodyType.Text;
@@ -113,7 +113,7 @@ namespace car_traders
                 {
                     car.Car_brand = brand;
                     car.Color = color;
-                    car.Model_name = mobile;
+                    car.Model_name = model;
                     car.Manufacturing_year = manuYear;
                     car.Mileage = mileage;
                     car.Body_type = body;

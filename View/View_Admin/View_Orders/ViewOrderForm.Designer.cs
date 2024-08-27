@@ -66,12 +66,18 @@
             lblUserName = new Label();
             lblUserNameTag = new Label();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            pnlEmptyMs = new Panel();
+            btnEmptyMsBoxClose = new Button();
+            lblEmptyValueMs = new Label();
+            pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             pnlOrderLoad.SuspendLayout();
             pnlCustomerData.SuspendLayout();
             materialCard1.SuspendLayout();
+            pnlEmptyMs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // listViewOrder
@@ -129,9 +135,9 @@
             // loader
             // 
             loader.Image = (Image)resources.GetObject("loader.Image");
-            loader.Location = new Point(365, 301);
+            loader.Location = new Point(365, 348);
             loader.Name = "loader";
-            loader.Size = new Size(164, 152);
+            loader.Size = new Size(157, 152);
             loader.SizeMode = PictureBoxSizeMode.Zoom;
             loader.TabIndex = 31;
             loader.TabStop = false;
@@ -535,11 +541,55 @@
             materialCard1.Size = new Size(903, 97);
             materialCard1.TabIndex = 82;
             // 
+            // pnlEmptyMs
+            // 
+            pnlEmptyMs.BackColor = Color.WhiteSmoke;
+            pnlEmptyMs.Controls.Add(btnEmptyMsBoxClose);
+            pnlEmptyMs.Controls.Add(lblEmptyValueMs);
+            pnlEmptyMs.Controls.Add(pictureBox2);
+            pnlEmptyMs.Location = new Point(184, 199);
+            pnlEmptyMs.Name = "pnlEmptyMs";
+            pnlEmptyMs.Size = new Size(451, 127);
+            pnlEmptyMs.TabIndex = 91;
+            pnlEmptyMs.Visible = false;
+            // 
+            // btnEmptyMsBoxClose
+            // 
+            btnEmptyMsBoxClose.Location = new Point(327, 86);
+            btnEmptyMsBoxClose.Name = "btnEmptyMsBoxClose";
+            btnEmptyMsBoxClose.Size = new Size(112, 34);
+            btnEmptyMsBoxClose.TabIndex = 2;
+            btnEmptyMsBoxClose.Text = "Close";
+            btnEmptyMsBoxClose.UseVisualStyleBackColor = true;
+            btnEmptyMsBoxClose.Click += btnEmptyMsBoxClose_Click;
+            // 
+            // lblEmptyValueMs
+            // 
+            lblEmptyValueMs.AutoSize = true;
+            lblEmptyValueMs.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmptyValueMs.ForeColor = Color.FromArgb(0, 192, 192);
+            lblEmptyValueMs.Location = new Point(154, 14);
+            lblEmptyValueMs.Name = "lblEmptyValueMs";
+            lblEmptyValueMs.Size = new Size(202, 32);
+            lblEmptyValueMs.TabIndex = 1;
+            lblEmptyValueMs.Text = "Values is empty !.";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(16, 10);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(108, 98);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            // 
             // ViewOrderForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1414, 639);
+            Controls.Add(pnlEmptyMs);
             Controls.Add(materialCard1);
             Controls.Add(pnlCustomerData);
             Controls.Add(pnlOrderLoad);
@@ -563,6 +613,9 @@
             pnlCustomerData.PerformLayout();
             materialCard1.ResumeLayout(false);
             materialCard1.PerformLayout();
+            pnlEmptyMs.ResumeLayout(false);
+            pnlEmptyMs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -606,5 +659,9 @@
         private Label lblUserName;
         private Label lblUserNameTag;
         private MaterialSkin.Controls.MaterialCard materialCard1;
+        private Panel pnlEmptyMs;
+        private Button btnEmptyMsBoxClose;
+        private Label lblEmptyValueMs;
+        private PictureBox pictureBox2;
     }
 }

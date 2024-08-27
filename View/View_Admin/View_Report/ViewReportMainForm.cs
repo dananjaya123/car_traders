@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace car_traders.View.View_Admin.View_Orders
+namespace car_traders.View.View_Admin.View_Report
 {
-    public partial class ViewOrderMainForm : Form
+    public partial class ViewReportMainForm : Form
     {
-        public ViewOrderMainForm()
+        public ViewReportMainForm()
         {
             InitializeComponent();
         }
 
-        private void btnOrderRequestView_Click(object sender, EventArgs e)
+        private void btnOrderRequestReport_Click(object sender, EventArgs e)
         {
-            ViewOrderForm form = new ViewOrderForm();
+            ReportViewForm form = new ReportViewForm();
             pnlMain.Controls.Clear();
             form.selectMainFormButtonValues("REQUEST");
             form.TopLevel = false;
@@ -31,9 +31,9 @@ namespace car_traders.View.View_Admin.View_Orders
             form.Show();
         }
 
-        private void btnCancelOrderView_Click(object sender, EventArgs e)
+        private void btnCancelOrderReport_Click(object sender, EventArgs e)
         {
-            ViewOrderForm form = new ViewOrderForm();
+            ReportViewForm form = new ReportViewForm();
             pnlMain.Controls.Clear();
             form.selectMainFormButtonValues("CANCEL");
             form.TopLevel = false;
@@ -45,9 +45,9 @@ namespace car_traders.View.View_Admin.View_Orders
             form.Show();
         }
 
-        private void btnRejectOrderView_Click(object sender, EventArgs e)
+        private void btnRejectOrderReport_Click(object sender, EventArgs e)
         {
-            ViewOrderForm form = new ViewOrderForm();
+            ReportViewForm form = new ReportViewForm();
             pnlMain.Controls.Clear();
             form.selectMainFormButtonValues("REJECT");
             form.TopLevel = false;
@@ -59,9 +59,9 @@ namespace car_traders.View.View_Admin.View_Orders
             form.Show();
         }
 
-        private void btnPaidOrderView_Click(object sender, EventArgs e)
+        private void btnPaidOrderReport_Click(object sender, EventArgs e)
         {
-            ViewOrderForm form = new ViewOrderForm();
+            ReportViewForm form = new ReportViewForm();
             pnlMain.Controls.Clear();
             form.selectMainFormButtonValues("PAID");
             form.TopLevel = false;
@@ -73,14 +73,9 @@ namespace car_traders.View.View_Admin.View_Orders
             form.Show();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void ViewReportMainForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void ViewOrderMainForm_Load(object sender, EventArgs e)
-        {
-            ViewOrderForm form = new ViewOrderForm();
+            ReportViewForm form = new ReportViewForm();
             pnlMain.Controls.Clear();
             form.selectMainFormButtonValues("REQUEST");
             form.TopLevel = false;

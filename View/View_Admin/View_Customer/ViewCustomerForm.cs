@@ -35,6 +35,7 @@ namespace car_traders.View.View_Admin.View_Customer
                 listViewCustomer.Items.Clear();
                 if (userList.Count > 0)
                 {
+                    pnlEmptyMs.Visible = false;
                     foreach (User user in userList)
                     {
                         var listViewItem = new ListViewItem(new[]
@@ -51,6 +52,10 @@ namespace car_traders.View.View_Admin.View_Customer
 
                     }
 
+                }
+                else
+                {
+                    pnlEmptyMs.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -146,10 +151,11 @@ namespace car_traders.View.View_Admin.View_Customer
 
                 if (userList == null || userList.Count == 0)
                 {
-                    MessageBox.Show("No Customer found .");
+                    pnlEmptyMs.Visible = true;
+                    //MessageBox.Show("No Customer found .");
                     return;
                 }
-
+                pnlEmptyMs.Visible = false;
                 foreach (User user in userList)
                 {
                     var listViewItem = new ListViewItem(new[]
@@ -176,6 +182,11 @@ namespace car_traders.View.View_Admin.View_Customer
         private void btnReload_Click(object sender, EventArgs e)
         {
             loadTable();
+        }
+
+        private void btnEmptyMsBoxClose_Click(object sender, EventArgs e)
+        {
+            pnlEmptyMs.Visible = false;
         }
     }
 }

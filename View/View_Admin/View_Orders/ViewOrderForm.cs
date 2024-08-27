@@ -52,6 +52,15 @@ namespace car_traders.View.View_Admin.View_Orders
                 List<Model.Order> orderList = _orderService.getAllOrdersByStatus(btnSelectValue);
                 listViewOrder.Items.Clear();
 
+                if (orderList.Count <= 0)
+                {
+                    pnlEmptyMs.Visible = true;
+                }
+                else
+                {
+                    pnlEmptyMs.Visible = false;
+                }
+
                 foreach (var order in orderList)
                 {
                     var listViewItem = new ListViewItem(new[]
@@ -361,6 +370,11 @@ namespace car_traders.View.View_Admin.View_Orders
         private void btnCancel_MouseLeave(object sender, EventArgs e)
         {
             btnCancel.BackColor = Color.IndianRed;
+        }
+
+        private void btnEmptyMsBoxClose_Click(object sender, EventArgs e)
+        {
+            pnlEmptyMs.Visible = false;
         }
     }
 }

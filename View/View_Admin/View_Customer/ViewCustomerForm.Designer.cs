@@ -38,6 +38,10 @@
             btnAddCustomer = new MaterialSkin.Controls.MaterialButton();
             btnReload = new MaterialSkin.Controls.MaterialButton();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            pnlEmptyMs = new Panel();
+            btnEmptyMsBoxClose = new Button();
+            lblEmptyValueMs = new Label();
+            pictureBox2 = new PictureBox();
             listViewCustomer = new MaterialSkin.Controls.MaterialListView();
             colUserCode = new ColumnHeader();
             colName = new ColumnHeader();
@@ -51,6 +55,8 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
             materialCard1.SuspendLayout();
+            pnlEmptyMs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             materialCard2.SuspendLayout();
             SuspendLayout();
             // 
@@ -174,6 +180,7 @@
             // materialCard1
             // 
             materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(pnlEmptyMs);
             materialCard1.Controls.Add(listViewCustomer);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
@@ -184,6 +191,49 @@
             materialCard1.Padding = new Padding(14);
             materialCard1.Size = new Size(1300, 492);
             materialCard1.TabIndex = 143;
+            // 
+            // pnlEmptyMs
+            // 
+            pnlEmptyMs.BackColor = Color.WhiteSmoke;
+            pnlEmptyMs.Controls.Add(btnEmptyMsBoxClose);
+            pnlEmptyMs.Controls.Add(lblEmptyValueMs);
+            pnlEmptyMs.Controls.Add(pictureBox2);
+            pnlEmptyMs.Location = new Point(467, 172);
+            pnlEmptyMs.Name = "pnlEmptyMs";
+            pnlEmptyMs.Size = new Size(451, 127);
+            pnlEmptyMs.TabIndex = 145;
+            pnlEmptyMs.Visible = false;
+            // 
+            // btnEmptyMsBoxClose
+            // 
+            btnEmptyMsBoxClose.Location = new Point(327, 86);
+            btnEmptyMsBoxClose.Name = "btnEmptyMsBoxClose";
+            btnEmptyMsBoxClose.Size = new Size(112, 34);
+            btnEmptyMsBoxClose.TabIndex = 2;
+            btnEmptyMsBoxClose.Text = "Close";
+            btnEmptyMsBoxClose.UseVisualStyleBackColor = true;
+            btnEmptyMsBoxClose.Click += btnEmptyMsBoxClose_Click;
+            // 
+            // lblEmptyValueMs
+            // 
+            lblEmptyValueMs.AutoSize = true;
+            lblEmptyValueMs.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmptyValueMs.ForeColor = Color.FromArgb(0, 192, 192);
+            lblEmptyValueMs.Location = new Point(154, 14);
+            lblEmptyValueMs.Name = "lblEmptyValueMs";
+            lblEmptyValueMs.Size = new Size(202, 32);
+            lblEmptyValueMs.TabIndex = 1;
+            lblEmptyValueMs.Text = "Values is empty !.";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(16, 10);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(108, 98);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
             // 
             // listViewCustomer
             // 
@@ -276,6 +326,9 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)loader).EndInit();
             materialCard1.ResumeLayout(false);
+            pnlEmptyMs.ResumeLayout(false);
+            pnlEmptyMs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             materialCard2.ResumeLayout(false);
             materialCard2.PerformLayout();
             ResumeLayout(false);
@@ -302,5 +355,9 @@
         private ColumnHeader colUserName;
         private ColumnHeader colRole;
         private MaterialSkin.Controls.MaterialCard materialCard2;
+        private Panel pnlEmptyMs;
+        private Button btnEmptyMsBoxClose;
+        private Label lblEmptyValueMs;
+        private PictureBox pictureBox2;
     }
 }
