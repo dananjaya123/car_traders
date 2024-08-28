@@ -21,7 +21,7 @@ namespace car_traders.Model
         public string Car_model{ get; set; }
         public string Brand_name { get; set; }
         public byte[]? Image_data { get; set; }
-        public string Status { get; set; } = "available"; //available,soldout
+        public string Status { get; set; } = "AVAILABLE"; //available,soldout
         public bool Is_active { get; set; } = true;
     }
 }

@@ -23,6 +23,7 @@ namespace car_traders.View.Customer
         {
             Cardata = car;
             lblCarName.Text = car.Model_name;
+            lblCarBrand.Text = car.Car_brand;
             lblColor.Text = car.Color;
             lblManufacturingYear.Text = car.Manufacturing_year;
             lblPrice.Text = car.Price.ToString("F2");
@@ -39,6 +40,11 @@ namespace car_traders.View.Customer
             if (car.Status == "SOLD OUT")
             {
                 lblStatus.ForeColor = Color.Red;
+            }
+
+            if (car.Selling_type == "USED")
+            {
+                lblCarSelingType.ForeColor = Color.Blue;
             }
 
 

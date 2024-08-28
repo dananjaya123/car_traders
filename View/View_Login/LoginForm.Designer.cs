@@ -275,12 +275,12 @@
             materialCard2.Controls.Add(panel1);
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(-2, 60);
+            materialCard2.Location = new Point(-2, 64);
             materialCard2.Margin = new Padding(14);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
             materialCard2.Padding = new Padding(14);
-            materialCard2.Size = new Size(300, 492);
+            materialCard2.Size = new Size(300, 489);
             materialCard2.TabIndex = 16;
             // 
             // LoginForm

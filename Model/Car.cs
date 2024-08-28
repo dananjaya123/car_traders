@@ -29,7 +29,7 @@ namespace car_traders.Model
         public double Price { get; set; }
         public string? Description { get; set; }
 
-        public string Status { get; set; } = "available"; //available,soldout
+        public string Status { get; set; } = "AVAILABLE"; //available,soldout
         public bool Is_active { get; set; }
 
 

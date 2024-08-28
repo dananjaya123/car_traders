@@ -125,8 +125,9 @@ namespace car_traders
                     }
                     lblCarModel.Text = car.Model_name;
                     lblBodyType.Text = car.Body_type;
+                    lblBrand.Text = car.Car_brand;
                     lblColor.Text = car.Color;
-                    lblFelType.Text = car.Fuel_type;
+                    lblFuelType.Text = car.Fuel_type;
                     lblManufacturing.Text = car.Manufacturing_year;
                     lblMileage.Text = car.Mileage.ToString() + " Km";
                     lblPrice.Text = "Rs " + car.Price.ToString("F2");
@@ -146,13 +147,22 @@ namespace car_traders
             lblBodyType.Visible = true;
             lblCarModel.Visible = true;
             lblColor.Visible = true;
-            lblFelType.Visible = true;
+            lblFuelType.Visible = true;
             lblManufacturing.Visible = true;
             lblMileage.Visible = true;
             lblPrice.Visible = true;
+            lblBrand.Visible=true;
+            lblBodyType.Visible=true;
 
             imgCarDetail.Visible = true;
             btnSubmit.Visible = true;
+
+            lblBodyTag.Visible = true;
+            lblBrandTag.Visible = true;
+            lblFuelTag.Visible = true;
+            lblModelTag.Visible = true;
+            lblColortag.Visible = true;
+            lblYearTag.Visible = true;
 
         }
 
