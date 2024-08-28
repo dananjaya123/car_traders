@@ -404,5 +404,9 @@
         private Label lblColortag;
         private Label lblBodyTag;
         private Label lblFuelTag;
+        private Panel pnlEmptyMs;
+        private Button btnEmptyMsBoxClose;
+        private Label lblEmptyValueMs;
+        private PictureBox pictureBox2;
     }
 }

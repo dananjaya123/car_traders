@@ -729,7 +729,7 @@
             comboFueltype.Hint = "Fuel *";
             comboFueltype.IntegralHeight = false;
             comboFueltype.ItemHeight = 43;
-            comboFueltype.Items.AddRange(new object[] { "petrol", "diesel", "electric" });
+            comboFueltype.Items.AddRange(new object[] { "petrol", "diesel", "electric", "hibrid" });
             comboFueltype.Location = new Point(369, 345);
             comboFueltype.MaxDropDownItems = 4;
             comboFueltype.MouseState = MaterialSkin.MouseState.OUT;

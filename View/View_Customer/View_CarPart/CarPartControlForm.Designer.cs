@@ -38,10 +38,10 @@
             lblCarPartName = new Label();
             imgCarPart = new PictureBox();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)imgCarPart).BeginInit();
             materialCard1.SuspendLayout();
             SuspendLayout();
@@ -157,27 +157,16 @@
             materialCard1.MouseLeave += CarPartControlForm_MouseLeave;
             materialCard1.MouseHover += CarPartControlForm_MouseHover;
             // 
-            // label2
+            // label5
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(243, 4);
-            label2.Name = "label2";
-            label2.Size = new Size(59, 28);
-            label2.TabIndex = 23;
-            label2.Text = "Part :";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(243, 42);
-            label3.Name = "label3";
-            label3.Size = new Size(104, 28);
-            label3.TabIndex = 24;
-            label3.Text = "Available :";
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(64, 64, 64);
+            label5.Location = new Point(243, 119);
+            label5.Name = "label5";
+            label5.Size = new Size(116, 28);
+            label5.TabIndex = 26;
+            label5.Text = "Car Model :";
             // 
             // label4
             // 
@@ -190,16 +179,27 @@
             label4.TabIndex = 25;
             label4.Text = "Brand :";
             // 
-            // label5
+            // label3
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(64, 64, 64);
-            label5.Location = new Point(243, 119);
-            label5.Name = "label5";
-            label5.Size = new Size(116, 28);
-            label5.TabIndex = 26;
-            label5.Text = "Car Model :";
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(243, 42);
+            label3.Name = "label3";
+            label3.Size = new Size(104, 28);
+            label3.TabIndex = 24;
+            label3.Text = "Available :";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(243, 4);
+            label2.Name = "label2";
+            label2.Size = new Size(59, 28);
+            label2.TabIndex = 23;
+            label2.Text = "Part :";
             // 
             // CarPartControlForm
             // 

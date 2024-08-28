@@ -39,10 +39,9 @@ namespace car_traders.View.Customer
             List<CarPart> partlist = _carPartsService.getAllCarPartList();
             if (partlist == null || partlist.Count == 0)
             {
-                MessageBox.Show("No Part found in the database.");
+                MessageBox.Show("No car  found !.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
 
             foreach (CarPart carpart in partlist)
             {
@@ -72,7 +71,8 @@ namespace car_traders.View.Customer
                 List<CarPart> partlist = _carPartsService.getCarPartsByPartName(texSearchCarPart.Text);
                 if (partlist == null || partlist.Count == 0)
                 {
-                    MessageBox.Show("No Part found in the database.");
+                    MessageBox.Show("No car Part found !.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     return;
                 }
 
@@ -101,6 +101,7 @@ namespace car_traders.View.Customer
                 if (CarPartControlForm.click == true)
                 {
                     lblVisible();
+                    //get the car part control click values
                     carPart = CarPartControlForm.clickCarPartData;
 
                     if (carPart.Status == "SOLD OUT")
@@ -211,7 +212,7 @@ namespace car_traders.View.Customer
                 }
 
 
-               
+
                 double total;
                 if (double.TryParse(lblTotal.Text, out total))
                 {
@@ -279,7 +280,7 @@ namespace car_traders.View.Customer
 
         private void btnViewCart_Click(object sender, EventArgs e)
         {
-            if (OrderDetailsList.Count <=0)
+            if (OrderDetailsList.Count <= 0)
             {
                 MessageBox.Show("Select the Car parts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -329,6 +330,11 @@ namespace car_traders.View.Customer
         private void btnViewCart_MouseLeave(object sender, EventArgs e)
         {
             btnViewCart.BackColor = Color.DarkCyan;
+        }
+
+        private void btnEmptyMsBoxClose_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -129,7 +129,6 @@ namespace car_traders
         private void lblForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ForgotPasswordModalForm form = new ForgotPasswordModalForm();
-            this.Hide();
             form.Show();
 
         }

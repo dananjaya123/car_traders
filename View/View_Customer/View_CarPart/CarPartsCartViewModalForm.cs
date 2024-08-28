@@ -92,6 +92,7 @@ namespace car_traders.View.View_Customer.View_CarPart
             {
                 if (listViewCart.SelectedItems.Count > 0)
                 {
+                    //get table name column values
                     var selectedItem = listViewCart.SelectedItems[0];
                     var partName = selectedItem.SubItems[0].Text;
 
@@ -107,6 +108,9 @@ namespace car_traders.View.View_Customer.View_CarPart
 
                     // Clear  after removal
                     lblPartsName.Text = string.Empty;
+
+                    //main form cart arry clear
+                    searchCarForm.ClearOrderDetailsList();
                 }
                 else
                 {

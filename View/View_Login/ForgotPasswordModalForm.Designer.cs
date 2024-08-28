@@ -51,7 +51,7 @@
             texUserName.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             texUserName.HidePromptOnLeave = false;
             texUserName.HideSelection = true;
-            texUserName.Hint = "User name or Email or Contact number Enter";
+            texUserName.Hint = "User name or Email ";
             texUserName.InsertKeyMode = InsertKeyMode.Default;
             texUserName.LeadingIcon = null;
             texUserName.Location = new Point(33, 100);

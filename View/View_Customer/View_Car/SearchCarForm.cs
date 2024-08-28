@@ -77,18 +77,20 @@ namespace car_traders
                 List<Car> carList = _carService.getAllCarListByModelName(texSearchCar.Text);
                 if (carList == null || carList.Count == 0)
                 {
-                    MessageBox.Show("No cars found in the database.");
+                    MessageBox.Show("No car  found !.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+              
+                    foreach (Car car in carList)
+                    {
+                        SearchCarUserColtrollFrom form = new SearchCarUserColtrollFrom();
+                        form.carDetails(car);
+                        resultContainer.Controls.Add(form);
 
-                foreach (Car car in carList)
-                {
-                    SearchCarUserColtrollFrom form = new SearchCarUserColtrollFrom();
-                    form.carDetails(car);
-                    resultContainer.Controls.Add(form);
-
-                }
-                resultContainer.Height = resultContainer.Controls.Count * 214;
+                    }
+                    resultContainer.Height = resultContainer.Controls.Count * 214;
+                
+                
             }
             else
             {
@@ -151,8 +153,8 @@ namespace car_traders
             lblManufacturing.Visible = true;
             lblMileage.Visible = true;
             lblPrice.Visible = true;
-            lblBrand.Visible=true;
-            lblBodyType.Visible=true;
+            lblBrand.Visible = true;
+            lblBodyType.Visible = true;
 
             imgCarDetail.Visible = true;
             btnSubmit.Visible = true;
@@ -289,6 +291,12 @@ namespace car_traders
         private void btnSubmit_MouseLeave(object sender, EventArgs e)
         {
             btnSubmit.BackColor = Color.CornflowerBlue;
+        }
+
+        private void btnEmptyMsBoxClose_Click(object sender, EventArgs e)
+        {
+            
+
         }
     }
 }

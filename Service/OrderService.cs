@@ -96,7 +96,10 @@ namespace car_traders.Service
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                var order = dbContext.order.Where(od => od.status == status).ToList();
+                // Get the current date
+                var currentDate = DateTime.Today;
+
+                var order = dbContext.order.Where(od => od.status == status && od.Created.Date == currentDate).ToList();
                 return order;
             }
         }
