@@ -22,6 +22,8 @@ namespace car_traders
         private readonly EmailSend _emailSend;
         private readonly IDGenerate _idgenarater;
         private readonly HashPassword _hashPassword;
+        private readonly AlertService _AlertService;
+
         public ForgotPasswordModalForm()
         {
             InitializeComponent();
@@ -34,6 +36,7 @@ namespace car_traders
             _emailSend = new EmailSend();
             _idgenarater = new IDGenerate();
             _hashPassword = new HashPassword();
+            _AlertService = new AlertService();
         }
 
         private void texOneTimePassword_Click(object sender, EventArgs e)
@@ -141,7 +144,7 @@ namespace car_traders
                     user.Password = _hashPassword.HashPasswords(newPw);
                     if (_userService.updateUserDetail(user))
                     {
-                        MessageBox.Show("Password change succsess.", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _AlertService.AlertBox("Password change succsess", "Success");
                         this.Hide();
                         LoginForm loginForm = new LoginForm();
                         loginForm.Show();

@@ -21,10 +21,12 @@ namespace car_traders
 {
     public partial class RegisterModalForm : MaterialForm
     {
-        private RoleService _roleService;
-        private UserService _userService;
-        private HashPassword _hashPassword;
-        readonly EmailSend _EmailSend;
+        private readonly RoleService _roleService;
+        private readonly UserService _userService;
+        private readonly HashPassword _hashPassword;
+        private readonly EmailSend _EmailSend;
+        private readonly AlertService _AlertService;
+
         public RegisterModalForm()
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace car_traders
             _userService = new UserService();
             _hashPassword = new HashPassword();
             _EmailSend = new EmailSend();
+            _AlertService = new AlertService();
         }
 
 
@@ -97,7 +100,7 @@ namespace car_traders
                 {
                     if (_userService.IsUserNameOrEmailExists(texUserName.Text, texEmail.Text))
                     {
-                        MessageBox.Show("Username or Email already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("Username or Email already exists!", "Warning");
                         return;
                     }
 
@@ -119,17 +122,17 @@ namespace car_traders
 
                     if (_userService.saveUser(user))
                     {
-                        MessageBox.Show("Success");
+                        _AlertService.AlertBox("Success", "Success");
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Something went wrong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("Something went wrong!", "Error");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Cannot find a User role", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("Cannot find a User role", "Warning");
                 }
             }
             catch (Exception ex)
@@ -260,8 +263,8 @@ namespace car_traders
                         string body = GenerateEmailBody("car traders", userData.User_name, userData.Contact_num, userData.Email, userData.Address,pw);
                         _EmailSend.SendEmail("cartraders@gmail.com", userData.Email, "Order Request ", body);
                     }
-                        
-                    MessageBox.Show("Success");
+
+                    _AlertService.AlertBox("Success", "Success");
                     this.Close();
                 }
 

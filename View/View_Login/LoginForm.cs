@@ -21,8 +21,9 @@ namespace car_traders
 {
     public partial class LoginForm : MaterialForm
     {
-        private HashPassword _hashPassword;
-        private UserService _userService;
+        private readonly HashPassword _hashPassword;
+        private readonly UserService _userService;
+        private readonly AlertService _AlertService;
 
         public LoginForm()
         {
@@ -35,6 +36,7 @@ namespace car_traders
 
             _userService = new UserService();
             _hashPassword = new HashPassword();
+            _AlertService = new AlertService();
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -52,7 +54,7 @@ namespace car_traders
 
                 if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
                 {
-                    MessageBox.Show("Username and password are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("Username and password are required.", "Warning");
                     return;
                 }
 
@@ -84,7 +86,7 @@ namespace car_traders
                 }
                 else
                 {
-                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("Invalid username or password.", "Error");
                 }
             }
             catch (Exception ex)
