@@ -135,13 +135,13 @@ namespace car_traders
 
         private void pwView_Click(object sender, EventArgs e)
         {
-            if (texPassword.PasswordChar == '*')
+            if (texPassword.UseSystemPasswordChar)
             {
-                texPassword.PasswordChar = '\0';
+                texPassword.UseSystemPasswordChar=false;
             }
             else
             {
-                texPassword.PasswordChar = '*';
+                texPassword.UseSystemPasswordChar=true;
             }
         }
 

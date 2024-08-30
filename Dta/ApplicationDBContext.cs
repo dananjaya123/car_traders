@@ -19,7 +19,7 @@ namespace car_traders.Dta
             builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true); // get json file conection string
             var configuration = builder.Build();
             optionsBuilder.UseMySql(configuration.GetConnectionString("DefaultConnection"),
-            new MySqlServerVersion(new Version(8, 0, 21))); //  MySQL version here
+            new MySqlServerVersion(ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection")))); //  MySQL version here
 
         }
 

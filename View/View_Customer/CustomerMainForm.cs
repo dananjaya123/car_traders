@@ -1,6 +1,7 @@
 ﻿using car_traders.Model;
 using car_traders.View.Customer;
 using car_traders.View.View_Customer.View_Order;
+using car_traders.View.View_Customer.View_Profile;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -103,6 +104,21 @@ namespace car_traders
         private void CustomerMainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUserProfile_Click(object sender, EventArgs e)
+        {
+            ViewProfileForm form = new ViewProfileForm();
+            User user = LoginForm.SesionUserData;
+            pnlMain.Controls.Clear();
+            form.UdateUser(user);
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Size = pnlMain.Size;
+            form.Dock = DockStyle.Fill;
+
+            pnlMain.Controls.Add(form);
+            form.Show();
         }
     }
 }

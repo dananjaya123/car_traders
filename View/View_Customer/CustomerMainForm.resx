@@ -162,6 +162,34 @@
         Q3dZ/51GpZ1j2bMJDdT2liZU6kCzfVw+JycnJycnJ4XU1PwDsZJb3fWgwJsAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnUserProfile.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAddJREFUWEftlz1LA0EQhkMECzsbQYRYCabQ1krwo7MR0ps0goUxP0CwyB+IVcAm
+        pjcgFnaCjQgWFgoWFlrYiFoIFoqfrM/szhHuLqIJGzBwLzxwM7M7M7ndu72k/pWMMRk46DIZLRcXwSx0
+        W1ktF5cE3ZiuKmmg9xpYgsEOkblRtd3AMex0iMyNKtkDSQNJA73XQE5jo840p3bwH8TYnJsSUtsNnIOc
+        40fWMuYJomf8T8jcqHpvCe7gGm6sZcwriP0bMq+VprRcXAS97AHGLIA08ADbUIYqSGOyhCs6NCwCvu7A
+        J1RgQFNbYaehCG+wqu6mcPraAxVNGRMx+fDNgzQ5pm4nHK0aCI7jfWsZ8wjRYzfgEu4h9MsD4S/AMwyD
+        PFVbGnLC0aqB4INk0lrGnEH0wyNgD+qaLiT8MyC3vqR2CS5sMBAOH0tQ1lwbUNDrcZA7tym2iOtFeFHT
+        CYePBqqaax1knetwBbuQtoUQ18twq6YTDh8NSLE+zTcPsidOIPpESEMNNZ1w+GhAVNSUknMEhtS0wp6G
+        L5hTlxMOXw3IZstr2pDwS3F5QdXU1RROX39OD+ED5FFbA9lwsuZy2+WX16Bfy3ZHFJjQQvIGfYdbaMCs
+        DkGp1DdTbTj6liOoXgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnUserProfile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAddJREFUWEftlz1LA0EQhkMECzsbQYRYCabQ1krwo7MR0ps0goUxP0CwyB+IVcAm
+        pjcgFnaCjQgWFgoWFlrYiFoIFoqfrM/szhHuLqIJGzBwLzxwM7M7M7ndu72k/pWMMRk46DIZLRcXwSx0
+        W1ktF5cE3ZiuKmmg9xpYgsEOkblRtd3AMex0iMyNKtkDSQNJA73XQE5jo840p3bwH8TYnJsSUtsNnIOc
+        40fWMuYJomf8T8jcqHpvCe7gGm6sZcwriP0bMq+VprRcXAS97AHGLIA08ADbUIYqSGOyhCs6NCwCvu7A
+        J1RgQFNbYaehCG+wqu6mcPraAxVNGRMx+fDNgzQ5pm4nHK0aCI7jfWsZ8wjRYzfgEu4h9MsD4S/AMwyD
+        PFVbGnLC0aqB4INk0lrGnEH0wyNgD+qaLiT8MyC3vqR2CS5sMBAOH0tQ1lwbUNDrcZA7tym2iOtFeFHT
+        CYePBqqaax1knetwBbuQtoUQ18twq6YTDh8NSLE+zTcPsidOIPpESEMNNZ1w+GhAVNSUknMEhtS0wp6G
+        L5hTlxMOXw3IZstr2pDwS3F5QdXU1RROX39OD+ED5FFbA9lwsuZy2+WX16Bfy3ZHFJjQQvIGfYdbaMCs
+        DkGp1DdTbTj6liOoXgAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnCarSearch.Icon" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

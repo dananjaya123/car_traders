@@ -41,6 +41,7 @@
             pictureBox1 = new PictureBox();
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             pnlMain = new Panel();
+            btnUserProfile = new MaterialSkin.Controls.MaterialButton();
             pnlSlide.SuspendLayout();
             materialCard2.SuspendLayout();
             panel2.SuspendLayout();
@@ -112,16 +113,18 @@
             // 
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(btnUserProfile, 0, 3);
             tableLayoutPanel1.Controls.Add(btnCarSearch, 0, 0);
             tableLayoutPanel1.Controls.Add(btnCarParts, 0, 1);
             tableLayoutPanel1.Controls.Add(btnViewOrder, 0, 2);
             tableLayoutPanel1.Location = new Point(3, 9);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowCount = 4;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel1.Size = new Size(148, 153);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.Size = new Size(148, 201);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // btnCarSearch
@@ -139,7 +142,7 @@
             btnCarSearch.MouseState = MaterialSkin.MouseState.HOVER;
             btnCarSearch.Name = "btnCarSearch";
             btnCarSearch.NoAccentTextColor = Color.Empty;
-            btnCarSearch.Size = new Size(140, 39);
+            btnCarSearch.Size = new Size(140, 38);
             btnCarSearch.TabIndex = 0;
             btnCarSearch.Text = "Car";
             btnCarSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -157,12 +160,12 @@
             btnCarParts.HighEmphasis = true;
             btnCarParts.Icon = (Image)resources.GetObject("btnCarParts.Icon");
             btnCarParts.Image = (Image)resources.GetObject("btnCarParts.Image");
-            btnCarParts.Location = new Point(4, 57);
+            btnCarParts.Location = new Point(4, 56);
             btnCarParts.Margin = new Padding(4, 6, 4, 6);
             btnCarParts.MouseState = MaterialSkin.MouseState.HOVER;
             btnCarParts.Name = "btnCarParts";
             btnCarParts.NoAccentTextColor = Color.Empty;
-            btnCarParts.Size = new Size(140, 39);
+            btnCarParts.Size = new Size(140, 38);
             btnCarParts.TabIndex = 1;
             btnCarParts.Text = "Car Parts";
             btnCarParts.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -180,12 +183,12 @@
             btnViewOrder.HighEmphasis = true;
             btnViewOrder.Icon = (Image)resources.GetObject("btnViewOrder.Icon");
             btnViewOrder.Image = (Image)resources.GetObject("btnViewOrder.Image");
-            btnViewOrder.Location = new Point(4, 108);
+            btnViewOrder.Location = new Point(4, 106);
             btnViewOrder.Margin = new Padding(4, 6, 4, 6);
             btnViewOrder.MouseState = MaterialSkin.MouseState.HOVER;
             btnViewOrder.Name = "btnViewOrder";
             btnViewOrder.NoAccentTextColor = Color.Empty;
-            btnViewOrder.Size = new Size(140, 39);
+            btnViewOrder.Size = new Size(140, 38);
             btnViewOrder.TabIndex = 2;
             btnViewOrder.Text = "View Orders";
             btnViewOrder.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -234,6 +237,29 @@
             pnlMain.Size = new Size(1217, 607);
             pnlMain.TabIndex = 3;
             // 
+            // btnUserProfile
+            // 
+            btnUserProfile.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnUserProfile.Cursor = Cursors.Hand;
+            btnUserProfile.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            btnUserProfile.Depth = 0;
+            btnUserProfile.Dock = DockStyle.Fill;
+            btnUserProfile.HighEmphasis = true;
+            btnUserProfile.Icon = (Image)resources.GetObject("btnUserProfile.Icon");
+            btnUserProfile.Image = (Image)resources.GetObject("btnUserProfile.Image");
+            btnUserProfile.Location = new Point(4, 156);
+            btnUserProfile.Margin = new Padding(4, 6, 4, 6);
+            btnUserProfile.MouseState = MaterialSkin.MouseState.HOVER;
+            btnUserProfile.Name = "btnUserProfile";
+            btnUserProfile.NoAccentTextColor = Color.Empty;
+            btnUserProfile.Size = new Size(140, 39);
+            btnUserProfile.TabIndex = 3;
+            btnUserProfile.Text = "profile";
+            btnUserProfile.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            btnUserProfile.UseAccentColor = false;
+            btnUserProfile.UseVisualStyleBackColor = true;
+            btnUserProfile.Click += btnUserProfile_Click;
+            // 
             // CustomerMainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -268,5 +294,6 @@
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialCard materialCard2;
         private Panel panel2;
+        private MaterialSkin.Controls.MaterialButton btnUserProfile;
     }
 }

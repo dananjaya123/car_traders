@@ -118,7 +118,7 @@
             texPassword.MaxLength = 32767;
             texPassword.MouseState = MaterialSkin.MouseState.OUT;
             texPassword.Name = "texPassword";
-            texPassword.PasswordChar = '\0';
+            texPassword.PasswordChar = '●';
             texPassword.PrefixSuffixText = null;
             texPassword.PromptChar = '_';
             texPassword.ReadOnly = false;
@@ -137,7 +137,7 @@
             texPassword.TextAlign = HorizontalAlignment.Left;
             texPassword.TextMaskFormat = MaskFormat.IncludeLiterals;
             texPassword.TrailingIcon = null;
-            texPassword.UseSystemPasswordChar = false;
+            texPassword.UseSystemPasswordChar = true;
             texPassword.ValidatingType = null;
             texPassword.Click += texPassword_Click;
             // 
