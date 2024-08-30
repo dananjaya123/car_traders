@@ -61,7 +61,7 @@ namespace car_traders.View.View_Customer.View_Profile
                 {
                     if (pw != "")
                     {
-                        string bodpy = GenerateEmailBody("car traders", userData.User_name, userData.Contact_num, userData.Email, userData.Address, pw);
+                        string body = GenerateEmailBody("car traders", userData.User_name, userData.Contact_num, userData.Email, userData.Address, pw);
                         _EmailSend.SendEmail("cartraders@gmail.com", userData.Email, "Order Request ", body);
                     }
 

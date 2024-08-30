@@ -21,6 +21,7 @@ namespace car_traders.View.Customer
         IDGenerate _IDGenerate;
         OrderDetailService _orderDetailService;
         EmailSend _EmailSend;
+        AlertService _AlertService;
         public SearchCarPartsForm()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace car_traders.View.Customer
             _IDGenerate = new IDGenerate();
             _orderDetailService = new OrderDetailService();
             _EmailSend = new EmailSend();
+            _AlertService = new AlertService();
             loadCarPartDetail();
 
         }
@@ -39,7 +41,7 @@ namespace car_traders.View.Customer
             List<CarPart> partlist = _carPartsService.getAllCarPartList();
             if (partlist == null || partlist.Count == 0)
             {
-                MessageBox.Show("No car  found !.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _AlertService.AlertBox("No car  found !", "Error");
                 return;
             }
 
@@ -71,7 +73,7 @@ namespace car_traders.View.Customer
                 List<CarPart> partlist = _carPartsService.getCarPartsByPartName(texSearchCarPart.Text);
                 if (partlist == null || partlist.Count == 0)
                 {
-                    MessageBox.Show("No car Part found !.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("No car Part found !", "Error");
 
                     return;
                 }
@@ -180,7 +182,7 @@ namespace car_traders.View.Customer
             {
                 if (int.Parse(lblQty.Text) < numInputQty.Value)
                 {
-                    MessageBox.Show("Please check your selected qty  " + lblQty.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("Please check your selected qty", "Error");
                     return;
                 }
                 // Convert numInputQty.Value to double for multiplication
@@ -189,7 +191,7 @@ namespace car_traders.View.Customer
             }
             else
             {
-                MessageBox.Show("Invalid price value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _AlertService.AlertBox("Invalid price value.", "Error");
             }
         }
 
@@ -206,7 +208,7 @@ namespace car_traders.View.Customer
                 loader.Visible = true;
                 if (carPart.Status == "SOLD OUT")
                 {
-                    MessageBox.Show($"SOLD OUT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("SOLD OUT", "Error");
                     btnSubmit.Visible = false;
                     return;
                 }
@@ -220,7 +222,7 @@ namespace car_traders.View.Customer
                     {
                         if (int.Parse(lblQty.Text) < numInputQty.Value)
                         {
-                            MessageBox.Show("Please check your selected qty  " + lblQty.Text, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            _AlertService.AlertBox("Please check your selected qty", "Warning");
                             return;
                         }
 
@@ -249,24 +251,26 @@ namespace car_traders.View.Customer
                             numInputQty.Value = 0;
                             loader.Visible = false;
 
+                            _AlertService.AlertBox("Success", "Success");
+
 
 
                         }
                         else
                         {
-                            MessageBox.Show($"Cannot place an order for this car. Please re-login.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            _AlertService.AlertBox("Cannot place an order for this car. Please re-login.", "Error");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Please Select minimum qty is 1 .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("Please Select minimum qty is 1 .", "Error");
 
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Invalid price value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("Invalid price value.", "Warning");
                 }
             }
             catch (Exception ex)
@@ -282,7 +286,7 @@ namespace car_traders.View.Customer
         {
             if (OrderDetailsList.Count <= 0)
             {
-                MessageBox.Show("Select the Car parts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _AlertService.AlertBox("Select the Car parts.", "Warning");
                 return;
             }
             Form modelBackgraund = new Form();
