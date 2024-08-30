@@ -1,5 +1,6 @@
 ﻿using car_traders.Model;
 using car_traders.Service;
+using car_traders.Service.Common;
 using car_traders.View.View_Admin.View_Orders;
 using car_traders.View.View_Customer.View_Order;
 using MaterialSkin.Controls;
@@ -17,14 +18,15 @@ namespace car_traders.View.View_Admin.Modal
 {
     public partial class CustomerOrderDetailViewModalForm : MaterialForm
     {
-        readonly List<OrderDetails> _orderDetailList;
-        readonly Model.Order _order;
-        View_Orders.ViewOrderForm _viewOrderForm;
+        private readonly List<OrderDetails> _orderDetailList;
+        private readonly Model.Order _order;
+        private readonly View_Orders.ViewOrderForm _viewOrderForm;
 
-        readonly CarService _carService;
-        readonly CarPartsService _carPartsService;
-        readonly OrderService _orderService;
-        readonly OrderDetailService _orderDetailService;
+        private readonly CarService _carService;
+        private readonly CarPartsService _carPartsService;
+        private readonly OrderService _orderService;
+        private readonly OrderDetailService _orderDetailService;
+
         public CustomerOrderDetailViewModalForm(List<OrderDetails> detailList, Order order, View_Orders.ViewOrderForm viewCustomerOrderForm)
         {
             InitializeComponent();

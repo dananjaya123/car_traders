@@ -26,6 +26,8 @@ namespace car_traders
         private readonly OrderService _orderService;
         private readonly UserService _userService;
         private readonly PDFGenarate _pdfGenarate;
+        private readonly AlertService _AlertService;
+
 
         public AdminMainForm()
         {
@@ -40,6 +42,7 @@ namespace car_traders
             _userService = new UserService();
             _pdfGenarate = new PDFGenarate();
             _orderService = new OrderService();
+            _AlertService = new AlertService();
 
         }
 
@@ -66,6 +69,7 @@ namespace car_traders
                 List<Order> orderList =_orderService.getAllDailyOrders();
                 if (orderList.Count <=0)
                 {
+                    _AlertService.AlertBox("Orders is empty !", "Warning");
                     return;
                 }
                 foreach (var order in orderList)
@@ -310,11 +314,11 @@ namespace car_traders
 
                 if (_carService.SaveCar(car))
                 {
-                    MessageBox.Show("Car added successfully");
+                    _AlertService.AlertBox("Car added successfully", "Success");
                 }
                 else
                 {
-                    MessageBox.Show("Something went wrong!");
+                    _AlertService.AlertBox("Something went wrong", "Error");
                 }
                 clearCarForm();
                 LoadCarTable();
@@ -487,13 +491,13 @@ namespace car_traders
                 }
                 if (_carPartService.saveCarPart(carPart))
                 {
-                    MessageBox.Show("Car Part added successfully");
+                    _AlertService.AlertBox("Car Part added successfully", "Success");
                     loadCarPartsListTable();
                     LoadDashboardCount();
                 }
                 else
                 {
-                    MessageBox.Show("Something went wrong!");
+                    _AlertService.AlertBox("Something went wrong", "Error");
                 }
 
                 cleanCarParts();

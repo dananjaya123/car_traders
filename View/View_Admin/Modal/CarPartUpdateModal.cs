@@ -1,5 +1,6 @@
 ﻿using car_traders.Model;
 using car_traders.Service;
+using car_traders.Service.Common;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -19,7 +20,9 @@ namespace car_traders
     {
 
         private readonly CarPartsService _carPartsService;
-        private CarPart _carPart;
+        private readonly CarPart _carPart;
+        private readonly AlertService _AlertService;
+
 
         public CarPartUpdateModal(CarPart carPart)
         {
@@ -30,6 +33,7 @@ namespace car_traders
             _carPart = carPart;
 
             _carPartsService = new CarPartsService();
+            _AlertService = new AlertService();
 
             InitializeComponent();
             loadTextValues();
@@ -133,17 +137,17 @@ namespace car_traders
                     // Update the car part in the repository
                     if (_carPartsService.updateCarPart(carPart))
                     {
-                        MessageBox.Show("Car Part updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _AlertService.AlertBox("Car Part updated successfully", "Success");
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Error updating car part", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("Error updating car part", "Error");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Car part not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("Car part not found", "Error");
                 }
             }
             catch (Exception ex)
@@ -207,17 +211,18 @@ namespace car_traders
                         // Update the car part in the repository
                         if (_carPartsService.updateCarPart(part))
                         {
-                            MessageBox.Show("Car Part deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            _AlertService.AlertBox("Car Part deleted", "Success");
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Error deleting car part", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            _AlertService.AlertBox("Error deleting car part", "Error");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Car part not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("Car part not found", "Error");
+
                     }
                 }
             }

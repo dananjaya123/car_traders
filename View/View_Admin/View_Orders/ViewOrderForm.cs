@@ -18,14 +18,16 @@ namespace car_traders.View.View_Admin.View_Orders
 {
     public partial class ViewOrderForm : Form
     {
-        readonly OrderService _orderService;
-        readonly OrderDetailService _orderDetailService;
-        readonly CarService _carService;
-        readonly CarPartsService _carPartsService;
-        readonly UserService _userService;
-        readonly User sesionUser = LoginForm.SesionUserData;
-        readonly PDFGenarate _pdfGenarate;
+        private readonly OrderService _orderService;
+        private readonly OrderDetailService _orderDetailService;
+        private readonly CarService _carService;
+        private readonly CarPartsService _carPartsService;
+        private readonly UserService _userService;
+        private readonly User sesionUser = LoginForm.SesionUserData;
+        private readonly PDFGenarate _pdfGenarate;
         private string btnSelectValue = "";
+        private readonly AlertService _AlertService;
+
         public ViewOrderForm()
         {
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace car_traders.View.View_Admin.View_Orders
             _carPartsService = new CarPartsService();
             _pdfGenarate = new PDFGenarate();
             _userService = new UserService();
+            _AlertService = new AlertService();
 
 
         }
@@ -203,7 +206,7 @@ namespace car_traders.View.View_Admin.View_Orders
                 listViewOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
                 {
-                    MessageBox.Show("No Order found .");
+                    _AlertService.AlertBox("No Order found", "Error");
                     return;
                 }
 
@@ -239,14 +242,14 @@ namespace car_traders.View.View_Admin.View_Orders
                 if (order.status != "REQUEST")
                 {
                     loadTable();
-                    MessageBox.Show($"This Order cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("This Order cannot be reject!", "Error");
                     return;
                 }
                 order.status = "REJECT";
                 order.Is_active = false;
                 if (!_orderService.updateOrder(order))
                 {
-                    MessageBox.Show($"This Order cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("This Order cannot be reject!", "Error");
                     return;
                 }
 
@@ -266,7 +269,7 @@ namespace car_traders.View.View_Admin.View_Orders
                         {
                             if (!_carPartsService.UpdatePartsStatusAndQty(itemId, "AVAILABLE", true, detailItem.Qty))
                             {
-                                MessageBox.Show($"{detailItem.Item_name} This Part cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                _AlertService.AlertBox($"{detailItem.Item_name} This Part cannot be reject!", "Error");
                                 break;
                             }
                         }
@@ -274,14 +277,14 @@ namespace car_traders.View.View_Admin.View_Orders
                         {
                             if (!_carService.UpdateCarStatusAndQty(itemId, "AVAILABLE", true))
                             {
-                                MessageBox.Show($"{detailItem.Item_name} This Car cannot be reject!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                _AlertService.AlertBox($"{detailItem.Item_name} This Car cannot be reject!", "Error");
                                 break;
                             }
                         }
 
                     }
                 }
-                MessageBox.Show($"{order.Order_code} This Order reject", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _AlertService.AlertBox("Order rejecte", "Success");
                 loadTable();
             }
             catch (Exception ex)

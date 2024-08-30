@@ -18,11 +18,13 @@ namespace car_traders.View.View_Admin.Modal
 {
     public partial class PaymentModalForm : MaterialForm
     {
-        readonly OrderService _orderService;
-        readonly UserService _userService;
+        private readonly OrderService _orderService;
+        private readonly UserService _userService;
         private Order orderData;
 
-        readonly EmailSend _emailSend;
+        private readonly EmailSend _emailSend;
+        private readonly AlertService _AlertService;
+
 
 
         public PaymentModalForm()
@@ -30,6 +32,7 @@ namespace car_traders.View.View_Admin.Modal
             _orderService = new OrderService();
             _userService = new UserService();
             _emailSend = new EmailSend();
+            _AlertService = new AlertService();
             InitializeComponent();
         }
 
@@ -52,7 +55,7 @@ namespace car_traders.View.View_Admin.Modal
 
             if (paid != double.Parse(lblTotalAmount.Text.ToString()))
             {
-                MessageBox.Show("Please Enter a valid Amount", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                _AlertService.AlertBox("Please Enter a valid Amount", "Error");
                 return;
 
             }
@@ -66,7 +69,7 @@ namespace car_traders.View.View_Admin.Modal
 
                 if (_emailSend.SendEmail("cartraders@gmail.com", userdata.Email, "Payment successfully", mailBody))
                 {
-                    MessageBox.Show("Payment successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _AlertService.AlertBox("Payment successfully", "Success");
 
                 }
             }

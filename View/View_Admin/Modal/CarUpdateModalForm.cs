@@ -1,5 +1,6 @@
 ﻿using car_traders.Model;
 using car_traders.Service;
+using car_traders.Service.Common;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -18,6 +19,8 @@ namespace car_traders
     {
         private Car _car;
         private readonly CarService _carService;
+        private readonly AlertService _AlertService;
+
 
         public CarUpdateModalForm(Car car)
         {
@@ -26,6 +29,7 @@ namespace car_traders
 
             _carService = new CarService();
             _car = car;
+            _AlertService = new AlertService();
 
             InitializeComponent();
             LoadFormData();
@@ -128,17 +132,17 @@ namespace car_traders
                     // Update the car part in the repository
                     if (_carService.updateCar(car))
                     {
-                        MessageBox.Show("Car  updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _AlertService.AlertBox("Car updated successfully", "Success");
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Error updating car ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("Error updating car", "Error");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Car  not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("Car not found", "Error");
 
                 }
             }
@@ -168,17 +172,17 @@ namespace car_traders
                         // Update the car part in the repository
                         if (_carService.updateCar(car))
                         {
-                            MessageBox.Show("Car deleted successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            _AlertService.AlertBox("Car deleted successfully", "Success");
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Error deleting car ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            _AlertService.AlertBox("Something went wrong!", "Error");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Car  not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("Car not found!", "Error");
                     }
                 }
             }

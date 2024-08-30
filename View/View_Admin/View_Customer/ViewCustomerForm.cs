@@ -18,13 +18,16 @@ namespace car_traders.View.View_Admin.View_Customer
 {
     public partial class ViewCustomerForm : Form
     {
-        UserService _userService;
-        PDFGenarate _pdfGenarate;
+        private readonly UserService _userService;
+        private readonly PDFGenarate _pdfGenarate;
+        private readonly AlertService _AlertService;
+
         public ViewCustomerForm()
         {
             InitializeComponent();
             _userService = new UserService();
             _pdfGenarate = new PDFGenarate();
+            _AlertService = new AlertService();
             loadTable();
         }
         private void loadTable()
@@ -121,7 +124,7 @@ namespace car_traders.View.View_Admin.View_Customer
                     }
                     else
                     {
-                        MessageBox.Show($" Error : cannot find this User", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("cannot find this User", "Error");
 
                     }
 
@@ -152,7 +155,7 @@ namespace car_traders.View.View_Admin.View_Customer
                 if (userList == null || userList.Count == 0)
                 {
                     pnlEmptyMs.Visible = true;
-                    //MessageBox.Show("No Customer found .");
+                    _AlertService.AlertBox("Customer not found", "Error");
                     return;
                 }
                 pnlEmptyMs.Visible = false;
