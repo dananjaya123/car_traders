@@ -359,14 +359,10 @@ namespace car_traders
                 List<Car> carList = _carService.getAllCarListByModelName(searchModelName);
                 if (carList.Count <= 0)
                 {
-                    pnlEmptyMsCar.Visible = true;
+                    _AlertService.AlertBox("Car Not Found", "Error");
                 }
-                else
-                {
-                    pnlEmptyMsCar.Visible = false;
-                    loadCarListTable(carList);
-                    
-                }
+                loadCarListTable(carList);
+
 
             }
 
@@ -545,14 +541,10 @@ namespace car_traders
 
                     if (parts.Count <=0)
                     {
-                        pnlEmptyCartPartMs.Visible = true;
+                        _AlertService.AlertBox("Car part not found", "Error");
                     }
-                    else
-                    {
-                        pnlEmptyCartPartMs.Visible = false;
-                        loadCarPartsListTable(parts);
-                        
-                    }
+                    loadCarPartsListTable(parts);
+
                 }
             }
             catch (Exception ex)
@@ -794,12 +786,12 @@ namespace car_traders
 
         private void btnCarEmptyMsBoxClose_Click(object sender, EventArgs e)
         {
-            pnlEmptyMsCar.Visible = false;
+          
         }
 
         private void btnEmptyCarPartMsClose_Click(object sender, EventArgs e)
         {
-            pnlEmptyCartPartMs.Visible = false;
+          
         }
     }
 }

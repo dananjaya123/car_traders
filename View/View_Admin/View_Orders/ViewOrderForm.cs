@@ -57,12 +57,9 @@ namespace car_traders.View.View_Admin.View_Orders
 
                 if (orderList.Count <= 0)
                 {
-                    pnlEmptyMs.Visible = true;
+                    _AlertService.AlertBox("Order Not found", "Warning");
                 }
-                else
-                {
-                    pnlEmptyMs.Visible = false;
-                }
+
 
                 foreach (var order in orderList)
                 {
@@ -206,7 +203,7 @@ namespace car_traders.View.View_Admin.View_Orders
                 listViewOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
                 {
-                    _AlertService.AlertBox("No Order found", "Error");
+                    _AlertService.AlertBox("Order Not found", "Error");
                     return;
                 }
 
@@ -377,7 +374,7 @@ namespace car_traders.View.View_Admin.View_Orders
 
         private void btnEmptyMsBoxClose_Click(object sender, EventArgs e)
         {
-            pnlEmptyMs.Visible = false;
+            
         }
     }
 }

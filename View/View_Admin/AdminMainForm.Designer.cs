@@ -116,10 +116,6 @@
             btnCarPdfPrint = new MaterialSkin.Controls.MaterialButton();
             btnCarTableReload = new MaterialSkin.Controls.MaterialButton();
             materialCard10 = new MaterialSkin.Controls.MaterialCard();
-            pnlEmptyMsCar = new Panel();
-            btnCarEmptyMsBoxClose = new Button();
-            lblEmptyValueMs = new Label();
-            pictureBox3 = new PictureBox();
             tblListViewCar = new MaterialSkin.Controls.MaterialListView();
             colCarBrand = new ColumnHeader();
             colColor = new ColumnHeader();
@@ -139,10 +135,6 @@
             btnCarPartReload = new MaterialSkin.Controls.MaterialButton();
             btnPrintPartList = new MaterialSkin.Controls.MaterialButton();
             materialCard12 = new MaterialSkin.Controls.MaterialCard();
-            pnlEmptyCartPartMs = new Panel();
-            btnEmptyCarPartMsClose = new Button();
-            label10 = new Label();
-            pictureBox4 = new PictureBox();
             carPartsListView = new MaterialSkin.Controls.MaterialListView();
             colName = new ColumnHeader();
             colPrice = new ColumnHeader();
@@ -186,14 +178,10 @@
             materialCard11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             materialCard10.SuspendLayout();
-            pnlEmptyMsCar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             tabViewPats.SuspendLayout();
             materialCard13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             materialCard12.SuspendLayout();
-            pnlEmptyCartPartMs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             tabOrders.SuspendLayout();
             tblCustomer.SuspendLayout();
             tabReport.SuspendLayout();
@@ -1890,7 +1878,6 @@
             // materialCard10
             // 
             materialCard10.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard10.Controls.Add(pnlEmptyMsCar);
             materialCard10.Controls.Add(tblListViewCar);
             materialCard10.Depth = 0;
             materialCard10.ForeColor = Color.FromArgb(222, 0, 0, 0);
@@ -1901,49 +1888,6 @@
             materialCard10.Padding = new Padding(14);
             materialCard10.Size = new Size(1345, 492);
             materialCard10.TabIndex = 145;
-            // 
-            // pnlEmptyMsCar
-            // 
-            pnlEmptyMsCar.BackColor = Color.WhiteSmoke;
-            pnlEmptyMsCar.Controls.Add(btnCarEmptyMsBoxClose);
-            pnlEmptyMsCar.Controls.Add(lblEmptyValueMs);
-            pnlEmptyMsCar.Controls.Add(pictureBox3);
-            pnlEmptyMsCar.Location = new Point(447, 183);
-            pnlEmptyMsCar.Name = "pnlEmptyMsCar";
-            pnlEmptyMsCar.Size = new Size(451, 127);
-            pnlEmptyMsCar.TabIndex = 91;
-            pnlEmptyMsCar.Visible = false;
-            // 
-            // btnCarEmptyMsBoxClose
-            // 
-            btnCarEmptyMsBoxClose.Location = new Point(327, 86);
-            btnCarEmptyMsBoxClose.Name = "btnCarEmptyMsBoxClose";
-            btnCarEmptyMsBoxClose.Size = new Size(112, 34);
-            btnCarEmptyMsBoxClose.TabIndex = 2;
-            btnCarEmptyMsBoxClose.Text = "Close";
-            btnCarEmptyMsBoxClose.UseVisualStyleBackColor = true;
-            btnCarEmptyMsBoxClose.Click += btnCarEmptyMsBoxClose_Click;
-            // 
-            // lblEmptyValueMs
-            // 
-            lblEmptyValueMs.AutoSize = true;
-            lblEmptyValueMs.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblEmptyValueMs.ForeColor = Color.FromArgb(0, 192, 192);
-            lblEmptyValueMs.Location = new Point(154, 14);
-            lblEmptyValueMs.Name = "lblEmptyValueMs";
-            lblEmptyValueMs.Size = new Size(202, 32);
-            lblEmptyValueMs.TabIndex = 1;
-            lblEmptyValueMs.Text = "Values is empty !.";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(16, 10);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(108, 98);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 0;
-            pictureBox3.TabStop = false;
             // 
             // tblListViewCar
             // 
@@ -2158,7 +2102,6 @@
             // materialCard12
             // 
             materialCard12.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard12.Controls.Add(pnlEmptyCartPartMs);
             materialCard12.Controls.Add(carPartsListView);
             materialCard12.Depth = 0;
             materialCard12.ForeColor = Color.FromArgb(222, 0, 0, 0);
@@ -2169,49 +2112,6 @@
             materialCard12.Padding = new Padding(14);
             materialCard12.Size = new Size(1356, 526);
             materialCard12.TabIndex = 148;
-            // 
-            // pnlEmptyCartPartMs
-            // 
-            pnlEmptyCartPartMs.BackColor = Color.WhiteSmoke;
-            pnlEmptyCartPartMs.Controls.Add(btnEmptyCarPartMsClose);
-            pnlEmptyCartPartMs.Controls.Add(label10);
-            pnlEmptyCartPartMs.Controls.Add(pictureBox4);
-            pnlEmptyCartPartMs.Location = new Point(447, 132);
-            pnlEmptyCartPartMs.Name = "pnlEmptyCartPartMs";
-            pnlEmptyCartPartMs.Size = new Size(451, 127);
-            pnlEmptyCartPartMs.TabIndex = 92;
-            pnlEmptyCartPartMs.Visible = false;
-            // 
-            // btnEmptyCarPartMsClose
-            // 
-            btnEmptyCarPartMsClose.Location = new Point(327, 86);
-            btnEmptyCarPartMsClose.Name = "btnEmptyCarPartMsClose";
-            btnEmptyCarPartMsClose.Size = new Size(112, 34);
-            btnEmptyCarPartMsClose.TabIndex = 2;
-            btnEmptyCarPartMsClose.Text = "Close";
-            btnEmptyCarPartMsClose.UseVisualStyleBackColor = true;
-            btnEmptyCarPartMsClose.Click += btnEmptyCarPartMsClose_Click;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.FromArgb(0, 192, 192);
-            label10.Location = new Point(154, 14);
-            label10.Name = "label10";
-            label10.Size = new Size(202, 32);
-            label10.TabIndex = 1;
-            label10.Text = "Values is empty !.";
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(16, 10);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(108, 98);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 0;
-            pictureBox4.TabStop = false;
             // 
             // carPartsListView
             // 
@@ -2425,18 +2325,12 @@
             materialCard11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             materialCard10.ResumeLayout(false);
-            pnlEmptyMsCar.ResumeLayout(false);
-            pnlEmptyMsCar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             tabViewPats.ResumeLayout(false);
             tabViewPats.PerformLayout();
             materialCard13.ResumeLayout(false);
             materialCard13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             materialCard12.ResumeLayout(false);
-            pnlEmptyCartPartMs.ResumeLayout(false);
-            pnlEmptyCartPartMs.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             tabOrders.ResumeLayout(false);
             tblCustomer.ResumeLayout(false);
             tabReport.ResumeLayout(false);
@@ -2560,14 +2454,6 @@
         private LinkLabel lblRegister;
         private TabPage tabReport;
         private Panel pnlReporMain;
-        private Panel pnlEmptyMsCar;
-        private Button btnCarEmptyMsBoxClose;
-        private Label lblEmptyValueMs;
-        private PictureBox pictureBox3;
-        private Panel pnlEmptyCartPartMs;
-        private Button btnEmptyCarPartMsClose;
-        private Label label10;
-        private PictureBox pictureBox4;
         private MaterialSkin.Controls.MaterialListView listViewDailyOrder;
         private ColumnHeader colOrderCode;
         private ColumnHeader columnHeader1;
