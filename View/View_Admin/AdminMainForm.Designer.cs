@@ -32,6 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMainForm));
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             tabDashboard = new TabPage();
+            materialCard14 = new MaterialSkin.Controls.MaterialCard();
+            listViewDailyOrder = new MaterialSkin.Controls.MaterialListView();
+            colOrderCode = new ColumnHeader();
+            columnHeader1 = new ColumnHeader();
+            colTotalAmount = new ColumnHeader();
+            colOrderDate = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            colIsPaid = new ColumnHeader();
+            label11 = new Label();
             materialFloatingActionButton5 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             materialCard5 = new MaterialSkin.Controls.MaterialCard();
             panel5 = new Panel();
@@ -154,6 +163,7 @@
             lblRegister = new LinkLabel();
             materialTabControl1.SuspendLayout();
             tabDashboard.SuspendLayout();
+            materialCard14.SuspendLayout();
             materialCard5.SuspendLayout();
             panel5.SuspendLayout();
             materialCard4.SuspendLayout();
@@ -213,6 +223,8 @@
             // 
             // tabDashboard
             // 
+            tabDashboard.Controls.Add(materialCard14);
+            tabDashboard.Controls.Add(label11);
             tabDashboard.Controls.Add(materialFloatingActionButton5);
             tabDashboard.Controls.Add(materialCard5);
             tabDashboard.Controls.Add(materialFloatingActionButton4);
@@ -231,6 +243,84 @@
             tabDashboard.TabIndex = 0;
             tabDashboard.Text = "Dashboard";
             tabDashboard.Click += tabDashboard_Click;
+            // 
+            // materialCard14
+            // 
+            materialCard14.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard14.Controls.Add(listViewDailyOrder);
+            materialCard14.Depth = 0;
+            materialCard14.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard14.Location = new Point(168, 223);
+            materialCard14.Margin = new Padding(14);
+            materialCard14.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard14.Name = "materialCard14";
+            materialCard14.Padding = new Padding(14);
+            materialCard14.Size = new Size(987, 461);
+            materialCard14.TabIndex = 25;
+            // 
+            // listViewDailyOrder
+            // 
+            listViewDailyOrder.AutoSizeTable = false;
+            listViewDailyOrder.BackColor = Color.FromArgb(255, 255, 255);
+            listViewDailyOrder.BorderStyle = BorderStyle.None;
+            listViewDailyOrder.Columns.AddRange(new ColumnHeader[] { colOrderCode, columnHeader1, colTotalAmount, colOrderDate, columnHeader2, colIsPaid });
+            listViewDailyOrder.Depth = 0;
+            listViewDailyOrder.FullRowSelect = true;
+            listViewDailyOrder.Location = new Point(45, 17);
+            listViewDailyOrder.MinimumSize = new Size(200, 100);
+            listViewDailyOrder.MouseLocation = new Point(-1, -1);
+            listViewDailyOrder.MouseState = MaterialSkin.MouseState.OUT;
+            listViewDailyOrder.Name = "listViewDailyOrder";
+            listViewDailyOrder.OwnerDraw = true;
+            listViewDailyOrder.Size = new Size(901, 427);
+            listViewDailyOrder.TabIndex = 23;
+            listViewDailyOrder.UseCompatibleStateImageBehavior = false;
+            listViewDailyOrder.View = System.Windows.Forms.View.Details;
+            // 
+            // colOrderCode
+            // 
+            colOrderCode.Text = "Order Code";
+            colOrderCode.Width = 110;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Status";
+            columnHeader1.Width = 150;
+            // 
+            // colTotalAmount
+            // 
+            colTotalAmount.Text = "Amount";
+            colTotalAmount.TextAlign = HorizontalAlignment.Center;
+            colTotalAmount.Width = 200;
+            // 
+            // colOrderDate
+            // 
+            colOrderDate.Text = "Order Date";
+            colOrderDate.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "QTY";
+            columnHeader2.TextAlign = HorizontalAlignment.Center;
+            columnHeader2.Width = 100;
+            // 
+            // colIsPaid
+            // 
+            colIsPaid.Text = "Is Payment";
+            colIsPaid.Width = 150;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.ForeColor = SystemColors.AppWorkspace;
+            label11.Image = (Image)resources.GetObject("label11.Image");
+            label11.ImageAlign = ContentAlignment.MiddleLeft;
+            label11.Location = new Point(169, 185);
+            label11.Name = "label11";
+            label11.Size = new Size(211, 32);
+            label11.TabIndex = 24;
+            label11.Text = "         Daily Orders";
             // 
             // materialFloatingActionButton5
             // 
@@ -2298,6 +2388,8 @@
             Load += Form1_Load;
             materialTabControl1.ResumeLayout(false);
             tabDashboard.ResumeLayout(false);
+            tabDashboard.PerformLayout();
+            materialCard14.ResumeLayout(false);
             materialCard5.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
@@ -2476,5 +2568,14 @@
         private Button btnEmptyCarPartMsClose;
         private Label label10;
         private PictureBox pictureBox4;
+        private MaterialSkin.Controls.MaterialListView listViewDailyOrder;
+        private ColumnHeader colOrderCode;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader colTotalAmount;
+        private ColumnHeader colOrderDate;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader colIsPaid;
+        private Label label11;
+        private MaterialSkin.Controls.MaterialCard materialCard14;
     }
 }

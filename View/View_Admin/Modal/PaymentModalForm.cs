@@ -68,7 +68,6 @@ namespace car_traders.View.View_Admin.Modal
                 {
                     MessageBox.Show("Payment successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
                 }
             }
 

@@ -56,7 +56,7 @@ namespace car_traders.Service
 
                 // Using a native SQL query to get the count of active car parts
                 var count = dbContext.car
-                                     .Where(cp => cp.Is_active && cp.Status == "available")
+                                     .Where(cp => cp.Is_active && cp.Status.Equals("AVAILABLE"))
                                      .Count();
                 return count;
 

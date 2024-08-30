@@ -155,6 +155,7 @@ namespace car_traders.View.View_Customer.View_CarPart
 
                 if (_orderService.plaseOrder(order))
                 {
+                    
                     bool allDetailsSaved = true;
 
                     // Iterate through the ordersList and save each OrderDetails object
@@ -190,17 +191,19 @@ namespace car_traders.View.View_Customer.View_CarPart
 
                             if (!_carPartsService.updateCarPart(carPart))
                             {
-                                MessageBox.Show($"Error updating car part: {carPart.Parts_name}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 loader.Visible = false;
+                                MessageBox.Show($"Error updating car part: {carPart.Parts_name}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+  
                                 return;
                             }
                         }
+
 
                         // Send the order confirmation email
                         string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"));
                         if (_EmailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request", body))
                         {
-
+                            loader.Visible = false;
                             // Clear the orders list
                             ordersList.Clear();
 
@@ -213,7 +216,7 @@ namespace car_traders.View.View_Customer.View_CarPart
                             btnCancel.Visible = false;
 
                             MessageBox.Show("order submitted successfully!", "Success");
-                            loader.Visible = false;
+                            
                             // Clear the OrderDetailsList in the original form
                             searchCarForm.ClearOrderDetailsList();
                             this.Close(); // Close the modal form after submission

@@ -32,8 +32,6 @@ namespace car_traders
             InitializeComponent();
             /*MaterialButton desing add   */
             var materialSkinManager = MaterialSkinManager.Instance;
-            /*materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; */
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue700, TextShade.WHITE);
 
             // Initialize CarRepository
@@ -56,7 +54,41 @@ namespace car_traders
             orderFormsLoad();
             customerFormLoad();
             reportFormLoad();
+            loadDailyOrderTable();
 
+        }
+
+        private void loadDailyOrderTable()
+        {
+            try
+            {
+                listViewDailyOrder.Items.Clear();
+                List<Order> orderList =_orderService.getAllDailyOrders();
+                if (orderList.Count <=0)
+                {
+                    return;
+                }
+                foreach (var order in orderList)
+                {
+                    var listViewItem = new ListViewItem(new[]
+                    {
+                       order.Order_code,
+                       order.status,
+                       order.Total_amount.ToString("F2"), // Convert double to string with 2 decimal places
+                       order.Created.ToString("yyyy/mm/dd"),
+                       order.qty.ToString(),
+                       order.Is_payment? "PAID" : "NOT PAID"
+
+                    });
+
+                    listViewDailyOrder.Items.Add(listViewItem);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error : {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void reportFormLoad()
@@ -616,7 +648,7 @@ namespace car_traders
 
         }
 
-        private void LoadDashboardCount()
+        public void LoadDashboardCount()
         {
             //car count
             int carCount = _carService.GetCarCount();

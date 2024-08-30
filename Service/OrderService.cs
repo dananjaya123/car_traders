@@ -96,11 +96,31 @@ namespace car_traders.Service
         {
             using (var dbContext = new ApplicationDBContext())
             {
-                // Get the current date
-                var currentDate = DateTime.Today;
+                // 14 days ago
+                DateTime startDate = DateTime.Today.AddDays(-14);
 
-                var order = dbContext.order.Where(od => od.status == status && od.Created.Date == currentDate).ToList();
-                return order;
+               
+                DateTime endDate = DateTime.Today;
+
+                // Get orders that match the status and are within the specified date range
+                var orders = dbContext.order
+                    .Where(od => od.status == status && od.Created.Date >= startDate && od.Created.Date <= endDate)
+                    .ToList();
+
+                return orders;
+            }
+        }
+
+        public List<Order> getAllDailyOrders()
+        {
+            using (var dbContext = new ApplicationDBContext())
+            {
+            
+                DateTime today = DateTime.Today;
+                    var orders = dbContext.order.Where(od => od.Created.Date == today)
+                    .ToList();
+
+                return orders;
             }
         }
 
