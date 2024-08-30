@@ -1,5 +1,6 @@
 ﻿using car_traders.Model;
 using car_traders.Service;
+using car_traders.Service.Common;
 using car_traders.View.View_Customer.View_CarPart;
 using Org.BouncyCastle.Asn1.Cmp;
 using System;
@@ -16,11 +17,13 @@ namespace car_traders.View.View_Customer.View_Order
 {
     public partial class ViewOrderForm : Form
     {
-        readonly OrderService _orderService;
-        readonly OrderDetailService _orderDetailService;
-        readonly CarService _carService;
-        readonly CarPartsService _carPartsService;
-        readonly User sesionUser = LoginForm.SesionUserData;
+        private readonly OrderService _orderService;
+        private readonly OrderDetailService _orderDetailService;
+        private readonly CarService _carService;
+        private readonly CarPartsService _carPartsService;
+        private readonly User sesionUser = LoginForm.SesionUserData;
+        private readonly AlertService _AlertService;
+
         public ViewOrderForm()
         {
 
@@ -29,6 +32,7 @@ namespace car_traders.View.View_Customer.View_Order
             _orderDetailService = new OrderDetailService();
             _carService = new CarService();
             _carPartsService = new CarPartsService();
+            _AlertService = new AlertService();
             loadTable();
         }
 
@@ -73,7 +77,7 @@ namespace car_traders.View.View_Customer.View_Order
                 listViewOrder.Items.Clear();
                 if (orderList == null || orderList.Count == 0)
                 {
-                    MessageBox.Show("No Order found .");
+                    _AlertService.AlertBox("No Order found", "Warning");
                     return;
                 }
 
@@ -136,7 +140,7 @@ namespace car_traders.View.View_Customer.View_Order
                     }
                     else
                     {
-                        MessageBox.Show($" Error : cannot find this order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _AlertService.AlertBox("cannot find this order", "Error");
 
                     }
 
@@ -196,14 +200,14 @@ namespace car_traders.View.View_Customer.View_Order
                 if (order.status != "REQUEST")
                 {
                     loadTable();
-                    MessageBox.Show($"This Order cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("This Order cannot be canceled!", "Error");
                     return;
                 }
                 order.status = "CANCEL";
                 order.Is_active = false;
                 if (!_orderService.updateOrder(order))
                 {
-                    MessageBox.Show($"This Order cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("This Order cannot be canceled!", "Error");
                     return;
                 }
 
@@ -223,7 +227,7 @@ namespace car_traders.View.View_Customer.View_Order
                         {
                             if (!_carPartsService.UpdatePartsStatusAndQty(itemId, "AVAILABLE", true, detailItem.Qty))
                             {
-                                MessageBox.Show($"{detailItem.Item_name} This Part cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                _AlertService.AlertBox("This Part cannot be canceled!", "Error");
                                 break;
                             }
                         }
@@ -231,14 +235,14 @@ namespace car_traders.View.View_Customer.View_Order
                         {
                             if (!_carService.UpdateCarStatusAndQty(itemId, "AVAILABLE", true))
                             {
-                                MessageBox.Show($"{detailItem.Item_name} This Car cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                _AlertService.AlertBox("This Car cannot be canceled!", "Error");
                                 break;
                             }
                         }
 
                     }
                 }
-                MessageBox.Show($"{order.Order_code} This Order canceled", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _AlertService.AlertBox("Success", "Success");
                 loadTable();
                 loader.Visible = false;
             }

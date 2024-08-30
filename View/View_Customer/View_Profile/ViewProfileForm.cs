@@ -15,14 +15,16 @@ namespace car_traders.View.View_Customer.View_Profile
 {
     public partial class ViewProfileForm : Form
     {
-        HashPassword _hashPassword;
-        UserService _userService;
-        EmailSend _EmailSend;
+        private readonly HashPassword _hashPassword;
+        private readonly UserService _userService;
+        private readonly EmailSend _EmailSend;
+        private readonly AlertService _AlertService;
         public ViewProfileForm()
         {
             _hashPassword = new HashPassword();
             _userService = new UserService();
             _EmailSend = new EmailSend();
+            _AlertService = new AlertService();
             InitializeComponent();
         }
 
@@ -65,7 +67,7 @@ namespace car_traders.View.View_Customer.View_Profile
                         _EmailSend.SendEmail("cartraders@gmail.com", userData.Email, "Order Request ", body);
                     }
 
-                    MessageBox.Show("Success");
+                    _AlertService.AlertBox("Success", "Success");
                 }
 
 

@@ -16,12 +16,13 @@ namespace car_traders.View.Customer
 {
     public partial class SearchCarPartsForm : Form
     {
-        CarPartsService _carPartsService;
-        OrderService _orderService;
-        IDGenerate _IDGenerate;
-        OrderDetailService _orderDetailService;
-        EmailSend _EmailSend;
-        AlertService _AlertService;
+        private readonly CarPartsService _carPartsService;
+        private readonly OrderService _orderService;
+        private readonly IDGenerate _IDGenerate;
+        private readonly OrderDetailService _orderDetailService;
+        private readonly EmailSend _EmailSend;
+        private readonly AlertService _AlertService;
+
         public SearchCarPartsForm()
         {
             InitializeComponent();

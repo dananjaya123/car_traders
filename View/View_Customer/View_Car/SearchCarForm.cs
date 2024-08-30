@@ -18,11 +18,13 @@ namespace car_traders
     public partial class SearchCarForm : Form
     {
 
-        CarService _carService;
-        OrderService _orderService;
-        OrderDetailService _orderDetailService;
-        IDGenerate _iDGenerate;
-        EmailSend _emailSend;
+        private readonly CarService _carService;
+        private readonly OrderService _orderService;
+        private readonly OrderDetailService _orderDetailService;
+        private readonly IDGenerate _iDGenerate;
+        private readonly EmailSend _emailSend;
+        private readonly AlertService _AlertService;
+
         public SearchCarForm()
         {
             _carService = new CarService();
@@ -30,6 +32,7 @@ namespace car_traders
             _orderDetailService = new OrderDetailService();
             _iDGenerate = new IDGenerate();
             _emailSend = new EmailSend();
+            _AlertService = new AlertService();
             InitializeComponent();
         }
 
@@ -45,7 +48,7 @@ namespace car_traders
             List<Car> carList = _carService.getAllCarList();
             if (carList == null || carList.Count == 0)
             {
-                MessageBox.Show("No cars found in the database.");
+                _AlertService.AlertBox("No cars found", "Error");
                 return;
             }
 
@@ -77,7 +80,7 @@ namespace car_traders
                 List<Car> carList = _carService.getAllCarListByModelName(texSearchCar.Text);
                 if (carList == null || carList.Count == 0)
                 {
-                    MessageBox.Show("No car  found !.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("No cars found", "Error");
                     return;
                 }
               
@@ -184,7 +187,7 @@ namespace car_traders
             {
                 if (car.Status == "SOLD OUT")
                 {
-                    MessageBox.Show($"SOLD OUT", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("SOLD OUT", "Warning");
                     btnSubmit.Visible = false;
                     return;
                 }
@@ -228,13 +231,13 @@ namespace car_traders
                                 string body = GenerateEmailBody("Car traders", user.User_name, order.Order_code, DateTime.Now.ToString("MMMM dd, yyyy"), car.Image_data);
                                 if (_emailSend.SendEmail("cartraders@gmail.com", user.Email, "Order Request ", body))
                                 {
-                                    MessageBox.Show("Order request Successfully");
+                                    _AlertService.AlertBox("Success", "Success");
                                     loadCarDetail();
                                     loader.Visible = false;
                                     return;
                                 }
                             }
-                            MessageBox.Show($"something wrong !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            _AlertService.AlertBox("something wrong !", "Error");
                             return;
                         }
                     }
@@ -242,7 +245,7 @@ namespace car_traders
                 }
                 else
                 {
-                    MessageBox.Show($"Cannot place an order for this car. Please re-login.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("Cannot place an order for this car. Please re-login. !", "Error");
                 }
             }
             catch (Exception ex)

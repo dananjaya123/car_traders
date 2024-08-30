@@ -21,11 +21,12 @@ namespace car_traders.View.View_Customer.View_CarPart
         private List<OrderDetails> ordersList;
         private SearchCarPartsForm searchCarForm;
 
-        CarPartsService _carPartsService;
-        OrderService _orderService;
-        IDGenerate _IDGenerate;
-        OrderDetailService _orderDetailService;
-        EmailSend _EmailSend;
+        private readonly CarPartsService _carPartsService;
+        private readonly OrderService _orderService;
+        private readonly IDGenerate _IDGenerate;
+        private readonly OrderDetailService _orderDetailService;
+        private readonly EmailSend _EmailSend;
+        private readonly AlertService _AlertService;
         public CarPartsCartViewModalForm(List<OrderDetails> ordersList, SearchCarPartsForm searchCarPartsForm)
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace car_traders.View.View_Customer.View_CarPart
             _IDGenerate = new IDGenerate();
             _orderDetailService = new OrderDetailService();
             _EmailSend = new EmailSend();
+            _AlertService = new AlertService();
             loadCartDataList();
         }
 
@@ -114,7 +116,7 @@ namespace car_traders.View.View_Customer.View_CarPart
                 }
                 else
                 {
-                    MessageBox.Show("Please select an item to remove.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _AlertService.AlertBox("Please select an item to remove.", "Error");
                 }
             }
             catch (Exception ex)
@@ -130,7 +132,7 @@ namespace car_traders.View.View_Customer.View_CarPart
             {
                 if (ordersList.Count <= 0)
                 {
-                    MessageBox.Show($"Please select the cart parts", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    _AlertService.AlertBox("Please select the cart parts.", "Warning");
                     loader.Visible = false;
                     return;
                 }
@@ -192,8 +194,8 @@ namespace car_traders.View.View_Customer.View_CarPart
                             if (!_carPartsService.updateCarPart(carPart))
                             {
                                 loader.Visible = false;
-                                MessageBox.Show($"Error updating car part: {carPart.Parts_name}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-  
+                                _AlertService.AlertBox($"Error updating car part: {carPart.Parts_name}", "Error");
+
                                 return;
                             }
                         }
@@ -215,7 +217,7 @@ namespace car_traders.View.View_Customer.View_CarPart
                             lblPartsName.Visible = false;
                             btnCancel.Visible = false;
 
-                            MessageBox.Show("order submitted successfully!", "Success");
+                            _AlertService.AlertBox("order submitted successfully!", "Success");
                             
                             // Clear the OrderDetailsList in the original form
                             searchCarForm.ClearOrderDetailsList();
@@ -225,12 +227,12 @@ namespace car_traders.View.View_Customer.View_CarPart
                     }
                     else
                     {
-                        MessageBox.Show($"Error saving order details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        _AlertService.AlertBox("Error saving order details.", "Error");
                     }
                 }
                 else
                 {
-                    MessageBox.Show($"Error placing the order.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    _AlertService.AlertBox("Error placing the order.", "Error");
                 }
             }
             catch (Exception ex)

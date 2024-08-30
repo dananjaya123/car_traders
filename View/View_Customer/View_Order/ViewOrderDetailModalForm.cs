@@ -1,5 +1,6 @@
 ﻿using car_traders.Model;
 using car_traders.Service;
+using car_traders.Service.Common;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Mysqlx.Crud;
@@ -20,14 +21,16 @@ namespace car_traders.View.View_Customer.View_Order
 {
     public partial class ViewOrderDetailModalForm : MaterialForm
     {
-        readonly List<OrderDetails> _orderDetailList;
-        readonly Model.Order _order;
-        readonly ViewOrderForm _viewOrderForm;
+        private readonly List<OrderDetails> _orderDetailList;
+        private readonly Model.Order _order;
+        private readonly ViewOrderForm _viewOrderForm;
 
-        readonly CarService _carService;
-        readonly CarPartsService _carPartsService;
-        readonly OrderService _orderService;
-        readonly OrderDetailService _orderDetailService;
+        private readonly CarService _carService;
+        private readonly CarPartsService _carPartsService;
+        private readonly OrderService _orderService;
+        private readonly OrderDetailService _orderDetailService;
+        private readonly AlertService _AlertService;
+
         public ViewOrderDetailModalForm(List<OrderDetails> detailList, Model.Order order, ViewOrderForm viewOrderForm)
         {
 
@@ -41,7 +44,7 @@ namespace car_traders.View.View_Customer.View_Order
             _carPartsService = new CarPartsService();
             _orderService = new OrderService();
             _orderDetailService = new OrderDetailService();
-
+            _AlertService = new AlertService();
             loadOrderDetail();
 
 
@@ -158,7 +161,7 @@ namespace car_traders.View.View_Customer.View_Order
             int existQty = int.Parse(lblExist.Text);
             if (qty > existQty)
             {
-                MessageBox.Show($"Can't cancel this item. please check your qty count !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _AlertService.AlertBox("Can't cancel this item. please check your qty count !", "Warning");
                 return;
             }
             else if (qty <= existQty)
@@ -187,7 +190,7 @@ namespace car_traders.View.View_Customer.View_Order
                             // car stock update
                             if (!_carPartsService.UpdatePartsStatusAndQty(detailsData.Item_Id, "AVAILABLE", true, qty))
                             {
-                                MessageBox.Show($"{detailsData.Item_name} This Part cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                _AlertService.AlertBox(" cannot be canceled!", "Error");
                                 return;
                             }
                         }
@@ -196,7 +199,7 @@ namespace car_traders.View.View_Customer.View_Order
                             // part stock update
                             if (!_carService.UpdateCarStatusAndQty(detailsData.Item_Id, "AVAILABLE", true))
                             {
-                                MessageBox.Show($"{detailsData.Item_name} This Car cannot be canceled!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                _AlertService.AlertBox(" cannot be canceled!", "Error");
                                 return;
                             }
                         }
@@ -210,7 +213,7 @@ namespace car_traders.View.View_Customer.View_Order
                         }
                         if (_orderService.updateOrder(_order))
                         {
-                            MessageBox.Show($"{detailsData.Item_name} This Item canceled", "Succsess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            _AlertService.AlertBox("Success", "Success");
                             _viewOrderForm.reloadViewOrderData();
                             loadOrderDetail();
                             this.Close();
