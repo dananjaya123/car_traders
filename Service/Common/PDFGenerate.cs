@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace car_traders.Service.Common
 {
 
-    internal class PDFGenarate
+    internal class PDFGenerate
     {
         private readonly AlertService _AlertService;
-        public PDFGenarate()
+        public PDFGenerate()
         {
             _AlertService = new AlertService();
         }

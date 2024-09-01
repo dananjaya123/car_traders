@@ -24,7 +24,7 @@ namespace car_traders.View.View_Admin.View_Orders
         private readonly CarPartsService _carPartsService;
         private readonly UserService _userService;
         private readonly User sesionUser = LoginForm.SesionUserData;
-        private readonly PDFGenarate _pdfGenarate;
+        private readonly PDFGenerate _pdfGenarate;
         private string btnSelectValue = "";
         private readonly AlertService _AlertService;
 
@@ -35,7 +35,7 @@ namespace car_traders.View.View_Admin.View_Orders
             _orderDetailService = new OrderDetailService();
             _carService = new CarService();
             _carPartsService = new CarPartsService();
-            _pdfGenarate = new PDFGenarate();
+            _pdfGenarate = new PDFGenerate();
             _userService = new UserService();
             _AlertService = new AlertService();
 

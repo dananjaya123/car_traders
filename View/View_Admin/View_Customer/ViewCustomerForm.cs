@@ -19,14 +19,14 @@ namespace car_traders.View.View_Admin.View_Customer
     public partial class ViewCustomerForm : Form
     {
         private readonly UserService _userService;
-        private readonly PDFGenarate _pdfGenarate;
+        private readonly PDFGenerate _pdfGenarate;
         private readonly AlertService _AlertService;
 
         public ViewCustomerForm()
         {
             InitializeComponent();
             _userService = new UserService();
-            _pdfGenarate = new PDFGenarate();
+            _pdfGenarate = new PDFGenerate();
             _AlertService = new AlertService();
             loadTable();
         }

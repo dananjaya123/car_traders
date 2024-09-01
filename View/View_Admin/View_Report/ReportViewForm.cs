@@ -16,13 +16,13 @@ namespace car_traders.View.View_Admin.View_Report
 
     public partial class ReportViewForm : Form
     {
-        readonly PDFGenarate _pdfGenarate;
+        readonly PDFGenerate _pdfGenarate;
         readonly OrderService _orderService;
         private string btnSelectValue;
         public ReportViewForm()
         {
             InitializeComponent();
-            _pdfGenarate = new PDFGenarate();
+            _pdfGenarate = new PDFGenerate();
             _orderService = new OrderService();
         }
 

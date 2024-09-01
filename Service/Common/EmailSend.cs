@@ -17,11 +17,6 @@ namespace car_traders.Service.Common
 
         public EmailSend()
         {
-            // Initialize with your SMTP settings
-            //smtpServer = "sandbox.smtp.mailtrap.io";
-            //smtpPort = 2525;
-            //smtpUser = "b78e467bca1f56";
-            //smtpPass = "83523c1497d20b";
 
             // Initialize with Gmail SMTP settings
             smtpServer = "smtp.gmail.com";
