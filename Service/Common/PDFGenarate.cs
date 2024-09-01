@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace car_traders.Service.Common
 {
+
     internal class PDFGenarate
     {
+        private readonly AlertService _AlertService;
+        public PDFGenarate()
+        {
+            _AlertService = new AlertService();
+        }
+
         public void pdfConverter(MaterialListView listView, string fileName)
         {
             if (listView.Items.Count > 0)
@@ -76,8 +83,7 @@ namespace car_traders.Service.Common
 
                                 fileStream.Close();
                             }
-
-                            MessageBox.Show("Data exported successfully", "Info");
+                            _AlertService.AlertBox("Data exported successfully", "Success");
                         }
                         catch (Exception ex)
                         {
@@ -88,7 +94,7 @@ namespace car_traders.Service.Common
             }
             else
             {
-                MessageBox.Show("No records found", "Info");
+                _AlertService.AlertBox("No records found", "Error");
             }
         }
     }

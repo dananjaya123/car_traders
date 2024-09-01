@@ -99,6 +99,7 @@ namespace car_traders
                         if (_emailSend.SendEmail("cartraders@gmail.com", user.Email, "One time password", body))
                         {
                             texOneTimePassword.Visible = true;
+                            _AlertService.AlertBox("Please check your Email.", "Success");
                         }
                         else
                         {
@@ -169,5 +170,28 @@ namespace car_traders
         {
             texNewPassword.Visible = true;
         }
+
+        private string GenerateEmailBodyRequest(string projectName, string userName, string loginDetails)
+        {
+            string body = $@"
+    <html>
+<body style='font-family: Arial, sans-serif; color: #333;'>
+    <h2 style='color: #4CAF50;'>Your Login Details for {projectName}</h2>
+    <p>Dear {userName},</p>
+    <p>Welcome to <strong>{projectName}</strong>! Below are your login details:</p>
+    <ul style='list-style-type: none; padding: 0;'>
+        <li><strong>Username :</strong> {userName}</li>
+        <li><strong>Password :</strong> {loginDetails}</li>
+    </ul>
+    <p>Keep your login details secure and do not share them with anyone. If you did not request these login details, please contact our support team immediately.</p>
+    <p>We hope you enjoy using our services!</p>
+    <p>Best regards,</p>
+    <p><strong>The {projectName} Team</strong></p>
+</body>
+    </html>";
+
+            return body;
+        }
+
     }
 }

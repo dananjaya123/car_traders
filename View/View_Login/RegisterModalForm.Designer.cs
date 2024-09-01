@@ -45,7 +45,9 @@
             lblPassword = new Label();
             pwView = new PictureBox();
             btnUpdate = new MaterialSkin.Controls.MaterialButton();
+            loader = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pwView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)loader).BeginInit();
             SuspendLayout();
             // 
             // texName
@@ -452,11 +454,23 @@
             btnUpdate.Visible = false;
             btnUpdate.Click += btnUpdate_Click;
             // 
+            // loader
+            // 
+            loader.Image = (Image)resources.GetObject("loader.Image");
+            loader.Location = new Point(183, 229);
+            loader.Name = "loader";
+            loader.Size = new Size(226, 226);
+            loader.SizeMode = PictureBoxSizeMode.Zoom;
+            loader.TabIndex = 90;
+            loader.TabStop = false;
+            loader.Visible = false;
+            // 
             // RegisterModalForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(574, 667);
+            Controls.Add(loader);
             Controls.Add(btnUpdate);
             Controls.Add(pwView);
             Controls.Add(lblPassword);
@@ -476,6 +490,7 @@
             Name = "RegisterModalForm";
             Text = "Register Form";
             ((System.ComponentModel.ISupportInitialize)pwView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)loader).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -498,5 +513,6 @@
         private Label lblPassword;
         private PictureBox pwView;
         private MaterialSkin.Controls.MaterialButton btnUpdate;
+        private PictureBox loader;
     }
 }

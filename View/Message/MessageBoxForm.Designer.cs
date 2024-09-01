@@ -39,10 +39,11 @@
             // lblMessage
             // 
             lblMessage.AutoSize = true;
+            lblMessage.Font = new Font("Century Gothic", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMessage.ForeColor = Color.White;
-            lblMessage.Location = new Point(111, 31);
+            lblMessage.Location = new Point(108, 35);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(171, 30);
+            lblMessage.Size = new Size(158, 25);
             lblMessage.TabIndex = 0;
             lblMessage.Text = "Message text";
             // 
@@ -53,9 +54,9 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.White;
             button1.Image = Properties.Resources.icons_close;
-            button1.Location = new Point(505, 19);
+            button1.Location = new Point(670, 33);
             button1.Name = "button1";
-            button1.Size = new Size(50, 53);
+            button1.Size = new Size(32, 26);
             button1.TabIndex = 1;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -78,7 +79,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.MediumSeaGreen;
-            ClientSize = new Size(567, 94);
+            ClientSize = new Size(714, 95);
             Controls.Add(pictureBox1);
             Controls.Add(button1);
             Controls.Add(lblMessage);

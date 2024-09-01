@@ -85,7 +85,7 @@ namespace car_traders.View.Message
             switch (action)
             {
                 case enumAction.wait:
-                    timerMs.Interval = 3000;
+                    timerMs.Interval = 8000;
                     action = enumAction.close;
                     break;
                 case enumAction.start:

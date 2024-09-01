@@ -122,7 +122,11 @@ namespace car_traders
 
                     if (_userService.saveUser(user))
                     {
-                        _AlertService.AlertBox("Success", "Success");
+                        loader.Visible = true;
+                        string body = GenerateEmailBodyRequs("car traders", user.User_name, texPassword.Text.ToString());
+                        _EmailSend.SendEmail("cartraders@gmail.com", user.Email, "Welcome to the ABC Car traders", body);
+                        _AlertService.AlertBox("Account created. Please check your email.", "Success");
+                        loader.Visible = false;
                         this.Close();
                     }
                     else
@@ -242,6 +246,7 @@ namespace car_traders
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try {
+                loader.Visible = true;
                 string pw = texPassword.Text;
 
                 userData.Name = texName.Text;
@@ -260,11 +265,19 @@ namespace car_traders
                 {
                     if (pw != "")
                     {
+                        loader.Visible = true;
                         string body = GenerateEmailBody("car traders", userData.User_name, userData.Contact_num, userData.Email, userData.Address,pw);
-                        _EmailSend.SendEmail("cartraders@gmail.com", userData.Email, "Order Request ", body);
+                        _EmailSend.SendEmail("cartraders@gmail.com", userData.Email, "Account Update ", body);
+                        _AlertService.AlertBox("Account Updated. Please check your email.", "Success");
+                        loader.Visible = false;
+                    }
+                    else
+                    {
+                        _AlertService.AlertBox("Success", "Success");
                     }
 
-                    _AlertService.AlertBox("Success", "Success");
+                
+                    loader.Visible = false;
                     this.Close();
                 }
 
@@ -303,6 +316,29 @@ namespace car_traders
 
             return body;
         }
+
+        private string GenerateEmailBodyRequs(string projectName, string userName, string loginDetails)
+        {
+            string body = $@"
+    <html>
+<body style='font-family: Arial, sans-serif; color: #333;'>
+    <h2 style='color: #4CAF50;'>Your Login Details for {projectName}</h2>
+    <p>Dear {userName},</p>
+    <p>Welcome to <strong>{projectName}</strong>! Below are your login details:</p>
+    <ul style='list-style-type: none; padding: 0;'>
+        <li><strong>Username :</strong> {userName}</li>
+        <li><strong>Password :</strong> {loginDetails}</li>
+    </ul>
+    <p>Keep your login details secure and do not share them with anyone. If you did not request these login details, please contact our support team immediately.</p>
+    <p>We hope you enjoy using our services!</p>
+    <p>Best regards,</p>
+    <p><strong>The {projectName} Team</strong></p>
+</body>
+    </html>";
+
+            return body;
+        }
+
 
     }
 }
